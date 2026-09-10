@@ -1,0 +1,34 @@
+{
+  "id": "c5982855-3368-4c57-9223-033303576022",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix a bug in the Manage All Tickets status-transition validation that incorrectl",
+  "kind": "change",
+  "status": "completed",
+  "description": "In Admin Setup -> Manage All Tickets The Status is changing from Open to Assigned when Admin is selecting an agent. But When Admin selected an agent to assign the ticket and clicks on Save & Close it gives error \" A new ticket must be created with status 'Open', not 'Assigned' \"",
+  "created_at": 1788862327.809143,
+  "updated_at": 1789016903.4467046,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix ticket status transition validation to allow Open\u2192Assigned on existing tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788862327.826532,
+      "completed_at": 1788862360.599271
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "In Admin Setup -> Manage All Tickets The Status is changing from Open to Assigned when Admin is selecting an agent. But When Admin selected an agent to assign the ticket and clicks on Save & Close it gives error \" A new ticket must be created with status 'Open', not 'Assigned' \"",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "c5982855-3368-4c57-9223-033303576022",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

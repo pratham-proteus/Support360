@@ -1,0 +1,105 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "SUPPORT360_AGENT_DASHBOARD",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Support Agent Dashboard",
+    "DASHBOARD_DESCR": "Agent's queue and workload overview: active queue count, unassigned org-wide tickets, queue breakdowns by priority and status, and an active tickets grid — scoped to the current Support Agent.",
+    "CREATED_BY": "kandarp.baghar@proteustech.co",
+    "CREATED_DATE": "2026-08-18",
+    "REFRESH_INTERVAL_SECONDS": 0,
+
+    "GLOBAL_CRITERIA": [
+      {
+        "PARAM_NAME": "CREATED_FROM",
+        "PROMPT_LABEL": "Created From",
+        "DEFAULT_VALUE": "2026-07-19",
+        "DATA_TYPE": "date",
+        "OPERATOR": ">=",
+        "BROADCAST_TO": ["VIS_MY_QUEUE_BY_PRIORITY", "VIS_MY_QUEUE_BY_STATUS", "VIS_MY_ACTIVE_TICKETS_GRID"]
+      },
+      {
+        "PARAM_NAME": "CREATED_TO",
+        "PROMPT_LABEL": "Created To",
+        "DEFAULT_VALUE": ":calendar_today",
+        "DATA_TYPE": "date",
+        "OPERATOR": "<=",
+        "BROADCAST_TO": ["VIS_MY_QUEUE_BY_PRIORITY", "VIS_MY_QUEUE_BY_STATUS", "VIS_MY_ACTIVE_TICKETS_GRID"]
+      },
+      {
+        "PARAM_NAME": "STATUS",
+        "PROMPT_LABEL": "Status",
+        "DEFAULT_VALUE": "Open,Assigned,In Progress,Resolved,Closed",
+        "DATA_TYPE": "string",
+        "OPERATOR": "in",
+        "BROADCAST_TO": ["VIS_MY_QUEUE_BY_PRIORITY", "VIS_MY_ACTIVE_TICKETS_GRID"]
+      }
+    ],
+
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_MY_QUEUE_COUNT",
+        "VISUAL_NAME": "My Queue Count",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_support360_my_queue_count.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_UNASSIGNED_COUNT",
+        "VISUAL_NAME": "Unassigned Tickets Count",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_support360_unassigned_tickets_count.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_MY_QUEUE_BY_PRIORITY",
+        "VISUAL_NAME": "My Queue by Priority",
+        "POSITION": { "X": 0, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_support360_my_queue_by_priority.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "SUPPORT360_TICKET.STATUS", "BIND_TYPE": "global", "GLOBAL_PARAM": "STATUS" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_MY_QUEUE_BY_STATUS",
+        "VISUAL_NAME": "My Queue by Status",
+        "POSITION": { "X": 6, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_support360_my_queue_by_status.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "created_from", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
+          { "VISUAL_PARAM": "created_to", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_MY_ACTIVE_TICKETS_GRID",
+        "VISUAL_NAME": "My Active Tickets Grid",
+        "POSITION": { "X": 0, "Y": 6, "WIDTH": 12, "HEIGHT": 5 },
+        "VISUAL_CONFIG_REF": "model_support360_my_active_tickets_grid.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "SUPPORT360_TICKET.STATUS", "BIND_TYPE": "global", "GLOBAL_PARAM": "STATUS" },
+          { "VISUAL_PARAM": "created_from", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
+          { "VISUAL_PARAM": "created_to", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" }
+        ]
+      }
+    ],
+
+    "DRILL_THROUGH": [
+      {
+        "SOURCE_VISUAL_ID": "VIS_MY_QUEUE_BY_PRIORITY",
+        "TARGET_TYPE": "visual",
+        "TARGET_VISUAL_ID": "support360_all_tickets_grid",
+        "PARAM_MAPPING": { "SUPPORT360_PRIORITY_MASTER_PRIORITY_CODE": "SUPPORT360_TICKET.PRIORITY_CODE" }
+      },
+      {
+        "SOURCE_VISUAL_ID": "VIS_MY_QUEUE_BY_STATUS",
+        "TARGET_TYPE": "self",
+        "PARAM_MAPPING": { "SUPPORT360_TICKET_STATUS": "STATUS" }
+      },
+      {
+        "SOURCE_VISUAL_ID": "VIS_MY_ACTIVE_TICKETS_GRID",
+        "TARGET_TYPE": "visual",
+        "TARGET_VISUAL_ID": "support360_all_tickets_grid",
+        "PARAM_MAPPING": { "SUPPORT360_TICKET_TICKET_NO": "SUPPORT360_TICKET.TICKET_NO" }
+      }
+    ]
+  }
+}

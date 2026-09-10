@@ -1,0 +1,344 @@
+{
+  "table_name": "SUPPORT360_TICKET",
+  "table_description": "",
+  "project": "Support360",
+  "columns": [
+    {
+      "column_name": "TICKET_NO",
+      "data_type": "VARCHAR",
+      "size": "30",
+      "key": true,
+      "description": "System-generated unique ticket number",
+      "sequence": 1,
+      "mandatory": true,
+      "primary_key": true,
+      "nullable": false
+    },
+    {
+      "column_name": "TITLE",
+      "data_type": "VARCHAR",
+      "size": "200",
+      "key": false,
+      "description": "Short title describing the issue or request",
+      "sequence": 2,
+      "mandatory": true,
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "DESCRIPTION",
+      "data_type": "TEXT",
+      "size": "",
+      "key": false,
+      "description": "Full description of the issue or request",
+      "sequence": 3,
+      "mandatory": true,
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "CATEGORY_CODE",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Ticket category, picked from the active Category master",
+      "sequence": 5,
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_CATEGORY_MASTER",
+        "display_column": "CATEGORY_NAME",
+        "value_column": "CATEGORY_CODE"
+      },
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "PRIORITY_CODE",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Ticket priority, picked from the active Priority master",
+      "sequence": 4,
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_PRIORITY_MASTER",
+        "display_column": "PRIORITY_NAME",
+        "value_column": "PRIORITY_CODE"
+      },
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "STATUS",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "Ticket status; defaults to Open on creation and is not user-editable",
+      "sequence": 3,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Open",
+          "label": "Open"
+        },
+        {
+          "value": "Assigned",
+          "label": "Assigned"
+        },
+        {
+          "value": "In Progress",
+          "label": "In Progress"
+        },
+        {
+          "value": "Resolved",
+          "label": "Resolved"
+        },
+        {
+          "value": "Closed",
+          "label": "Closed"
+        }
+      ],
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "RAISED_BY",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "The Employee who raised the ticket (current logged-in user)",
+      "sequence": 6,
+      "mandatory": true,
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "CREATED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the ticket was created",
+      "sequence": 8,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ATTACHMENT",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "One or more files supporting the ticket",
+      "sequence": 9,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ATTACHMENT_UPLOADED_BY",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "User who uploaded the attachment",
+      "sequence": 10,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ATTACHMENT_UPLOADED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the attachment was uploaded",
+      "sequence": 11,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ASSIGNED_AGENT",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
+      "sequence": 7,
+      "allowed_values": [
+        {
+          "value": "AGENT01",
+          "label": "AGENT01"
+        },
+        {
+          "value": "AGENT02",
+          "label": "AGENT02"
+        },
+        {
+          "value": "AGENT03",
+          "label": "AGENT03"
+        }
+      ],
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false,
+      "lookup": {
+        "table": "SUPPORT360_AGENT",
+        "display_column": "AGENT_NAME",
+        "value_column": "AGENT_ID"
+      }
+    },
+    {
+      "column_name": "ID",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "Internal unique identifier",
+      "sequence": 13,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the record was created",
+      "sequence": 14,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created the record",
+      "sequence": 15,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP the record was created from",
+      "sequence": 16,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the record was last changed",
+      "sequence": 17,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who last changed the record",
+      "sequence": 18,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP the record was last changed from",
+      "sequence": 19,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "AGENT_COMMENTS",
+      "data_type": "TEXT",
+      "size": "",
+      "key": false,
+      "description": "Accumulated comment thread between the Employee and the Support Agent (shown on drill-in)",
+      "sequence": 14,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "NEW_COMMENT",
+      "data_type": "VARCHAR",
+      "size": "2000",
+      "key": false,
+      "description": "Type a comment here, then use the Reopen-Comment action to post it; this does not change the ticket STATUS",
+      "sequence": 15,
+      "mandatory": true,
+      "primary_key": false,
+      "nullable": false
+    },
+    {
+      "column_name": "ACTIVITY_HISTORY",
+      "data_type": "TEXT",
+      "size": "",
+      "key": false,
+      "description": "Chronological history of changes to this ticket (shown on drill-in)",
+      "sequence": 18,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "CLOSED_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the Employee confirmed and closed the ticket",
+      "sequence": 23,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "CLOSED_BY",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "Employee who confirmed and closed the ticket",
+      "sequence": 24,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "RESOLUTION_NOTES",
+      "data_type": "TEXT",
+      "size": "",
+      "key": false,
+      "description": "Notes describing how the ticket was resolved; mandatory before the ticket can be moved to Resolved",
+      "sequence": 16,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    },
+    {
+      "column_name": "REASSIGN_TO_AGENT",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "Agent to reassign this ticket to; used with the Reassign action, keeps STATUS unchanged",
+      "sequence": 17,
+      "primary_key": false,
+      "nullable": true,
+      "mandatory": false
+    }
+  ]
+}

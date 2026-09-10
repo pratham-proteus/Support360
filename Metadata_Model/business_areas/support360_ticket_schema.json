@@ -1,0 +1,190 @@
+{
+  "BUSINESS_AREA": {
+    "AREA_NAME": "support360_ticket_schema",
+    "DESCRIPTION": "Shared dataset definition for the Ticket fact grain",
+    "AREA_TYPE": "A",
+    "CONNECTION_ID": "",
+    "SCHEMA_NAME": "support360_ticket_schema",
+    "APPLICATION": "Default",
+    "TABLES": [
+      {
+        "TABLE_NAME": "SUPPORT360_TICKET",
+        "TABLE_DISPLAY_NAME": "Ticket",
+        "ALIAS": "SUPPORT360_TICKET",
+        "DESCRIPTION": "One row per support ticket.",
+        "CONDITION": "",
+        "COLUMNS": [
+          {
+            "DBNAME": "TICKET_NO",
+            "DISPLAY_NAME": "Ticket No",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 30,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Ticket number, primary key of SUPPORT360_TICKET.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "STATUS",
+            "DISPLAY_NAME": "Status",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 20,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Ticket status: Open, Assigned, In Progress, Resolved, Closed.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "PRIORITY_CODE",
+            "DISPLAY_NAME": "Priority",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 20,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Priority code, matches SUPPORT360_PRIORITY_MASTER.PRIORITY_CODE.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "CATEGORY_CODE",
+            "DISPLAY_NAME": "Category",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 20,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Category code, matches SUPPORT360_CATEGORY_MASTER.CATEGORY_CODE.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "ASSIGNED_AGENT",
+            "DISPLAY_NAME": "Assigned Agent",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 36,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "User ID of the agent currently assigned to the ticket.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "RAISED_BY",
+            "DISPLAY_NAME": "Raised By",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 36,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "User ID of the person who raised the ticket.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "CREATED_DATE",
+            "DISPLAY_NAME": "Created Date",
+            "COLTYPE": "DATE",
+            "DBSIZE": 0,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Date/time the ticket was created.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          }
+        ]
+      },
+      {
+        "TABLE_NAME": "SUPPORT360_CATEGORY_MASTER",
+        "TABLE_DISPLAY_NAME": "Category Master",
+        "ALIAS": "SUPPORT360_CATEGORY_MASTER",
+        "DESCRIPTION": "Lookup of ticket categories.",
+        "CONDITION": "",
+        "COLUMNS": [
+          {
+            "DBNAME": "CATEGORY_CODE",
+            "DISPLAY_NAME": "Category Code",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 20,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Primary key of SUPPORT360_CATEGORY_MASTER.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "CATEGORY_NAME",
+            "DISPLAY_NAME": "Category Name",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 100,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Display name of the category.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          }
+        ]
+      },
+      {
+        "TABLE_NAME": "SUPPORT360_PRIORITY_MASTER",
+        "TABLE_DISPLAY_NAME": "Priority Master",
+        "ALIAS": "SUPPORT360_PRIORITY_MASTER",
+        "DESCRIPTION": "Lookup of ticket priorities.",
+        "CONDITION": "",
+        "COLUMNS": [
+          {
+            "DBNAME": "PRIORITY_CODE",
+            "DISPLAY_NAME": "Priority Code",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 20,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Primary key of SUPPORT360_PRIORITY_MASTER.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "PRIORITY_NAME",
+            "DISPLAY_NAME": "Priority Name",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 100,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Display name of the priority.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          }
+        ]
+      }
+    ],
+    "JOINS": [
+      {
+        "JOIN_ID": "J001",
+        "LEFT_TABLE": "SUPPORT360_TICKET",
+        "RIGHT_TABLE": "SUPPORT360_CATEGORY_MASTER",
+        "JOIN_TYPE": "LEFT",
+        "JOIN_CONDITION": "SUPPORT360_TICKET.CATEGORY_CODE = SUPPORT360_CATEGORY_MASTER.CATEGORY_CODE",
+        "DESCRIPTION": "Ticket's category code matches the category master's code."
+      },
+      {
+        "JOIN_ID": "J002",
+        "LEFT_TABLE": "SUPPORT360_TICKET",
+        "RIGHT_TABLE": "SUPPORT360_PRIORITY_MASTER",
+        "JOIN_TYPE": "LEFT",
+        "JOIN_CONDITION": "SUPPORT360_TICKET.PRIORITY_CODE = SUPPORT360_PRIORITY_MASTER.PRIORITY_CODE",
+        "DESCRIPTION": "Ticket's priority code matches the priority master's code."
+      }
+    ],
+    "ROW_SECURITY": [],
+    "COLUMN_SECURITY": [],
+    "MAIN_TABLE": "SUPPORT360_TICKET",
+    "JOINS_DESCRIPTION": "Tickets join the category master on CATEGORY_CODE and the priority master on PRIORITY_CODE. Filter criteria (TICKET_NO, STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY, CREATED_DATE) are all literal columns on SUPPORT360_TICKET.",
+    "AI_INSTRUCTIONS": "",
+    "EXAMPLE_QUESTIONS": [],
+    "CREATE_TARGETS": [],
+    "ACCESS": {
+      "ALLOW_ROLES": [],
+      "DENY_ROLES": []
+    },
+    "VISIBILITY": "published"
+  }
+}

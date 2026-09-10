@@ -1,0 +1,154 @@
+{
+  "DATA_SOURCE_MODE": "sqlmodel",
+  "SQLMODEL": {
+    "SQLModel": {
+      "COLUMNS": [
+        {
+          "COLUMN": [
+            {
+              "COLID": 2,
+              "NAME": "SUPPORT360_TICKET_TICKET_NO",
+              "DBTABLE": "SUPPORT360_TICKET",
+              "DBNAME": "TICKET_NO",
+              "tableName": "SUPPORT360_TICKET",
+              "tableDisplayName": "Ticket",
+              "content": "Total Open Tickets",
+              "name": "Total Open Tickets",
+              "descr": "Organization-wide count of tickets with STATUS in (Open, Assigned, In Progress)",
+              "type": "number",
+              "JAVATYPE": "java.lang.Integer",
+              "COLTYPE": "NUMBER",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 30,
+              "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "COUNT",
+              "FUNCTION": "COUNT",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2,
+              "alignment": "",
+              "WIDTH": 120,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "groupName": "Center First Row",
+              "StandardName": "CenterFirstRow",
+              "checked": true
+            }
+          ]
+        }
+      ]
+    },
+    "CRITERIA": {
+      "query": {
+        "rules": [
+          {
+            "id": "Criteria_1",
+            "field": "SUPPORT360_TICKET.STATUS",
+            "DBNAME": "STATUS",
+            "tableName": "SUPPORT360_TICKET",
+            "COLTYPE": "string",
+            "currentFieldType": "string",
+            "operator": "in",
+            "queryOption": "F",
+            "prevOption": "F",
+            "customValue": "FixedValue",
+            "promptLabel": "",
+            "value": "",
+            "chipValue": ["Open", "Assigned", "In Progress"]
+          }
+        ],
+        "condition": "and"
+      }
+    },
+    "VISUAL_NAME": "Card",
+    "SCHEMA_NAME": "support360_ticket_schema",
+    "SCHEMA_DESCR": "Card count of all open tickets organization-wide (STATUS in Open, Assigned, In Progress)",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "cards",
+      "VisualName": "Card",
+      "VisualType": "Standard",
+      "VisualIcon": "Card.svg",
+      "DisplayOrder": "15",
+      "className": "InsightCards",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": "cardColorPallete", "optionName": "cardColorPallete", "optionHeading": "Card Color Palette", "dataType": "string", "defaultValue": "Blue-Orange-Violet-Green", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "chartBackgroundColor", "optionName": "chartBackgroundColor", "optionHeading": "Background", "dataType": "string", "defaultValue": "Transparent", "listOfValues": "White,Transparent", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "autoRefreshSeconds", "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh (seconds)", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "microVisual", "optionName": "microVisual", "optionHeading": "Micro Visual", "dataType": "string", "defaultValue": "none", "listOfValues": "auto,none,sparkline,sparkbars,donut,gauge,ring,progressbar", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "toolbar", "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "cardMode", "optionName": "cardMode", "optionHeading": "Card Mode", "dataType": "string", "defaultValue": "single", "listOfValues": "auto,one-per-row,group,one-per-measure,single", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        { "GroupID": 1, "GroupName": "Top Left", "StandardName": "TopLeft", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        { "GroupID": 2, "GroupName": "Top Right", "StandardName": "TopRight", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        {
+          "GroupID": 3, "GroupName": "Center First Row", "StandardName": "CenterFirstRow", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            {
+              "COLID": 2,
+              "NAME": "SUPPORT360_TICKET_TICKET_NO",
+              "DBTABLE": "SUPPORT360_TICKET",
+              "DBNAME": "TICKET_NO",
+              "tableName": "SUPPORT360_TICKET",
+              "tableDisplayName": "Ticket",
+              "content": "Total Open Tickets",
+              "name": "Total Open Tickets",
+              "descr": "Organization-wide count of tickets with STATUS in (Open, Assigned, In Progress)",
+              "type": "number",
+              "JAVATYPE": "java.lang.Integer",
+              "COLTYPE": "NUMBER",
+              "NATIVETYPE": "AN",
+              "DBSIZE": 30,
+              "EXPRESSIONTYPE": "G",
+              "DEFAULTFUNCTION": "COUNT",
+              "FUNCTION": "COUNT",
+              "FEILD_TYPE": "TEXTBOX",
+              "ALIGNMENT": 2,
+              "alignment": "",
+              "WIDTH": 120,
+              "FONT": "TIMES NEW ROMAN",
+              "FONTSIZE": 12,
+              "FGCOLOR": "#000000",
+              "BGCOLOR": "",
+              "BOLD": 0,
+              "ITALIC": 0,
+              "UNDERLINE": 0,
+              "HIDDEN": "",
+              "KEY": false,
+              "CAPS": false,
+              "ADV_FORMAT": "",
+              "expression": "",
+              "value": "",
+              "groupName": "Center First Row",
+              "StandardName": "CenterFirstRow",
+              "checked": true
+            }
+          ]
+        },
+        { "GroupID": 4, "GroupName": "Center Second Row", "StandardName": "CenterSecondRow", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        { "GroupID": 5, "GroupName": "Bottom Left", "StandardName": "BottomLeft", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        { "GroupID": 6, "GroupName": "Bottom Right", "StandardName": "BottomRight", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": ""
+}

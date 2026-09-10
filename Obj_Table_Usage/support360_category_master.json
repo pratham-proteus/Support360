@@ -1,0 +1,18 @@
+{
+  "object_name": "support360_category_master",
+  "tables": {
+    "SUPPORT360_CATEGORY_MASTER": [
+      "ADD_USER",
+      "ADD_DATE",
+      "DESCRIPTION",
+      "CATEGORY_CODE",
+      "ADD_TERM",
+      "ID",
+      "CHG_USER",
+      "IS_ACTIVE",
+      "CHG_TERM",
+      "CATEGORY_NAME",
+      "CHG_DATE"
+    ]
+  }
+}

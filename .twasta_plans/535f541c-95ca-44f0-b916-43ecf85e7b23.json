@@ -1,0 +1,46 @@
+{
+  "id": "535f541c-95ca-44f0-b916-43ecf85e7b23",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Create a new transaction screen 'My Agents' in the Agent Ticket Desk folder with",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Manage Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"Agent Ticket Desk\" folder give me a new transaction screen name \"My Agents\" and add fields like Agent ID, Agent Name, Agent Availability and Agent Status. Keep Agent ID and Agent Name editable. Keep Agent Availability with dropdown to select only One 'Available' or 'Occupied'. Keep Agent Status with dropdown to select only one status 'Active' or 'Inactive'.",
+  "created_at": 1788934060.1424325,
+  "updated_at": 1789016903.4478874,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Register 'My Agents' transaction screen in navigation under Agent Ticket Desk",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788934060.163843,
+      "completed_at": 1788934101.5131931
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Create the 'My Agents' transaction model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788934101.5522876,
+      "completed_at": 1788934131.7278712
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Manage Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"Agent Ticket Desk\" folder give me a new transaction screen name \"My Agents\" and add fields like Agent ID, Agent Name, Agent Availability and Agent Status. Keep Agent ID and Agent Name editable. Keep Agent Availability with dropdown to select only One 'Available' or 'Occupied'. Keep Agent Status with dropdown to select only one status 'Active' or 'Inactive'.",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "535f541c-95ca-44f0-b916-43ecf85e7b23",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

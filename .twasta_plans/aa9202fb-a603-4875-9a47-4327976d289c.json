@@ -1,0 +1,34 @@
+{
+  "id": "aa9202fb-a603-4875-9a47-4327976d289c",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the false 'ticket must be Open' error blocking Admin assignment on support36",
+  "kind": "change",
+  "status": "completed",
+  "description": "You still not fixed the error where Admin is selecting an agent to assign a ticket, but the error says the ticket must be with OPEN status. But it's already in OPEN status. Why is it throwing an error there ? Please fix that error",
+  "created_at": 1788858672.681152,
+  "updated_at": 1789016903.4455538,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix status-transition validation to look up the ticket's real prior STATUS from the database instead of a guessed context key",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788858672.6976979,
+      "completed_at": 1788858686.6405447
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "You still not fixed the error where Admin is selecting an agent to assign a ticket, but the error says the ticket must be with OPEN status. But it's already in OPEN status. Why is it throwing an error there ? Please fix that error",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "aa9202fb-a603-4875-9a47-4327976d289c",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

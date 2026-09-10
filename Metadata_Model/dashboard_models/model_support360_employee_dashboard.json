@@ -1,0 +1,90 @@
+{
+  "DASHBOARD": {
+    "DASHBOARD_ID": "SUPPORT360_EMPLOYEE_DASHBOARD",
+    "DASHBOARD_TYPE": "S",
+    "DASHBOARD_NAME": "Employee Dashboard",
+    "DASHBOARD_DESCR": "Employee's personal ticket overview: own open tickets, tickets awaiting confirmation, status breakdown, and a detail grid — all scoped to the current Employee.",
+    "CREATED_BY": "kandarp.baghar@proteustech.co",
+    "CREATED_DATE": "2026-08-18",
+    "REFRESH_INTERVAL_SECONDS": 0,
+
+    "GLOBAL_CRITERIA": [
+      {
+        "PARAM_NAME": "CREATED_FROM",
+        "PROMPT_LABEL": "Created From",
+        "DEFAULT_VALUE": "2026-05-20",
+        "DATA_TYPE": "date",
+        "OPERATOR": ">=",
+        "BROADCAST_TO": ["VIS_MY_TICKETS_BY_STATUS", "VIS_MY_TICKETS_GRID"]
+      },
+      {
+        "PARAM_NAME": "CREATED_TO",
+        "PROMPT_LABEL": "Created To",
+        "DEFAULT_VALUE": ":calendar_today",
+        "DATA_TYPE": "date",
+        "OPERATOR": "<=",
+        "BROADCAST_TO": ["VIS_MY_TICKETS_BY_STATUS", "VIS_MY_TICKETS_GRID"]
+      },
+      {
+        "PARAM_NAME": "STATUS",
+        "PROMPT_LABEL": "Status",
+        "DEFAULT_VALUE": "Open,Assigned,In Progress,Resolved,Closed",
+        "DATA_TYPE": "string",
+        "OPERATOR": "in",
+        "BROADCAST_TO": ["VIS_MY_TICKETS_GRID"]
+      }
+    ],
+
+    "VISUALS": [
+      {
+        "VISUAL_ID": "VIS_MY_OPEN_COUNT",
+        "VISUAL_NAME": "My Open Tickets Count",
+        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_support360_my_open_tickets_count.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_MY_AWAITING_COUNT",
+        "VISUAL_NAME": "My Tickets Awaiting Confirmation Count",
+        "POSITION": { "X": 3, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
+        "VISUAL_CONFIG_REF": "model_support360_my_awaiting_confirmation_count.json",
+        "CRITERIA_BINDINGS": []
+      },
+      {
+        "VISUAL_ID": "VIS_MY_TICKETS_BY_STATUS",
+        "VISUAL_NAME": "My Tickets by Status",
+        "POSITION": { "X": 0, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "VISUAL_CONFIG_REF": "model_support360_my_tickets_by_status.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "created_from", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
+          { "VISUAL_PARAM": "created_to", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" }
+        ]
+      },
+      {
+        "VISUAL_ID": "VIS_MY_TICKETS_GRID",
+        "VISUAL_NAME": "My Tickets Grid",
+        "POSITION": { "X": 0, "Y": 6, "WIDTH": 12, "HEIGHT": 5 },
+        "VISUAL_CONFIG_REF": "model_support360_my_tickets_grid.json",
+        "CRITERIA_BINDINGS": [
+          { "VISUAL_PARAM": "created_from", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
+          { "VISUAL_PARAM": "created_to", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" },
+          { "VISUAL_PARAM": "SUPPORT360_TICKET.STATUS", "BIND_TYPE": "global", "GLOBAL_PARAM": "STATUS" }
+        ]
+      }
+    ],
+
+    "DRILL_THROUGH": [
+      {
+        "SOURCE_VISUAL_ID": "VIS_MY_TICKETS_BY_STATUS",
+        "TARGET_TYPE": "self",
+        "PARAM_MAPPING": { "SUPPORT360_TICKET_STATUS": "STATUS" }
+      },
+      {
+        "SOURCE_VISUAL_ID": "VIS_MY_TICKETS_GRID",
+        "TARGET_TYPE": "visual",
+        "TARGET_VISUAL_ID": "support360_all_tickets_grid",
+        "PARAM_MAPPING": { "SUPPORT360_TICKET_TICKET_NO": "SUPPORT360_TICKET.TICKET_NO" }
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "object_name": "support360_ticket_assignment",
+  "tables": {
+    "SUPPORT360_TICKET": [
+      "TITLE",
+      "TICKET_NO",
+      "ASSIGNED_AGENT",
+      "STATUS"
+    ],
+    "SUPPORT360_AGENT": [
+      "AGENT_ID",
+      "AGENT_NAME"
+    ]
+  }
+}

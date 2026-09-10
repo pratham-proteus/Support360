@@ -1,0 +1,37 @@
+{
+  "id": "24196344-43ae-437b-a3af-132459847b99",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Sample data: support360_manage_ticket_queue",
+  "kind": "sample_data",
+  "status": "completed",
+  "description": "The sample data generation is failing across multiple Support360 objects. The runtime shows 0 rows seeded and 8 validation failures for Priority Master, Create Ticket, Manage Ticket Queue, Manage All Tickets, and Ticket Activity Log. Category Master succeeds.\n\nPlease stop and diagnose the 8 validation failures first. Identify the exact validation rule, field, schema/model mismatch, or dependency causing each failure. Do not bypass or disable the validations just to seed the data.\n\nFix the underlying model/schema/validation issues and then rerun sample-data generation. Verify that valid sample records are successfully created for Priority Master, Create Ticket, Manage Ticket Queue, Manage All Tickets, and Ticket Activity Log.\n\nAfter sample data is successfully created, retest the Assign Ticket workflow and All Tickets search. Do not mark the task complete if any of these objects still show 0 rows seeded or validation failing. If a validation cannot be fixed automatically, show me the exact validation error and the object/field causing it.",
+  "created_at": 1788776654.3028002,
+  "updated_at": 1789016903.4428158,
+  "todos": [
+    {
+      "id": "seed_support360_manage_ticket_queue",
+      "step": "sample_data",
+      "label": "Sample data: support360_manage_ticket_queue",
+      "status": "error",
+      "error": "0 row(s) seeded, 8 still failing validation",
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788776654.3766503,
+      "completed_at": 1788776697.007012,
+      "input_tokens": 6,
+      "output_tokens": 3138,
+      "cost_usd": 0.172522
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "The sample data generation is failing across multiple Support360 objects. The runtime shows 0 rows seeded and 8 validation failures for Priority Master, Create Ticket, Manage Ticket Queue, Manage All Tickets, and Ticket Activity Log. Category Master succeeds.\n\nPlease stop and diagnose the 8 validation failures first. Identify the exact validation rule, field, schema/model mismatch, or dependency causing each failure. Do not bypass or disable the validations just to seed the data.\n\nFix the underlying model/schema/validation issues and then rerun sample-data generation. Verify that valid sample records are successfully created for Priority Master, Create Ticket, Manage Ticket Queue, Manage All Tickets, and Ticket Activity Log.\n\nAfter sample data is successfully created, retest the Assign Ticket workflow and All Tickets search. Do not mark the task complete if any of these objects still show 0 rows seeded or validation failing. If a validation cannot be fixed automatically, show me the exact validation error and the object/field causing it.",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "24196344-43ae-437b-a3af-132459847b99",
+    "scope": "all"
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

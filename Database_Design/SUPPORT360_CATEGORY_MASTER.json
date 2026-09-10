@@ -1,0 +1,108 @@
+{
+  "table_name": "SUPPORT360_CATEGORY_MASTER",
+  "table_description": "",
+  "project": "Support360",
+  "columns": [
+    {
+      "column_name": "CATEGORY_CODE",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": true,
+      "description": "Unique code identifying the category",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "CATEGORY_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Name of the ticket category",
+      "sequence": 2,
+      "mandatory": true
+    },
+    {
+      "column_name": "DESCRIPTION",
+      "data_type": "VARCHAR",
+      "size": "500",
+      "key": false,
+      "description": "Optional detailed description of the category",
+      "sequence": 3
+    },
+    {
+      "column_name": "IS_ACTIVE",
+      "data_type": "VARCHAR",
+      "size": "1",
+      "key": false,
+      "description": "Whether the category is active or inactive",
+      "sequence": 4,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Y",
+          "label": "Active"
+        },
+        {
+          "value": "N",
+          "label": "Inactive"
+        }
+      ]
+    },
+    {
+      "column_name": "ID",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "Internal unique identifier",
+      "sequence": 5
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the record was created",
+      "sequence": 6
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who created the record",
+      "sequence": 7
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP the record was created from",
+      "sequence": 8
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Date/time the record was last changed",
+      "sequence": 9
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "User who last changed the record",
+      "sequence": 10
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Terminal/IP the record was last changed from",
+      "sequence": 11
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "id": "468343e8-2510-40ed-8bd4-03250227599b",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fixed the root-cause bug in the Assign action's business logic on Manage Ticket ",
+  "kind": "change",
+  "status": "completed",
+  "description": "Why is the agent still not getting assigned for the ticket ? Please fix that error. I am still getting that error",
+  "created_at": 1788860232.662281,
+  "updated_at": 1789016903.4460764,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix wrong-case key lookup and bogus 'already assigned' check in assign_ticket business logic",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788860232.680945,
+      "completed_at": 1788860246.0130217
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Why is the agent still not getting assigned for the ticket ? Please fix that error. I am still getting that error",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "468343e8-2510-40ed-8bd4-03250227599b",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

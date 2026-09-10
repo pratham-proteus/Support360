@@ -1,0 +1,34 @@
+{
+  "object_name": "support360_create_ticket",
+  "tables": {
+    "SUPPORT360_TICKET": [
+      "ATTACHMENT_UPLOADED_BY",
+      "CATEGORY_CODE",
+      "STATUS",
+      "ADD_USER",
+      "ASSIGNED_AGENT",
+      "CHG_USER",
+      "PRIORITY_CODE",
+      "DESCRIPTION",
+      "ADD_DATE",
+      "TITLE",
+      "ATTACHMENT_UPLOADED_DATE",
+      "CHG_DATE",
+      "ID",
+      "CHG_TERM",
+      "TICKET_NO",
+      "CREATED_DATE",
+      "ATTACHMENT",
+      "RAISED_BY",
+      "ADD_TERM"
+    ],
+    "SUPPORT360_CATEGORY_MASTER": [
+      "CATEGORY_CODE",
+      "CATEGORY_NAME"
+    ],
+    "SUPPORT360_PRIORITY_MASTER": [
+      "PRIORITY_CODE",
+      "PRIORITY_NAME"
+    ]
+  }
+}

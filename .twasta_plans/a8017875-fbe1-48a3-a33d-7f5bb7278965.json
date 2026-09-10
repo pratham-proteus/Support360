@@ -1,0 +1,70 @@
+{
+  "id": "a8017875-fbe1-48a3-a33d-7f5bb7278965",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Create a new 'Ticket Assignment' transaction under the Agent Ticket Desk folder ",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Create Support Ticket\" screen open (object support360_create_ticket, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nMake a new tarnsaction named \"Ticket Assignment\" under \"Agent Ticket Desk\" folder with fields named 'Ticket No', 'Title', 'Assigned Agent', 'Status'. When the user clicks on \"Assign Agent\" from \"Create Support Ticket\" transaction, it should automatically open the \"Ticket Assignment\" transaction screen.",
+  "created_at": 1788948831.4768426,
+  "updated_at": 1789016903.449279,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Document Ticket Assignment screen in FRS",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1788948831.4970315,
+      "completed_at": 1788948847.043037
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Register Ticket Assignment in navigation and update Create Support Ticket's spec",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788948847.0652094,
+      "completed_at": 1788948863.274009
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Create Ticket Assignment transaction model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788948863.2958093,
+      "completed_at": 1788948931.7271976
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Wire Assign Agent action on Create Support Ticket to open Ticket Assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788948931.7502131,
+      "completed_at": 1788948943.6854205
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Create Support Ticket\" screen open (object support360_create_ticket, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nMake a new tarnsaction named \"Ticket Assignment\" under \"Agent Ticket Desk\" folder with fields named 'Ticket No', 'Title', 'Assigned Agent', 'Status'. When the user clicks on \"Assign Agent\" from \"Create Support Ticket\" transaction, it should automatically open the \"Ticket Assignment\" transaction screen.",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "a8017875-fbe1-48a3-a33d-7f5bb7278965",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

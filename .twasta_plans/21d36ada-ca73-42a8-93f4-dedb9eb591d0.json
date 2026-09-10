@@ -1,0 +1,34 @@
+{
+  "id": "21d36ada-ca73-42a8-93f4-dedb9eb591d0",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the Support360 application icon by updating the application-level icon confi",
+  "kind": "change",
+  "status": "completed",
+  "description": "Fix the Support360 application icon. The uploaded Support360 logo in Application Properties is not appearing in the runtime; the default support_agent icon is still displayed. Configure the application so the uploaded Support360 logo is used as the application icon in the runtime, navigation/header, and public site. Do not change any other functionality. Save and deploy the updated icon configuration.",
+  "created_at": 1787210221.8140385,
+  "updated_at": 1789016903.4308274,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Point the application icon config at the uploaded Support360 logo instead of the default support_agent icon",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1787210221.831793,
+      "completed_at": 1787210230.163115
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Fix the Support360 application icon. The uploaded Support360 logo in Application Properties is not appearing in the runtime; the default support_agent icon is still displayed. Configure the application so the uploaded Support360 logo is used as the application icon in the runtime, navigation/header, and public site. Do not change any other functionality. Save and deploy the updated icon configuration.",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "21d36ada-ca73-42a8-93f4-dedb9eb591d0",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

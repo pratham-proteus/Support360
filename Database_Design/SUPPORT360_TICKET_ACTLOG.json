@@ -1,0 +1,163 @@
+{
+  "table_name": "SUPPORT360_TICKET_ACTLOG",
+  "table_description": "",
+  "project": "Support360",
+  "columns": [
+    {
+      "column_name": "ID",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": true,
+      "description": "System-generated unique identifier of the log entry",
+      "sequence": 1,
+      "mandatory": true
+    },
+    {
+      "column_name": "TICKET_NO",
+      "data_type": "VARCHAR",
+      "size": "30",
+      "key": false,
+      "description": "The ticket this log entry belongs to",
+      "sequence": 2,
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_TICKET",
+        "display_column": "TITLE",
+        "value_column": "TICKET_NO"
+      }
+    },
+    {
+      "column_name": "ACTION_TYPE",
+      "data_type": "VARCHAR",
+      "size": "20",
+      "key": false,
+      "description": "The kind of change recorded by this entry",
+      "sequence": 3,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "Created",
+          "label": "Created"
+        },
+        {
+          "value": "Assigned",
+          "label": "Assigned"
+        },
+        {
+          "value": "Reassigned",
+          "label": "Reassigned"
+        },
+        {
+          "value": "Status-Changed",
+          "label": "Status-Changed"
+        },
+        {
+          "value": "Commented",
+          "label": "Commented"
+        },
+        {
+          "value": "Attachment-Added",
+          "label": "Attachment-Added"
+        },
+        {
+          "value": "Edited",
+          "label": "Edited"
+        },
+        {
+          "value": "Closed",
+          "label": "Closed"
+        }
+      ]
+    },
+    {
+      "column_name": "FIELD_CHANGED",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Name of the ticket field that changed (blank for non-field actions such as Commented)",
+      "sequence": 4
+    },
+    {
+      "column_name": "OLD_VALUE",
+      "data_type": "VARCHAR",
+      "size": "2000",
+      "key": false,
+      "description": "Value before the change",
+      "sequence": 5
+    },
+    {
+      "column_name": "NEW_VALUE",
+      "data_type": "VARCHAR",
+      "size": "2000",
+      "key": false,
+      "description": "Value after the change",
+      "sequence": 6
+    },
+    {
+      "column_name": "CHANGED_BY",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": false,
+      "description": "User who performed the action",
+      "sequence": 7,
+      "mandatory": true
+    },
+    {
+      "column_name": "CHANGE_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Timestamp of the action",
+      "sequence": 8,
+      "mandatory": true
+    },
+    {
+      "column_name": "ADD_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Audit - record creation timestamp",
+      "sequence": 9
+    },
+    {
+      "column_name": "ADD_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Audit - user who created the record",
+      "sequence": 10
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit - terminal that created the record",
+      "sequence": 11
+    },
+    {
+      "column_name": "CHG_DATE",
+      "data_type": "DATETIME",
+      "size": "",
+      "key": false,
+      "description": "Audit - last change timestamp",
+      "sequence": 12
+    },
+    {
+      "column_name": "CHG_USER",
+      "data_type": "VARCHAR",
+      "size": "10",
+      "key": false,
+      "description": "Audit - user who last changed the record",
+      "sequence": 13
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit - terminal of the last change",
+      "sequence": 14
+    }
+  ]
+}

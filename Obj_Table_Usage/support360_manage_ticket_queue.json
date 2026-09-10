@@ -1,0 +1,40 @@
+{
+  "object_name": "support360_manage_ticket_queue",
+  "tables": {
+    "SUPPORT360_TICKET": [
+      "ATTACHMENT_UPLOADED_DATE",
+      "PRIORITY_CODE",
+      "AGENT_COMMENTS",
+      "TITLE",
+      "ACTIVITY_HISTORY",
+      "CREATED_DATE",
+      "RESOLUTION_NOTES",
+      "DESCRIPTION",
+      "TICKET_NO",
+      "ASSIGNED_AGENT",
+      "STATUS",
+      "ADD_DATE",
+      "CATEGORY_CODE",
+      "NEW_COMMENT",
+      "ATTACHMENT",
+      "CHG_DATE",
+      "REASSIGN_TO_AGENT",
+      "ATTACHMENT_UPLOADED_BY",
+      "CHG_USER",
+      "RAISED_BY",
+      "ID"
+    ],
+    "SUPPORT360_CATEGORY_MASTER": [
+      "CATEGORY_NAME",
+      "CATEGORY_CODE"
+    ],
+    "SUPPORT360_PRIORITY_MASTER": [
+      "PRIORITY_CODE",
+      "PRIORITY_NAME"
+    ],
+    "SUPPORT360_AGENT": [
+      "AGENT_ID",
+      "AGENT_NAME"
+    ]
+  }
+}

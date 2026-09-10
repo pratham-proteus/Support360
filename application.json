@@ -1,0 +1,453 @@
+{
+  "application": {
+    "id": "Support360",
+    "title": "Support360",
+    "description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
+    "icon": "icon_image_data",
+    "theme_color": "#2E7DD1",
+    "group": "generated",
+    "generated": true,
+    "folder_name": "Support360",
+    "icon_image_data": "data:image/png;base64,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"
+  },
+  "auth": {
+    "providers": [
+      "project-users"
+    ],
+    "requireLogin": true,
+    "defaultRoles": [
+      "employee"
+    ],
+    "grants": [
+      {
+        "role": "employee",
+        "obj_name": "support360_create_ticket",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "support360_my_tickets",
+        "actions": [
+          "view",
+          "edit"
+        ]
+      },
+      {
+        "role": "employee",
+        "obj_name": "support360_employee_dashboard",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "agent",
+        "obj_name": "support360_manage_ticket_queue",
+        "actions": [
+          "view",
+          "edit"
+        ]
+      },
+      {
+        "role": "agent",
+        "obj_name": "support360_agent_dashboard",
+        "actions": [
+          "view"
+        ]
+      },
+      {
+        "role": "agent",
+        "obj_name": "support360_my_agents",
+        "actions": [
+          "view",
+          "add",
+          "edit"
+        ]
+      },
+      {
+        "role": "admin",
+        "obj_name": "support360_category_master",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "admin",
+        "obj_name": "support360_priority_master",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "admin",
+        "obj_name": "support360_manage_all_tickets",
+        "actions": [
+          "view",
+          "add",
+          "edit",
+          "delete"
+        ]
+      },
+      {
+        "role": "admin",
+        "obj_name": "support360_admin_dashboard",
+        "actions": [
+          "view"
+        ]
+      }
+    ]
+  },
+  "navigation": [
+    {
+      "id": "support360.1",
+      "title": "Ticket Management",
+      "parent_id": "",
+      "icon_image": "confirmation_number",
+      "description": "Employee-facing ticket creation and self-service tracking",
+      "obj_name": "",
+      "obj_type": "-",
+      "menu_path": "support360.1",
+      "functional_specs": "Group for Employee ticket creation and My Tickets tracking"
+    },
+    {
+      "id": "support360.1.1",
+      "title": "Create Support Ticket",
+      "parent_id": "support360.1",
+      "icon_image": "add_circle",
+      "description": "Employee logs a new support ticket",
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "menu_path": "support360.1.1",
+      "functional_specs": "Header-only transaction to create/edit/delete a support ticket with TICKET_NO (auto), TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS (default Open, read-only), RAISED_BY, CREATED_DATE, ATTACHMENT. Mandatory: TITLE, DESCRIPTION, CATEGORY_CODE (active Category master), PRIORITY_CODE (active Priority master). Actions: Add, Edit (before assignment), Delete (own ticket while Open), Search. Attachment linked with uploaded-by/uploaded-date. Writes Created entry to Activity/History Log. Inline validation and success messages. The Assign Agent action opens the Ticket Assignment (support360_ticket_assignment) transaction screen for the current ticket."
+    },
+    {
+      "id": "support360.1.2",
+      "title": "My Tickets",
+      "parent_id": "support360.1",
+      "icon_image": "list_alt",
+      "description": "Employee views and tracks own raised tickets",
+      "obj_name": "support360_my_tickets",
+      "obj_type": "T",
+      "menu_path": "support360.1.2",
+      "functional_specs": "Row-level restricted to RAISED_BY = current Employee. List TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE. Drill-in shows DESCRIPTION, ATTACHMENT list, AGENT_COMMENTS, ACTIVITY_HISTORY. Actions: Search, Filter (STATUS, CATEGORY_CODE, PRIORITY_CODE, date range), View, Add-attachment (any status), Confirm-and-close (only when STATUS=Resolved; stamps CLOSED_DATE/CLOSED_BY, updates STATUS=Closed, writes Activity Log entry), Reopen-comment (adds comment, no status change)."
+    },
+    {
+      "id": "support360.2",
+      "title": "Agent Ticket Desk",
+      "parent_id": "",
+      "icon_image": "support_agent",
+      "description": "Support Agent queue management and resolution workflow",
+      "obj_name": "",
+      "obj_type": "-",
+      "menu_path": "support360.2",
+      "functional_specs": "Group for Support Agent ticket queue handling"
+    },
+    {
+      "id": "support360.2.1",
+      "title": "Manage Ticket Queue",
+      "parent_id": "support360.2",
+      "icon_image": "assignment_ind",
+      "description": "Agent views, assigns, works, and resolves tickets",
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "menu_path": "support360.2.1",
+      "functional_specs": "Actionable tickets: STATUS in (Open, Assigned, In Progress) that are unassigned or assigned to current Agent. Data: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT list, RESOLUTION_NOTES. Status flow Open->Assigned->In Progress->Resolved->Closed with Reassign side-action (keeps STATUS, changes ASSIGNED_AGENT). RESOLUTION_NOTES mandatory before Resolve. Actions: Search, Filter (STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), Assign, Reassign, Start-progress, Add-comment, Add-attachment, Resolve. Every change writes a timestamped Activity/History Log entry with old/new value and changed-by. Assign action: the Agent selects the Assigned Agent from a dropdown of agents (Assigned Agent field is editable, not locked); on Assign, STATUS moves Open -> Assigned and ASSIGNED_AGENT is set to the agent the user picked in the field (no longer forced to the current logged-in agent). The Assign action requires no manual agent pick: on click it randomly selects one agent from SUPPORT360_AGENT with AGENT_STATUS = Active and AGENT_AVAILABILITY = Available, sets ASSIGNED_AGENT to that agent code, and moves STATUS from Open to Assigned. A read-only Assigned To column displays the selected agent's AGENT_NAME (looked up from SUPPORT360_AGENT), not just the agent code. Support Agents can also directly edit ticket fields via the standard Edit action, not just via Assign/Reassign/Start Progress/Add Comment/Add Attachment/Resolve."
+    },
+    {
+      "id": "support360.2.2",
+      "title": "My Agents",
+      "parent_id": "support360.2",
+      "icon_image": "badge",
+      "description": "Maintain the list of Support Agents with their availability and status.",
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "menu_path": "support360.2.2",
+      "functional_specs": "Header-only transaction screen to create/edit agent records. Fields: AGENT_ID (VARCHAR(20), editable, mandatory, unique identifier for the agent), AGENT_NAME (VARCHAR(100), editable, mandatory), AGENT_AVAILABILITY (VARCHAR(20), dropdown single-select, allowed values Available/Occupied, mandatory), AGENT_STATUS (VARCHAR(20), dropdown single-select, allowed values Active/Inactive, mandatory). Business actions: Add, Edit, Search."
+    },
+    {
+      "id": "support360.2.3",
+      "title": "Ticket Assignment",
+      "parent_id": "support360.2",
+      "icon_image": "assignment_ind",
+      "description": "Agent assigns or changes the Support Agent handling a ticket",
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "menu_path": "support360.2.3",
+      "functional_specs": "Header-only transaction on main_table SUPPORT360_TICKET, PK TICKET_NO. Fields: TICKET_NO (VARCHAR(30), read-only), TITLE (VARCHAR(200), read-only), ASSIGNED_AGENT (VARCHAR(36), editable, lookup to SUPPORT360_AGENT.AGENT_ID where AGENT_STATUS=Active), STATUS (VARCHAR(20), read-only). Opened for a specific ticket from the Create Support Ticket screen's Assign Agent action, passing TICKET_NO as context. Action: Save (update ASSIGNED_AGENT)."
+    },
+    {
+      "id": "support360.3",
+      "title": "Admin Setup",
+      "parent_id": "",
+      "icon_image": "admin_panel_settings",
+      "description": "Master data and overarching ticket administration",
+      "obj_name": "",
+      "obj_type": "-",
+      "menu_path": "support360.3",
+      "functional_specs": "Group for Category/Priority master maintenance and full ticket administration"
+    },
+    {
+      "id": "support360.3.1",
+      "title": "Manage Category Master",
+      "parent_id": "support360.3",
+      "icon_image": "category",
+      "description": "Admin defines and maintains ticket categories",
+      "obj_name": "support360_category_master",
+      "obj_type": "T",
+      "menu_path": "support360.3.1",
+      "functional_specs": "Master with CATEGORY_CODE, CATEGORY_NAME, DESCRIPTION, IS_ACTIVE. CATEGORY_CODE and CATEGORY_NAME mandatory and unique. Cannot delete if referenced by any ticket; can only be deactivated in that case. Actions: Search, Add, Edit, Delete (only if unused), Activate/Deactivate."
+    },
+    {
+      "id": "support360.3.2",
+      "title": "Manage Priority Master",
+      "parent_id": "support360.3",
+      "icon_image": "low_priority",
+      "description": "Admin defines and maintains priority levels",
+      "obj_name": "support360_priority_master",
+      "obj_type": "T",
+      "menu_path": "support360.3.2",
+      "functional_specs": "Master with PRIORITY_CODE, PRIORITY_NAME, SEQUENCE_NO, IS_ACTIVE. PRIORITY_CODE, PRIORITY_NAME, SEQUENCE_NO mandatory; PRIORITY_CODE and SEQUENCE_NO unique. Cannot delete if referenced by any ticket; can only be deactivated in that case. Actions: Search, Add, Edit, Delete (only if unused), Activate/Deactivate."
+    },
+    {
+      "id": "support360.3.3",
+      "title": "Manage All Tickets",
+      "parent_id": "support360.3",
+      "icon_image": "fact_check",
+      "description": "Admin overarching view and intervention on all tickets",
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "menu_path": "support360.3.3",
+      "functional_specs": "No row-level restriction; Admin can view/edit any ticket. Data: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT list, ACTIVITY_HISTORY. Same status transition sequence/validations as Agent Ticket Desk. Edits to TITLE/DESCRIPTION/CATEGORY_CODE/PRIORITY_CODE allowed at any STATUS other than Closed. Actions: Search, Filter (STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY), Edit, Assign, Reassign, Delete. Every change writes Activity/History Log entry with old/new value and changed-by. ASSIGNED_AGENT column is directly editable by Admin on the ticket form and is optional (may be left blank/unassigned), in addition to being set via the Assign/Reassign actions."
+    },
+    {
+      "id": "support360.4",
+      "title": "Activity & History Log",
+      "parent_id": "",
+      "icon_image": "history",
+      "description": "System-generated, read-only audit trail of ticket changes",
+      "obj_name": "",
+      "obj_type": "-",
+      "menu_path": "support360.4",
+      "functional_specs": "Group for the immutable ticket Activity/History Log"
+    },
+    {
+      "id": "support360.4.1",
+      "title": "Ticket Activity Log",
+      "parent_id": "support360.4",
+      "icon_image": "manage_search",
+      "description": "Read-only chronological record of all ticket changes",
+      "obj_name": "support360_ticket_activity_log",
+      "obj_type": "T",
+      "menu_path": "support360.4.1",
+      "functional_specs": "System-generated only, no manual add/edit/delete by any role. Data: TICKET_NO, ACTION_TYPE (Created, Assigned, Reassigned, Status-Changed, Commented, Attachment-Added, Edited, Closed), FIELD_CHANGED, OLD_VALUE, NEW_VALUE, CHANGED_BY, CHANGE_DATE. Actions: Search, View (read-only). Written to automatically by ticket creation, assignment/reassignment, status change, comment, attachment, and edit actions across the app."
+    },
+    {
+      "id": "support360.5",
+      "title": "Search, Filters & Dashboards",
+      "parent_id": "",
+      "icon_image": "insights",
+      "description": "Cross-cutting ticket search grid, detail log and analytical visuals",
+      "obj_name": "",
+      "obj_type": "-",
+      "menu_path": "support360.5",
+      "functional_specs": "Group for shared Visual Schema and BI visuals feeding role dashboards"
+    },
+    {
+      "id": "support360.5.1",
+      "title": "Ticket Schema",
+      "parent_id": "support360.5",
+      "icon_image": "schema",
+      "description": "Shared dataset definition for the Ticket fact grain",
+      "obj_name": "support360_ticket_schema",
+      "obj_type": "M",
+      "menu_path": "support360.5.1",
+      "functional_specs": "Shared Visual Schema over the ticket fact table joined to Category and Priority masters, exposing TICKET_NO, TITLE, STATUS, PRIORITY_CODE, CATEGORY_CODE, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE for reuse by All Tickets, Ticket Count by Status, Ticket Count by Priority, and all Card/Chart visuals at ticket grain."
+    },
+    {
+      "id": "support360.5.2",
+      "title": "All Tickets",
+      "parent_id": "support360.5",
+      "icon_image": "table_chart",
+      "description": "Grid of all tickets with role-driven filters",
+      "obj_name": "support360_all_tickets_grid",
+      "obj_type": "V",
+      "menu_path": "support360.5.2",
+      "functional_specs": "Grid visual on support360_ticket_schema. Criteria: TICKET_NO, STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY, CREATED_DATE range. Data points: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE. Row click drills to the ticket detail transaction appropriate to role."
+    },
+    {
+      "id": "support360.5.3",
+      "title": "Ticket Count by Status",
+      "parent_id": "support360.5",
+      "icon_image": "bar_chart",
+      "description": "Column chart of ticket volume by status",
+      "obj_name": "support360_ticket_count_by_status",
+      "obj_type": "V",
+      "menu_path": "support360.5.3",
+      "functional_specs": "Column-Chart on support360_ticket_schema. Criteria: CREATED_DATE range, CATEGORY_CODE (optional). STATUS (x-axis) vs COUNT_OF_TICKETS (y-axis). Drill to All Tickets filtered by clicked STATUS."
+    },
+    {
+      "id": "support360.5.4",
+      "title": "Ticket Count by Priority",
+      "parent_id": "support360.5",
+      "icon_image": "pie_chart",
+      "description": "Pie chart of ticket volume by priority",
+      "obj_name": "support360_ticket_count_by_priority",
+      "obj_type": "V",
+      "menu_path": "support360.5.4",
+      "functional_specs": "Pie-Chart on support360_ticket_schema. Criteria: CREATED_DATE range, STATUS (optional). PRIORITY_CODE (segment) vs COUNT_OF_TICKETS (value). Drill to All Tickets filtered by clicked PRIORITY_CODE."
+    },
+    {
+      "id": "support360.5.5",
+      "title": "My Open Tickets Count",
+      "parent_id": "support360.5",
+      "icon_image": "pending_actions",
+      "description": "Card count of employee's own open tickets",
+      "obj_name": "support360_my_open_tickets_count",
+      "obj_type": "V",
+      "menu_path": "support360.5.5",
+      "functional_specs": "Card visual on support360_ticket_schema. Fixed criteria RAISED_BY = current Employee. COUNT_OF_TICKETS where STATUS in (Open, Assigned, In Progress). Drill to My Tickets filtered to open statuses."
+    },
+    {
+      "id": "support360.5.6",
+      "title": "My Tickets Awaiting Confirmation Count",
+      "parent_id": "support360.5",
+      "icon_image": "task_alt",
+      "description": "Card count of employee's resolved tickets pending confirmation",
+      "obj_name": "support360_my_awaiting_confirmation_count",
+      "obj_type": "V",
+      "menu_path": "support360.5.6",
+      "functional_specs": "Card visual on support360_ticket_schema. Fixed criteria RAISED_BY = current Employee. COUNT_OF_TICKETS where STATUS = Resolved. Drill to My Tickets filtered to STATUS = Resolved."
+    },
+    {
+      "id": "support360.5.7",
+      "title": "My Queue Count",
+      "parent_id": "support360.5",
+      "icon_image": "inbox",
+      "description": "Card count of tickets assigned to current agent",
+      "obj_name": "support360_my_queue_count",
+      "obj_type": "V",
+      "menu_path": "support360.5.7",
+      "functional_specs": "Card visual on support360_ticket_schema. Fixed criteria ASSIGNED_AGENT = current Agent. COUNT_OF_TICKETS where STATUS in (Assigned, In Progress). Drill to Manage Ticket Queue filtered to current Agent's active tickets."
+    },
+    {
+      "id": "support360.5.8",
+      "title": "Unassigned Tickets Count",
+      "parent_id": "support360.5",
+      "icon_image": "person_off",
+      "description": "Card count of unassigned open tickets",
+      "obj_name": "support360_unassigned_tickets_count",
+      "obj_type": "V",
+      "menu_path": "support360.5.8",
+      "functional_specs": "Card visual on support360_ticket_schema. Fixed criteria STATUS = Open. COUNT_OF_TICKETS where STATUS = Open and ASSIGNED_AGENT is blank. Drill to Manage Ticket Queue filtered to unassigned Open tickets."
+    },
+    {
+      "id": "support360.5.9",
+      "title": "My Queue by Priority",
+      "parent_id": "support360.5",
+      "icon_image": "stacked_bar_chart",
+      "description": "Bar chart of agent's queue by priority",
+      "obj_name": "support360_my_queue_by_priority",
+      "obj_type": "V",
+      "menu_path": "support360.5.9",
+      "functional_specs": "Bar-Chart on support360_ticket_schema. Criteria: ASSIGNED_AGENT = current Agent (fixed), STATUS (optional). PRIORITY_CODE (y-axis) vs COUNT_OF_TICKETS (x-axis). Drill to Manage Ticket Queue filtered by clicked PRIORITY_CODE."
+    },
+    {
+      "id": "support360.5.10",
+      "title": "Total Open Tickets Count",
+      "parent_id": "support360.5",
+      "icon_image": "assignment_late",
+      "description": "Card count of all open tickets organization-wide",
+      "obj_name": "support360_total_open_tickets_count",
+      "obj_type": "V",
+      "menu_path": "support360.5.10",
+      "functional_specs": "Card visual on support360_ticket_schema. No default filter, organization-wide. COUNT_OF_TICKETS where STATUS in (Open, Assigned, In Progress). Drill to All Tickets filtered to open statuses."
+    },
+    {
+      "id": "support360.5.11",
+      "title": "Total Resolved This Period Count",
+      "parent_id": "support360.5",
+      "icon_image": "check_circle",
+      "description": "Card count of tickets resolved/closed in period",
+      "obj_name": "support360_total_resolved_period_count",
+      "obj_type": "V",
+      "menu_path": "support360.5.11",
+      "functional_specs": "Card visual on support360_ticket_schema. Criteria: CREATED_DATE range (default current month). COUNT_OF_TICKETS where STATUS in (Resolved, Closed) and LAST_UPDATED_DATE within range. Drill to All Tickets filtered to Resolved/Closed within period."
+    },
+    {
+      "id": "support360.5.12",
+      "title": "Tickets by Status Trend",
+      "parent_id": "support360.5",
+      "icon_image": "trending_up",
+      "description": "Stacked column chart of daily/weekly ticket volume by status",
+      "obj_name": "support360_tickets_status_trend",
+      "obj_type": "V",
+      "menu_path": "support360.5.12",
+      "functional_specs": "Stacked-Column-Chart on support360_ticket_schema. Criteria: CREATED_DATE range (default last 30 days). CREATED_DATE (x-axis, day/week) vs COUNT_OF_TICKETS stacked by STATUS. Drill to All Tickets filtered to clicked date bucket and STATUS."
+    },
+    {
+      "id": "support360.5.13",
+      "title": "Ticket Detail Log",
+      "parent_id": "support360.5",
+      "icon_image": "receipt_long",
+      "description": "Grid of activity log entries across tickets",
+      "obj_name": "support360_ticket_detail_log_grid",
+      "obj_type": "V",
+      "menu_path": "support360.5.13",
+      "functional_specs": "Grid visual over the Ticket Activity Log. Criteria: TICKET_NO, CHANGED_BY, CHANGE_DATE range, ACTION_TYPE. Data points: TICKET_NO, ACTION_TYPE, FIELD_CHANGED, OLD_VALUE, NEW_VALUE, CHANGED_BY, CHANGE_DATE. Row click drills to the parent ticket's detail view."
+    },
+    {
+      "id": "support360.6",
+      "title": "Dashboards",
+      "parent_id": "",
+      "icon_image": "dashboard",
+      "description": "Role-based operational dashboards",
+      "obj_name": "",
+      "obj_type": "-",
+      "menu_path": "support360.6",
+      "functional_specs": "Group for Employee, Support Agent and Admin dashboards"
+    },
+    {
+      "id": "support360.6.1",
+      "title": "Employee Dashboard",
+      "parent_id": "support360.6",
+      "icon_image": "dashboard_customize",
+      "description": "Employee's personal ticket overview",
+      "obj_name": "support360_employee_dashboard",
+      "obj_type": "D",
+      "menu_path": "support360.6.1",
+      "functional_specs": "Dashboard for Employee role. Fixed criteria RAISED_BY = current Employee, CREATED_DATE range default last 90 days (adjustable). Composes My Open Tickets Count (Card), My Tickets Awaiting Confirmation Count (Card), My Tickets by Status (Pie-Chart), My Tickets Grid (Grid: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, LAST_UPDATED_DATE). Card and Pie drill to My Tickets filtered by clicked STATUS; grid rows drill to ticket detail."
+    },
+    {
+      "id": "support360.6.2",
+      "title": "Support Agent Dashboard",
+      "parent_id": "support360.6",
+      "icon_image": "assignment_ind",
+      "description": "Agent's queue and workload overview",
+      "obj_name": "support360_agent_dashboard",
+      "obj_type": "D",
+      "menu_path": "support360.6.2",
+      "functional_specs": "Dashboard for Support Agent role. Fixed criteria ASSIGNED_AGENT = current Agent, CREATED_DATE range default last 30 days (adjustable). Composes My Queue Count (Card), Unassigned Tickets Count (Card, organization-wide), My Queue by Priority (Bar-Chart), My Queue by Status (Column-Chart), My Active Tickets Grid (Grid: TICKET_NO, TITLE, PRIORITY_CODE, STATUS, RAISED_BY, LAST_UPDATED_DATE). Cards/charts drill to Manage Ticket Queue filtered accordingly; grid rows drill to ticket detail."
+    },
+    {
+      "id": "support360.6.3",
+      "title": "Admin Dashboard",
+      "parent_id": "support360.6",
+      "icon_image": "admin_panel_settings",
+      "description": "Organization-wide ticket analytics for Admin",
+      "obj_name": "support360_admin_dashboard",
+      "obj_type": "D",
+      "menu_path": "support360.6.3",
+      "functional_specs": "Dashboard for Admin role. Criteria: CREATED_DATE range default current month (adjustable), CATEGORY_CODE (optional). Composes Total Open Tickets Count (Card), Total Resolved This Period Count (Card), Ticket Count by Status (Column-Chart), Ticket Count by Priority (Pie-Chart), Tickets by Status Trend (Stacked-Column-Chart). All visuals drill to All Tickets filtered by clicked STATUS/PRIORITY_CODE/date bucket."
+    }
+  ]
+}

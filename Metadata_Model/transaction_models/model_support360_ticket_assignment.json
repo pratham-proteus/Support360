@@ -1,0 +1,263 @@
+{
+  "transaction": {
+    "obj_name": "support360_ticket_assignment",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Ticket Assignment",
+          "form_descr": "Assign or change the Support Agent handling a ticket",
+          "form_no": "1",
+          "main_table": "SUPPORT360_TICKET",
+          "columns": [
+            {
+              "column": {
+                "name": "ticket_no",
+                "db_name": "TICKET_NO",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Ticket No",
+                "descr": "Ticket number (context passed from Create Support Ticket screen)",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket main table",
+                "db_size": "30",
+                "width": 300,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "title",
+                "db_name": "TITLE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Title",
+                "descr": "Ticket title",
+                "protect": "1",
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket main table",
+                "db_size": "200",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "assigned_agent",
+                "db_name": "ASSIGNED_AGENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Assigned Agent",
+                "descr": "Support Agent assigned to handle this ticket",
+                "lookup": "SUPPORT360_AGENT(AGENT_NAME, AGENT_ID)",
+                "lookup_filter": "AGENT_STATUS = 'Active'",
+                "must_exist_in": "SUPPORT360_AGENT",
+                "validations": [
+                  {
+                    "type": "builtin",
+                    "name": "Agent must be active",
+                    "error_code": "AGENT_INACTIVE",
+                    "message": "Assigned agent must be an Active agent.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "SUPPORT360_AGENT",
+                      "match_column": "AGENT_ID",
+                      "conditions": [
+                        {
+                          "column": "AGENT_STATUS",
+                          "op": "=",
+                          "source": "const",
+                          "value": "Active"
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_AGENT",
+                  "match_table_col": "AGENT_ID",
+                  "fill": [
+                    {
+                      "form_col": "assigned_agent_name",
+                      "table_col": "AGENT_NAME"
+                    },
+                    {
+                      "form_col": "status",
+                      "expr": "iif(ASSIGNED_AGENT != '' and STATUS == 'Open', 'Assigned', STATUS)"
+                    }
+                  ]
+                },
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket main table",
+                "db_size": "36",
+                "width": 360,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": ""
+              }
+            },
+            {
+              "column": {
+                "name": "assigned_agent_name",
+                "db_name": "AGENT_NAME",
+                "table_name": "SUPPORT360_AGENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Agent Name",
+                "descr": "Name of the assigned Support Agent (from Agent master)",
+                "protect": "1",
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_display_name": "Support Agent master (lookup)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Ticket status",
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket main table",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "SUPPORT360_TICKET",
+                  "main_table": true,
+                  "table_descr": "Support ticket main table"
+                },
+                {
+                  "table": "SUPPORT360_AGENT",
+                  "main_table": false,
+                  "table_descr": "Support Agent master (lookup)",
+                  "column": "AGENT_ID",
+                  "join_table": "SUPPORT360_TICKET",
+                  "join_column": "ASSIGNED_AGENT",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "actions": [
+            {
+              "name": "Save",
+              "handler": "system",
+              "system_op": "edit",
+              "scope": "form",
+              "validations": [
+                {
+                  "type": "builtin",
+                  "name": "Agent must be active on save",
+                  "error_code": "AGENT_INACTIVE_SAVE",
+                  "message": "Assigned agent must be an Active agent in Support Agent master.",
+                  "builtin": {
+                    "kind": "must_exist_in_master",
+                    "table": "SUPPORT360_AGENT",
+                    "match_column": "AGENT_ID",
+                    "conditions": [
+                      {
+                        "column": "AGENT_STATUS",
+                        "op": "=",
+                        "source": "const",
+                        "value": "Active"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "validations": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "attach_docs": [],
+    "follow_up_actions": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "title",
+        "status",
+        "assigned_agent"
+      ],
+      "key_column": "ticket_no",
+      "display_column": "title",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by support360_ticket_activity_log; searched by title plus status, assigned_agent so same-named records stay distinguishable"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "fffbe386-4324-4caf-a24e-4d5ccac59c4e",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the Assign action business-logic function in Manage Ticket Queue so it updat",
+  "kind": "change",
+  "status": "completed",
+  "description": "Fix the Assign action in Manage Ticket Queue. The current runtime error is: UndefinedTable: relation \"twasta.SUPPORT360_TICKET\" does not exist. The Assign action is generating a raw SQL UPDATE against twasta.SUPPORT360_TICKET, which is incorrect for this application's runtime data model. Do not create another raw SQL reference to this table. Use the same working dict-based database/model access pattern already used elsewhere in Support360.\n\nWhen Assign is clicked, it must:\n\nIdentify the selected Ticket No.\nIdentify the selected Agent.\nUpdate the ticket's STATUS to Assigned.\nUpdate ASSIGNED_AGENT with the selected agent.\nCreate an Activity Log entry for the assignment.\nShow a success message instead of an error.\n\nFirst inspect the existing working ticket data/model bindings and reuse the correct table/model reference. Do not guess the table name and do not use db.t(\"SUPPORT360_TICKET\") or raw SQL against twasta.SUPPORT360_TICKET. Deploy the fix and perform a runtime test by assigning an existing ticket to an agent. If the fix cannot be applied automatically, tell me exactly which object/action must be edited rather than marking the task complete.",
+  "created_at": 1788774122.6083844,
+  "updated_at": 1789016903.4382343,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix Assign action business logic to use dict-based model access instead of raw SQL",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1788774122.6302722,
+      "completed_at": 1788774152.6427903
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Fix the Assign action in Manage Ticket Queue. The current runtime error is: UndefinedTable: relation \"twasta.SUPPORT360_TICKET\" does not exist. The Assign action is generating a raw SQL UPDATE against twasta.SUPPORT360_TICKET, which is incorrect for this application's runtime data model. Do not create another raw SQL reference to this table. Use the same working dict-based database/model access pattern already used elsewhere in Support360.\n\nWhen Assign is clicked, it must:\n\nIdentify the selected Ticket No.\nIdentify the selected Agent.\nUpdate the ticket's STATUS to Assigned.\nUpdate ASSIGNED_AGENT with the selected agent.\nCreate an Activity Log entry for the assignment.\nShow a success message instead of an error.\n\nFirst inspect the existing working ticket data/model bindings and reuse the correct table/model reference. Do not guess the table name and do not use db.t(\"SUPPORT360_TICKET\") or raw SQL against twasta.SUPPORT360_TICKET. Deploy the fix and perform a runtime test by assigning an existing ticket to an agent. If the fix cannot be applied automatically, tell me exactly which object/action must be edited rather than marking the task complete.",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "fffbe386-4324-4caf-a24e-4d5ccac59c4e",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

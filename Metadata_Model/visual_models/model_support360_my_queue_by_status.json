@@ -1,0 +1,79 @@
+{
+  "DATA_SOURCE_MODE": "sqlmodel",
+  "SQLMODEL": {
+    "SQLModel": {
+      "COLUMNS": [
+        {
+          "COLUMN": [
+            { "COLID": 2, "NAME": "SUPPORT360_TICKET_STATUS", "DBTABLE": "SUPPORT360_TICKET", "DBNAME": "STATUS", "tableName": "SUPPORT360_TICKET", "tableDisplayName": "Ticket", "content": "Status", "name": "Status", "descr": "Ticket status", "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR", "NATIVETYPE": "AN", "DBSIZE": 20, "EXPRESSIONTYPE": "C", "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX", "ALIGNMENT": 1, "alignment": "", "WIDTH": 110, "FONT": "TIMES NEW ROMAN", "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0, "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false, "ADV_FORMAT": "", "expression": "", "value": "", "groupName": "Columns", "StandardName": "Columns", "checked": true },
+            { "COLID": 3, "NAME": "COUNT_OF_TICKETS", "DBTABLE": "SUPPORT360_TICKET", "DBNAME": "TICKET_NO", "tableName": "SUPPORT360_TICKET", "tableDisplayName": "Ticket", "content": "Count of Tickets", "name": "Count of Tickets", "descr": "Count of the current agent's queue per status", "type": "number", "JAVATYPE": "java.lang.Integer", "COLTYPE": "NUMBER", "NATIVETYPE": "N", "DBSIZE": 0, "EXPRESSIONTYPE": "G", "DEFAULTFUNCTION": "COUNT", "FUNCTION": "COUNT", "FEILD_TYPE": "TEXTBOX", "ALIGNMENT": 2, "alignment": "", "WIDTH": 130, "FONT": "TIMES NEW ROMAN", "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0, "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false, "ADV_FORMAT": "", "expression": "", "value": "", "display": { "type": "number", "decimals": 0 }, "groupName": "Values", "StandardName": "Values", "checked": true }
+          ]
+        }
+      ]
+    },
+    "CRITERIA": {
+      "query": {
+        "condition": "and",
+        "rules": [
+          { "id": "Criteria_1", "field": "SUPPORT360_TICKET.ASSIGNED_AGENT", "DBNAME": "ASSIGNED_AGENT", "tableName": "SUPPORT360_TICKET", "COLTYPE": "string", "currentFieldType": "string", "operator": "=", "queryOption": "F", "prevOption": "F", "customValue": ":user_agent", "promptLabel": "", "value": ":user_agent", "chipValue": [] },
+          { "id": "Criteria_2", "field": "SUPPORT360_TICKET.CREATED_DATE", "DBNAME": "CREATED_DATE", "tableName": "SUPPORT360_TICKET", "COLTYPE": "date", "currentFieldType": "date", "operator": ">=", "queryOption": "P", "prevOption": "P", "customValue": "FixedValue", "promptLabel": "Created From", "promptVar": "created_from", "value": "2026-07-19", "chipValue": [] },
+          { "id": "Criteria_3", "field": "SUPPORT360_TICKET.CREATED_DATE", "DBNAME": "CREATED_DATE", "tableName": "SUPPORT360_TICKET", "COLTYPE": "date", "currentFieldType": "date", "operator": "<=", "queryOption": "P", "prevOption": "P", "customValue": "FixedValue", "promptLabel": "Created To", "promptVar": "created_to", "value": ":calendar_today", "chipValue": [] }
+        ]
+      }
+    },
+    "VISUAL_NAME": "Column",
+    "SCHEMA_NAME": "support360_ticket_schema",
+    "SCHEMA_DESCR": "Current agent's ticket queue grouped by Status for the selected period",
+    "SCHEMA_TYPE": "S",
+    "OUTPUT_TYPE": "JSON",
+    "DATABASE_TYPE": "1",
+    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+  },
+  "LAYOUT_DATA": {
+    "visualLayout": {
+      "ID": "column",
+      "VisualName": "Column",
+      "VisualType": "Standard",
+      "VisualIcon": "Column.svg",
+      "DisplayOrder": "1",
+      "className": "InsightColumnChart",
+      "linkOptions": "",
+      "OutputType": "JSON",
+      "options": [
+        { "optionId": "showGrandTotals", "optionName": "showGrandTotals", "optionHeading": "Show Grand Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showTotals", "optionName": "showTotals", "optionHeading": "Show Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showAggregationLabels", "optionName": "showAggregationLabels", "optionHeading": "Show Aggregation Labels", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showAxisTitle", "optionName": "showAxisTitle", "optionHeading": "Show Axis Title", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "xAxisLabel", "optionName": "xAxisLabel", "optionHeading": "X Axis Label", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "yAxisLabel", "optionName": "yAxisLabel", "optionHeading": "Y Axis Label", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showLines", "optionName": "showLines", "optionHeading": "Show Lines", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showRange", "optionName": "showRange", "optionHeading": "Show Range", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "themeColor", "optionName": "themeColor", "optionHeading": "Theme Color", "dataType": "string", "defaultValue": "", "listOfValues": "Blue,Green,Orange,Pink,Purple,Yellow,Default", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "toolbar", "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "multipleMeasures", "optionName": "multipleMeasures", "optionHeading": "Multiple Measures", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "chartBackgroundColor", "optionName": "chartBackgroundColor", "optionHeading": "Chart Background Color", "dataType": "string", "defaultValue": "Transparent", "listOfValues": "White,Transparent", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "axisTextColor", "optionName": "axisTextColor", "optionHeading": "Axis Text Color", "dataType": "string", "defaultValue": "black", "listOfValues": "Black,White", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showMeasures", "optionName": "showMeasures", "optionHeading": "Show Measures", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "showDataLabels", "optionName": "showDataLabels", "optionHeading": "Show Data Labels", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
+        { "optionId": "autoRefreshSeconds", "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh Seconds", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+      ],
+      "ColumnGroups": [
+        { "GroupID": 1, "GroupName": "Rows", "StandardName": "Rows", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
+        {
+          "GroupID": 2, "GroupName": "Columns", "StandardName": "Columns", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            { "COLID": 2, "NAME": "SUPPORT360_TICKET_STATUS", "DBTABLE": "SUPPORT360_TICKET", "DBNAME": "STATUS", "tableName": "SUPPORT360_TICKET", "tableDisplayName": "Ticket", "content": "Status", "name": "Status", "descr": "Ticket status", "type": "string", "JAVATYPE": "java.lang.String", "COLTYPE": "CHAR", "NATIVETYPE": "AN", "DBSIZE": 20, "EXPRESSIONTYPE": "C", "DEFAULTFUNCTION": "", "FUNCTION": "", "FEILD_TYPE": "TEXTBOX", "ALIGNMENT": 1, "alignment": "", "WIDTH": 110, "FONT": "TIMES NEW ROMAN", "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0, "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false, "ADV_FORMAT": "", "expression": "", "value": "", "groupName": "Columns", "StandardName": "Columns", "checked": true }
+          ]
+        },
+        {
+          "GroupID": 3, "GroupName": "Values", "StandardName": "Values", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "COLUMNS": [
+            { "COLID": 3, "NAME": "COUNT_OF_TICKETS", "DBTABLE": "SUPPORT360_TICKET", "DBNAME": "TICKET_NO", "tableName": "SUPPORT360_TICKET", "tableDisplayName": "Ticket", "content": "Count of Tickets", "name": "Count of Tickets", "descr": "Count of the current agent's queue per status", "type": "number", "JAVATYPE": "java.lang.Integer", "COLTYPE": "NUMBER", "NATIVETYPE": "N", "DBSIZE": 0, "EXPRESSIONTYPE": "G", "DEFAULTFUNCTION": "COUNT", "FUNCTION": "COUNT", "FEILD_TYPE": "TEXTBOX", "ALIGNMENT": 2, "alignment": "", "WIDTH": 130, "FONT": "TIMES NEW ROMAN", "FONTSIZE": 12, "FGCOLOR": "#000000", "BGCOLOR": "", "BOLD": 0, "ITALIC": 0, "UNDERLINE": 0, "HIDDEN": "", "KEY": false, "CAPS": false, "ADV_FORMAT": "", "expression": "", "value": "", "display": { "type": "number", "decimals": 0 }, "groupName": "Values", "StandardName": "Values", "checked": true }
+          ]
+        }
+      ]
+    },
+    "layoutdata": {}
+  },
+  "SOURCE_SQL": ""
+}

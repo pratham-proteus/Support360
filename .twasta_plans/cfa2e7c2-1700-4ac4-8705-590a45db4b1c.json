@@ -1,0 +1,34 @@
+{
+  "id": "cfa2e7c2-1700-4ac4-8705-590a45db4b1c",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the Add Comment business logic on Manage Ticket Queue so it correctly reads ",
+  "kind": "change",
+  "status": "completed",
+  "description": "The Add Comment fix is still incomplete. Please fix only this failed task. Verify that the NEW_COMMENT input field actually exists on the Manage Ticket Queue Add Comment action and is available in the action's runtime input payload. Then update the Add Comment business logic to read NEW_COMMENT, validate that it is not empty, save the comment against the correct ticket, and automatically create the Activity Log entry. Do not assume the input key or field name\u2014verify the actual model/action configuration and runtime payload first. Deploy the change and test it in the runtime by adding a real comment to a ticket. Do not mark this task complete until the comment is successfully saved and visible in the Activity Log.",
+  "created_at": 1787642466.8434608,
+  "updated_at": 1789016903.4375708,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix Add Comment business logic to read NEW_COMMENT, validate, save comment, and log activity",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1787642466.8618104,
+      "completed_at": 1787642498.3521755
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "The Add Comment fix is still incomplete. Please fix only this failed task. Verify that the NEW_COMMENT input field actually exists on the Manage Ticket Queue Add Comment action and is available in the action's runtime input payload. Then update the Add Comment business logic to read NEW_COMMENT, validate that it is not empty, save the comment against the correct ticket, and automatically create the Activity Log entry. Do not assume the input key or field name\u2014verify the actual model/action configuration and runtime payload first. Deploy the change and test it in the runtime by adding a real comment to a ticket. Do not mark this task complete until the comment is successfully saved and visible in the Activity Log.",
+  "resume_ref": {
+    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "plan_id": "cfa2e7c2-1700-4ac4-8705-590a45db4b1c",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

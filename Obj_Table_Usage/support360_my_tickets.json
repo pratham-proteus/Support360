@@ -1,0 +1,37 @@
+{
+  "object_name": "support360_my_tickets",
+  "tables": {
+    "SUPPORT360_TICKET": [
+      "TITLE",
+      "TICKET_NO",
+      "CHG_USER",
+      "ACTIVITY_HISTORY",
+      "CLOSED_DATE",
+      "STATUS",
+      "DESCRIPTION",
+      "CLOSED_BY",
+      "PRIORITY_CODE",
+      "RAISED_BY",
+      "ADD_USER",
+      "CATEGORY_CODE",
+      "CREATED_DATE",
+      "ASSIGNED_AGENT",
+      "ATTACHMENT_UPLOADED_BY",
+      "AGENT_COMMENTS",
+      "NEW_COMMENT",
+      "ADD_DATE",
+      "ATTACHMENT_UPLOADED_DATE",
+      "ATTACHMENT",
+      "ID",
+      "CHG_DATE"
+    ],
+    "SUPPORT360_CATEGORY_MASTER": [
+      "CATEGORY_NAME",
+      "CATEGORY_CODE"
+    ],
+    "SUPPORT360_PRIORITY_MASTER": [
+      "PRIORITY_CODE",
+      "PRIORITY_NAME"
+    ]
+  }
+}

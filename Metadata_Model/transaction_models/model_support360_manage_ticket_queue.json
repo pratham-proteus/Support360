@@ -1,0 +1,934 @@
+{
+  "transaction": {
+    "obj_name": "support360_manage_ticket_queue",
+    "sql_models": [
+      {
+        "sql_model": {
+          "form_title": "Manage Ticket Queue",
+          "form_descr": "Agent views, assigns, works, and resolves tickets",
+          "form_no": "1",
+          "main_table": "SUPPORT360_TICKET",
+          "columns": [
+            {
+              "column": {
+                "name": "ticket_no",
+                "db_name": "TICKET_NO",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Ticket No",
+                "descr": "System-generated unique ticket number",
+                "key": true,
+                "mandatory": true,
+                "protect": "1",
+                "x": "10",
+                "y": "10",
+                "col_id": "1",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "30",
+                "width": 300,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "title",
+                "db_name": "TITLE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Title",
+                "descr": "Short title describing the issue or request",
+                "protect": "",
+                "x": "20",
+                "y": "20",
+                "col_id": "2",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "200",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "description",
+                "db_name": "DESCRIPTION",
+                "group_name": "Basic",
+                "col_type": "TEXT",
+                "heading": "Description",
+                "descr": "Full description of the issue or request",
+                "protect": "",
+                "x": "30",
+                "y": "30",
+                "col_id": "3",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_code",
+                "db_name": "CATEGORY_CODE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category",
+                "descr": "Ticket category",
+                "protect": "",
+                "x": "40",
+                "y": "40",
+                "col_id": "4",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "category_name",
+                "db_name": "CATEGORY_NAME",
+                "table_name": "SUPPORT360_CATEGORY_MASTER",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Category Name",
+                "descr": "Category name from the Category master (display only)",
+                "protect": "1",
+                "x": "50",
+                "y": "50",
+                "col_id": "5",
+                "table_display_name": "Category master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "priority_code",
+                "db_name": "PRIORITY_CODE",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Priority",
+                "descr": "Ticket priority",
+                "protect": "",
+                "x": "60",
+                "y": "60",
+                "col_id": "6",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "priority_name",
+                "db_name": "PRIORITY_NAME",
+                "table_name": "SUPPORT360_PRIORITY_MASTER",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Priority Name",
+                "descr": "Priority name from the Priority master (display only)",
+                "protect": "1",
+                "x": "70",
+                "y": "70",
+                "col_id": "7",
+                "table_display_name": "Priority master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "status",
+                "db_name": "STATUS",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Status",
+                "descr": "Current ticket status; changed only via Assign / Start Progress / Resolve actions",
+                "protect": "",
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Open",
+                      "color": "blue",
+                      "icon": "\u25cf",
+                      "label": "Open"
+                    },
+                    {
+                      "when": "Assigned",
+                      "color": "amber",
+                      "icon": "\u25cf",
+                      "label": "Assigned"
+                    },
+                    {
+                      "when": "In Progress",
+                      "color": "orange",
+                      "icon": "\u25f7",
+                      "label": "In Progress"
+                    },
+                    {
+                      "when": "Resolved",
+                      "color": "teal",
+                      "icon": "\u2713",
+                      "label": "Resolved"
+                    },
+                    {
+                      "when": "Closed",
+                      "color": "grey",
+                      "icon": "\u2715",
+                      "label": "Closed"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
+                "x": "80",
+                "y": "80",
+                "col_id": "8",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "20",
+                "width": 200,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "raised_by",
+                "db_name": "RAISED_BY",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Raised By",
+                "descr": "The Employee who raised the ticket",
+                "protect": "",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "36",
+                "width": 360,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "assigned_agent",
+                "db_name": "ASSIGNED_AGENT",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Assigned Agent",
+                "descr": "Support Agent assigned to this ticket; set automatically by the Assign action (randomly chosen from active, available agents) \u2014 not manually editable.",
+                "protect": "",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "36",
+                "width": 360,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "assigned_agent_name",
+                "db_name": "AGENT_NAME",
+                "group_name": "Basic",
+                "col_type": "VARCHAR",
+                "heading": "Assigned To",
+                "descr": "Name of the Support Agent currently assigned to this ticket (display only, looked up from SUPPORT360_AGENT.AGENT_NAME via ASSIGNED_AGENT)",
+                "protect": "1",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
+                "table_name": "SUPPORT360_AGENT",
+                "table_display_name": "Agent master (lookup display)",
+                "db_size": "100",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "created_date",
+                "db_name": "CREATED_DATE",
+                "group_name": "Basic",
+                "col_type": "DATETIME",
+                "heading": "Created On",
+                "descr": "Date/time the ticket was created",
+                "protect": "1",
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "last_updated_date",
+                "db_name": "CHG_DATE",
+                "group_name": "Basic",
+                "col_type": "DATETIME",
+                "heading": "Last Updated",
+                "descr": "Date/time the ticket was last changed",
+                "protect": "1",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "attachment",
+                "db_name": "ATTACHMENT",
+                "group_name": "Attachment",
+                "col_type": "VARCHAR",
+                "heading": "Attachment",
+                "descr": "Add a supporting file to this ticket; can be added at any point in the ticket's life regardless of status",
+                "edit_mask": {
+                  "mask": "document"
+                },
+                "item_change": {
+                  "mode": "business_logic",
+                  "business_logic": {
+                    "method": "stamp_ticket_attachment",
+                    "description": "Stamp attachment uploaded-by/date and log it",
+                    "spec": "On change of ATTACHMENT (a new file is uploaded to this ticket by the Support Agent), set ATTACHMENT_UPLOADED_BY to the current logged-in user and ATTACHMENT_UPLOADED_DATE to the current timestamp on this SUPPORT360_TICKET row (return {\"updates\": {\"attachment_uploaded_by\": ..., \"attachment_uploaded_date\": ...}}). This must work regardless of the ticket's current STATUS. Also append one entry to the ticket's Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Attachment-Added', CHANGED_BY = current user, CHANGE_DATE = now; this log write must never block the attachment update. NOTE: this method name and contract must match the identical item_change wired on the ATTACHMENT column of support360_my_tickets \u2014 implement it once and reuse."
+                  }
+                },
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "500",
+                "width": 500,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "attachment_uploaded_by",
+                "db_name": "ATTACHMENT_UPLOADED_BY",
+                "group_name": "Attachment",
+                "col_type": "VARCHAR",
+                "heading": "Uploaded By",
+                "descr": "User who uploaded the attachment",
+                "protect": "1",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "36",
+                "width": 360,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "attachment_uploaded_date",
+                "db_name": "ATTACHMENT_UPLOADED_DATE",
+                "group_name": "Attachment",
+                "col_type": "DATETIME",
+                "heading": "Uploaded On",
+                "descr": "Date/time the attachment was uploaded",
+                "protect": "1",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "agent_comments",
+                "db_name": "AGENT_COMMENTS",
+                "group_name": "Comments",
+                "col_type": "TEXT",
+                "heading": "Comments",
+                "descr": "Accumulated comment thread between the Employee and the Support Agent (commented-by/commented-date recorded per entry)",
+                "protect": "1",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "new_comment",
+                "db_name": "NEW_COMMENT",
+                "group_name": "Comments",
+                "col_type": "VARCHAR",
+                "heading": "Add Comment",
+                "descr": "Type a comment here, then use the Add Comment action to post it",
+                "x": "180",
+                "y": "180",
+                "col_id": "18",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "2000",
+                "width": 500,
+                "key": false,
+                "mandatory": true,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": {
+                  "mask": "textarea"
+                },
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "resolution_notes",
+                "db_name": "RESOLUTION_NOTES",
+                "group_name": "Resolution",
+                "col_type": "TEXT",
+                "heading": "Resolution Notes",
+                "descr": "Notes describing how the ticket was resolved; mandatory before the ticket can be moved to Resolved",
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "reassign_to_agent",
+                "db_name": "REASSIGN_TO_AGENT",
+                "group_name": "Assignment",
+                "col_type": "VARCHAR",
+                "heading": "Reassign To",
+                "descr": "Agent to reassign this ticket to; used with the Reassign action, keeps STATUS unchanged",
+                "x": "200",
+                "y": "200",
+                "col_id": "20",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "36",
+                "width": 360,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "protect": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "activity_history",
+                "db_name": "ACTIVITY_HISTORY",
+                "group_name": "Activity",
+                "col_type": "TEXT",
+                "heading": "Activity History",
+                "descr": "Chronological history of changes to this ticket",
+                "protect": "1",
+                "x": "210",
+                "y": "210",
+                "col_id": "21",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "id",
+                "db_name": "ID",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Id",
+                "descr": "Internal unique identifier",
+                "protect": "1",
+                "hidden": 1,
+                "x": "220",
+                "y": "220",
+                "col_id": "22",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "36",
+                "width": 360,
+                "key": false,
+                "mandatory": false,
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "add_date",
+                "db_name": "ADD_DATE",
+                "group_name": "Others",
+                "col_type": "DATETIME",
+                "heading": "Added On",
+                "descr": "Date/time the record was created",
+                "protect": "1",
+                "x": "230",
+                "y": "230",
+                "col_id": "23",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "",
+                "width": 50,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "chg_user",
+                "db_name": "CHG_USER",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Changed By",
+                "descr": "User who last changed the record",
+                "protect": "1",
+                "x": "240",
+                "y": "240",
+                "col_id": "24",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "10",
+                "width": 100,
+                "key": false,
+                "mandatory": false,
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            }
+          ],
+          "joins": {
+            "join_predicates": {
+              "joins": [
+                {
+                  "table": "SUPPORT360_TICKET",
+                  "main_table": true,
+                  "table_descr": "Support ticket (main table)"
+                },
+                {
+                  "table": "SUPPORT360_CATEGORY_MASTER",
+                  "main_table": false,
+                  "table_descr": "Category master (lookup display)",
+                  "column": "CATEGORY_CODE",
+                  "join_table": "SUPPORT360_TICKET",
+                  "join_column": "CATEGORY_CODE",
+                  "join_type": "left"
+                },
+                {
+                  "table": "SUPPORT360_PRIORITY_MASTER",
+                  "main_table": false,
+                  "table_descr": "Priority master (lookup display)",
+                  "column": "PRIORITY_CODE",
+                  "join_table": "SUPPORT360_TICKET",
+                  "join_column": "PRIORITY_CODE",
+                  "join_type": "left"
+                },
+                {
+                  "table": "SUPPORT360_AGENT",
+                  "main_table": false,
+                  "table_descr": "Agent master (lookup display)",
+                  "column": "AGENT_ID",
+                  "join_table": "SUPPORT360_TICKET",
+                  "join_column": "ASSIGNED_AGENT",
+                  "join_type": "left"
+                }
+              ]
+            }
+          },
+          "actions": [
+            {
+              "name": "Add",
+              "handler": "system",
+              "system_op": "add",
+              "scope": "form",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Add not allowed here",
+                  "message": "Tickets are logged from Create Support Ticket, not from Manage Ticket Queue.",
+                  "expression": "1 == 2"
+                }
+              ]
+            },
+            {
+              "name": "Edit",
+              "handler": "system",
+              "system_op": "edit",
+              "scope": "row",
+              "validations": []
+            },
+            {
+              "name": "Delete",
+              "handler": "system",
+              "system_op": "delete",
+              "scope": "row",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Delete not allowed here",
+                  "message": "Tickets cannot be deleted from Manage Ticket Queue.",
+                  "expression": "1 == 2"
+                }
+              ]
+            },
+            {
+              "name": "Assign",
+              "handler": "item_change",
+              "scope": "row",
+              "business_logic": {
+                "method": "assign_ticket",
+                "description": "Agent takes ownership of an unassigned ticket",
+                "spec": "On the current SUPPORT360_TICKET row, verify STATUS is Open (a ticket already assigned cannot be Assigned again). Query SUPPORT360_AGENT for all rows where AGENT_STATUS = 'Active' and AGENT_AVAILABILITY = 'Available'; if none are found, fail with a clear error and make no changes. Otherwise randomly select ONE agent from that eligible set (its AGENT_ID). Update the SUPPORT360_TICKET row: set STATUS to 'Assigned' and ASSIGNED_AGENT to the randomly selected AGENT_ID (do not use any value the user entered \u2014 the Assigned Agent field is no longer user-editable). Append one entry to the ticket Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Assigned', FIELD_CHANGED = 'ASSIGNED_AGENT', OLD_VALUE = '' (blank), NEW_VALUE = the randomly selected AGENT_ID, CHANGED_BY = current user, CHANGE_DATE = now. Return {\"updates\": {\"status\": \"Assigned\", \"assigned_agent\": <randomly selected AGENT_ID>}}."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be Open",
+                  "message": "Ticket {form.ticket_no} can only be assigned when STATUS is Open (current status: {form.status}).",
+                  "expression": "{form.status} == \"Open\""
+                }
+              ]
+            },
+            {
+              "name": "Reassign",
+              "handler": "item_change",
+              "scope": "row",
+              "business_logic": {
+                "method": "reassign_ticket",
+                "description": "Reassign an already-assigned ticket to a different Agent, keeping its STATUS unchanged",
+                "spec": "On the current SUPPORT360_TICKET row, set ASSIGNED_AGENT to the value in REASSIGN_TO_AGENT. Do not change STATUS. Then clear REASSIGN_TO_AGENT. Append one entry to the ticket's Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Reassigned', FIELD_CHANGED = 'ASSIGNED_AGENT', OLD_VALUE = the previous ASSIGNED_AGENT, NEW_VALUE = REASSIGN_TO_AGENT, CHANGED_BY = current user, CHANGE_DATE = now. Return {\"updates\": {\"assigned_agent\": <new agent>, \"reassign_to_agent\": \"\"}}."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Ticket must be assigned",
+                  "message": "Ticket {form.ticket_no} must already be assigned before it can be reassigned.",
+                  "expression": "not_empty({form.assigned_agent})"
+                },
+                {
+                  "type": "expression",
+                  "name": "New agent required",
+                  "message": "Enter the agent to reassign this ticket to (Reassign To) before using Reassign.",
+                  "expression": "not_empty({form.reassign_to_agent})"
+                }
+              ]
+            },
+            {
+              "name": "Start Progress",
+              "handler": "item_change",
+              "scope": "row",
+              "business_logic": {
+                "method": "start_ticket_progress",
+                "description": "Agent starts working an assigned ticket",
+                "spec": "On the current SUPPORT360_TICKET row, set STATUS to 'In Progress'. Append one entry to the ticket's Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Status-Changed', FIELD_CHANGED = 'STATUS', OLD_VALUE = 'Assigned', NEW_VALUE = 'In Progress', CHANGED_BY = current user, CHANGE_DATE = now. Return {\"updates\": {\"status\": \"In Progress\"}}."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be Assigned",
+                  "message": "Ticket {form.ticket_no} can only move to In Progress when STATUS is Assigned (current status: {form.status}).",
+                  "expression": "{form.status} == \"Assigned\""
+                }
+              ]
+            },
+            {
+              "name": "Add Comment",
+              "handler": "item_change",
+              "scope": "row",
+              "business_logic": {
+                "method": "add_agent_comment",
+                "description": "Agent posts a comment on the ticket for the Employee to see",
+                "spec": "On the current SUPPORT360_TICKET row, append the text in NEW_COMMENT to AGENT_COMMENTS (prefixed with the current logged-in user and the current timestamp, on a new line), then clear NEW_COMMENT. Do not change STATUS. Append one entry to the ticket's Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Commented', CHANGED_BY = current user, CHANGE_DATE = now. Return {\"updates\": {\"agent_comments\": <updated thread>, \"new_comment\": \"\"}}."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Comment required",
+                  "message": "Enter a comment before using Add Comment.",
+                  "expression": "not_empty({form.new_comment})"
+                }
+              ]
+            },
+            {
+              "name": "Resolve",
+              "handler": "item_change",
+              "scope": "row",
+              "business_logic": {
+                "method": "resolve_ticket",
+                "description": "Agent marks the ticket as resolved",
+                "spec": "On the current SUPPORT360_TICKET row, set STATUS to 'Resolved'. Append one entry to the ticket's Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Status-Changed', FIELD_CHANGED = 'STATUS', OLD_VALUE = 'In Progress', NEW_VALUE = 'Resolved', CHANGED_BY = current user, CHANGE_DATE = now. Return {\"updates\": {\"status\": \"Resolved\"}}."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be In Progress",
+                  "message": "Ticket {form.ticket_no} can only be resolved when STATUS is In Progress (current status: {form.status}).",
+                  "expression": "{form.status} == \"In Progress\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Resolution notes required",
+                  "message": "Enter Resolution Notes before resolving ticket {form.ticket_no}.",
+                  "expression": "not_empty({form.resolution_notes})"
+                }
+              ]
+            }
+          ],
+          "validations": []
+        }
+      }
+    ],
+    "actions": [],
+    "cross_updates": [],
+    "pre_commit": [],
+    "post_commit": [],
+    "follow_up_actions": [],
+    "attach_docs": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "title",
+        "category_code",
+        "status"
+      ],
+      "key_column": "ticket_no",
+      "display_column": "title",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by support360_ticket_activity_log; searched by title plus category_code, status so same-named records stay distinguishable"
+    }
+  }
+}
