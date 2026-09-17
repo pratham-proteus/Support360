@@ -1,13 +1,13 @@
 {
-  "id": "6ff2de69-76ac-4ccf-83d9-47ee4061bcf7",
+  "id": "1eed4093-5bca-4ff7-af70-9b466e813a6f",
   "project": "Support360",
   "backend": "autoagent",
-  "title": "Build application",
-  "kind": "build",
+  "title": "Remove the 'Reassign' business action from the Support360 app: drop it from the ",
+  "kind": "change",
   "status": "completed",
-  "description": "Build a **General Help Desk application for enterprises**.\n\nThe system should have 3 roles: **Employee, Support Agent, and Admin**.\n\n\nCore features:\n\n* Employees can create support tickets with **title, description, category, priority, and attachment**.\n* Support Agents can **view, assign, update, comment on, and resolve tickets**.\n* Ticket status should follow: **Open \u2192 Assigned \u2192 In Progress \u2192 Resolved \u2192 Closed**.\n* Employees can view their tickets and track status.\n* Admin can manage **users, categories, priorities, and tickets**.\n* Provide **search, filtering, and dashboards** showing ticket count by status and priority.\n* Add proper **mandatory-field validation, error messages, and success messages**.\n* Store all ticket changes in an **activity/history log**.\n* Create a clean, simple, enterprise-style UI.\n\nMake the application fully functional with working **frontend, backend, database, authentication, validations, and workflows**.\n\n=== CONFIRMED SCOPE AND COMPLEXITY (user-approved \u2014 this OVERRIDES any conflicting inference from the brief) ===\n* Which functional areas should the Help Desk cover?\n  - Include: Ticket Creation & My Tickets; Agent Ticket Desk; Status Workflow & Rules; Admin Setup (Categories & Priorities); Search, Filters & Dashboards; Activity & History Log\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Email Notifications; Response Time Targets (SLA); Knowledge Base & Canned Replies\n* How complete should this first version be?\n  - Include: Standard\n* What should each role see when they log in?\n  - Include: Employee: my open tickets; Agent: my queue and workload; Admin: overall ticket health\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Agent performance comparison\n* How should a ticket move from Resolved to Closed?\n  - Include: Employee confirms\n* How should file attachments work on tickets?\n  - Include: Multiple files, any time\nWrite the specification to cover EXACTLY this confirmed scope at the confirmed complexity level: include every confirmed item, honour every added point, and do not add functional areas, activities or enterprise features beyond it.",
-  "created_at": 1788780827.856093,
-  "updated_at": 1789634602.072031,
+  "description": "Remove the 'Reassign' action from everywhere. Rest keep the functionalities untouched.",
+  "created_at": 1789628484.215588,
+  "updated_at": 1789634602.0774846,
   "todos": [
     {
       "id": "frs",
@@ -60,6 +60,16 @@
       "phase_id": "phase_1"
     },
     {
+      "id": "obj_support360_my_agents",
+      "step": "object",
+      "label": "Build & verify: Manage Agent Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
       "id": "obj_support360_create_ticket",
       "step": "object",
       "label": "Build & verify: Create Support Ticket",
@@ -90,12 +100,12 @@
       "phase_id": "phase_2"
     },
     {
-      "id": "obj_support360_manage_all_tickets",
+      "id": "obj_support360_ticket_assignment",
       "step": "object",
-      "label": "Build & verify: Manage All Tickets",
+      "label": "Build & verify: Manage Ticket Assignment",
       "status": "completed",
       "error": null,
-      "obj_name": "support360_manage_all_tickets",
+      "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
       "phase_id": "phase_2"
     },
@@ -107,14 +117,7 @@
       "error": null,
       "obj_name": "support360_ticket_activity_log",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "started_at": 1788780835.931851,
-      "completed_at": 1788780874.928651,
-      "review_iters": 1,
-      "model_sig": "bd0288376a5af64ffda9e1bf09b6d96f86f764ed",
-      "input_tokens": 6,
-      "output_tokens": 4575,
-      "cost_usd": 0.378858
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_ticket_schema",
@@ -281,36 +284,37 @@
     {
       "id": "phase_1",
       "title": "Master & lookup data",
-      "rationale": "Category and priority masters must exist before any ticket transaction can reference them.",
+      "rationale": "Reference data the ticket transactions depend on must exist first.",
       "objects": [
         "support360_category_master",
-        "support360_priority_master"
+        "support360_priority_master",
+        "support360_my_agents"
       ]
     },
     {
       "id": "phase_2",
       "title": "Core transactions",
-      "rationale": "Ticket capture, tracking, queue handling, admin oversight and the activity log build on the masters.",
+      "rationale": "Ticket creation and downstream ticket transactions that reference the masters.",
       "objects": [
         "support360_create_ticket",
         "support360_my_tickets",
         "support360_manage_ticket_queue",
-        "support360_manage_all_tickets",
+        "support360_ticket_assignment",
         "support360_ticket_activity_log"
       ]
     },
     {
       "id": "phase_3",
       "title": "Shared schema",
-      "rationale": "The ticket fact-grain dataset must be defined before any visual can bind to it.",
+      "rationale": "The ticket dataset definition must exist before any visual can bind to it.",
       "objects": [
         "support360_ticket_schema"
       ]
     },
     {
       "id": "phase_4",
-      "title": "Visuals & KPIs",
-      "rationale": "All grids, charts and cards read from the ticket schema and transactional data.",
+      "title": "Visuals & charts",
+      "rationale": "Grids, cards and charts built on the ticket schema and transaction data.",
       "objects": [
         "support360_all_tickets_grid",
         "support360_ticket_count_by_status",
@@ -328,8 +332,8 @@
     },
     {
       "id": "phase_5",
-      "title": "Role dashboards",
-      "rationale": "Dashboards embed the visuals built in the previous phase.",
+      "title": "Dashboards",
+      "rationale": "Role-based dashboards embed the visuals built in the previous phase.",
       "objects": [
         "support360_employee_dashboard",
         "support360_agent_dashboard",
@@ -337,11 +341,11 @@
       ]
     }
   ],
-  "originating_prompt": "Build a **General Help Desk application for enterprises**.\n\nThe system should have 3 roles: **Employee, Support Agent, and Admin**.\n\n\nCore features:\n\n* Employees can create support tickets with **title, description, category, priority, and attachment**.\n* Support Agents can **view, assign, update, comment on, and resolve tickets**.\n* Ticket status should follow: **Open \u2192 Assigned \u2192 In Progress \u2192 Resolved \u2192 Closed**.\n* Employees can view their tickets and track status.\n* Admin can manage **users, categories, priorities, and tickets**.\n* Provide **search, filtering, and dashboards** showing ticket count by status and priority.\n* Add proper **mandatory-field validation, error messages, and success messages**.\n* Store all ticket changes in an **activity/history log**.\n* Create a clean, simple, enterprise-style UI.\n\nMake the application fully functional with working **frontend, backend, database, authentication, validations, and workflows**.\n\n=== CONFIRMED SCOPE AND COMPLEXITY (user-approved \u2014 this OVERRIDES any conflicting inference from the brief) ===\n* Which functional areas should the Help Desk cover?\n  - Include: Ticket Creation & My Tickets; Agent Ticket Desk; Status Workflow & Rules; Admin Setup (Categories & Priorities); Search, Filters & Dashboards; Activity & History Log\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Email Notifications; Response Time Targets (SLA); Knowledge Base & Canned Replies\n* How complete should this first version be?\n  - Include: Standard\n* What should each role see when they log in?\n  - Include: Employee: my open tickets; Agent: my queue and workload; Admin: overall ticket health\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Agent performance comparison\n* How should a ticket move from Resolved to Closed?\n  - Include: Employee confirms\n* How should file attachments work on tickets?\n  - Include: Multiple files, any time\nWrite the specification to cover EXACTLY this confirmed scope at the confirmed complexity level: include every confirmed item, honour every added point, and do not add functional areas, activities or enterprise features beyond it.",
+  "originating_prompt": "Remove the 'Reassign' action from everywhere. Rest keep the functionalities untouched.",
   "resume_ref": {
     "session_id": "976675c6-1fad-4d07-b3ec-0941924f82ed",
-    "plan_id": "6ff2de69-76ac-4ccf-83d9-47ee4061bcf7",
-    "scope": "all"
+    "plan_id": "1eed4093-5bca-4ff7-af70-9b466e813a6f",
+    "scope": "phase"
   },
   "depends_on": [],
   "result_summary": ""

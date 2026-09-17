@@ -5,7 +5,7 @@
       {
         "sql_model": {
           "form_title": "Support Agents",
-          "form_descr": "Maintain the list of Support Agents with their availability and status.",
+          "form_descr": "Admin maintains the master list of Support Agents with their availability and status.",
           "form_no": "1",
           "main_table": "SUPPORT360_AGENT",
           "columns": [
@@ -17,7 +17,7 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Agent ID",
-                "descr": "Unique identifier for the support agent",
+                "descr": "Unique identifier of the support agent",
                 "key": true,
                 "mandatory": true,
                 "validations": [
@@ -27,9 +27,7 @@
                     "error_code": "AGENT_DUP",
                     "message": "Agent ID {form.AGENT_ID} already exists.",
                     "builtin": {
-                      "kind": "must_be_unique",
-                      "table": "SUPPORT360_AGENT",
-                      "match_column": "AGENT_ID"
+                      "kind": "must_be_unique"
                     }
                   }
                 ],
@@ -85,7 +83,7 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Availability",
-                "descr": "Whether the agent is currently free to take tickets",
+                "descr": "Current availability of the agent",
                 "mandatory": true,
                 "default_value": "Available",
                 "edit_mask": {
@@ -101,15 +99,6 @@
                     }
                   ]
                 },
-                "validations": [
-                  {
-                    "type": "expression",
-                    "name": "Availability valid",
-                    "error_code": "AGENT_AVAIL_INVALID",
-                    "message": "Availability must be Available or Occupied.",
-                    "expression": "in_list({form.AGENT_AVAILABILITY}, \"Available,Occupied\")"
-                  }
-                ],
                 "display": {
                   "type": "status_tag",
                   "map": [
@@ -128,6 +117,15 @@
                   ],
                   "defaultColor": "grey"
                 },
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Availability allowed",
+                    "error_code": "AGENT_AVAIL",
+                    "message": "Availability must be Available or Occupied.",
+                    "expression": "in_list({form.AGENT_AVAILABILITY}, \"Available,Occupied\")"
+                  }
+                ],
                 "x": "30",
                 "y": "30",
                 "col_id": "3",
@@ -151,7 +149,7 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Status",
-                "descr": "Active agents are eligible for ticket assignment",
+                "descr": "Active agents can be assigned tickets; Inactive agents cannot",
                 "mandatory": true,
                 "default_value": "Active",
                 "edit_mask": {
@@ -164,30 +162,6 @@
                     {
                       "data": "Inactive",
                       "display": "Inactive"
-                    }
-                  ]
-                },
-                "validations": [
-                  {
-                    "type": "expression",
-                    "name": "Status valid",
-                    "error_code": "AGENT_STATUS_INVALID",
-                    "message": "Status must be Active or Inactive.",
-                    "expression": "in_list({form.AGENT_STATUS}, \"Active,Inactive\")"
-                  }
-                ],
-                "item_change": {
-                  "mode": "rule",
-                  "fill": [
-                    {
-                      "form_col": "AGENT_AVAILABILITY",
-                      "expr": "iif({form.AGENT_STATUS} == \"Inactive\", \"Occupied\", {form.AGENT_AVAILABILITY})"
-                    }
-                  ],
-                  "protect": [
-                    {
-                      "form_col": "AGENT_AVAILABILITY",
-                      "when": "{form.AGENT_STATUS} == \"Inactive\""
                     }
                   ]
                 },
@@ -209,6 +183,30 @@
                   ],
                   "defaultColor": "grey"
                 },
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "AGENT_AVAILABILITY",
+                      "expr": "iif({form.AGENT_STATUS} == \"Inactive\", \"Occupied\", {form.AGENT_AVAILABILITY})"
+                    }
+                  ],
+                  "protect": [
+                    {
+                      "form_col": "AGENT_AVAILABILITY",
+                      "when": "{form.AGENT_STATUS} == \"Inactive\""
+                    }
+                  ]
+                },
+                "validations": [
+                  {
+                    "type": "expression",
+                    "name": "Status allowed",
+                    "error_code": "AGENT_STATUS",
+                    "message": "Status must be Active or Inactive.",
+                    "expression": "in_list({form.AGENT_STATUS}, \"Active,Inactive\")"
+                  }
+                ],
                 "x": "40",
                 "y": "40",
                 "col_id": "4",
@@ -231,9 +229,8 @@
                 "table_name": "SUPPORT360_AGENT",
                 "group_name": "Others",
                 "col_type": "VARCHAR",
-                "heading": "Record ID",
-                "descr": "System generated internal record id",
-                "default_value": "auto_generate()",
+                "heading": "Record Id",
+                "descr": "Internal record identifier",
                 "protect": "1",
                 "hidden": 1,
                 "x": "50",
@@ -246,6 +243,7 @@
                 "mandatory": false,
                 "format": "",
                 "default_function": "",
+                "default_value": "",
                 "expression": "",
                 "edit_mask": "",
                 "validations": "",
@@ -316,7 +314,7 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Added From",
-                "descr": "Terminal that created the record",
+                "descr": "Terminal from which the record was created",
                 "default_value": ":audit_add_terminal",
                 "protect": "1",
                 "x": "80",
@@ -344,7 +342,7 @@
                 "group_name": "Others",
                 "col_type": "DATETIME",
                 "heading": "Changed On",
-                "descr": "Last modification timestamp",
+                "descr": "Last change timestamp",
                 "default_value": ":audit_chg_date",
                 "protect": "1",
                 "x": "90",
@@ -372,7 +370,7 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Changed By",
-                "descr": "User who last modified the record",
+                "descr": "User who last changed the record",
                 "default_value": ":audit_chg_user",
                 "protect": "1",
                 "x": "100",
@@ -400,7 +398,7 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Changed From",
-                "descr": "Terminal that last modified the record",
+                "descr": "Terminal from which the record was last changed",
                 "default_value": ":audit_chg_terminal",
                 "protect": "1",
                 "x": "110",
@@ -439,48 +437,73 @@
               "error_code": "AGENT_NAME_REQ",
               "message": "Agent Name is mandatory.",
               "expression": "not_empty({form.AGENT_NAME})"
-            },
-            {
-              "type": "expression",
-              "name": "Inactive agent not available",
-              "error_code": "AGENT_INACTIVE_AVAIL",
-              "message": "An Inactive agent cannot be marked Available.",
-              "expression": "{form.AGENT_STATUS} == \"Active\" or {form.AGENT_AVAILABILITY} != \"Available\""
             }
           ],
           "actions": [
             {
-              "name": "Add Agent",
-              "handler": "system",
-              "system_op": "add",
-              "scope": "form"
+              "name": "Deactivate Agent",
+              "handler": "item_change",
+              "scope": "row",
+              "visible_when": "{form.AGENT_STATUS} == \"Active\"",
+              "business_logic": {
+                "method": "deactivate_agent",
+                "description": "Mark the agent Inactive",
+                "spec": "Set AGENT_STATUS to 'Inactive' and AGENT_AVAILABILITY to 'Occupied' for the agent in the payload; persist the change on SUPPORT360_AGENT and return {\"updates\": {\"AGENT_STATUS\": \"Inactive\", \"AGENT_AVAILABILITY\": {\"value\": \"Occupied\", \"protect\": \"1\"}}}. Refuse with {\"error\": ...} if the agent is already Inactive."
+              },
+              "confirmation": {
+                "mode": "reconfirm",
+                "message": "Deactivate agent {form.AGENT_NAME}?"
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be active",
+                  "error_code": "AGENT_ALREADY_INACTIVE",
+                  "message": "Agent {form.AGENT_ID} is already Inactive.",
+                  "expression": "{form.AGENT_STATUS} == \"Active\""
+                }
+              ]
             },
             {
-              "name": "Edit Agent",
-              "handler": "system",
-              "system_op": "edit",
-              "scope": "row"
+              "name": "Activate Agent",
+              "handler": "item_change",
+              "scope": "row",
+              "visible_when": "{form.AGENT_STATUS} == \"Inactive\"",
+              "business_logic": {
+                "method": "activate_agent",
+                "description": "Mark the agent Active",
+                "spec": "Set AGENT_STATUS to 'Active' and AGENT_AVAILABILITY to 'Available' for the agent in the payload; persist the change on SUPPORT360_AGENT and return {\"updates\": {\"AGENT_STATUS\": \"Active\", \"AGENT_AVAILABILITY\": {\"value\": \"Available\", \"protect\": \"0\"}}}. Refuse with {\"error\": ...} if the agent is already Active."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Must be inactive",
+                  "error_code": "AGENT_ALREADY_ACTIVE",
+                  "message": "Agent {form.AGENT_ID} is already Active.",
+                  "expression": "{form.AGENT_STATUS} == \"Inactive\""
+                }
+              ]
             }
           ]
         }
       }
     ],
-    "vector_search": {
-      "enabled": true,
-      "columns": [
-        "AGENT_NAME",
-        "AGENT_STATUS",
-        "AGENT_AVAILABILITY"
-      ],
-      "key_column": "AGENT_ID",
-      "display_column": "AGENT_NAME",
-      "allow_alias": true
-    },
     "actions": [],
     "cross_updates": [],
     "pre_commit": [],
     "post_commit": [],
     "follow_up_actions": [],
-    "attach_docs": []
+    "attach_docs": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "AGENT_NAME",
+        "AGENT_AVAILABILITY",
+        "AGENT_STATUS"
+      ],
+      "key_column": "AGENT_ID",
+      "display_column": "AGENT_NAME",
+      "allow_alias": true
+    }
   }
 }

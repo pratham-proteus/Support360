@@ -4,22 +4,22 @@
     {
       "object_name": "support360_ticket_activity_log",
       "form_no": "1",
-      "usage_type": "R",
+      "usage_type": "M",
       "referred_columns": [
-        "ADD_USER",
-        "NEW_VALUE",
-        "ADD_DATE",
-        "ACTION_TYPE",
         "TICKET_NO",
-        "CHG_TERM",
+        "CHANGED_BY",
+        "ADD_USER",
+        "CHG_USER",
         "CHG_DATE",
         "FIELD_CHANGED",
-        "ADD_TERM",
-        "CHANGE_DATE",
-        "CHANGED_BY",
-        "CHG_USER",
         "OLD_VALUE",
-        "ID"
+        "CHANGE_DATE",
+        "CHG_TERM",
+        "NEW_VALUE",
+        "ID",
+        "ADD_TERM",
+        "ADD_DATE",
+        "ACTION_TYPE"
       ],
       "join_info": {
         "column": "TICKET_NO",

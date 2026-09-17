@@ -128,7 +128,7 @@
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
       "menu_path": "support360.1.1",
-      "functional_specs": "Header-only transaction to create/edit/delete a support ticket with TICKET_NO (auto), TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS (default Open, read-only), RAISED_BY, CREATED_DATE, ATTACHMENT. Mandatory: TITLE, DESCRIPTION, CATEGORY_CODE (active Category master), PRIORITY_CODE (active Priority master). Actions: Add, Edit (before assignment), Delete (own ticket while Open), Search. Attachment linked with uploaded-by/uploaded-date. Writes Created entry to Activity/History Log. Inline validation and success messages. The Assign Agent action opens the Ticket Assignment (support360_ticket_assignment) transaction screen for the current ticket."
+      "functional_specs": "Header-only transaction to create/edit/delete a support ticket with TICKET_NO (auto), TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS (default Open, read-only), RAISED_BY (VARCHAR(36), mandatory, read-only, visible on the form, auto-populated at runtime with the currently logged-in user's user id; no separate raiser-name column is displayed on the form or in the grid), CREATED_DATE, ATTACHMENT. Mandatory: TITLE, DESCRIPTION, CATEGORY_CODE (active Category master), PRIORITY_CODE (active Priority master). Actions: Add, Edit (before assignment), Delete (own ticket while Open), Search. Attachment linked with uploaded-by/uploaded-date. Writes Created entry to Activity/History Log. Inline validation and success messages. The Assign Agent action opens the Ticket Assignment (support360_ticket_assignment) transaction screen for the current ticket. CATEGORY_NAME (VARCHAR(100), read-only, non-editable) is auto-filled from SUPPORT360_CATEGORY_MASTER.CATEGORY_NAME when CATEGORY_CODE is selected. PRIORITY_NAME (VARCHAR(100), read-only, non-editable) is auto-filled from SUPPORT360_PRIORITY_MASTER.PRIORITY_NAME when PRIORITY_CODE is selected. Both are display-only fields shown next to their respective code fields and are not persisted business inputs."
     },
     {
       "id": "support360.1.2",
@@ -157,33 +157,11 @@
       "title": "Manage Ticket Queue",
       "parent_id": "support360.2",
       "icon_image": "assignment_ind",
-      "description": "Agent views, assigns, works, and resolves tickets",
+      "description": "Agent views, works, and resolves tickets",
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
       "menu_path": "support360.2.1",
-      "functional_specs": "Actionable tickets: STATUS in (Open, Assigned, In Progress) that are unassigned or assigned to current Agent. Data: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT list, RESOLUTION_NOTES. Status flow Open->Assigned->In Progress->Resolved->Closed with Reassign side-action (keeps STATUS, changes ASSIGNED_AGENT). RESOLUTION_NOTES mandatory before Resolve. Actions: Search, Filter (STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), Assign, Reassign, Start-progress, Add-comment, Add-attachment, Resolve. Every change writes a timestamped Activity/History Log entry with old/new value and changed-by. Assign action: the Agent selects the Assigned Agent from a dropdown of agents (Assigned Agent field is editable, not locked); on Assign, STATUS moves Open -> Assigned and ASSIGNED_AGENT is set to the agent the user picked in the field (no longer forced to the current logged-in agent). The Assign action requires no manual agent pick: on click it randomly selects one agent from SUPPORT360_AGENT with AGENT_STATUS = Active and AGENT_AVAILABILITY = Available, sets ASSIGNED_AGENT to that agent code, and moves STATUS from Open to Assigned. A read-only Assigned To column displays the selected agent's AGENT_NAME (looked up from SUPPORT360_AGENT), not just the agent code. Support Agents can also directly edit ticket fields via the standard Edit action, not just via Assign/Reassign/Start Progress/Add Comment/Add Attachment/Resolve."
-    },
-    {
-      "id": "support360.2.2",
-      "title": "My Agents",
-      "parent_id": "support360.2",
-      "icon_image": "badge",
-      "description": "Maintain the list of Support Agents with their availability and status.",
-      "obj_name": "support360_my_agents",
-      "obj_type": "T",
-      "menu_path": "support360.2.2",
-      "functional_specs": "Header-only transaction screen to create/edit agent records. Fields: AGENT_ID (VARCHAR(20), editable, mandatory, unique identifier for the agent), AGENT_NAME (VARCHAR(100), editable, mandatory), AGENT_AVAILABILITY (VARCHAR(20), dropdown single-select, allowed values Available/Occupied, mandatory), AGENT_STATUS (VARCHAR(20), dropdown single-select, allowed values Active/Inactive, mandatory). Business actions: Add, Edit, Search."
-    },
-    {
-      "id": "support360.2.3",
-      "title": "Ticket Assignment",
-      "parent_id": "support360.2",
-      "icon_image": "assignment_ind",
-      "description": "Agent assigns or changes the Support Agent handling a ticket",
-      "obj_name": "support360_ticket_assignment",
-      "obj_type": "T",
-      "menu_path": "support360.2.3",
-      "functional_specs": "Header-only transaction on main_table SUPPORT360_TICKET, PK TICKET_NO. Fields: TICKET_NO (VARCHAR(30), read-only), TITLE (VARCHAR(200), read-only), ASSIGNED_AGENT (VARCHAR(36), editable, lookup to SUPPORT360_AGENT.AGENT_ID where AGENT_STATUS=Active), STATUS (VARCHAR(20), read-only). Opened for a specific ticket from the Create Support Ticket screen's Assign Agent action, passing TICKET_NO as context. Action: Save (update ASSIGNED_AGENT)."
+      "functional_specs": "Actionable tickets: STATUS in (Open, Assigned, In Progress) that are unassigned or assigned to current Agent. Data: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT list, RESOLUTION_NOTES. Status flow Open->Assigned->In Progress->Resolved->Closed. STATUS dropdown on Edit offers only Start Progress (In Progress) and Resolved; Assigned is not user-selectable. RESOLUTION_NOTES mandatory before Resolve. Actions: Search, Filter (STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), Edit, Start-progress, Add-comment, Add-attachment, Resolve. Every change writes a timestamped Activity/History Log entry with old/new value and changed-by. A read-only Assigned To column displays the assigned agent's AGENT_NAME (looked up from SUPPORT360_AGENT), not just the agent code. Support Agents can directly edit ticket fields via the standard Edit action, in addition to the Start Progress/Add Comment/Add Attachment/Resolve actions. Assignment of the Support Agent is not performed on this screen; it happens on the separate Ticket Assignment (support360_ticket_assignment) screen."
     },
     {
       "id": "support360.3",
@@ -219,15 +197,26 @@
       "functional_specs": "Master with PRIORITY_CODE, PRIORITY_NAME, SEQUENCE_NO, IS_ACTIVE. PRIORITY_CODE, PRIORITY_NAME, SEQUENCE_NO mandatory; PRIORITY_CODE and SEQUENCE_NO unique. Cannot delete if referenced by any ticket; can only be deactivated in that case. Actions: Search, Add, Edit, Delete (only if unused), Activate/Deactivate."
     },
     {
-      "id": "support360.3.3",
-      "title": "Manage All Tickets",
+      "id": "support360.3.4",
+      "title": "Manage Agent Master",
       "parent_id": "support360.3",
-      "icon_image": "fact_check",
-      "description": "Admin overarching view and intervention on all tickets",
-      "obj_name": "support360_manage_all_tickets",
+      "icon_image": "badge",
+      "description": "Admin maintains the master list of Support Agents with their availability and status.",
+      "obj_name": "support360_my_agents",
       "obj_type": "T",
-      "menu_path": "support360.3.3",
-      "functional_specs": "No row-level restriction; Admin can view/edit any ticket. Data: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT list, ACTIVITY_HISTORY. Same status transition sequence/validations as Agent Ticket Desk. Edits to TITLE/DESCRIPTION/CATEGORY_CODE/PRIORITY_CODE allowed at any STATUS other than Closed. Actions: Search, Filter (STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY), Edit, Assign, Reassign, Delete. Every change writes Activity/History Log entry with old/new value and changed-by. ASSIGNED_AGENT column is directly editable by Admin on the ticket form and is optional (may be left blank/unassigned), in addition to being set via the Assign/Reassign actions."
+      "menu_path": "support360.3.4",
+      "functional_specs": "Header-only transaction screen to create/edit agent records. Fields: AGENT_ID (VARCHAR(20), editable, mandatory, unique identifier for the agent), AGENT_NAME (VARCHAR(100), editable, mandatory), AGENT_AVAILABILITY (VARCHAR(20), dropdown single-select, allowed values Available/Occupied, mandatory), AGENT_STATUS (VARCHAR(20), dropdown single-select, allowed values Active/Inactive, mandatory). Business actions: Add, Edit, Search."
+    },
+    {
+      "id": "support360.3.5",
+      "title": "Manage Ticket Assignment",
+      "parent_id": "support360.3",
+      "icon_image": "assignment_ind",
+      "description": "Agent assigns the Support Agent handling a ticket",
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "menu_path": "support360.3.5",
+      "functional_specs": "Header-only transaction on main_table SUPPORT360_TICKET, PK TICKET_NO. Fields: TICKET_NO (VARCHAR(30), read-only), TITLE (VARCHAR(200), read-only), ASSIGNED_AGENT (VARCHAR(36), editable, lookup to SUPPORT360_AGENT.AGENT_ID where AGENT_STATUS=Active), STATUS (VARCHAR(20), read-only). Opened for a specific ticket from the Create Support Ticket screen's Assign Agent action, passing TICKET_NO as context. Action: Save (update ASSIGNED_AGENT)."
     },
     {
       "id": "support360.4",
@@ -249,7 +238,7 @@
       "obj_name": "support360_ticket_activity_log",
       "obj_type": "T",
       "menu_path": "support360.4.1",
-      "functional_specs": "System-generated only, no manual add/edit/delete by any role. Data: TICKET_NO, ACTION_TYPE (Created, Assigned, Reassigned, Status-Changed, Commented, Attachment-Added, Edited, Closed), FIELD_CHANGED, OLD_VALUE, NEW_VALUE, CHANGED_BY, CHANGE_DATE. Actions: Search, View (read-only). Written to automatically by ticket creation, assignment/reassignment, status change, comment, attachment, and edit actions across the app."
+      "functional_specs": "System-generated only, no manual add/edit/delete by any role. Data: TICKET_NO, ACTION_TYPE (Created, Assigned, Status-Changed, Commented, Attachment-Added, Edited, Closed), FIELD_CHANGED, OLD_VALUE, NEW_VALUE, CHANGED_BY, CHANGE_DATE. Actions: Search, View (read-only). Written to automatically by ticket creation, assignment/reassignment, status change, comment, attachment, and edit actions across the app."
     },
     {
       "id": "support360.5",

@@ -42,7 +42,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket category, picked from the active Category master",
-      "sequence": 5,
+      "sequence": 4,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_CATEGORY_MASTER",
@@ -58,7 +58,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket priority, picked from the active Priority master",
-      "sequence": 4,
+      "sequence": 5,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_PRIORITY_MASTER",
@@ -74,28 +74,16 @@
       "size": "20",
       "key": false,
       "description": "Ticket status; defaults to Open on creation and is not user-editable",
-      "sequence": 3,
+      "sequence": 6,
       "mandatory": true,
       "allowed_values": [
         {
-          "value": "Open",
-          "label": "Open"
-        },
-        {
-          "value": "Assigned",
-          "label": "Assigned"
-        },
-        {
           "value": "In Progress",
-          "label": "In Progress"
+          "label": "Start Progress"
         },
         {
           "value": "Resolved",
           "label": "Resolved"
-        },
-        {
-          "value": "Closed",
-          "label": "Closed"
         }
       ],
       "primary_key": false,
@@ -107,7 +95,7 @@
       "size": "36",
       "key": false,
       "description": "The Employee who raised the ticket (current logged-in user)",
-      "sequence": 6,
+      "sequence": 7,
       "mandatory": true,
       "primary_key": false,
       "nullable": false
@@ -118,7 +106,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the ticket was created",
-      "sequence": 8,
+      "sequence": 9,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -129,7 +117,7 @@
       "size": "500",
       "key": false,
       "description": "One or more files supporting the ticket",
-      "sequence": 9,
+      "sequence": 11,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -140,7 +128,7 @@
       "size": "36",
       "key": false,
       "description": "User who uploaded the attachment",
-      "sequence": 10,
+      "sequence": 12,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -151,7 +139,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the attachment was uploaded",
-      "sequence": 11,
+      "sequence": 13,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -162,7 +150,7 @@
       "size": "36",
       "key": false,
       "description": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
-      "sequence": 7,
+      "sequence": 8,
       "allowed_values": [
         {
           "value": "AGENT01",
@@ -192,7 +180,7 @@
       "size": "36",
       "key": false,
       "description": "Internal unique identifier",
-      "sequence": 13,
+      "sequence": 19,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -203,7 +191,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was created",
-      "sequence": 14,
+      "sequence": 20,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -236,7 +224,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was last changed",
-      "sequence": 17,
+      "sequence": 10,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -247,7 +235,7 @@
       "size": "10",
       "key": false,
       "description": "User who last changed the record",
-      "sequence": 18,
+      "sequence": 21,
       "primary_key": false,
       "nullable": true,
       "mandatory": false

@@ -4,8 +4,8 @@
     "sql_models": [
       {
         "sql_model": {
-          "form_title": "Ticket Assignment",
-          "form_descr": "Assign or change the Support Agent handling a ticket",
+          "form_title": "Manage Ticket Assignment",
+          "form_descr": "Assign the Support Agent handling a ticket",
           "form_no": "1",
           "main_table": "SUPPORT360_TICKET",
           "columns": [

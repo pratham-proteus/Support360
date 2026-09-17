@@ -2,29 +2,24 @@
   "object_name": "support360_ticket_activity_log",
   "tables": {
     "SUPPORT360_TICKET_ACTLOG": [
-      "ADD_USER",
-      "NEW_VALUE",
-      "ADD_DATE",
-      "ACTION_TYPE",
       "TICKET_NO",
-      "CHG_TERM",
-      "CHG_DATE",
-      "FIELD_CHANGED",
-      "ADD_TERM",
-      "CHANGE_DATE",
       "CHANGED_BY",
       "CHG_USER",
+      "ADD_USER",
+      "CHG_DATE",
+      "FIELD_CHANGED",
       "OLD_VALUE",
-      "ID"
+      "CHANGE_DATE",
+      "CHG_TERM",
+      "NEW_VALUE",
+      "ID",
+      "ADD_TERM",
+      "ADD_DATE",
+      "ACTION_TYPE"
     ],
     "SUPPORT360_TICKET": [
-      "PRIORITY_CODE",
-      "ASSIGNED_AGENT",
       "TICKET_NO",
-      "TITLE",
-      "STATUS",
-      "RAISED_BY",
-      "CATEGORY_CODE"
+      "TITLE"
     ]
   }
 }

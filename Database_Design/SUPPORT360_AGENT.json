@@ -26,7 +26,7 @@
       "data_type": "VARCHAR",
       "size": "20",
       "key": false,
-      "description": "Whether the agent is currently free to take tickets",
+      "description": "Current availability of the agent",
       "sequence": 3,
       "mandatory": true,
       "allowed_values": [
@@ -45,7 +45,7 @@
       "data_type": "VARCHAR",
       "size": "20",
       "key": false,
-      "description": "Active agents are eligible for ticket assignment",
+      "description": "Active agents can be assigned tickets; Inactive agents cannot",
       "sequence": 4,
       "mandatory": true,
       "allowed_values": [
@@ -64,7 +64,7 @@
       "data_type": "VARCHAR",
       "size": "36",
       "key": false,
-      "description": "System generated internal record id",
+      "description": "Internal record identifier",
       "sequence": 5
     },
     {
@@ -88,7 +88,7 @@
       "data_type": "VARCHAR",
       "size": "15",
       "key": false,
-      "description": "Terminal that created the record",
+      "description": "Terminal from which the record was created",
       "sequence": 8
     },
     {
@@ -96,7 +96,7 @@
       "data_type": "DATETIME",
       "size": "",
       "key": false,
-      "description": "Last modification timestamp",
+      "description": "Last change timestamp",
       "sequence": 9
     },
     {
@@ -104,7 +104,7 @@
       "data_type": "VARCHAR",
       "size": "10",
       "key": false,
-      "description": "User who last modified the record",
+      "description": "User who last changed the record",
       "sequence": 10
     },
     {
@@ -112,7 +112,7 @@
       "data_type": "VARCHAR",
       "size": "15",
       "key": false,
-      "description": "Terminal that last modified the record",
+      "description": "Terminal from which the record was last changed",
       "sequence": 11
     }
   ]

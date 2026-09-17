@@ -48,12 +48,12 @@
       }
     },
     {
-      "object_name": "support360_manage_ticket_queue",
+      "object_name": "support360_create_ticket",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
-        "CATEGORY_CODE",
-        "CATEGORY_NAME"
+        "CATEGORY_NAME",
+        "CATEGORY_CODE"
       ],
       "join_info": {
         "column": "CATEGORY_CODE",
@@ -62,7 +62,7 @@
       }
     },
     {
-      "object_name": "support360_create_ticket",
+      "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [

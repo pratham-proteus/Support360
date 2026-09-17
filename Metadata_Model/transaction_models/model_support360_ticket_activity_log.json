@@ -5,7 +5,7 @@
       {
         "sql_model": {
           "form_title": "Ticket Activity",
-          "form_descr": "Read-only chronological record of every change made to a ticket - creation, assignment, status change, comment, attachment and edit - for audit and traceability. Entries are system-generated only.",
+          "form_descr": "Read-only chronological record of all ticket changes. System-generated only; no manual add/edit/delete by any role.",
           "form_no": "1",
           "main_table": "SUPPORT360_TICKET_ACTLOG",
           "columns": [
@@ -17,15 +17,16 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Ticket No",
-                "descr": "The ticket this log entry belongs to",
+                "descr": "Ticket this log entry belongs to",
                 "mandatory": true,
+                "protect": "1",
                 "lookup": "SUPPORT360_TICKET(TITLE, TICKET_NO)",
                 "must_exist_in": "SUPPORT360_TICKET",
                 "validations": [
                   {
                     "type": "builtin",
                     "name": "Ticket exists",
-                    "error_code": "ACTLOG_TKT",
+                    "error_code": "ACTLOG_TICKET",
                     "message": "Ticket {form.TICKET_NO} does not exist.",
                     "builtin": {
                       "kind": "must_exist_in_master",
@@ -34,35 +35,6 @@
                     }
                   }
                 ],
-                "item_change": {
-                  "mode": "rule",
-                  "source_table": "SUPPORT360_TICKET",
-                  "match_table_col": "TICKET_NO",
-                  "on_no_match": "clear",
-                  "on_multi_match": "first",
-                  "fill": [
-                    {
-                      "form_col": "TICKET_STATUS",
-                      "table_col": "STATUS"
-                    },
-                    {
-                      "form_col": "TICKET_PRIORITY",
-                      "table_col": "PRIORITY_CODE"
-                    },
-                    {
-                      "form_col": "TICKET_CATEGORY",
-                      "table_col": "CATEGORY_CODE"
-                    },
-                    {
-                      "form_col": "TICKET_RAISED_BY",
-                      "table_col": "RAISED_BY"
-                    },
-                    {
-                      "form_col": "TICKET_ASSIGNED_AGENT",
-                      "table_col": "ASSIGNED_AGENT"
-                    }
-                  ]
-                },
                 "x": "10",
                 "y": "10",
                 "col_id": "1",
@@ -75,8 +47,7 @@
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
-                "edit_mask": "",
-                "protect": ""
+                "edit_mask": ""
               }
             },
             {
@@ -87,12 +58,12 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Ticket Title",
-                "descr": "Title of the parent ticket (display only, from the join)",
+                "descr": "Title of the parent ticket (display-only, from join)",
                 "protect": "1",
                 "x": "20",
                 "y": "20",
                 "col_id": "2",
-                "table_display_name": "Parent ticket (context columns)",
+                "table_display_name": "Ticket master (parent ticket)",
                 "db_size": "200",
                 "width": 500,
                 "key": false,
@@ -115,8 +86,9 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Action Type",
-                "descr": "The kind of change recorded by this entry",
+                "descr": "Type of action recorded by this entry",
                 "mandatory": true,
+                "protect": "1",
                 "edit_mask": {
                   "mask": "ddlb",
                   "values": [
@@ -129,12 +101,8 @@
                       "display": "Assigned"
                     },
                     {
-                      "data": "Reassigned",
-                      "display": "Reassigned"
-                    },
-                    {
                       "data": "Status-Changed",
-                      "display": "Status-Changed"
+                      "display": "Status Changed"
                     },
                     {
                       "data": "Commented",
@@ -142,7 +110,7 @@
                     },
                     {
                       "data": "Attachment-Added",
-                      "display": "Attachment-Added"
+                      "display": "Attachment Added"
                     },
                     {
                       "data": "Edited",
@@ -166,20 +134,14 @@
                     {
                       "when": "Assigned",
                       "color": "teal",
-                      "icon": "\u25cf",
+                      "icon": "\u2691",
                       "label": "Assigned"
-                    },
-                    {
-                      "when": "Reassigned",
-                      "color": "cyan",
-                      "icon": "\u25cf",
-                      "label": "Reassigned"
                     },
                     {
                       "when": "Status-Changed",
                       "color": "amber",
                       "icon": "\u25b2",
-                      "label": "Status-Changed"
+                      "label": "Status Changed"
                     },
                     {
                       "when": "Commented",
@@ -189,13 +151,13 @@
                     },
                     {
                       "when": "Attachment-Added",
-                      "color": "orange",
-                      "icon": "\u2691",
-                      "label": "Attachment-Added"
+                      "color": "cyan",
+                      "icon": "\u25cf",
+                      "label": "Attachment Added"
                     },
                     {
                       "when": "Edited",
-                      "color": "yellow",
+                      "color": "orange",
                       "icon": "\u2713",
                       "label": "Edited"
                     },
@@ -220,7 +182,6 @@
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
-                "protect": "",
                 "validations": "",
                 "lookup": ""
               }
@@ -230,12 +191,13 @@
                 "name": "FIELD_CHANGED",
                 "db_name": "FIELD_CHANGED",
                 "table_name": "SUPPORT360_TICKET_ACTLOG",
-                "group_name": "Change Detail",
+                "group_name": "Change Details",
                 "col_type": "VARCHAR",
                 "heading": "Field Changed",
-                "descr": "Name of the ticket field that changed (blank for non-field actions such as Commented)",
-                "x": "60",
-                "y": "60",
+                "descr": "Name of the ticket field that changed (blank for non-field actions)",
+                "protect": "1",
+                "x": "40",
+                "y": "40",
                 "col_id": "4",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "100",
@@ -248,7 +210,6 @@
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "",
                 "validations": "",
                 "lookup": ""
               }
@@ -258,16 +219,17 @@
                 "name": "OLD_VALUE",
                 "db_name": "OLD_VALUE",
                 "table_name": "SUPPORT360_TICKET_ACTLOG",
-                "group_name": "Change Detail",
+                "group_name": "Change Details",
                 "col_type": "VARCHAR",
                 "heading": "Old Value",
                 "descr": "Value before the change",
+                "protect": "1",
                 "display": {
                   "type": "truncate",
                   "truncate": 80
                 },
-                "x": "70",
-                "y": "70",
+                "x": "50",
+                "y": "50",
                 "col_id": "5",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "2000",
@@ -280,7 +242,6 @@
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "",
                 "validations": "",
                 "lookup": ""
               }
@@ -290,16 +251,17 @@
                 "name": "NEW_VALUE",
                 "db_name": "NEW_VALUE",
                 "table_name": "SUPPORT360_TICKET_ACTLOG",
-                "group_name": "Change Detail",
+                "group_name": "Change Details",
                 "col_type": "VARCHAR",
                 "heading": "New Value",
                 "descr": "Value after the change",
+                "protect": "1",
                 "display": {
                   "type": "truncate",
                   "truncate": 80
                 },
-                "x": "80",
-                "y": "80",
+                "x": "60",
+                "y": "60",
                 "col_id": "6",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "2000",
@@ -312,7 +274,6 @@
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "",
                 "validations": "",
                 "lookup": ""
               }
@@ -322,14 +283,14 @@
                 "name": "CHANGED_BY",
                 "db_name": "CHANGED_BY",
                 "table_name": "SUPPORT360_TICKET_ACTLOG",
-                "group_name": "Basic",
+                "group_name": "Change Details",
                 "col_type": "VARCHAR",
                 "heading": "Changed By",
-                "descr": "User who performed the action",
+                "descr": "User id who performed the action",
                 "mandatory": true,
-                "default_value": "logged_in_user()",
-                "x": "40",
-                "y": "40",
+                "protect": "1",
+                "x": "70",
+                "y": "70",
                 "col_id": "7",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "36",
@@ -338,9 +299,9 @@
                 "hidden": "",
                 "format": "",
                 "default_function": "",
+                "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "",
                 "validations": "",
                 "lookup": ""
               }
@@ -350,199 +311,23 @@
                 "name": "CHANGE_DATE",
                 "db_name": "CHANGE_DATE",
                 "table_name": "SUPPORT360_TICKET_ACTLOG",
-                "group_name": "Basic",
+                "group_name": "Change Details",
                 "col_type": "DATETIME",
                 "heading": "Change Date",
-                "descr": "Timestamp of the action",
+                "descr": "Timestamp when the action occurred",
                 "mandatory": true,
-                "default_value": "now()",
+                "protect": "1",
                 "display": {
                   "type": "date",
                   "datePattern": "dd-MMM-yyyy HH:mm"
                 },
-                "x": "50",
-                "y": "50",
+                "x": "80",
+                "y": "80",
                 "col_id": "8",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "",
                 "width": 50,
                 "key": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "expression": "",
-                "edit_mask": "",
-                "protect": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "TICKET_STATUS",
-                "db_name": "STATUS",
-                "table_name": "SUPPORT360_TICKET",
-                "group_name": "Ticket Context",
-                "col_type": "VARCHAR",
-                "heading": "Ticket Status",
-                "descr": "Current status of the parent ticket (display only)",
-                "protect": "1",
-                "display": {
-                  "type": "status_tag",
-                  "map": [
-                    {
-                      "when": "Open",
-                      "color": "blue",
-                      "icon": "\u25cf",
-                      "label": "Open"
-                    },
-                    {
-                      "when": "Assigned",
-                      "color": "teal",
-                      "icon": "\u25cf",
-                      "label": "Assigned"
-                    },
-                    {
-                      "when": "In Progress",
-                      "color": "amber",
-                      "icon": "\u25f7",
-                      "label": "In Progress"
-                    },
-                    {
-                      "when": "Resolved",
-                      "color": "green",
-                      "icon": "\u2713",
-                      "label": "Resolved"
-                    },
-                    {
-                      "when": "Closed",
-                      "color": "grey",
-                      "icon": "\u2298",
-                      "label": "Closed"
-                    }
-                  ],
-                  "defaultColor": "grey"
-                },
-                "x": "90",
-                "y": "90",
-                "col_id": "9",
-                "table_display_name": "Parent ticket (context columns)",
-                "db_size": "20",
-                "width": 200,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "default_value": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "TICKET_PRIORITY",
-                "db_name": "PRIORITY_CODE",
-                "table_name": "SUPPORT360_TICKET",
-                "group_name": "Ticket Context",
-                "col_type": "VARCHAR",
-                "heading": "Priority",
-                "descr": "Priority of the parent ticket (display only)",
-                "protect": "1",
-                "x": "100",
-                "y": "100",
-                "col_id": "10",
-                "table_display_name": "Parent ticket (context columns)",
-                "db_size": "20",
-                "width": 200,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "default_value": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "TICKET_CATEGORY",
-                "db_name": "CATEGORY_CODE",
-                "table_name": "SUPPORT360_TICKET",
-                "group_name": "Ticket Context",
-                "col_type": "VARCHAR",
-                "heading": "Category",
-                "descr": "Category of the parent ticket (display only)",
-                "protect": "1",
-                "x": "110",
-                "y": "110",
-                "col_id": "11",
-                "table_display_name": "Parent ticket (context columns)",
-                "db_size": "20",
-                "width": 200,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "default_value": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "TICKET_RAISED_BY",
-                "db_name": "RAISED_BY",
-                "table_name": "SUPPORT360_TICKET",
-                "group_name": "Ticket Context",
-                "col_type": "VARCHAR",
-                "heading": "Raised By",
-                "descr": "Employee who raised the parent ticket (display only)",
-                "protect": "1",
-                "x": "120",
-                "y": "120",
-                "col_id": "12",
-                "table_display_name": "Parent ticket (context columns)",
-                "db_size": "36",
-                "width": 360,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "default_value": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "TICKET_ASSIGNED_AGENT",
-                "db_name": "ASSIGNED_AGENT",
-                "table_name": "SUPPORT360_TICKET",
-                "group_name": "Ticket Context",
-                "col_type": "VARCHAR",
-                "heading": "Assigned Agent",
-                "descr": "Agent currently assigned to the parent ticket (display only)",
-                "protect": "1",
-                "x": "130",
-                "y": "130",
-                "col_id": "13",
-                "table_display_name": "Parent ticket (context columns)",
-                "db_size": "36",
-                "width": 360,
-                "key": false,
-                "mandatory": false,
                 "hidden": "",
                 "format": "",
                 "default_function": "",
@@ -561,14 +346,14 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Log Id",
-                "descr": "System-generated unique identifier of the log entry",
+                "descr": "Unique identifier of the activity log entry",
                 "key": true,
                 "mandatory": true,
                 "protect": "1",
                 "default_value": "auto_generate()",
-                "x": "140",
-                "y": "140",
-                "col_id": "14",
+                "x": "90",
+                "y": "90",
+                "col_id": "9",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "36",
                 "width": 360,
@@ -589,12 +374,12 @@
                 "group_name": "Others",
                 "col_type": "DATETIME",
                 "heading": "Added On",
-                "descr": "Audit - record creation timestamp",
+                "descr": "Record creation timestamp",
                 "protect": "1",
                 "default_value": ":audit_add_date",
-                "x": "150",
-                "y": "150",
-                "col_id": "15",
+                "x": "100",
+                "y": "100",
+                "col_id": "10",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "",
                 "width": 50,
@@ -617,12 +402,12 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Added By",
-                "descr": "Audit - user who created the record",
+                "descr": "User who created the record",
                 "protect": "1",
                 "default_value": ":audit_add_user",
-                "x": "160",
-                "y": "160",
-                "col_id": "16",
+                "x": "110",
+                "y": "110",
+                "col_id": "11",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "10",
                 "width": 100,
@@ -645,12 +430,12 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Added From",
-                "descr": "Audit - terminal that created the record",
+                "descr": "Terminal that created the record",
                 "protect": "1",
                 "default_value": ":audit_add_terminal",
-                "x": "170",
-                "y": "170",
-                "col_id": "17",
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "15",
                 "width": 150,
@@ -673,12 +458,12 @@
                 "group_name": "Others",
                 "col_type": "DATETIME",
                 "heading": "Changed On",
-                "descr": "Audit - last change timestamp",
+                "descr": "Record last-change timestamp",
                 "protect": "1",
                 "default_value": ":audit_chg_date",
-                "x": "180",
-                "y": "180",
-                "col_id": "18",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "",
                 "width": 50,
@@ -701,12 +486,12 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Changed By",
-                "descr": "Audit - user who last changed the record",
+                "descr": "User who last changed the record",
                 "protect": "1",
                 "default_value": ":audit_chg_user",
-                "x": "190",
-                "y": "190",
-                "col_id": "19",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "10",
                 "width": 100,
@@ -729,12 +514,12 @@
                 "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Changed From",
-                "descr": "Audit - terminal of the last change",
+                "descr": "Terminal that last changed the record",
                 "protect": "1",
                 "default_value": ":audit_chg_terminal",
-                "x": "200",
-                "y": "200",
-                "col_id": "20",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
                 "table_display_name": "Ticket activity / history log",
                 "db_size": "15",
                 "width": 150,
@@ -750,69 +535,6 @@
               }
             }
           ],
-          "validations": [
-            {
-              "type": "expression",
-              "name": "Field change details",
-              "error_code": "ACTLOG_FLD",
-              "message": "A Status-Changed, Edited, Assigned or Reassigned entry must record FIELD_CHANGED and NEW_VALUE.",
-              "expression": "not in_list({form.ACTION_TYPE}, \"Status-Changed,Edited,Assigned,Reassigned\") or (not_empty({form.FIELD_CHANGED}) and not_empty({form.NEW_VALUE}))"
-            },
-            {
-              "type": "expression",
-              "name": "Change date not future",
-              "error_code": "ACTLOG_DT",
-              "message": "Change date cannot be in the future.",
-              "expression": "is_empty({form.CHANGE_DATE}) or {form.CHANGE_DATE} <= today()"
-            }
-          ],
-          "actions": [
-            {
-              "name": "Add",
-              "handler": "system",
-              "system_op": "add",
-              "scope": "form",
-              "validations": [
-                {
-                  "type": "expression",
-                  "name": "System generated only",
-                  "error_code": "ACTLOG_RO",
-                  "message": "Activity log entries are system-generated; manual add is not permitted.",
-                  "expression": "1 == 0"
-                }
-              ]
-            },
-            {
-              "name": "Edit",
-              "handler": "system",
-              "system_op": "edit",
-              "scope": "row",
-              "validations": [
-                {
-                  "type": "expression",
-                  "name": "System generated only",
-                  "error_code": "ACTLOG_RO",
-                  "message": "Activity log entries are non-editable; manual edit is not permitted.",
-                  "expression": "1 == 0"
-                }
-              ]
-            },
-            {
-              "name": "Delete",
-              "handler": "system",
-              "system_op": "delete",
-              "scope": "row",
-              "validations": [
-                {
-                  "type": "expression",
-                  "name": "System generated only",
-                  "error_code": "ACTLOG_RO",
-                  "message": "Activity log entries cannot be deleted; the log is an audit trail.",
-                  "expression": "1 == 0"
-                }
-              ]
-            }
-          ],
           "joins": {
             "join_predicates": {
               "joins": [
@@ -824,7 +546,7 @@
                 {
                   "table": "SUPPORT360_TICKET",
                   "main_table": false,
-                  "table_descr": "Parent ticket (context columns)",
+                  "table_descr": "Ticket master (parent ticket)",
                   "column": "TICKET_NO",
                   "join_table": "SUPPORT360_TICKET_ACTLOG",
                   "join_column": "TICKET_NO",
@@ -832,7 +554,56 @@
                 }
               ]
             }
-          }
+          },
+          "validations": [],
+          "cross_updates": [],
+          "actions": [
+            {
+              "name": "Add Log Entry",
+              "handler": "system",
+              "system_op": "add",
+              "scope": "form",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "No manual add",
+                  "error_code": "ACTLOG_NO_ADD",
+                  "message": "Activity log entries are system-generated; manual entries are not permitted.",
+                  "expression": "1 == 0"
+                }
+              ]
+            },
+            {
+              "name": "Edit Log Entry",
+              "handler": "system",
+              "system_op": "edit",
+              "scope": "row",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "No manual edit",
+                  "error_code": "ACTLOG_NO_EDIT",
+                  "message": "Activity log entries are read-only and cannot be edited.",
+                  "expression": "1 == 0"
+                }
+              ]
+            },
+            {
+              "name": "Delete Log Entry",
+              "handler": "system",
+              "system_op": "delete",
+              "scope": "row",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "No manual delete",
+                  "error_code": "ACTLOG_NO_DEL",
+                  "message": "Activity log entries are permanent and cannot be deleted.",
+                  "expression": "1 == 0"
+                }
+              ]
+            }
+          ]
         }
       }
     ],

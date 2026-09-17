@@ -1,1 +1,1 @@
-[1] Priority Master: priority_code(V20), priority_name(V100), sequence_no(N5), is_active(V1), id(V36), add_date(DT), add_user(V10), add_term(V15), chg_date(DT), chg_user(V10), chg_term(V15)
+[1] Priority Master: PRIORITY_CODE(V20), PRIORITY_NAME(V100), SEQUENCE_NO(N5), IS_ACTIVE(V1), ID(V36), ADD_DATE(DT), ADD_USER(V10), ADD_TERM(V15), CHG_DATE(DT), CHG_USER(V10), CHG_TERM(V15)

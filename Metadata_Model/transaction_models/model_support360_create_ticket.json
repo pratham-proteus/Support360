@@ -105,6 +105,17 @@
                 "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_CODE)",
                 "lookup_filter": "IS_ACTIVE = 'Y'",
                 "must_exist_in": "SUPPORT360_CATEGORY_MASTER",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_CATEGORY_MASTER",
+                  "match_table_col": "CATEGORY_CODE",
+                  "fill": [
+                    {
+                      "form_col": "category_name",
+                      "table_col": "CATEGORY_NAME"
+                    }
+                  ]
+                },
                 "validations": [
                   {
                     "type": "builtin",
@@ -183,6 +194,17 @@
                 "lookup": "SUPPORT360_PRIORITY_MASTER(PRIORITY_NAME, PRIORITY_CODE)",
                 "lookup_filter": "IS_ACTIVE = 'Y'",
                 "must_exist_in": "SUPPORT360_PRIORITY_MASTER",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_PRIORITY_MASTER",
+                  "match_table_col": "PRIORITY_CODE",
+                  "fill": [
+                    {
+                      "form_col": "priority_name",
+                      "table_col": "PRIORITY_NAME"
+                    }
+                  ]
+                },
                 "validations": [
                   {
                     "type": "builtin",
@@ -317,15 +339,15 @@
               "column": {
                 "name": "raised_by",
                 "db_name": "RAISED_BY",
-                "group_name": "Basic",
+                "group_name": "Others",
                 "col_type": "VARCHAR",
                 "heading": "Raised By",
                 "descr": "The Employee who raised the ticket (current logged-in user)",
                 "default_value": ":user_id",
                 "mandatory": true,
                 "protect": "1",
-                "x": "90",
-                "y": "90",
+                "x": "130",
+                "y": "130",
                 "col_id": "9",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -334,7 +356,7 @@
                 "key": false,
                 "hidden": "",
                 "format": "",
-                "default_function": "",
+                "default_function": ":user_id",
                 "expression": "",
                 "edit_mask": "",
                 "validations": "",
@@ -351,8 +373,8 @@
                 "descr": "Date/time the ticket was created",
                 "default_value": "now()",
                 "protect": "1",
-                "x": "100",
-                "y": "100",
+                "x": "90",
+                "y": "90",
                 "col_id": "10",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -380,8 +402,8 @@
                 "edit_mask": {
                   "mask": "document"
                 },
-                "x": "110",
-                "y": "110",
+                "x": "100",
+                "y": "100",
                 "col_id": "11",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -409,8 +431,8 @@
                 "descr": "User who uploaded the attachment",
                 "default_value": ":user_id",
                 "protect": "1",
-                "x": "120",
-                "y": "120",
+                "x": "110",
+                "y": "110",
                 "col_id": "12",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -437,8 +459,8 @@
                 "descr": "Date/time the attachment was uploaded",
                 "default_value": "now()",
                 "protect": "1",
-                "x": "130",
-                "y": "130",
+                "x": "120",
+                "y": "120",
                 "col_id": "13",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",

@@ -1,7 +1,7 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-09-10T05:08:23.161056+00:00",
+  "generated_at": "2026-09-17T08:43:18.291363+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
@@ -20,19 +20,7 @@
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
       "title": "Manage Ticket Queue",
-      "description": "Agent views, assigns, works, and resolves tickets"
-    },
-    {
-      "obj_name": "support360_my_agents",
-      "obj_type": "T",
-      "title": "My Agents",
-      "description": "Maintain the list of Support Agents with their availability and status."
-    },
-    {
-      "obj_name": "support360_ticket_assignment",
-      "obj_type": "T",
-      "title": "Ticket Assignment",
-      "description": "Agent assigns or changes the Support Agent handling a ticket"
+      "description": "Agent views, works, and resolves tickets"
     },
     {
       "obj_name": "support360_category_master",
@@ -47,10 +35,16 @@
       "description": "Admin defines and maintains priority levels"
     },
     {
-      "obj_name": "support360_manage_all_tickets",
+      "obj_name": "support360_my_agents",
       "obj_type": "T",
-      "title": "Manage All Tickets",
-      "description": "Admin overarching view and intervention on all tickets"
+      "title": "Manage Agent Master",
+      "description": "Admin maintains the master list of Support Agents with their availability and status."
+    },
+    {
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "title": "Manage Ticket Assignment",
+      "description": "Agent assigns the Support Agent handling a ticket"
     },
     {
       "obj_name": "support360_ticket_activity_log",
@@ -222,27 +216,27 @@
       "other_columns": [
         "TITLE VARCHAR",
         "DESCRIPTION TEXT",
-        "STATUS VARCHAR",
-        "PRIORITY_CODE VARCHAR",
         "CATEGORY_CODE VARCHAR",
+        "PRIORITY_CODE VARCHAR",
+        "STATUS VARCHAR",
         "RAISED_BY VARCHAR",
         "ASSIGNED_AGENT VARCHAR",
         "CREATED_DATE DATETIME",
+        "CHG_DATE DATETIME",
         "ATTACHMENT VARCHAR",
         "ATTACHMENT_UPLOADED_BY VARCHAR",
         "ATTACHMENT_UPLOADED_DATE DATETIME",
-        "ID VARCHAR",
-        "ADD_DATE DATETIME",
         "AGENT_COMMENTS TEXT",
         "ADD_USER VARCHAR",
         "NEW_COMMENT VARCHAR",
         "ADD_TERM VARCHAR",
         "RESOLUTION_NOTES TEXT",
-        "CHG_DATE DATETIME",
         "REASSIGN_TO_AGENT VARCHAR",
-        "CHG_USER VARCHAR",
         "ACTIVITY_HISTORY TEXT",
+        "ID VARCHAR",
         "CHG_TERM VARCHAR",
+        "ADD_DATE DATETIME",
+        "CHG_USER VARCHAR",
         "CLOSED_DATE DATETIME",
         "CLOSED_BY VARCHAR"
       ]

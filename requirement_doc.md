@@ -1,10 +1,13 @@
 ## Ticket Management
 ### Create Support Ticket
 - Description: Allows an Employee to log a new support ticket describing an issue or request they need help with.
-- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS (defaults to Open), RAISED_BY (current Employee), CREATED_DATE, ATTACHMENT (one or more files).
+- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display-only), PRIORITY_CODE, PRIORITY_NAME (display-only), STATUS (defaults to Open), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), CREATED_DATE, ATTACHMENT (one or more files).
 - Business rules:
   - TITLE, DESCRIPTION, CATEGORY_CODE and PRIORITY_CODE are mandatory; ticket cannot be saved without them.
+  - RAISED_BY is mandatory and is automatically set to the id of the currently logged-in user; it is shown read-only on the Add screen as the resolved user id (never as a raw parameter token) and is not user-editable. No separate employee-name field is displayed alongside it.
   - CATEGORY_CODE must exist in active Category master; PRIORITY_CODE must exist in active Priority master.
+  - When CATEGORY_CODE is selected, CATEGORY_NAME is automatically fetched from the Category master and displayed read-only; it is not user-editable and is cleared if CATEGORY_CODE is cleared.
+  - When PRIORITY_CODE is selected, PRIORITY_NAME is automatically fetched from the Priority master and displayed read-only; it is not user-editable and is cleared if PRIORITY_CODE is cleared.
   - TICKET_NO is system-generated and unique.
   - STATUS is set to Open automatically on creation and is not user-editable at creation.
   - Show clear inline error messages when a mandatory field is missing or invalid, and a success message once the ticket is saved.
@@ -27,18 +30,19 @@
 - Data points: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT (text, commented-by, commented-date, list), RESOLUTION_NOTES.
 - Business rules:
   - Only tickets with STATUS in (Open, Assigned, In Progress) that are unassigned or assigned to the current Agent are actionable by that Agent.
-  - Clicking the Assign action does not require the Agent to pick an assignee. The system randomly selects one Support Agent from the Agent master (SUPPORT360_AGENT) whose AGENT_STATUS = Active and AGENT_AVAILABILITY = Available, sets ASSIGNED_AGENT to that agent, and moves STATUS from Open to Assigned. The Assigned Agent field is not manually editable. The ticket queue grid/list shows the assigned agent's name (not just the agent code) in an "Assigned To" column; a ticket must be assigned before it can move to In Progress.
+  - Assignment of a ticket is not performed from this screen; it is done from the separate Ticket Assignment screen. The ticket queue grid/list shows the assigned agent's name (not just the agent code) in an "Assigned To" column; a ticket must already be assigned before it can move to In Progress.
   - Starting work moves STATUS from Assigned to In Progress.
   - RESOLUTION_NOTES is mandatory before a ticket can be moved to Resolved.
-  - STATUS transitions are restricted to the sequence Open → Assigned → In Progress → Resolved → Closed; no skipping or reverse transitions except Reassign (keeps current STATUS, changes ASSIGNED_AGENT).
+  - STATUS transitions are restricted to the sequence Open → Assigned → In Progress → Resolved → Closed; no skipping or reverse transitions.
   - Attachments can be added by the Agent at any point in the ticket's life, regardless of STATUS.
   - Show inline error messages for invalid transitions or missing mandatory fields (e.g. resolving without RESOLUTION_NOTES), and success messages on save.
-  - Support Agents can directly edit ticket fields (TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT) from Manage Ticket Queue using the standard Edit action, in addition to the dedicated Assign, Reassign, Start Progress, Add Comment, Add Attachment, and Resolve actions.
-- Business actions: Search, Filter (by STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), Edit, Assign, Reassign, Start-progress, Add-comment, Add-attachment, Resolve.
+  - Support Agents can directly edit ticket fields (TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY) from Manage Ticket Queue using the standard Edit action, in addition to the dedicated Start Progress, Add Comment, Add Attachment, and Resolve actions; ASSIGNED_AGENT is maintained only from the Ticket Assignment screen.
+  - When an Agent edits a ticket, the STATUS dropdown offers only two selectable values: Start Progress (stored as In Progress) and Resolved. Assigned is no longer a user-selectable status on this screen — it is set only by the assignment action.
+- Business actions: Search, Filter (by STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), View, Edit, Start-progress, Add-comment, Add-attachment, Resolve.
 - Additional data management: Every assignment, status change, comment, and attachment addition writes a timestamped entry to the ticket's Activity/History Log capturing old value, new value, and changed-by.
 
 ### Ticket Assignment
-- Description: Lets a Support Agent view a single ticket's key details and assign or change the Support Agent handling it.
+- Description: Lets a Support Agent view a single ticket's key details and assign the Support Agent handling it.
 - Data points: TICKET_NO (read-only), TITLE (read-only), ASSIGNED_AGENT (editable, lookup to active Support Agents), STATUS (read-only).
 - Business rules:
   - Opened directly for a specific ticket when the Employee clicks 'Assign Agent' on the Create Support Ticket screen (TICKET_NO carried over as context).
@@ -64,23 +68,12 @@
 - Business actions: Search, Add, Edit, Delete (only if unused), Activate/Deactivate.
 - Additional data management: None beyond master persistence.
 
-### Manage All Tickets
-- Description: Gives Admin an overarching view of all tickets in the system with the ability to correct data, reassign, or intervene in any ticket irrespective of who raised or is working it.
-- Data points: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT list, ACTIVITY_HISTORY.
-- Business rules:
-  - Admin can view and edit any ticket regardless of RAISED_BY or ASSIGNED_AGENT (no row-level restriction).
-  - Status transitions performed by Admin follow the same Open → Assigned → In Progress → Resolved → Closed sequence and validations as the Agent Ticket Desk.
-  - Admin edits to TITLE, DESCRIPTION, CATEGORY_CODE or PRIORITY_CODE are permitted at any STATUS other than Closed.
-  - ASSIGNED_AGENT is directly editable by the Admin on the ticket record (in addition to being settable via the Assign/Reassign actions); it may be left blank (unassigned) at any time.
-- Business actions: Search, Filter (by STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY), Edit, Assign, Reassign, Delete.
-- Additional data management: Any Admin change to a ticket writes an entry to the Activity/History Log capturing old value, new value, and changed-by.
-
 ## Search, Filters & Dashboards
 ### All Tickets (V)
 - Visualization: Grid
 - Criteria: TICKET_NO, STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY, CREATED_DATE range.
 - Data points: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE.
-- Drill-down: Clicking a row opens the ticket detail (Ticket Management / Agent Ticket Desk / Manage All Tickets depending on role).
+- Drill-down: Clicking a row opens the ticket detail (Ticket Management / Agent Ticket Desk depending on role).
 
 ### Ticket Count by Status (V)
 - Visualization: Column-Chart
@@ -151,10 +144,10 @@
 ## Activity & History Log
 ### Ticket Activity Log
 - Description: Maintains a chronological, non-editable record of every change made to a ticket — creation, assignment, status change, comment, attachment, and edit — for audit and traceability.
-- Data points: TICKET_NO, ACTION_TYPE (Created, Assigned, Reassigned, Status-Changed, Commented, Attachment-Added, Edited, Closed), FIELD_CHANGED, OLD_VALUE, NEW_VALUE, CHANGED_BY, CHANGE_DATE.
+- Data points: TICKET_NO, ACTION_TYPE (Created, Assigned, Status-Changed, Commented, Attachment-Added, Edited, Closed), FIELD_CHANGED, OLD_VALUE, NEW_VALUE, CHANGED_BY, CHANGE_DATE.
 - Business rules:
   - Log entries are system-generated only; no manual add/edit/delete is permitted by any role.
-  - An entry is created automatically whenever a ticket is created, assigned/reassigned, its status changes, a comment or attachment is added, or its fields are edited.
+  - An entry is created automatically whenever a ticket is created, assigned, its status changes, a comment or attachment is added, or its fields are edited.
 - Business actions: Search, View (read-only).
 - Additional data management: None; this activity is itself the cross-update target written by all other ticket actions.
 

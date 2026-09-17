@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "id": "c8481854-d876-4698-9e07-c6684b196079",
+  "id": "976675c6-1fad-4d07-b3ec-0941924f82ed",
   "project": "Support360",
   "description": "Build a **General Help Desk application for enterprises**.\n\nThe system should have 3 roles: **Employee, Support Agent, and Admin**.\n\n\nCore features:\n\n* Employees can create support tickets with **title, description, category, priority, and attachment**.\n* Support Agents can **view, assign, update, comment on, and resolve tickets**.\n* Ticket status should follow: **Open \u2192 Assigned \u2192 In Progress \u2192 Resolved \u2192 Closed**.\n* Employees can view their tickets and track status.\n* Admin can manage **users, categories, priorities, and tickets**.\n* Provide **search, filtering, and dashboards** showing ticket count by status and priority.\n* Add proper **mandatory-field validation, error messages, and success messages**.\n* Store all ticket changes in an **activity/history log**.\n* Create a clean, simple, enterprise-style UI.\n\nMake the application fully functional with working **frontend, backend, database, authentication, validations, and workflows**.\n\n=== CONFIRMED SCOPE AND COMPLEXITY (user-approved \u2014 this OVERRIDES any conflicting inference from the brief) ===\n* Which functional areas should the Help Desk cover?\n  - Include: Ticket Creation & My Tickets; Agent Ticket Desk; Status Workflow & Rules; Admin Setup (Categories & Priorities); Search, Filters & Dashboards; Activity & History Log\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Email Notifications; Response Time Targets (SLA); Knowledge Base & Canned Replies\n* How complete should this first version be?\n  - Include: Standard\n* What should each role see when they log in?\n  - Include: Employee: my open tickets; Agent: my queue and workload; Admin: overall ticket health\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Agent performance comparison\n* How should a ticket move from Resolved to Closed?\n  - Include: Employee confirms\n* How should file attachments work on tickets?\n  - Include: Multiple files, any time\nWrite the specification to cover EXACTLY this confirmed scope at the confirmed complexity level: include every confirmed item, honour every added point, and do not add functional areas, activities or enterprise features beyond it.",
-  "active_plan_id": "041f3e11-b3d3-4a54-b160-577e0d682af5",
+  "active_plan_id": "a4dbbf7d-258e-4a1e-8767-fae659b3e224",
   "plans": [
     {
       "id": "a4dbbf7d-258e-4a1e-8767-fae659b3e224",
@@ -74,13 +74,30 @@
           "obj_name": "support360_priority_master",
           "obj_type": "T",
           "phase_id": "phase_1",
-          "started_at": 1787306049.1949656,
-          "completed_at": 1787306106.617169,
+          "started_at": 1789552945.4100924,
+          "completed_at": 1789552977.0259616,
           "review_iters": 1,
-          "model_sig": "79141bddddbbadd76f66b96e687622f6636dca45",
+          "model_sig": "77bd6ada2db00be8a0cf85d5cce0332adb1370b5",
           "input_tokens": 12,
-          "output_tokens": 5300,
-          "cost_usd": 0.73345
+          "output_tokens": 6387,
+          "cost_usd": 1.27099
+        },
+        {
+          "id": "obj_support360_my_agents",
+          "step": "object",
+          "label": "Build & verify: Manage Agent Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_agents",
+          "obj_type": "T",
+          "phase_id": "phase_1",
+          "started_at": 1789624920.092077,
+          "completed_at": 1789624962.379581,
+          "review_iters": 1,
+          "model_sig": "f53e64839c201bcef9b17709cd6c7a798be907bc",
+          "input_tokens": 12,
+          "output_tokens": 8550,
+          "cost_usd": 1.389694
         },
         {
           "id": "obj_support360_create_ticket",
@@ -94,7 +111,7 @@
           "started_at": 1787043949.6430986,
           "completed_at": 1787044052.0846677,
           "review_iters": 1,
-          "model_sig": "e3755b61e93a3da3b2847ee98367f6922ceea7a4",
+          "stage": "bl_done",
           "input_tokens": 12,
           "output_tokens": 10772,
           "cost_usd": 0.89725
@@ -126,24 +143,17 @@
           "obj_type": "T",
           "phase_id": "phase_2",
           "review_iters": 1,
-          "stage": "model_done"
+          "stage": "bl_done"
         },
         {
-          "id": "obj_support360_manage_all_tickets",
+          "id": "obj_support360_ticket_assignment",
           "step": "object",
-          "label": "Build & verify: Manage All Tickets",
+          "label": "Build & verify: Manage Ticket Assignment",
           "status": "completed",
           "error": null,
-          "obj_name": "support360_manage_all_tickets",
+          "obj_name": "support360_ticket_assignment",
           "obj_type": "T",
-          "phase_id": "phase_2",
-          "started_at": 1787044490.624869,
-          "completed_at": 1787044752.0972025,
-          "review_iters": 2,
-          "model_sig": "4c76c524196d06ae759a1b83f9f0703cb68d1875",
-          "input_tokens": 50,
-          "output_tokens": 25214,
-          "cost_usd": 2.044264
+          "phase_id": "phase_2"
         },
         {
           "id": "obj_support360_ticket_activity_log",
@@ -154,13 +164,13 @@
           "obj_name": "support360_ticket_activity_log",
           "obj_type": "T",
           "phase_id": "phase_2",
-          "started_at": 1787044752.1014717,
-          "completed_at": 1787044794.824134,
+          "started_at": 1789629026.5448732,
+          "completed_at": 1789629050.9440181,
           "review_iters": 1,
-          "model_sig": "b4fb5691e53cae028719e81633f41904c2a116b9",
+          "model_sig": "be97a7cd31c6ea2a82443dd0f79f3e96c4123b14",
           "input_tokens": 6,
-          "output_tokens": 4676,
-          "cost_usd": 0.460889
+          "output_tokens": 5039,
+          "cost_usd": 0.988375
         },
         {
           "id": "obj_support360_ticket_schema",
@@ -185,7 +195,7 @@
           "error": null,
           "obj_name": "support360_all_tickets_grid",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787044878.0800772,
           "completed_at": 1787044977.9486508,
           "review_iters": 1,
@@ -202,7 +212,7 @@
           "error": null,
           "obj_name": "support360_ticket_count_by_status",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787044977.951094,
           "completed_at": 1787045026.0269694,
           "review_iters": 1,
@@ -219,7 +229,7 @@
           "error": null,
           "obj_name": "support360_ticket_count_by_priority",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045026.0290387,
           "completed_at": 1787045067.4672625,
           "review_iters": 1,
@@ -236,7 +246,7 @@
           "error": null,
           "obj_name": "support360_my_open_tickets_count",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045067.4694028,
           "completed_at": 1787045123.4786596,
           "review_iters": 1,
@@ -253,7 +263,7 @@
           "error": null,
           "obj_name": "support360_my_awaiting_confirmation_count",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045123.4809005,
           "completed_at": 1787045165.370008,
           "review_iters": 1,
@@ -270,7 +280,7 @@
           "error": null,
           "obj_name": "support360_my_queue_count",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045165.3722343,
           "completed_at": 1787045208.4025252,
           "review_iters": 1,
@@ -287,7 +297,7 @@
           "error": null,
           "obj_name": "support360_unassigned_tickets_count",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045208.404777,
           "completed_at": 1787045314.896328,
           "review_iters": 1,
@@ -304,7 +314,7 @@
           "error": null,
           "obj_name": "support360_my_queue_by_priority",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045314.8999512,
           "completed_at": 1787045372.32549,
           "review_iters": 1,
@@ -321,7 +331,7 @@
           "error": null,
           "obj_name": "support360_total_open_tickets_count",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045372.3279421,
           "completed_at": 1787045409.3753443,
           "review_iters": 1,
@@ -338,7 +348,7 @@
           "error": null,
           "obj_name": "support360_total_resolved_period_count",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045409.3775482,
           "completed_at": 1787045461.3598993,
           "review_iters": 1,
@@ -355,7 +365,7 @@
           "error": null,
           "obj_name": "support360_tickets_status_trend",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045461.3623984,
           "completed_at": 1787045550.9584427,
           "review_iters": 1,
@@ -372,7 +382,7 @@
           "error": null,
           "obj_name": "support360_ticket_detail_log_grid",
           "obj_type": "V",
-          "phase_id": "phase_4",
+          "phase_id": "phase_3",
           "started_at": 1787045550.9607022,
           "completed_at": 1787045647.6939275,
           "review_iters": 1,
@@ -389,7 +399,7 @@
           "error": null,
           "obj_name": "support360_employee_dashboard",
           "obj_type": "D",
-          "phase_id": "phase_5",
+          "phase_id": "phase_4",
           "started_at": 1787045647.6973538,
           "completed_at": 1787045966.5245159,
           "review_iters": 1,
@@ -406,7 +416,7 @@
           "error": null,
           "obj_name": "support360_agent_dashboard",
           "obj_type": "D",
-          "phase_id": "phase_5",
+          "phase_id": "phase_4",
           "started_at": 1787045966.5269096,
           "completed_at": 1787046110.3356802,
           "review_iters": 1,
@@ -423,7 +433,7 @@
           "error": null,
           "obj_name": "support360_admin_dashboard",
           "obj_type": "D",
-          "phase_id": "phase_5",
+          "phase_id": "phase_4",
           "started_at": 1787046110.337863,
           "completed_at": 1787046263.281277,
           "review_iters": 1,
@@ -437,37 +447,31 @@
         {
           "id": "phase_1",
           "title": "Master & lookup data",
-          "rationale": "Categories and priorities must exist before any ticket can reference them.",
+          "rationale": "Category, priority, and agent masters must exist before tickets can reference them.",
           "objects": [
             "support360_category_master",
-            "support360_priority_master"
+            "support360_priority_master",
+            "support360_my_agents"
           ]
         },
         {
           "id": "phase_2",
-          "title": "Core transactions",
-          "rationale": "Ticket creation and the role-based ticket working/viewing screens plus the activity log build on the masters.",
+          "title": "Core ticket transactions",
+          "rationale": "Ticket creation and downstream transactions depend on the masters and on the base ticket record.",
           "objects": [
             "support360_create_ticket",
             "support360_my_tickets",
             "support360_manage_ticket_queue",
-            "support360_manage_all_tickets",
+            "support360_ticket_assignment",
             "support360_ticket_activity_log"
           ]
         },
         {
           "id": "phase_3",
-          "title": "Shared schema",
-          "rationale": "The Ticket fact-grain dataset must be defined before any visual can bind to it.",
+          "title": "Shared schema & visuals",
+          "rationale": "The ticket dataset is defined first, then every grid, chart, and card built on it.",
           "objects": [
-            "support360_ticket_schema"
-          ]
-        },
-        {
-          "id": "phase_4",
-          "title": "Visuals & KPIs",
-          "rationale": "All grids, charts, and count cards read from the ticket schema and feed the dashboards.",
-          "objects": [
+            "support360_ticket_schema",
             "support360_all_tickets_grid",
             "support360_ticket_count_by_status",
             "support360_ticket_count_by_priority",
@@ -483,9 +487,9 @@
           ]
         },
         {
-          "id": "phase_5",
-          "title": "Dashboards",
-          "rationale": "Role dashboards embed the visuals built in the previous phase.",
+          "id": "phase_4",
+          "title": "Role dashboards",
+          "rationale": "Dashboards embed the visuals from the previous phase, so they come last.",
           "objects": [
             "support360_employee_dashboard",
             "support360_agent_dashboard",
@@ -495,10 +499,10 @@
       ],
       "profile_id": null,
       "created_at": 1787043266.5233424,
-      "updated_at": 1787306110.3050172,
+      "updated_at": 1789634602.058747,
       "depends_on": [],
       "dependency_spec": null,
-      "run_scope": "all"
+      "run_scope": "phase"
     },
     {
       "id": "ebec5fb3-3d69-4cca-95fd-313168941a3c",
@@ -3055,11 +3059,11 @@
       "run_scope": null
     },
     {
-      "id": "041f3e11-b3d3-4a54-b160-577e0d682af5",
-      "title": "Build application",
-      "kind": "build",
+      "id": "325bef0c-14be-4186-9955-0d531de3cabd",
+      "title": "Completely delete the support360_manage_all_tickets transaction object: remove i",
+      "kind": "change",
       "status": "completed",
-      "description": "Build a **General Help Desk application for enterprises**.\n\nThe system should have 3 roles: **Employee, Support Agent, and Admin**.\n\n\nCore features:\n\n* Employees can create support tickets with **title, description, category, priority, and attachment**.\n* Support Agents can **view, assign, update, comment on, and resolve tickets**.\n* Ticket status should follow: **Open \u2192 Assigned \u2192 In Progress \u2192 Resolved \u2192 Closed**.\n* Employees can view their tickets and track status.\n* Admin can manage **users, categories, priorities, and tickets**.\n* Provide **search, filtering, and dashboards** showing ticket count by status and priority.\n* Add proper **mandatory-field validation, error messages, and success messages**.\n* Store all ticket changes in an **activity/history log**.\n* Create a clean, simple, enterprise-style UI.\n\nMake the application fully functional with working **frontend, backend, database, authentication, validations, and workflows**.\n\n=== CONFIRMED SCOPE AND COMPLEXITY (user-approved \u2014 this OVERRIDES any conflicting inference from the brief) ===\n* Which functional areas should the Help Desk cover?\n  - Include: Ticket Creation & My Tickets; Agent Ticket Desk; Status Workflow & Rules; Admin Setup (Categories & Priorities); Search, Filters & Dashboards; Activity & History Log\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Email Notifications; Response Time Targets (SLA); Knowledge Base & Canned Replies\n* How complete should this first version be?\n  - Include: Standard\n* What should each role see when they log in?\n  - Include: Employee: my open tickets; Agent: my queue and workload; Admin: overall ticket health\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Agent performance comparison\n* How should a ticket move from Resolved to Closed?\n  - Include: Employee confirms\n* How should file attachments work on tickets?\n  - Include: Multiple files, any time\nWrite the specification to cover EXACTLY this confirmed scope at the confirmed complexity level: include every confirmed item, honour every added point, and do not add functional areas, activities or enterprise features beyond it.",
+      "description": "Remove \"Manage All Tickets\" transaction from \"Admin Setup\" folder",
       "todos": [
         {
           "id": "frs",
@@ -3114,19 +3118,19 @@
         {
           "id": "obj_support360_my_agents",
           "step": "object",
-          "label": "Build & verify: My Agents",
+          "label": "Build & verify: Manage Agent Master",
           "status": "completed",
           "error": null,
           "obj_name": "support360_my_agents",
           "obj_type": "T",
           "phase_id": "phase_1",
-          "started_at": 1789016785.8265722,
-          "completed_at": 1789016831.5351193,
+          "started_at": 1789624340.8243728,
+          "completed_at": 1789624361.5122716,
           "review_iters": 1,
-          "model_sig": "83f3e1c4aa947051882f06e485aaf86ab94233a3",
+          "model_sig": "0c985df48647a2e57f54dc4a0d17b006c6bd2872",
           "input_tokens": 6,
-          "output_tokens": 4439,
-          "cost_usd": 1.020462
+          "output_tokens": 4348,
+          "cost_usd": 0.964534
         },
         {
           "id": "obj_support360_create_ticket",
@@ -3161,20 +3165,10 @@
         {
           "id": "obj_support360_ticket_assignment",
           "step": "object",
-          "label": "Build & verify: Ticket Assignment",
+          "label": "Build & verify: Manage Ticket Assignment",
           "status": "completed",
           "error": null,
           "obj_name": "support360_ticket_assignment",
-          "obj_type": "T",
-          "phase_id": "phase_2"
-        },
-        {
-          "id": "obj_support360_manage_all_tickets",
-          "step": "object",
-          "label": "Build & verify: Manage All Tickets",
-          "status": "completed",
-          "error": null,
-          "obj_name": "support360_manage_all_tickets",
           "obj_type": "T",
           "phase_id": "phase_2"
         },
@@ -3186,14 +3180,346 @@
           "error": null,
           "obj_name": "support360_ticket_activity_log",
           "obj_type": "T",
-          "phase_id": "phase_2",
-          "started_at": 1789016835.4204977,
-          "completed_at": 1789016903.3956027,
-          "review_iters": 1,
-          "model_sig": "e48d6ac2f13e7512ba39a45af7370a1bd8b4c7f7",
-          "input_tokens": 6,
-          "output_tokens": 6869,
-          "cost_usd": 0.948597
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_ticket_schema",
+          "step": "object",
+          "label": "Build & verify: Ticket Schema",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_schema",
+          "obj_type": "M",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_all_tickets_grid",
+          "step": "object",
+          "label": "Build & verify: All Tickets",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_all_tickets_grid",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_ticket_count_by_status",
+          "step": "object",
+          "label": "Build & verify: Ticket Count by Status",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_count_by_status",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_ticket_count_by_priority",
+          "step": "object",
+          "label": "Build & verify: Ticket Count by Priority",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_count_by_priority",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_my_open_tickets_count",
+          "step": "object",
+          "label": "Build & verify: My Open Tickets Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_open_tickets_count",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_my_awaiting_confirmation_count",
+          "step": "object",
+          "label": "Build & verify: My Tickets Awaiting Confirmation Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_awaiting_confirmation_count",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_my_queue_count",
+          "step": "object",
+          "label": "Build & verify: My Queue Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_queue_count",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_unassigned_tickets_count",
+          "step": "object",
+          "label": "Build & verify: Unassigned Tickets Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_unassigned_tickets_count",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_my_queue_by_priority",
+          "step": "object",
+          "label": "Build & verify: My Queue by Priority",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_queue_by_priority",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_total_open_tickets_count",
+          "step": "object",
+          "label": "Build & verify: Total Open Tickets Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_total_open_tickets_count",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_total_resolved_period_count",
+          "step": "object",
+          "label": "Build & verify: Total Resolved This Period Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_total_resolved_period_count",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_tickets_status_trend",
+          "step": "object",
+          "label": "Build & verify: Tickets by Status Trend",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_tickets_status_trend",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_ticket_detail_log_grid",
+          "step": "object",
+          "label": "Build & verify: Ticket Detail Log",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_detail_log_grid",
+          "obj_type": "V",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_employee_dashboard",
+          "step": "object",
+          "label": "Build & verify: Employee Dashboard",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_employee_dashboard",
+          "obj_type": "D",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_agent_dashboard",
+          "step": "object",
+          "label": "Build & verify: Support Agent Dashboard",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_agent_dashboard",
+          "obj_type": "D",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_admin_dashboard",
+          "step": "object",
+          "label": "Build & verify: Admin Dashboard",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_admin_dashboard",
+          "obj_type": "D",
+          "phase_id": "phase_4"
+        }
+      ],
+      "phases": [
+        {
+          "id": "phase_1",
+          "title": "Master & lookup data",
+          "rationale": "Category, priority, and agent masters must exist before tickets can reference them.",
+          "objects": [
+            "support360_category_master",
+            "support360_priority_master",
+            "support360_my_agents"
+          ]
+        },
+        {
+          "id": "phase_2",
+          "title": "Core transactions",
+          "rationale": "Ticket creation and downstream ticket workflows depend on the masters above.",
+          "objects": [
+            "support360_create_ticket",
+            "support360_my_tickets",
+            "support360_manage_ticket_queue",
+            "support360_ticket_assignment",
+            "support360_ticket_activity_log"
+          ]
+        },
+        {
+          "id": "phase_3",
+          "title": "Schemas & visuals",
+          "rationale": "The shared ticket dataset is defined first, then every chart, grid, and card built on it.",
+          "objects": [
+            "support360_ticket_schema",
+            "support360_all_tickets_grid",
+            "support360_ticket_count_by_status",
+            "support360_ticket_count_by_priority",
+            "support360_my_open_tickets_count",
+            "support360_my_awaiting_confirmation_count",
+            "support360_my_queue_count",
+            "support360_unassigned_tickets_count",
+            "support360_my_queue_by_priority",
+            "support360_total_open_tickets_count",
+            "support360_total_resolved_period_count",
+            "support360_tickets_status_trend",
+            "support360_ticket_detail_log_grid"
+          ]
+        },
+        {
+          "id": "phase_4",
+          "title": "Dashboards",
+          "rationale": "Role dashboards embed the visuals completed in the previous phase.",
+          "objects": [
+            "support360_employee_dashboard",
+            "support360_agent_dashboard",
+            "support360_admin_dashboard"
+          ]
+        }
+      ],
+      "profile_id": null,
+      "created_at": 1789620622.9808996,
+      "updated_at": 1789624913.3298166,
+      "depends_on": [],
+      "dependency_spec": null,
+      "run_scope": "phase"
+    },
+    {
+      "id": "1eed4093-5bca-4ff7-af70-9b466e813a6f",
+      "title": "Remove the 'Reassign' business action from the Support360 app: drop it from the ",
+      "kind": "change",
+      "status": "completed",
+      "description": "Remove the 'Reassign' action from everywhere. Rest keep the functionalities untouched.",
+      "todos": [
+        {
+          "id": "frs",
+          "step": "frs",
+          "label": "Generate Functional Requirements",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null
+        },
+        {
+          "id": "app_json",
+          "step": "app_json",
+          "label": "Generate Application Structure",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null
+        },
+        {
+          "id": "analyze_deps",
+          "step": "analyze_deps",
+          "label": "Analyze Object Dependencies",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null
+        },
+        {
+          "id": "obj_support360_category_master",
+          "step": "object",
+          "label": "Build & verify: Manage Category Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_category_master",
+          "obj_type": "T",
+          "phase_id": "phase_1"
+        },
+        {
+          "id": "obj_support360_priority_master",
+          "step": "object",
+          "label": "Build & verify: Manage Priority Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_priority_master",
+          "obj_type": "T",
+          "phase_id": "phase_1"
+        },
+        {
+          "id": "obj_support360_my_agents",
+          "step": "object",
+          "label": "Build & verify: Manage Agent Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_agents",
+          "obj_type": "T",
+          "phase_id": "phase_1"
+        },
+        {
+          "id": "obj_support360_create_ticket",
+          "step": "object",
+          "label": "Build & verify: Create Support Ticket",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_create_ticket",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_my_tickets",
+          "step": "object",
+          "label": "Build & verify: My Tickets",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_tickets",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_manage_ticket_queue",
+          "step": "object",
+          "label": "Build & verify: Manage Ticket Queue",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_manage_ticket_queue",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_ticket_assignment",
+          "step": "object",
+          "label": "Build & verify: Manage Ticket Assignment",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_assignment",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_ticket_activity_log",
+          "step": "object",
+          "label": "Build & verify: Ticket Activity Log",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_activity_log",
+          "obj_type": "T",
+          "phase_id": "phase_2"
         },
         {
           "id": "obj_support360_ticket_schema",
@@ -3360,7 +3686,7 @@
         {
           "id": "phase_1",
           "title": "Master & lookup data",
-          "rationale": "Categories, priorities, and agent roster must exist before any ticket references them.",
+          "rationale": "Reference data the ticket transactions depend on must exist first.",
           "objects": [
             "support360_category_master",
             "support360_priority_master",
@@ -3369,29 +3695,28 @@
         },
         {
           "id": "phase_2",
-          "title": "Core ticket transactions",
-          "rationale": "Ticket creation and the operational views/assignment flows that depend on the masters.",
+          "title": "Core transactions",
+          "rationale": "Ticket creation and downstream ticket transactions that reference the masters.",
           "objects": [
             "support360_create_ticket",
             "support360_my_tickets",
             "support360_manage_ticket_queue",
             "support360_ticket_assignment",
-            "support360_manage_all_tickets",
             "support360_ticket_activity_log"
           ]
         },
         {
           "id": "phase_3",
           "title": "Shared schema",
-          "rationale": "The Ticket fact dataset must be defined before any visual can bind to it.",
+          "rationale": "The ticket dataset definition must exist before any visual can bind to it.",
           "objects": [
             "support360_ticket_schema"
           ]
         },
         {
           "id": "phase_4",
-          "title": "Visuals & KPIs",
-          "rationale": "All grids, cards, and charts built on the ticket schema.",
+          "title": "Visuals & charts",
+          "rationale": "Grids, cards and charts built on the ticket schema and transaction data.",
           "objects": [
             "support360_all_tickets_grid",
             "support360_ticket_count_by_status",
@@ -3409,8 +3734,8 @@
         },
         {
           "id": "phase_5",
-          "title": "Role dashboards",
-          "rationale": "Dashboards embed the visuals completed in the previous phase.",
+          "title": "Dashboards",
+          "rationale": "Role-based dashboards embed the visuals built in the previous phase.",
           "objects": [
             "support360_employee_dashboard",
             "support360_agent_dashboard",
@@ -3419,8 +3744,354 @@
         }
       ],
       "profile_id": null,
-      "created_at": 1789016770.666848,
-      "updated_at": 1789016903.423059,
+      "created_at": 1789628484.1955492,
+      "updated_at": 1789628627.4278872,
+      "depends_on": [],
+      "dependency_spec": null,
+      "run_scope": "phase"
+    },
+    {
+      "id": "96d7d243-514a-4f37-baee-6eaf3eb1e6d3",
+      "title": "Remove all reassign functionality across the project: the reassign form actions ",
+      "kind": "change",
+      "status": "completed",
+      "description": "Drop everything related to reassign",
+      "todos": [
+        {
+          "id": "frs",
+          "step": "frs",
+          "label": "Generate Functional Requirements",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null
+        },
+        {
+          "id": "app_json",
+          "step": "app_json",
+          "label": "Generate Application Structure",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null
+        },
+        {
+          "id": "analyze_deps",
+          "step": "analyze_deps",
+          "label": "Analyze Object Dependencies",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null
+        },
+        {
+          "id": "obj_support360_category_master",
+          "step": "object",
+          "label": "Build & verify: Manage Category Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_category_master",
+          "obj_type": "T",
+          "phase_id": "phase_1"
+        },
+        {
+          "id": "obj_support360_priority_master",
+          "step": "object",
+          "label": "Build & verify: Manage Priority Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_priority_master",
+          "obj_type": "T",
+          "phase_id": "phase_1"
+        },
+        {
+          "id": "obj_support360_my_agents",
+          "step": "object",
+          "label": "Build & verify: Manage Agent Master",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_agents",
+          "obj_type": "T",
+          "phase_id": "phase_1"
+        },
+        {
+          "id": "obj_support360_create_ticket",
+          "step": "object",
+          "label": "Build & verify: Create Support Ticket",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_create_ticket",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_my_tickets",
+          "step": "object",
+          "label": "Build & verify: My Tickets",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_tickets",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_manage_ticket_queue",
+          "step": "object",
+          "label": "Build & verify: Manage Ticket Queue",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_manage_ticket_queue",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_ticket_assignment",
+          "step": "object",
+          "label": "Build & verify: Manage Ticket Assignment",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_assignment",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_ticket_activity_log",
+          "step": "object",
+          "label": "Build & verify: Ticket Activity Log",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_activity_log",
+          "obj_type": "T",
+          "phase_id": "phase_2"
+        },
+        {
+          "id": "obj_support360_ticket_schema",
+          "step": "object",
+          "label": "Build & verify: Ticket Schema",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_schema",
+          "obj_type": "M",
+          "phase_id": "phase_3"
+        },
+        {
+          "id": "obj_support360_all_tickets_grid",
+          "step": "object",
+          "label": "Build & verify: All Tickets",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_all_tickets_grid",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_ticket_count_by_status",
+          "step": "object",
+          "label": "Build & verify: Ticket Count by Status",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_count_by_status",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_ticket_count_by_priority",
+          "step": "object",
+          "label": "Build & verify: Ticket Count by Priority",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_count_by_priority",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_my_open_tickets_count",
+          "step": "object",
+          "label": "Build & verify: My Open Tickets Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_open_tickets_count",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_my_awaiting_confirmation_count",
+          "step": "object",
+          "label": "Build & verify: My Tickets Awaiting Confirmation Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_awaiting_confirmation_count",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_my_queue_count",
+          "step": "object",
+          "label": "Build & verify: My Queue Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_queue_count",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_unassigned_tickets_count",
+          "step": "object",
+          "label": "Build & verify: Unassigned Tickets Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_unassigned_tickets_count",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_my_queue_by_priority",
+          "step": "object",
+          "label": "Build & verify: My Queue by Priority",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_my_queue_by_priority",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_total_open_tickets_count",
+          "step": "object",
+          "label": "Build & verify: Total Open Tickets Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_total_open_tickets_count",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_total_resolved_period_count",
+          "step": "object",
+          "label": "Build & verify: Total Resolved This Period Count",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_total_resolved_period_count",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_tickets_status_trend",
+          "step": "object",
+          "label": "Build & verify: Tickets by Status Trend",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_tickets_status_trend",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_ticket_detail_log_grid",
+          "step": "object",
+          "label": "Build & verify: Ticket Detail Log",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_ticket_detail_log_grid",
+          "obj_type": "V",
+          "phase_id": "phase_4"
+        },
+        {
+          "id": "obj_support360_employee_dashboard",
+          "step": "object",
+          "label": "Build & verify: Employee Dashboard",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_employee_dashboard",
+          "obj_type": "D",
+          "phase_id": "phase_5"
+        },
+        {
+          "id": "obj_support360_agent_dashboard",
+          "step": "object",
+          "label": "Build & verify: Support Agent Dashboard",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_agent_dashboard",
+          "obj_type": "D",
+          "phase_id": "phase_5"
+        },
+        {
+          "id": "obj_support360_admin_dashboard",
+          "step": "object",
+          "label": "Build & verify: Admin Dashboard",
+          "status": "completed",
+          "error": null,
+          "obj_name": "support360_admin_dashboard",
+          "obj_type": "D",
+          "phase_id": "phase_5"
+        }
+      ],
+      "phases": [
+        {
+          "id": "phase_1",
+          "title": "Master & lookup data",
+          "rationale": "Reference data the ticket transactions depend on must exist first.",
+          "objects": [
+            "support360_category_master",
+            "support360_priority_master",
+            "support360_my_agents"
+          ]
+        },
+        {
+          "id": "phase_2",
+          "title": "Core ticket transactions",
+          "rationale": "Ticket creation and its dependent transactional views/assignment/logging build on the masters.",
+          "objects": [
+            "support360_create_ticket",
+            "support360_my_tickets",
+            "support360_manage_ticket_queue",
+            "support360_ticket_assignment",
+            "support360_ticket_activity_log"
+          ]
+        },
+        {
+          "id": "phase_3",
+          "title": "Shared schema",
+          "rationale": "The ticket dataset definition must precede every visual that queries it.",
+          "objects": [
+            "support360_ticket_schema"
+          ]
+        },
+        {
+          "id": "phase_4",
+          "title": "Visuals & charts",
+          "rationale": "Grids, cards and charts built on the ticket schema, ready before dashboards embed them.",
+          "objects": [
+            "support360_all_tickets_grid",
+            "support360_ticket_count_by_status",
+            "support360_ticket_count_by_priority",
+            "support360_my_open_tickets_count",
+            "support360_my_awaiting_confirmation_count",
+            "support360_my_queue_count",
+            "support360_unassigned_tickets_count",
+            "support360_my_queue_by_priority",
+            "support360_total_open_tickets_count",
+            "support360_total_resolved_period_count",
+            "support360_tickets_status_trend",
+            "support360_ticket_detail_log_grid"
+          ]
+        },
+        {
+          "id": "phase_5",
+          "title": "Dashboards",
+          "rationale": "Role-based dashboards assemble the finished visuals.",
+          "objects": [
+            "support360_employee_dashboard",
+            "support360_agent_dashboard",
+            "support360_admin_dashboard"
+          ]
+        }
+      ],
+      "profile_id": null,
+      "created_at": 1789628824.5467963,
+      "updated_at": 1789629024.5406246,
       "depends_on": [],
       "dependency_spec": null,
       "run_scope": "phase"

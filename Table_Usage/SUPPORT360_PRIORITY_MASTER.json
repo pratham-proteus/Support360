@@ -16,25 +16,39 @@
       }
     },
     {
+      "object_name": "support360_manage_all_tickets",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "PRIORITY_NAME",
+        "PRIORITY_CODE"
+      ],
+      "join_info": {
+        "column": "PRIORITY_CODE",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "PRIORITY_CODE"
+      }
+    },
+    {
       "object_name": "support360_priority_master",
       "form_no": "1",
       "usage_type": "M",
       "referred_columns": [
-        "CHG_USER",
-        "ADD_TERM",
-        "SEQUENCE_NO",
         "IS_ACTIVE",
-        "ID",
         "PRIORITY_NAME",
-        "ADD_USER",
-        "CHG_DATE",
-        "CHG_TERM",
         "PRIORITY_CODE",
+        "ADD_USER",
+        "ADD_TERM",
+        "CHG_TERM",
+        "CHG_USER",
+        "ID",
+        "CHG_DATE",
+        "SEQUENCE_NO",
         "ADD_DATE"
       ]
     },
     {
-      "object_name": "support360_manage_all_tickets",
+      "object_name": "support360_create_ticket",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
@@ -51,20 +65,6 @@
       "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
       "usage_type": "R",
-      "referred_columns": [
-        "PRIORITY_CODE",
-        "PRIORITY_NAME"
-      ],
-      "join_info": {
-        "column": "PRIORITY_CODE",
-        "join_table": "SUPPORT360_TICKET",
-        "join_column": "PRIORITY_CODE"
-      }
-    },
-    {
-      "object_name": "support360_create_ticket",
-      "form_no": "1",
-      "usage_type": "M",
       "referred_columns": [
         "PRIORITY_CODE",
         "PRIORITY_NAME"

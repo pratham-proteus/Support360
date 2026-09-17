@@ -264,7 +264,19 @@
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
-                "edit_mask": "",
+                "edit_mask": {
+                  "mask": "ddlb",
+                  "values": [
+                    {
+                      "data": "In Progress",
+                      "display": "Start Progress"
+                    },
+                    {
+                      "data": "Resolved",
+                      "display": "Resolved"
+                    }
+                  ]
+                },
                 "validations": "",
                 "lookup": ""
               }

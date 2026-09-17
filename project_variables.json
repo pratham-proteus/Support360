@@ -1,0 +1,10 @@
+{
+  "variables": [
+    {
+      "name": "user_name",
+      "kind": "value",
+      "value": "",
+      "description": "Auto-created from a ':user_name' column default — set its kind/value under Overview → Variables."
+    }
+  ]
+}

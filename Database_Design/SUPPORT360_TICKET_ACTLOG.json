@@ -8,7 +8,7 @@
       "data_type": "VARCHAR",
       "size": "36",
       "key": true,
-      "description": "System-generated unique identifier of the log entry",
+      "description": "Unique identifier of the activity log entry",
       "sequence": 1,
       "mandatory": true
     },
@@ -17,7 +17,7 @@
       "data_type": "VARCHAR",
       "size": "30",
       "key": false,
-      "description": "The ticket this log entry belongs to",
+      "description": "Ticket this log entry belongs to",
       "sequence": 2,
       "mandatory": true,
       "lookup": {
@@ -31,7 +31,7 @@
       "data_type": "VARCHAR",
       "size": "20",
       "key": false,
-      "description": "The kind of change recorded by this entry",
+      "description": "Type of action recorded by this entry",
       "sequence": 3,
       "mandatory": true,
       "allowed_values": [
@@ -44,12 +44,8 @@
           "label": "Assigned"
         },
         {
-          "value": "Reassigned",
-          "label": "Reassigned"
-        },
-        {
           "value": "Status-Changed",
-          "label": "Status-Changed"
+          "label": "Status Changed"
         },
         {
           "value": "Commented",
@@ -57,7 +53,7 @@
         },
         {
           "value": "Attachment-Added",
-          "label": "Attachment-Added"
+          "label": "Attachment Added"
         },
         {
           "value": "Edited",
@@ -74,7 +70,7 @@
       "data_type": "VARCHAR",
       "size": "100",
       "key": false,
-      "description": "Name of the ticket field that changed (blank for non-field actions such as Commented)",
+      "description": "Name of the ticket field that changed (blank for non-field actions)",
       "sequence": 4
     },
     {
@@ -98,7 +94,7 @@
       "data_type": "VARCHAR",
       "size": "36",
       "key": false,
-      "description": "User who performed the action",
+      "description": "User id who performed the action",
       "sequence": 7,
       "mandatory": true
     },
@@ -107,7 +103,7 @@
       "data_type": "DATETIME",
       "size": "",
       "key": false,
-      "description": "Timestamp of the action",
+      "description": "Timestamp when the action occurred",
       "sequence": 8,
       "mandatory": true
     },
@@ -116,7 +112,7 @@
       "data_type": "DATETIME",
       "size": "",
       "key": false,
-      "description": "Audit - record creation timestamp",
+      "description": "Record creation timestamp",
       "sequence": 9
     },
     {
@@ -124,7 +120,7 @@
       "data_type": "VARCHAR",
       "size": "10",
       "key": false,
-      "description": "Audit - user who created the record",
+      "description": "User who created the record",
       "sequence": 10
     },
     {
@@ -132,7 +128,7 @@
       "data_type": "VARCHAR",
       "size": "15",
       "key": false,
-      "description": "Audit - terminal that created the record",
+      "description": "Terminal that created the record",
       "sequence": 11
     },
     {
@@ -140,7 +136,7 @@
       "data_type": "DATETIME",
       "size": "",
       "key": false,
-      "description": "Audit - last change timestamp",
+      "description": "Record last-change timestamp",
       "sequence": 12
     },
     {
@@ -148,7 +144,7 @@
       "data_type": "VARCHAR",
       "size": "10",
       "key": false,
-      "description": "Audit - user who last changed the record",
+      "description": "User who last changed the record",
       "sequence": 13
     },
     {
@@ -156,7 +152,7 @@
       "data_type": "VARCHAR",
       "size": "15",
       "key": false,
-      "description": "Audit - terminal of the last change",
+      "description": "Terminal that last changed the record",
       "sequence": 14
     }
   ]

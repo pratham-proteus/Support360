@@ -1,49 +1,100 @@
-# project: Support360
-# object_type: T
-# object_name: support360_manage_ticket_queue
-# event_type: form_action
-# function_name: reassign_ticket
-# form_no: 1
-# action_name: Reassign
-# language: python
-# description: Reassign an already-assigned ticket to a different Agent, keeping its STATUS unchanged
-# functional_specification: On the current SUPPORT360_TICKET row, set ASSIGNED_AGENT to the value in REASSIGN_TO_AGENT. Do not change STATUS. Then clear REASSIGN_TO_AGENT. Append one entry to the ticket's Activity/History Log (table to be confirmed once the Ticket Activity Log object is designed) with TICKET_NO = this ticket, ACTION_TYPE = 'Reassigned', FIELD_CHANGED = 'ASSIGNED_AGENT', OLD_VALUE = the previous ASSIGNED_AGENT, NEW_VALUE = REASSIGN_TO_AGENT, CHANGED_BY = current user, CHANGE_DATE = now. Return {"updates": {"assigned_agent": <new agent>, "reassign_to_agent": ""}}.
-# business_logic: Reassign an already-assigned ticket to a different Agent, keeping its STATUS unchanged
+# event: action
+# object: support360_manage_ticket_queue
+# method: reassign_ticket
+# description: Reassign the selected ticket to another agent.
+# functional_specification:
+#   Validates that the ticket exists, is not already Resolved, that a target agent
+#   has been chosen, that the target agent is Active and different from the current
+#   assignee, then updates SUPPORT360_TICKET.ASSIGNED_AGENT and writes an
+#   'Assigned' row into SUPPORT360_TICKET_ACTLOG recording old and new agent.
+#   Warns (override-able) when the target agent is currently Occupied.
+
 
 def run(args):
-    current_user = args.get('_current_user') or args.get('current_user')
+    out = {'errors': []}
+    ignored = set(args.get('_ignore_warnings') or [])
 
-    status = args.get('status')
-    if status not in ('Assigned', 'In Progress'):
-        return 'Ticket must be Assigned or In Progress to be reassigned'
+    ticket_no = args.get('TICKET_NO')
+    new_agent = args.get('REASSIGN_TO_AGENT')
 
-    ticket_no = args.get('ticket_no')
-    old_agent = args.get('assigned_agent')
+    if is_empty(ticket_no):
+        out['errors'].append({'code': 'RA001', 'field': 'ticket_no', 'type': 'E',
+                              'message': 'Ticket number is required.'})
+        out['error'] = out['errors'][0]['message']
+        return out
 
-    if old_agent != current_user:
-        return 'Only the currently assigned Agent can reassign this ticket'
+    ticket = db.query_one(
+        'SELECT TICKET_NO, STATUS, ASSIGNED_AGENT FROM ' + db.t('SUPPORT360_TICKET') +
+        ' WHERE TICKET_NO = :t', {'t': ticket_no})
 
-    new_agent = args.get('reassign_to_agent')
+    if not ticket:
+        out['errors'].append({'code': 'RA002', 'field': 'ticket_no', 'type': 'E',
+                              'message': 'Ticket ' + str(ticket_no) + ' does not exist.'})
+        out['error'] = out['errors'][0]['message']
+        return out
+
+    cur_agent = (ticket['ASSIGNED_AGENT'] or '').strip()
+    status = (ticket['STATUS'] or '').strip()
+
+    if status == 'Resolved':
+        out['errors'].append({'code': 'RA003', 'field': 'status', 'type': 'E',
+                              'message': 'A Resolved ticket cannot be reassigned.'})
+
     if is_empty(new_agent):
-        return 'Reassign To Agent is required'
+        out['errors'].append({'code': 'RA004', 'field': 'reassign_to_agent', 'type': 'E',
+                              'message': 'Select the agent to reassign this ticket to.'})
+    else:
+        new_agent = str(new_agent).strip()
+        agent = db.query_one(
+            'SELECT AGENT_ID, AGENT_NAME, AGENT_STATUS, AGENT_AVAILABILITY FROM ' +
+            db.t('SUPPORT360_AGENT') + ' WHERE AGENT_ID = :a', {'a': new_agent})
 
-    # Persist the reassignment on SUPPORT360_TICKET
-    db.update('SUPPORT360_TICKET', {
-        'ASSIGNED_AGENT': new_agent,
-        'STATUS': 'Assigned',  # reset from In Progress since the new agent has not started work
-        'REASSIGN_TO_AGENT': None,
-        'CHG_DATE': datetime.now(),
-    }, {'TICKET_NO': ticket_no})
+        if not agent:
+            out['errors'].append({'code': 'RA005', 'field': 'reassign_to_agent', 'type': 'E',
+                                  'message': 'Agent ' + new_agent + ' does not exist.'})
+        else:
+            if (agent['AGENT_STATUS'] or '').strip() != 'Active':
+                out['errors'].append({'code': 'RA006', 'field': 'reassign_to_agent', 'type': 'E',
+                                      'message': 'Agent ' + new_agent + ' is not Active and cannot be assigned tickets.'})
+            if new_agent == cur_agent:
+                out['errors'].append({'code': 'RA007', 'field': 'reassign_to_agent', 'type': 'E',
+                                      'message': 'The ticket is already assigned to this agent.'})
+            if (agent['AGENT_AVAILABILITY'] or '').strip() == 'Occupied' and 'RA008' not in ignored:
+                out['errors'].append({'code': 'RA008', 'field': 'reassign_to_agent', 'type': 'W',
+                                      'message': 'Agent ' + (agent['AGENT_NAME'] or new_agent) +
+                                                 ' is currently Occupied. Reassign anyway?'})
 
-    # Log the reassignment in the ticket activity log
-    db.insert('SUPPORT360_TICKET_ACTLOG', {
+    blocking = [e for e in out['errors'] if e.get('type', 'E') == 'E']
+    if blocking:
+        out['error'] = blocking[0]['message']
+        return out
+    if [e for e in out['errors'] if e.get('type') == 'W']:
+        return out
+
+    stamp = now()
+    changed_by = coalesce(args.get('CHG_USER'), args.get('ADD_USER'), 'SYSTEM')
+
+    db.update(db.t('SUPPORT360_TICKET'),
+              {'ASSIGNED_AGENT': new_agent,
+               'STATUS': iif(status == '', 'Assigned', status),
+               'CHG_DATE': stamp,
+               'CHG_USER': changed_by,
+               'REASSIGN_TO_AGENT': None},
+              {'TICKET_NO': ticket_no})
+
+    log_id = (str(ticket_no) + '-' + datetime.datetime.now().strftime('%Y%m%d%H%M%S%f'))[-36:]
+    db.insert(db.t('SUPPORT360_TICKET_ACTLOG'), {
+        'ID': log_id,
         'TICKET_NO': ticket_no,
-        'ACTION_TYPE': 'Reassigned',
+        'ACTION_TYPE': 'Assigned',
         'FIELD_CHANGED': 'ASSIGNED_AGENT',
-        'OLD_VALUE': old_agent,
+        'OLD_VALUE': cur_agent or None,
         'NEW_VALUE': new_agent,
-        'CHANGED_BY': current_user,
-        'CHANGE_DATE': datetime.now(),
+        'CHANGED_BY': changed_by,
+        'CHANGE_DATE': stamp,
+        'ADD_DATE': stamp,
+        'ADD_USER': changed_by,
     })
 
-    return {'updates': {'assigned_agent': new_agent, 'status': 'Assigned', 'reassign_to_agent': ''}}
+    return {'prompts': [{'code': 'RA100', 'type': 'P',
+                         'message': 'Ticket ' + str(ticket_no) + ' reassigned to ' + new_agent + '.'}]}

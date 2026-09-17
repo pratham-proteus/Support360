@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Stop adding new functionality for now. First diagnose and fix the existing business-logic errors in Support360. The current runtime still produces AttributeError: module 'datetime' has no attribute 'now', and Assign fails with Select an agent to assign the ticket to.\n\nFix the existing business logic at its source. Check the imports, function definitions, parameters, database table names, and runtime deployment for each affected function. Do not create duplicate functions or duplicate logic.\n\nFor Assign: ensure the selected agent ID is actually passed to assign_ticket and saved against the ticket.\n\nFor datetime: use a valid Python datetime implementation compatible with the Twasta runtime and remove the incorrect datetime.now() usage causing the current error.\n\nAfter fixing, deploy the business logic and test only these two functions first:\n\nAssign ticket\nStart Progress\n\nDo not proceed to Reassign, Resolve, Comments, or other features until these two functions execute successfully without runtime errors. Show the exact remaining error if deployment or execution still fails instead of marking the task complete.",
   "created_at": 1787310195.487071,
-  "updated_at": 1789016903.4342763,
+  "updated_at": 1789634602.0656195,
   "todos": [
     {
       "id": "change_1",
@@ -37,7 +37,7 @@
   "phases": [],
   "originating_prompt": "Stop adding new functionality for now. First diagnose and fix the existing business-logic errors in Support360. The current runtime still produces AttributeError: module 'datetime' has no attribute 'now', and Assign fails with Select an agent to assign the ticket to.\n\nFix the existing business logic at its source. Check the imports, function definitions, parameters, database table names, and runtime deployment for each affected function. Do not create duplicate functions or duplicate logic.\n\nFor Assign: ensure the selected agent ID is actually passed to assign_ticket and saved against the ticket.\n\nFor datetime: use a valid Python datetime implementation compatible with the Twasta runtime and remove the incorrect datetime.now() usage causing the current error.\n\nAfter fixing, deploy the business logic and test only these two functions first:\n\nAssign ticket\nStart Progress\n\nDo not proceed to Reassign, Resolve, Comments, or other features until these two functions execute successfully without runtime errors. Show the exact remaining error if deployment or execution still fails instead of marking the task complete.",
   "resume_ref": {
-    "session_id": "c8481854-d876-4698-9e07-c6684b196079",
+    "session_id": "976675c6-1fad-4d07-b3ec-0941924f82ed",
     "plan_id": "4d8a2124-6161-44b8-927f-ad4b47ed8fff",
     "scope": null
   },

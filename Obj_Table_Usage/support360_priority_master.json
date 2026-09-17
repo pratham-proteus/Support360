@@ -2,16 +2,16 @@
   "object_name": "support360_priority_master",
   "tables": {
     "SUPPORT360_PRIORITY_MASTER": [
-      "CHG_USER",
-      "ADD_TERM",
-      "SEQUENCE_NO",
       "IS_ACTIVE",
-      "ID",
+      "PRIORITY_CODE",
       "PRIORITY_NAME",
       "ADD_USER",
-      "CHG_DATE",
+      "ADD_TERM",
       "CHG_TERM",
-      "PRIORITY_CODE",
+      "CHG_USER",
+      "ID",
+      "CHG_DATE",
+      "SEQUENCE_NO",
       "ADD_DATE"
     ]
   }
