@@ -1,0 +1,94 @@
+{
+  "id": "182fa63c-4f2d-46a4-abcf-bd7937f1256b",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add a resolved RAISED_BY_NAME field to SUPPORT360_TICKET (populated from the log",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Manage Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"My Tickets\" transaction, the 'Raised By' column is showing name of the currently logged in user. The same name must be visible for the Agent in \"Manage Ticket Queue\". In \"Manage Ticket Queue\" the Raised By column shows some randomly generated code, instead of that show the name of the user who has raised the ticket.",
+  "created_at": 1790058471.3963246,
+  "updated_at": 1790078583.4028058,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Document RAISED_BY_NAME field in FRS",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1790058471.4221113,
+      "completed_at": 1790058486.6399257
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Update Create Support Ticket nav spec for new field",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1790058486.697251,
+      "completed_at": 1790058496.0345619
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Update Manage Ticket Queue nav spec for raiser name display",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1790058496.0746582,
+      "completed_at": 1790058506.1998096
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Add RAISED_BY_NAME column and resolver to Create Support Ticket model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1790058506.2393334,
+      "completed_at": 1790058537.6839116
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Implement resolve_raised_by_name business logic",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1790058537.7223861,
+      "completed_at": 1790058591.1832469
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Show raiser name in Manage Ticket Queue, hide raw id",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1790058591.2871463,
+      "completed_at": 1790058605.1536608
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Manage Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"My Tickets\" transaction, the 'Raised By' column is showing name of the currently logged in user. The same name must be visible for the Agent in \"Manage Ticket Queue\". In \"Manage Ticket Queue\" the Raised By column shows some randomly generated code, instead of that show the name of the user who has raised the ticket.",
+  "resume_ref": {
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "plan_id": "182fa63c-4f2d-46a4-abcf-bd7937f1256b",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

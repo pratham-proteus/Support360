@@ -1,0 +1,106 @@
+{
+  "id": "c66df8d3-b64d-45f2-9fe9-5549e6b6a2e1",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Make tickets fully read-only everywhere once STATUS = Closed by adding a Closed-",
+  "kind": "change",
+  "status": "completed",
+  "description": "Once the ticket 'Status' = 'Closed', it should not be editable. Make it view only everywhere.",
+  "created_at": 1789983236.2974288,
+  "updated_at": 1790078583.397458,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update FRS with the global Closed-is-read-only rule",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1789983236.3213978,
+      "completed_at": 1789983243.9550843
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Note Closed-read-only behavior in navigation specs",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1789983243.9907703,
+      "completed_at": 1789983264.8155296
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Block Edit/Delete on Closed tickets in Create Support Ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789983264.8517249,
+      "completed_at": 1789983276.3397372
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Block attachment and reopen-comment on Closed tickets in My Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789983276.378438,
+      "completed_at": 1789983290.318766
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Block Edit and Add Comment on Closed tickets in Manage Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789983290.3550267,
+      "completed_at": 1789983303.546714
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Block editing actions on Closed tickets in Manage All Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789983303.5934086,
+      "completed_at": 1789983325.3465385
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Block save/edit on Closed tickets in Ticket Assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789983325.3883953,
+      "completed_at": 1789983334.705248
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Once the ticket 'Status' = 'Closed', it should not be editable. Make it view only everywhere.",
+  "resume_ref": {
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "plan_id": "c66df8d3-b64d-45f2-9fe9-5549e6b6a2e1",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

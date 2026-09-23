@@ -1,0 +1,14 @@
+[
+  {
+    "id": "16bae12c0704",
+    "name": "PANVEL DIST 881.pdf",
+    "file": "38238ad0b0164bdb.pdf",
+    "path": "support360_ticket_attachment/10/38238ad0b0164bdb.pdf",
+    "docType": "support360_ticket_attachment",
+    "recordId": "10",
+    "mime": "application/pdf",
+    "size": 64506,
+    "createdAt": 1790053706,
+    "url": "/api/designers/documents/raw?project=Support360&file=38238ad0b0164bdb.pdf&name=PANVEL+DIST+881.pdf&dt=support360_ticket_attachment&rid=10"
+  }
+]

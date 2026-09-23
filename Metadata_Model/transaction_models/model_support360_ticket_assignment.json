@@ -95,6 +95,31 @@
                         }
                       ]
                     }
+                  },
+                  {
+                    "type": "builtin",
+                    "name": "Agent must be available",
+                    "error_code": "AGENT_OCCUPIED",
+                    "message": "Selected agent is currently Occupied and cannot be assigned. Please choose an agent whose Availability is Available.",
+                    "builtin": {
+                      "kind": "must_exist_in_master",
+                      "table": "SUPPORT360_AGENT",
+                      "match_column": "AGENT_ID",
+                      "conditions": [
+                        {
+                          "column": "AGENT_STATUS",
+                          "op": "=",
+                          "source": "const",
+                          "value": "Active"
+                        },
+                        {
+                          "column": "AGENT_AVAILABILITY",
+                          "op": "=",
+                          "source": "const",
+                          "value": "Available"
+                        }
+                      ]
+                    }
                   }
                 ],
                 "item_change": {
@@ -183,7 +208,22 @@
                 "expression": "",
                 "edit_mask": "",
                 "validations": "",
-                "lookup": ""
+                "lookup": "",
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "assigned_agent_name",
+                      "expr": "iif({form.assigned_agent} == \"\", \"\", {form.assigned_agent_name})"
+                    }
+                  ],
+                  "protect": [
+                    {
+                      "form_col": "assigned_agent",
+                      "when": "{form.status} == \"Closed\" or {form.status} == \"In Progress\" or {form.status} == \"Resolved\""
+                    }
+                  ]
+                }
               }
             }
           ],
@@ -209,10 +249,26 @@
           },
           "actions": [
             {
+              "name": "Add",
+              "handler": "system",
+              "system_op": "add",
+              "scope": "form",
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Add disabled",
+                  "error_code": "ADD_DISABLED",
+                  "message": "Adding new ticket assignments is not allowed from this screen.",
+                  "expression": "false"
+                }
+              ]
+            },
+            {
               "name": "Save",
               "handler": "system",
               "system_op": "edit",
               "scope": "form",
+              "visible_when": "{form.status} != \"Closed\" and {form.status} != \"In Progress\"",
               "validations": [
                 {
                   "type": "builtin",
@@ -232,11 +288,53 @@
                       }
                     ]
                   }
+                },
+                {
+                  "type": "builtin",
+                  "name": "Agent must be available on save",
+                  "error_code": "AGENT_OCCUPIED_SAVE",
+                  "message": "Selected agent is currently Occupied and cannot be assigned. Please choose an agent whose Availability is Available.",
+                  "builtin": {
+                    "kind": "must_exist_in_master",
+                    "table": "SUPPORT360_AGENT",
+                    "match_column": "AGENT_ID",
+                    "conditions": [
+                      {
+                        "column": "AGENT_STATUS",
+                        "op": "=",
+                        "source": "const",
+                        "value": "Active"
+                      },
+                      {
+                        "column": "AGENT_AVAILABILITY",
+                        "op": "=",
+                        "source": "const",
+                        "value": "Available"
+                      }
+                    ]
+                  }
+                },
+                {
+                  "type": "expression",
+                  "name": "Ticket not editable",
+                  "error_code": "STATUS_CLOSED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Closed or In Progress and is view-only; the assigned agent cannot be changed.",
+                  "expression": "{header.status} != \"Closed\" and {header.status} != \"In Progress\""
                 }
               ]
             }
           ],
-          "validations": []
+          "validations": [
+            {
+              "type": "expression",
+              "name": "Ticket must not be Closed to assign",
+              "error_code": "TICKET_ASSIGN_CLOSED",
+              "severity": "E",
+              "message": "Ticket can only be assigned when its Status is not Closed or In Progress. Current status is {form.STATUS}.",
+              "expression": "{form.status} != \"Closed\" and {form.status} != \"In Progress\""
+            }
+          ]
         }
       }
     ],

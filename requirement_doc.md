@@ -1,7 +1,7 @@
 ## Ticket Management
 ### Create Support Ticket
 - Description: Allows an Employee to log a new support ticket describing an issue or request they need help with.
-- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display-only), PRIORITY_CODE, PRIORITY_NAME (display-only), STATUS (defaults to Open), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), CREATED_DATE, ATTACHMENT (one or more files).
+- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display-only), PRIORITY_CODE, PRIORITY_NAME (display-only), STATUS (defaults to Open), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), RAISED_BY_NAME (display-only, automatically resolved from the logged-in user's id to their display name when the ticket is created), CREATED_DATE, ATTACHMENT (one or more files).
 - Business rules:
   - TITLE, DESCRIPTION, CATEGORY_CODE and PRIORITY_CODE are mandatory; ticket cannot be saved without them.
   - RAISED_BY is mandatory and is automatically set to the id of the currently logged-in user; it is shown read-only on the Add screen as the resolved user id (never as a raw parameter token) and is not user-editable. No separate employee-name field is displayed alongside it.
@@ -19,10 +19,22 @@
 - Data points: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE; on drill-in: full DESCRIPTION, ATTACHMENT list, AGENT_COMMENTS, ACTIVITY_HISTORY.
 - Business rules:
   - Employee can only view/act on tickets where RAISED_BY = current Employee (row-level restriction to own tickets).
-  - Attachments can be added by the Employee at any point in the ticket's life, regardless of STATUS.
+  - Attachments can be added by the Employee at any point in the ticket's life, regardless of STATUS — except once the ticket is Closed, after which no further attachments may be added.
   - Ticket can be moved to Closed only by the Employee, and only when STATUS = Resolved.
+  - Once STATUS = Closed, the ticket becomes fully read-only everywhere it appears (Create Support Ticket, My Tickets, Manage Ticket Queue, Manage All Tickets, Ticket Assignment): no field may be edited, no attachment may be added, no comment may be posted, and no status-changing or assignment action may be run.
 - Business actions: Search, Filter (by STATUS, CATEGORY_CODE, PRIORITY_CODE, date range), View, Add-attachment, Confirm-and-close, Reopen-comment (add comment; does not change status).
 - Additional data management: Confirm-and-close action updates STATUS to Closed, stamps CLOSED_DATE and CLOSED_BY, and writes an entry to the Activity/History Log.
+
+### Resolved Tickets
+- Description: Lets an Employee view the tickets they raised that are currently in Resolved status, and either confirm-close them or reopen them back to In Progress.
+- Data points: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS (fixed to Resolved), ASSIGNED_AGENT, CREATED_DATE, CHG_DATE; on drill-in: DESCRIPTION, ATTACHMENT, AGENT_COMMENTS, RESOLUTION_NOTES, ACTIVITY_HISTORY.
+- Business rules:
+  - View is restricted to tickets where RAISED_BY = current Employee and STATUS = 'Resolved' only (row-level and status restriction).
+  - Add, Edit and Delete are disabled; this is a read-only list.
+  - Close Ticket and Reopen Ticket are both blocked with an inline error if the ticket's STATUS has since changed away from Resolved.
+  - The ticket record remains editable by the Employee while STATUS = Resolved; once the ticket is Closed or Reopened it is no longer editable from this view.
+- Business actions: Close Ticket, Reopen Ticket.
+- Additional data management: Close Ticket moves STATUS to Closed and stamps CLOSED_DATE and CLOSED_BY; Reopen Ticket moves STATUS back to In Progress; both actions write an entry to the Ticket Activity Log.
 
 ## Agent Ticket Desk
 ### Manage Ticket Queue
@@ -33,11 +45,17 @@
   - Assignment of a ticket is not performed from this screen; it is done from the separate Ticket Assignment screen. The ticket queue grid/list shows the assigned agent's name (not just the agent code) in an "Assigned To" column; a ticket must already be assigned before it can move to In Progress.
   - Starting work moves STATUS from Assigned to In Progress.
   - RESOLUTION_NOTES is mandatory before a ticket can be moved to Resolved.
-  - STATUS transitions are restricted to the sequence Open → Assigned → In Progress → Resolved → Closed; no skipping or reverse transitions.
+  - STATUS follows a strict forward-only flow: Open → Assigned → In Progress (shown as 'Start Progress') → Resolved. No other transition is permitted from this screen.
+  - A ticket with STATUS = Open cannot be set directly to 'In Progress' (Start Progress) or 'Resolved'. It must first be moved to Assigned from the Ticket Assignment screen (Manage Ticket Assignment) or via the Assign action.
+  - Only a ticket with STATUS = Assigned may be changed to 'In Progress' (displayed as 'Start Progress').
+  - Only a ticket with STATUS = In Progress may be changed to 'Resolved' (Resolution Notes remain mandatory before resolving).
+  - Changing STATUS to the same value, or backwards (e.g. In Progress → Assigned, Resolved → In Progress), is rejected with a clear inline error naming the current status and the attempted status.
   - Attachments can be added by the Agent at any point in the ticket's life, regardless of STATUS.
   - Show inline error messages for invalid transitions or missing mandatory fields (e.g. resolving without RESOLUTION_NOTES), and success messages on save.
   - Support Agents can directly edit ticket fields (TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY) from Manage Ticket Queue using the standard Edit action, in addition to the dedicated Start Progress, Add Comment, Add Attachment, and Resolve actions; ASSIGNED_AGENT is maintained only from the Ticket Assignment screen.
   - When an Agent edits a ticket, the STATUS dropdown offers only two selectable values: Start Progress (stored as In Progress) and Resolved. Assigned is no longer a user-selectable status on this screen — it is set only by the assignment action.
+  - A ticket with STATUS = Reopen can be moved to In Progress by the Support Agent using the Start Progress action, and from In Progress to Resolved using the Resolve action — the same sequence as Assigned → In Progress → Resolved.
+  - The Raised By column shown to the Agent displays the raiser's resolved display name (RAISED_BY_NAME), never the raw user id.
 - Business actions: Search, Filter (by STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), View, Edit, Start-progress, Add-comment, Add-attachment, Resolve.
 - Additional data management: Every assignment, status change, comment, and attachment addition writes a timestamped entry to the ticket's Activity/History Log capturing old value, new value, and changed-by.
 
@@ -47,6 +65,10 @@
 - Business rules:
   - Opened directly for a specific ticket when the Employee clicks 'Assign Agent' on the Create Support Ticket screen (TICKET_NO carried over as context).
   - ASSIGNED_AGENT must be an Agent from SUPPORT360_AGENT with AGENT_STATUS = Active.
+  - A ticket is editable on this screen only while its STATUS = Open; for every other STATUS value (Assigned, In Progress, Resolved, Closed) the ticket is fully view-only on this screen and the Assigned Agent field cannot be changed.
+  - Once a ticket's STATUS = Closed, the Ticket Assignment screen for that ticket is fully view-only — ASSIGNED_AGENT and all other fields are read-only and no assignment/reassignment actions can be performed. Tickets with any other STATUS remain editable as today.
+  - A ticket with STATUS = In Progress cannot be edited on this screen — the Assigned Agent field is protected, the Save action is hidden, and any attempt to save is blocked with an error, exactly like the existing Closed-status read-only behavior.
+  - The Assigned Agent lookup on Manage Ticket Assignment shows only Agents whose Status (AGENT_STATUS) = Active; Inactive agents are never shown. Among Active agents, those whose Availability (AGENT_AVAILABILITY) = Occupied remain visible in the list for informational purposes but cannot be selected or saved as the Assigned Agent — attempting to select/save an Occupied agent shows an inline error and the assignment is rejected. Only Active agents with Availability = Available can actually be assigned.
 - Business actions: Save/Update Assigned Agent.
 
 ## Admin Setup

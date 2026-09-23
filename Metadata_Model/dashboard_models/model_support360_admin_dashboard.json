@@ -7,7 +7,6 @@
     "CREATED_BY": "kandarp.baghar@proteustech.co",
     "CREATED_DATE": "2026-08-18",
     "REFRESH_INTERVAL_SECONDS": 0,
-
     "GLOBAL_CRITERIA": [
       {
         "PARAM_NAME": "CREATED_FROM",
@@ -15,7 +14,11 @@
         "DEFAULT_VALUE": ":calendar_month_start",
         "DATA_TYPE": "date",
         "OPERATOR": ">=",
-        "BROADCAST_TO": ["VIS_TICKET_COUNT_BY_STATUS", "VIS_TICKET_COUNT_BY_PRIORITY", "VIS_TICKETS_STATUS_TREND"]
+        "BROADCAST_TO": [
+          "VIS_TICKET_COUNT_BY_STATUS",
+          "VIS_TICKET_COUNT_BY_PRIORITY",
+          "VIS_TICKETS_STATUS_TREND"
+        ]
       },
       {
         "PARAM_NAME": "CREATED_TO",
@@ -23,7 +26,11 @@
         "DEFAULT_VALUE": ":calendar_month_end",
         "DATA_TYPE": "date",
         "OPERATOR": "<=",
-        "BROADCAST_TO": ["VIS_TICKET_COUNT_BY_STATUS", "VIS_TICKET_COUNT_BY_PRIORITY", "VIS_TICKETS_STATUS_TREND"]
+        "BROADCAST_TO": [
+          "VIS_TICKET_COUNT_BY_STATUS",
+          "VIS_TICKET_COUNT_BY_PRIORITY",
+          "VIS_TICKETS_STATUS_TREND"
+        ]
       },
       {
         "PARAM_NAME": "CATEGORY_CODE",
@@ -31,78 +38,111 @@
         "DEFAULT_VALUE": "%",
         "DATA_TYPE": "string",
         "OPERATOR": "like",
-        "BROADCAST_TO": ["VIS_TICKET_COUNT_BY_STATUS"],
+        "BROADCAST_TO": [
+          "VIS_TICKET_COUNT_BY_STATUS"
+        ],
         "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_CODE)"
       }
     ],
-
     "VISUALS": [
-      {
-        "VISUAL_ID": "VIS_TOTAL_OPEN_COUNT",
-        "VISUAL_NAME": "Total Open Tickets Count",
-        "POSITION": { "X": 0, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
-        "VISUAL_CONFIG_REF": "model_support360_total_open_tickets_count.json",
-        "CRITERIA_BINDINGS": []
-      },
-      {
-        "VISUAL_ID": "VIS_TOTAL_RESOLVED_COUNT",
-        "VISUAL_NAME": "Total Resolved This Period Count",
-        "POSITION": { "X": 3, "Y": 0, "WIDTH": 3, "HEIGHT": 2 },
-        "VISUAL_CONFIG_REF": "model_support360_total_resolved_period_count.json",
-        "CRITERIA_BINDINGS": [
-          { "VISUAL_PARAM": "SUPPORT360_TICKET.CHG_DATE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
-          { "VISUAL_PARAM": "TO_DATE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" }
-        ]
-      },
       {
         "VISUAL_ID": "VIS_TICKET_COUNT_BY_STATUS",
         "VISUAL_NAME": "Ticket Count by Status",
-        "POSITION": { "X": 0, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "POSITION": {
+          "X": 6,
+          "Y": 0,
+          "WIDTH": 6,
+          "HEIGHT": 4
+        },
         "VISUAL_CONFIG_REF": "model_support360_ticket_count_by_status.json",
         "CRITERIA_BINDINGS": [
-          { "VISUAL_PARAM": "SUPPORT360_TICKET.CREATED_DATE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
-          { "VISUAL_PARAM": "created_to", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" },
-          { "VISUAL_PARAM": "SUPPORT360_TICKET.CATEGORY_CODE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CATEGORY_CODE" }
+          {
+            "VISUAL_PARAM": "SUPPORT360_TICKET.CREATED_DATE",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CREATED_FROM"
+          },
+          {
+            "VISUAL_PARAM": "created_to",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CREATED_TO"
+          },
+          {
+            "VISUAL_PARAM": "SUPPORT360_TICKET.CATEGORY_CODE",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CATEGORY_CODE"
+          }
         ]
       },
       {
         "VISUAL_ID": "VIS_TICKET_COUNT_BY_PRIORITY",
         "VISUAL_NAME": "Ticket Count by Priority",
-        "POSITION": { "X": 6, "Y": 2, "WIDTH": 6, "HEIGHT": 4 },
+        "POSITION": {
+          "X": 0,
+          "Y": 0,
+          "WIDTH": 6,
+          "HEIGHT": 4
+        },
         "VISUAL_CONFIG_REF": "model_support360_ticket_count_by_priority.json",
         "CRITERIA_BINDINGS": [
-          { "VISUAL_PARAM": "SUPPORT360_TICKET.CREATED_DATE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
-          { "VISUAL_PARAM": "created_to", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" }
+          {
+            "VISUAL_PARAM": "SUPPORT360_TICKET.CREATED_DATE",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CREATED_FROM"
+          },
+          {
+            "VISUAL_PARAM": "created_to",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CREATED_TO"
+          }
         ]
       },
       {
         "VISUAL_ID": "VIS_TICKETS_STATUS_TREND",
         "VISUAL_NAME": "Tickets by Status Trend",
-        "POSITION": { "X": 0, "Y": 6, "WIDTH": 12, "HEIGHT": 4 },
+        "POSITION": {
+          "X": 0,
+          "Y": 4,
+          "WIDTH": 12,
+          "HEIGHT": 4
+        },
         "VISUAL_CONFIG_REF": "model_support360_tickets_status_trend.json",
         "CRITERIA_BINDINGS": [
-          { "VISUAL_PARAM": "SUPPORT360_TICKET.CREATED_DATE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_FROM" },
-          { "VISUAL_PARAM": "TO_DATE", "BIND_TYPE": "global", "GLOBAL_PARAM": "CREATED_TO" }
+          {
+            "VISUAL_PARAM": "SUPPORT360_TICKET.CREATED_DATE",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CREATED_FROM"
+          },
+          {
+            "VISUAL_PARAM": "TO_DATE",
+            "BIND_TYPE": "global",
+            "GLOBAL_PARAM": "CREATED_TO"
+          }
         ]
       }
     ],
-
     "DRILL_THROUGH": [
       {
         "SOURCE_VISUAL_ID": "VIS_TICKET_COUNT_BY_STATUS",
         "TARGET_TYPE": "visual",
+        "TARGET_DASHBOARD_ID": "",
         "TARGET_VISUAL_ID": "support360_all_tickets_grid",
-        "PARAM_MAPPING": { "SUPPORT360_TICKET_STATUS": "SUPPORT360_TICKET.STATUS" }
+        "PARAM_MAPPING": {
+          "SUPPORT360_TICKET_STATUS": "SUPPORT360_TICKET.STATUS"
+        }
       },
       {
         "SOURCE_VISUAL_ID": "VIS_TICKET_COUNT_BY_PRIORITY",
         "TARGET_TYPE": "visual",
+        "TARGET_DASHBOARD_ID": "",
         "TARGET_VISUAL_ID": "support360_all_tickets_grid",
-        "PARAM_MAPPING": { "SUPPORT360_TICKET_PRIORITY_CODE": "SUPPORT360_TICKET.PRIORITY_CODE" }
+        "PARAM_MAPPING": {
+          "SUPPORT360_TICKET_PRIORITY_CODE": "SUPPORT360_TICKET.PRIORITY_CODE"
+        }
       },
       {
         "SOURCE_VISUAL_ID": "VIS_TICKETS_STATUS_TREND",
         "TARGET_TYPE": "visual",
+        "TARGET_DASHBOARD_ID": "",
         "TARGET_VISUAL_ID": "support360_all_tickets_grid",
         "PARAM_MAPPING": {
           "SUPPORT360_TICKET_STATUS": "SUPPORT360_TICKET.STATUS",

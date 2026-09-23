@@ -1,0 +1,70 @@
+{
+  "id": "20697ae1-3fb1-4526-99ca-78d3194e04d2",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Remove the +Add action from the My Tickets, Resolved Tickets, Manage Ticket Queu",
+  "kind": "change",
+  "status": "completed",
+  "description": "Remove the +Add button from 'My Tickets', 'Resolved Tickets', 'Manage Ticket Queue' and 'Manage Ticket Assignment' transaction.",
+  "created_at": 1789996428.575799,
+  "updated_at": 1790078583.3982413,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Remove Add action from My Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789996428.5947216,
+      "completed_at": 1789996448.7541826
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Remove Add action from Resolved Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_resolved_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789996448.7897487,
+      "completed_at": 1789996454.227378
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Remove Add action from Manage Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789996454.2648516,
+      "completed_at": 1789996475.1947875
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Remove Add action from Ticket Assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789996475.2322366,
+      "completed_at": 1789996498.377599
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Remove the +Add button from 'My Tickets', 'Resolved Tickets', 'Manage Ticket Queue' and 'Manage Ticket Assignment' transaction.",
+  "resume_ref": {
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "plan_id": "20697ae1-3fb1-4526-99ca-78d3194e04d2",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

@@ -1,0 +1,171 @@
+{
+  "id": "566e2f22-c97d-4f5f-97dc-2b073e5c0baf",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add a RED status-color rule for STATUS = 'Closed' across every grid and status-c",
+  "kind": "change",
+  "status": "completed",
+  "description": "Give a Color for 'Status' = 'Closed' with RED everywhere",
+  "created_at": 1789980974.984316,
+  "updated_at": 1790078583.3965602,
+  "todos": [
+    {
+      "id": "frs",
+      "step": "frs",
+      "label": "Generate Functional Requirements",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "app_json",
+      "step": "app_json",
+      "label": "Generate Application Structure",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "analyze_deps",
+      "step": "analyze_deps",
+      "label": "Analyze Object Dependencies",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "obj_support360_category_master",
+      "step": "object",
+      "label": "Build & verify: Manage Category Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_category_master",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_priority_master",
+      "step": "object",
+      "label": "Build & verify: Manage Priority Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_priority_master",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_my_agents",
+      "step": "object",
+      "label": "Build & verify: Manage Agent Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_create_ticket",
+      "step": "object",
+      "label": "Build & verify: My Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_manage_ticket_queue",
+      "step": "object",
+      "label": "Build & verify: Manage Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_ticket_assignment",
+      "step": "object",
+      "label": "Build & verify: Manage Ticket Assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": "phase_3",
+      "review_iters": 1,
+      "stage": "bl_done"
+    },
+    {
+      "id": "obj_support360_resolved_tickets",
+      "step": "object",
+      "label": "Build & verify: Resolved Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_resolved_tickets",
+      "obj_type": "T",
+      "phase_id": "phase_3"
+    },
+    {
+      "id": "obj_support360_admin_dashboard",
+      "step": "object",
+      "label": "Build & verify: Admin Dashboard",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_admin_dashboard",
+      "obj_type": "D",
+      "phase_id": "phase_4"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase_1",
+      "title": "Master & lookup data",
+      "rationale": "Categories, priorities, and the agent roster must exist before tickets can reference them.",
+      "objects": [
+        "support360_category_master",
+        "support360_priority_master",
+        "support360_my_agents"
+      ]
+    },
+    {
+      "id": "phase_2",
+      "title": "Core ticket transactions",
+      "rationale": "Ticket creation and the agent work queue depend on the lookup masters.",
+      "objects": [
+        "support360_create_ticket",
+        "support360_manage_ticket_queue"
+      ]
+    },
+    {
+      "id": "phase_3",
+      "title": "Assignment & resolution flows",
+      "rationale": "Assignment and resolved-ticket views build on existing tickets and the agent master.",
+      "objects": [
+        "support360_ticket_assignment",
+        "support360_resolved_tickets"
+      ]
+    },
+    {
+      "id": "phase_4",
+      "title": "Analytics dashboard",
+      "rationale": "Admin analytics aggregate data produced by all preceding transactions.",
+      "objects": [
+        "support360_admin_dashboard"
+      ]
+    }
+  ],
+  "originating_prompt": "Give a Color for 'Status' = 'Closed' with RED everywhere",
+  "resume_ref": {
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "plan_id": "566e2f22-c97d-4f5f-97dc-2b073e5c0baf",
+    "scope": "phase"
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

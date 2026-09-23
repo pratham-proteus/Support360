@@ -80,6 +80,7 @@
               "ADV_FORMAT": "",
               "expression": "",
               "value": "",
+              "display": { "type": "status_tag", "map": [ { "when": "Closed", "color": "red", "label": "Closed" } ] },
               "groupName": "Columns",
               "StandardName": "Columns",
               "checked": true
@@ -288,6 +289,7 @@
               "ADV_FORMAT": "",
               "expression": "",
               "value": "",
+              "display": { "type": "status_tag", "map": [ { "when": "Closed", "color": "red", "label": "Closed" } ] },
               "groupName": "Columns",
               "StandardName": "Columns",
               "checked": true

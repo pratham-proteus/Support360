@@ -5,6 +5,12 @@
       "kind": "value",
       "value": "",
       "description": "Auto-created from a ':user_name' column default — set its kind/value under Overview → Variables."
+    },
+    {
+      "name": "ticket_status_resolved",
+      "kind": "value",
+      "value": "Resolved",
+      "description": "Fixed constant used to scope the Resolved Tickets view to STATUS = Resolved."
     }
   ]
 }

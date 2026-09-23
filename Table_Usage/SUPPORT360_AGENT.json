@@ -20,12 +20,12 @@
       ]
     },
     {
-      "object_name": "support360_ticket_assignment",
+      "object_name": "support360_resolved_tickets",
       "form_no": "1",
       "usage_type": "M",
       "referred_columns": [
-        "AGENT_ID",
-        "AGENT_NAME"
+        "AGENT_NAME",
+        "AGENT_ID"
       ],
       "join_info": {
         "column": "AGENT_ID",
@@ -36,7 +36,21 @@
     {
       "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
-      "usage_type": "M",
+      "usage_type": "R",
+      "referred_columns": [
+        "AGENT_NAME",
+        "AGENT_ID"
+      ],
+      "join_info": {
+        "column": "AGENT_ID",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "ASSIGNED_AGENT"
+      }
+    },
+    {
+      "object_name": "support360_ticket_assignment",
+      "form_no": "1",
+      "usage_type": "R",
       "referred_columns": [
         "AGENT_NAME",
         "AGENT_ID"

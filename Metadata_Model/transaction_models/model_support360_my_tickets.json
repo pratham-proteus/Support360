@@ -215,12 +215,31 @@
                     },
                     {
                       "when": "Closed",
-                      "color": "grey",
+                      "color": "red",
                       "icon": "\u2715",
                       "label": "Closed"
                     }
                   ],
                   "defaultColor": "grey"
+                },
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "status",
+                      "expr": "{form.status}"
+                    }
+                  ],
+                  "protect": [
+                    {
+                      "form_col": "attachment",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "new_comment",
+                      "when": "{form.status} == \"Closed\""
+                    }
+                  ]
                 },
                 "x": "70",
                 "y": "70",
@@ -728,10 +747,6 @@
               }
             }
           ],
-          "row_security": {
-            "column": "RAISED_BY",
-            "source": "user_id"
-          },
           "joins": {
             "join_predicates": {
               "joins": [
@@ -808,6 +823,7 @@
               "name": "Confirm and Close",
               "handler": "message",
               "scope": "row",
+              "visible_when": "{form.status} != \"Closed\"",
               "business_logic": {
                 "method": "confirm_close_ticket",
                 "description": "Employee confirms resolution and closes the ticket",
@@ -826,6 +842,7 @@
               "name": "Reopen Comment",
               "handler": "message",
               "scope": "row",
+              "visible_when": "{form.status} != \"Closed\"",
               "business_logic": {
                 "method": "add_reopen_comment",
                 "description": "Employee posts a comment on the ticket without changing its status",
@@ -837,6 +854,14 @@
                   "name": "Comment required",
                   "message": "Enter a comment before using Reopen Comment.",
                   "expression": "not_empty({form.new_comment})"
+                },
+                {
+                  "type": "expression",
+                  "name": "Ticket is closed",
+                  "error_code": "TICKET_CLOSED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Closed; attachments can no longer be added.",
+                  "expression": "{form.status} != \"Closed\""
                 }
               ]
             }
@@ -850,6 +875,19 @@
     "pre_commit": [],
     "post_commit": [],
     "follow_up_actions": [],
-    "attach_docs": []
+    "attach_docs": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "title",
+        "category_code",
+        "status"
+      ],
+      "key_column": "ticket_no",
+      "display_column": "title",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by support360_ticket_activity_log; searched by title plus category_code, status so same-named records stay distinguishable"
+    }
   }
 }

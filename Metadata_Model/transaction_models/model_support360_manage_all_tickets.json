@@ -295,25 +295,25 @@
                     },
                     {
                       "when": "Assigned",
-                      "color": "teal",
+                      "color": "amber",
                       "icon": "\u25cf",
                       "label": "Assigned"
                     },
                     {
                       "when": "In Progress",
-                      "color": "amber",
+                      "color": "orange",
                       "icon": "\u25cf",
                       "label": "In Progress"
                     },
                     {
                       "when": "Resolved",
-                      "color": "green",
+                      "color": "teal",
                       "icon": "\u2713",
                       "label": "Resolved"
                     },
                     {
                       "when": "Closed",
-                      "color": "grey",
+                      "color": "red",
                       "icon": "\u2713",
                       "label": "Closed"
                     }
@@ -346,7 +346,58 @@
                 "default_function": "",
                 "expression": "",
                 "protect": "",
-                "lookup": ""
+                "lookup": "",
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "last_updated_date",
+                      "expr": "now()"
+                    }
+                  ],
+                  "protect": [
+                    {
+                      "form_col": "title",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "description",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "category_code",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "priority_code",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "raised_by",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "assigned_agent",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "reassign_to_agent",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "attachment",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "new_comment",
+                      "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "resolution_notes",
+                      "when": "{form.status} == \"Closed\""
+                    }
+                  ]
+                }
               }
             },
             {
@@ -991,6 +1042,7 @@
               "name": "Assign",
               "handler": "message",
               "scope": "row",
+              "visible_when": "{form.status} != \"Closed\"",
               "business_logic": {
                 "method": "assign_ticket",
                 "description": "Assign an unassigned ticket to the current admin-selected agent",
@@ -1002,6 +1054,14 @@
                   "name": "Must be Open to assign",
                   "message": "Only tickets with status Open can be assigned (current status {form.status}).",
                   "expression": "{form.status} == \"Open\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Ticket is closed",
+                  "error_code": "TICKET_CLOSED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Closed and cannot be changed.",
+                  "expression": "{form.status} != \"Closed\""
                 }
               ]
             },
@@ -1009,6 +1069,7 @@
               "name": "Reassign",
               "handler": "message",
               "scope": "row",
+              "visible_when": "{form.status} != \"Closed\"",
               "business_logic": {
                 "method": "reassign_ticket",
                 "description": "Reassign a ticket to a different agent, keeping the current status",
@@ -1020,6 +1081,14 @@
                   "name": "Cannot reassign a closed/resolved ticket",
                   "message": "A Resolved or Closed ticket cannot be reassigned (current status {form.status}).",
                   "expression": "{form.status} == \"Open\" or {form.status} == \"Assigned\" or {form.status} == \"In Progress\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Ticket is closed",
+                  "error_code": "TICKET_CLOSED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Closed and cannot be changed.",
+                  "expression": "{form.status} != \"Closed\""
                 }
               ]
             }

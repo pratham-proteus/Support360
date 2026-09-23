@@ -1,0 +1,1 @@
+[1] Resolved Tickets: ticket_no(V30), title(V200), category_code(V20), category_name(V100), priority_code(V20), priority_name(V100), status(V20), assigned_agent(V36), assigned_agent_name(V100), created_date(DT), chg_date(DT), raised_by(V36), description(TEXT), attachment(V500), agent_comments(TEXT), resolution_notes(TEXT), activity_history(TEXT), closed_date(DT), closed_by(V36)

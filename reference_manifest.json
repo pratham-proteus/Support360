@@ -1,20 +1,20 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-09-17T08:43:18.291363+00:00",
+  "generated_at": "2026-09-22T11:13:33.831460+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
-      "title": "Create Support Ticket",
+      "title": "My Tickets",
       "description": "Employee logs a new support ticket"
     },
     {
-      "obj_name": "support360_my_tickets",
+      "obj_name": "support360_resolved_tickets",
       "obj_type": "T",
-      "title": "My Tickets",
-      "description": "Employee views and tracks own raised tickets"
+      "title": "Resolved Tickets",
+      "description": "Employee view of own tickets marked Resolved by the Support Agent"
     },
     {
       "obj_name": "support360_manage_ticket_queue",
@@ -44,103 +44,7 @@
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
       "title": "Manage Ticket Assignment",
-      "description": "Agent assigns the Support Agent handling a ticket"
-    },
-    {
-      "obj_name": "support360_ticket_activity_log",
-      "obj_type": "T",
-      "title": "Ticket Activity Log",
-      "description": "Read-only chronological record of all ticket changes"
-    },
-    {
-      "obj_name": "support360_ticket_schema",
-      "obj_type": "M",
-      "title": "Ticket Schema",
-      "description": "Shared dataset definition for the Ticket fact grain"
-    },
-    {
-      "obj_name": "support360_all_tickets_grid",
-      "obj_type": "V",
-      "title": "All Tickets",
-      "description": "Grid of all tickets with role-driven filters"
-    },
-    {
-      "obj_name": "support360_ticket_count_by_status",
-      "obj_type": "V",
-      "title": "Ticket Count by Status",
-      "description": "Column chart of ticket volume by status"
-    },
-    {
-      "obj_name": "support360_ticket_count_by_priority",
-      "obj_type": "V",
-      "title": "Ticket Count by Priority",
-      "description": "Pie chart of ticket volume by priority"
-    },
-    {
-      "obj_name": "support360_my_open_tickets_count",
-      "obj_type": "V",
-      "title": "My Open Tickets Count",
-      "description": "Card count of employee's own open tickets"
-    },
-    {
-      "obj_name": "support360_my_awaiting_confirmation_count",
-      "obj_type": "V",
-      "title": "My Tickets Awaiting Confirmation Count",
-      "description": "Card count of employee's resolved tickets pending confirmation"
-    },
-    {
-      "obj_name": "support360_my_queue_count",
-      "obj_type": "V",
-      "title": "My Queue Count",
-      "description": "Card count of tickets assigned to current agent"
-    },
-    {
-      "obj_name": "support360_unassigned_tickets_count",
-      "obj_type": "V",
-      "title": "Unassigned Tickets Count",
-      "description": "Card count of unassigned open tickets"
-    },
-    {
-      "obj_name": "support360_my_queue_by_priority",
-      "obj_type": "V",
-      "title": "My Queue by Priority",
-      "description": "Bar chart of agent's queue by priority"
-    },
-    {
-      "obj_name": "support360_total_open_tickets_count",
-      "obj_type": "V",
-      "title": "Total Open Tickets Count",
-      "description": "Card count of all open tickets organization-wide"
-    },
-    {
-      "obj_name": "support360_total_resolved_period_count",
-      "obj_type": "V",
-      "title": "Total Resolved This Period Count",
-      "description": "Card count of tickets resolved/closed in period"
-    },
-    {
-      "obj_name": "support360_tickets_status_trend",
-      "obj_type": "V",
-      "title": "Tickets by Status Trend",
-      "description": "Stacked column chart of daily/weekly ticket volume by status"
-    },
-    {
-      "obj_name": "support360_ticket_detail_log_grid",
-      "obj_type": "V",
-      "title": "Ticket Detail Log",
-      "description": "Grid of activity log entries across tickets"
-    },
-    {
-      "obj_name": "support360_employee_dashboard",
-      "obj_type": "D",
-      "title": "Employee Dashboard",
-      "description": "Employee's personal ticket overview"
-    },
-    {
-      "obj_name": "support360_agent_dashboard",
-      "obj_type": "D",
-      "title": "Support Agent Dashboard",
-      "description": "Agent's queue and workload overview"
+      "description": "Agent assigns the Support Agent handling a ticket; only Active agents are listed, and only Active + Available agents may"
     },
     {
       "obj_name": "support360_admin_dashboard",
@@ -216,29 +120,30 @@
       "other_columns": [
         "TITLE VARCHAR",
         "DESCRIPTION TEXT",
-        "CATEGORY_CODE VARCHAR",
-        "PRIORITY_CODE VARCHAR",
-        "STATUS VARCHAR",
-        "RAISED_BY VARCHAR",
         "ASSIGNED_AGENT VARCHAR",
+        "CATEGORY_CODE VARCHAR",
+        "STATUS VARCHAR",
+        "PRIORITY_CODE VARCHAR",
+        "RAISED_BY VARCHAR",
         "CREATED_DATE DATETIME",
-        "CHG_DATE DATETIME",
         "ATTACHMENT VARCHAR",
         "ATTACHMENT_UPLOADED_BY VARCHAR",
         "ATTACHMENT_UPLOADED_DATE DATETIME",
-        "AGENT_COMMENTS TEXT",
+        "ID VARCHAR",
+        "ADD_DATE DATETIME",
         "ADD_USER VARCHAR",
-        "NEW_COMMENT VARCHAR",
         "ADD_TERM VARCHAR",
+        "CHG_DATE DATETIME",
+        "CHG_USER VARCHAR",
+        "CHG_TERM VARCHAR",
+        "AGENT_COMMENTS TEXT",
+        "NEW_COMMENT VARCHAR",
+        "ACTIVITY_HISTORY TEXT",
+        "CLOSED_DATE DATETIME",
+        "CLOSED_BY VARCHAR",
         "RESOLUTION_NOTES TEXT",
         "REASSIGN_TO_AGENT VARCHAR",
-        "ACTIVITY_HISTORY TEXT",
-        "ID VARCHAR",
-        "CHG_TERM VARCHAR",
-        "ADD_DATE DATETIME",
-        "CHG_USER VARCHAR",
-        "CLOSED_DATE DATETIME",
-        "CLOSED_BY VARCHAR"
+        "RAISED_BY_NAME VARCHAR"
       ]
     },
     {

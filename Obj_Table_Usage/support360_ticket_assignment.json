@@ -4,12 +4,12 @@
     "SUPPORT360_TICKET": [
       "TICKET_NO",
       "STATUS",
-      "TITLE",
-      "ASSIGNED_AGENT"
+      "ASSIGNED_AGENT",
+      "TITLE"
     ],
     "SUPPORT360_AGENT": [
-      "AGENT_ID",
-      "AGENT_NAME"
+      "AGENT_NAME",
+      "AGENT_ID"
     ]
   }
 }

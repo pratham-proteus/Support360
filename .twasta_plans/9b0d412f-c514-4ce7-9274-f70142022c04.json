@@ -1,0 +1,94 @@
+{
+  "id": "9b0d412f-c514-4ce7-9274-f70142022c04",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Allow the Manage Ticket Queue Start Progress action to fire from STATUS 'Reopen'",
+  "kind": "change",
+  "status": "completed",
+  "description": "If a ticket status is 'Reopen', then the agent can change it to 'Start Progress' and then 'Resolved' in \"Manage Ticket Queue\" transaction under \"Agent Ticket Desk\".",
+  "created_at": 1789973480.710233,
+  "updated_at": 1790078583.3949113,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Document the Reopen \u2192 In Progress \u2192 Resolved flow in the FRS",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1789973480.7359607,
+      "completed_at": 1789973491.819845
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Note the Reopen \u2192 In Progress transition in the object's functional_specs",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789973491.8527997,
+      "completed_at": 1789973505.765218
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Allow Reopen -> In Progress in the STATUS column's transition validation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789973505.797319,
+      "completed_at": 1789973514.7394197
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Let the Start Progress action fire from Assigned or Reopen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789973514.8006198,
+      "completed_at": 1789973528.2526717
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Update status-transition validation code to permit Reopen -> In Progress",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789973528.2909272,
+      "completed_at": 1789973537.7673383
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Update Start Progress action code to run from Assigned or Reopen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789973537.85912,
+      "completed_at": 1789973552.1652403
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "If a ticket status is 'Reopen', then the agent can change it to 'Start Progress' and then 'Resolved' in \"Manage Ticket Queue\" transaction under \"Agent Ticket Desk\".",
+  "resume_ref": {
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "plan_id": "9b0d412f-c514-4ce7-9274-f70142022c04",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

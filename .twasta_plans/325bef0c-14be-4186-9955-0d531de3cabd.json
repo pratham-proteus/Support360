@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Remove \"Manage All Tickets\" transaction from \"Admin Setup\" folder",
   "created_at": 1789620622.998958,
-  "updated_at": 1789634602.0767086,
+  "updated_at": 1790078583.3893626,
   "todos": [
     {
       "id": "frs",
@@ -343,7 +343,7 @@
   ],
   "originating_prompt": "Remove \"Manage All Tickets\" transaction from \"Admin Setup\" folder",
   "resume_ref": {
-    "session_id": "976675c6-1fad-4d07-b3ec-0941924f82ed",
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
     "plan_id": "325bef0c-14be-4186-9955-0d531de3cabd",
     "scope": "phase"
   },

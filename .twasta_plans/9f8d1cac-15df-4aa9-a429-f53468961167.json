@@ -1,0 +1,106 @@
+{
+  "id": "9f8d1cac-15df-4aa9-a429-f53468961167",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Apply consistent color-coded status badges (STATUS column) to every transaction ",
+  "kind": "change",
+  "status": "completed",
+  "description": "Status should be in different colors everywhere. Like the 'Open' is in Blue, 'Start Progress' is in Orange.",
+  "created_at": 1789980169.1510904,
+  "updated_at": 1790078583.3957348,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix STATUS badge colors on All Tickets grid to match canonical scheme",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_all_tickets_grid",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1789980169.1800327,
+      "completed_at": 1789980213.5562327
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Add status color badges to Create Support Ticket's STATUS column",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789980213.5878162,
+      "completed_at": 1789980219.081398
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Add status color badges to Resolved Tickets' STATUS column",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_resolved_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789980219.116961,
+      "completed_at": 1789980233.103376
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Add status color badges to Manage Ticket Queue's STATUS column",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789980233.1352599,
+      "completed_at": 1789980245.1505077
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Add status color badges to Manage All Tickets' STATUS column",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1789980245.1850748,
+      "completed_at": 1789980289.9823618
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Add status color badges to My Tickets Grid visual",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_grid",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1789980290.0176241,
+      "completed_at": 1789980313.0462308
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Add status color badges to My Active Tickets Grid visual",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_active_tickets_grid",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1789980313.093715,
+      "completed_at": 1789980344.5097055
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Status should be in different colors everywhere. Like the 'Open' is in Blue, 'Start Progress' is in Orange.",
+  "resume_ref": {
+    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "plan_id": "9f8d1cac-15df-4aa9-a429-f53468961167",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

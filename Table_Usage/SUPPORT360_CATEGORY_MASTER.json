@@ -20,6 +20,20 @@
       ]
     },
     {
+      "object_name": "support360_resolved_tickets",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_NAME",
+        "CATEGORY_CODE"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "CATEGORY_CODE"
+      }
+    },
+    {
       "object_name": "support360_my_tickets",
       "form_no": "1",
       "usage_type": "R",
@@ -36,7 +50,7 @@
     {
       "object_name": "support360_manage_all_tickets",
       "form_no": "1",
-      "usage_type": "M",
+      "usage_type": "R",
       "referred_columns": [
         "CATEGORY_NAME",
         "CATEGORY_CODE"
@@ -52,8 +66,8 @@
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
-        "CATEGORY_NAME",
-        "CATEGORY_CODE"
+        "CATEGORY_CODE",
+        "CATEGORY_NAME"
       ],
       "join_info": {
         "column": "CATEGORY_CODE",
