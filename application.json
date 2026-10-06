@@ -128,7 +128,8 @@
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
       "menu_path": "support360.1.1",
-      "functional_specs": "Header-only transaction to create/edit/delete a support ticket with TICKET_NO (auto), TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS (default Open, read-only), RAISED_BY (VARCHAR(36), mandatory, read-only, visible on the form, auto-populated at runtime with the currently logged-in user's user id), RAISED_BY_NAME (VARCHAR(100), read-only, display-only, not a persisted business input, resolved via business logic at ticket creation from the logged-in user's id (RAISED_BY) to their display name and shown alongside RAISED_BY), CREATED_DATE, ATTACHMENT. Mandatory: TITLE, DESCRIPTION, CATEGORY_CODE (active Category master), PRIORITY_CODE (active Priority master). Actions: Add, Edit (before assignment), Delete (own ticket while Open), Search. Attachment linked with uploaded-by/uploaded-date. Writes Created entry to Activity/History Log. Inline validation and success messages. The Assign Agent action opens the Ticket Assignment (support360_ticket_assignment) transaction screen for the current ticket. CATEGORY_NAME (VARCHAR(100), read-only, non-editable) is auto-filled from SUPPORT360_CATEGORY_MASTER.CATEGORY_NAME when CATEGORY_CODE is selected. PRIORITY_NAME (VARCHAR(100), read-only, non-editable) is auto-filled from SUPPORT360_PRIORITY_MASTER.PRIORITY_NAME when PRIORITY_CODE is selected. Both are display-only fields shown next to their respective code fields and are not persisted business inputs. Once the ticket's STATUS is Closed, this screen shows it fully read-only \u2014 no field edit, attachment, comment, or status/assignment action is permitted."
+      "functional_specs": "Header-only transaction to create/edit/delete a support ticket with TICKET_NO (auto), TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS (default Open, read-only), RAISED_BY (VARCHAR(36), mandatory, read-only, visible on the form, auto-populated at runtime with the currently logged-in user's user id), RAISED_BY_NAME (VARCHAR(100), read-only, display-only, not a persisted business input, resolved via business logic at ticket creation from the logged-in user's id (RAISED_BY) to their display name and shown alongside RAISED_BY), CREATED_DATE, ATTACHMENT. Mandatory: TITLE, DESCRIPTION, CATEGORY_CODE (active Category master), PRIORITY_CODE (active Priority master). Actions: Add, Edit (before assignment), Delete (own ticket while Open), Search. Attachment linked with uploaded-by/uploaded-date. Writes Created entry to Activity/History Log. Inline validation and success messages. The Assign Agent action opens the Ticket Assignment (support360_ticket_assignment) transaction screen for the current ticket. CATEGORY_NAME (VARCHAR(100), read-only, non-editable) is auto-filled from SUPPORT360_CATEGORY_MASTER.CATEGORY_NAME when CATEGORY_CODE is selected. PRIORITY_NAME (VARCHAR(100), read-only, non-editable) is auto-filled from SUPPORT360_PRIORITY_MASTER.PRIORITY_NAME when PRIORITY_CODE is selected. Both are display-only fields shown next to their respective code fields and are not persisted business inputs. Once the ticket's STATUS is Closed, this screen shows it fully read-only \u2014 no field edit, attachment, comment, or status/assignment action is permitted.",
+      "order": 0
     },
     {
       "id": "support360.1.3",
@@ -139,7 +140,8 @@
       "obj_name": "support360_resolved_tickets",
       "obj_type": "T",
       "menu_path": "support360.1.3",
-      "functional_specs": "Row-level restricted to RAISED_BY = current Employee, fixed filter STATUS = Resolved. Lists TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, ASSIGNED_AGENT, CREATED_DATE, CHG_DATE; drill-in shows DESCRIPTION, ATTACHMENT, AGENT_COMMENTS, RESOLUTION_NOTES, ACTIVITY_HISTORY. Add/Edit/Delete are disabled. Actions: Close Ticket (STATUS -> Closed, stamps CLOSED_DATE/CLOSED_BY) and Reopen Ticket (STATUS -> In Progress), both only valid while STATUS = Resolved. The ticket record can be edited by the Employee while STATUS remains Resolved; editing is blocked once the ticket is Closed or Reopened."
+      "functional_specs": "Row-level restricted to RAISED_BY = current Employee, fixed filter STATUS = Resolved. Lists TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, ASSIGNED_AGENT, CREATED_DATE, CHG_DATE; drill-in shows DESCRIPTION, ATTACHMENT, AGENT_COMMENTS, RESOLUTION_NOTES, ACTIVITY_HISTORY. Add/Edit/Delete are disabled. Actions: Close Ticket (STATUS -> Closed, stamps CLOSED_DATE/CLOSED_BY) and Reopen Ticket (STATUS -> In Progress), both only valid while STATUS = Resolved. The ticket record can be edited by the Employee while STATUS remains Resolved; editing is blocked once the ticket is Closed or Reopened.",
+      "order": 2
     },
     {
       "id": "support360.2",
@@ -154,7 +156,7 @@
     },
     {
       "id": "support360.2.1",
-      "title": "Manage Ticket Queue",
+      "title": "Ticket Queue",
       "parent_id": "support360.2",
       "icon_image": "assignment_ind",
       "description": "Agent views, works, and resolves tickets",
@@ -165,7 +167,7 @@
     },
     {
       "id": "support360.3",
-      "title": "Admin Setup",
+      "title": "Manager Setup",
       "parent_id": "",
       "icon_image": "admin_panel_settings",
       "description": "Master data and overarching ticket administration",
@@ -176,7 +178,7 @@
     },
     {
       "id": "support360.3.1",
-      "title": "Manage Category Master",
+      "title": "Category Master",
       "parent_id": "support360.3",
       "icon_image": "category",
       "description": "Admin defines and maintains ticket categories",
@@ -187,7 +189,7 @@
     },
     {
       "id": "support360.3.2",
-      "title": "Manage Priority Master",
+      "title": "Priority Master",
       "parent_id": "support360.3",
       "icon_image": "low_priority",
       "description": "Admin defines and maintains priority levels",
@@ -198,7 +200,7 @@
     },
     {
       "id": "support360.3.4",
-      "title": "Manage Agent Master",
+      "title": "Agent Master",
       "parent_id": "support360.3",
       "icon_image": "badge",
       "description": "Admin maintains the master list of Support Agents with their availability and status.",
@@ -209,7 +211,7 @@
     },
     {
       "id": "support360.3.5",
-      "title": "Manage Ticket Assignment",
+      "title": "Ticket Assignment",
       "parent_id": "support360.3",
       "icon_image": "assignment_ind",
       "description": "Agent assigns the Support Agent handling a ticket; only Active agents are listed, and only Active + Available agents may be assigned",
@@ -217,6 +219,18 @@
       "obj_type": "T",
       "menu_path": "support360.3.5",
       "functional_specs": "Header-only transaction on main_table SUPPORT360_TICKET, PK TICKET_NO. Fields: TICKET_NO (VARCHAR(30), read-only), TITLE (VARCHAR(200), read-only), ASSIGNED_AGENT (VARCHAR(36), editable, lookup to SUPPORT360_AGENT.AGENT_ID where AGENT_STATUS=Active), STATUS (VARCHAR(20), read-only). Opened for a specific ticket from the Create Support Ticket screen's Assign Agent action, passing TICKET_NO as context. Action: Save (update ASSIGNED_AGENT). Once the ticket's STATUS is Closed, this screen shows it fully read-only \u2014 no field edit, attachment, comment, or status/assignment action is permitted. Screen is editable only when the ticket's STATUS = Open; for any other STATUS the ticket is view-only and Assigned Agent cannot be changed. ASSIGNED_AGENT and REASSIGN_TO_AGENT remain editable while STATUS is not Closed; once STATUS = Closed, the ticket becomes fully read-only on this screen and these fields may no longer be edited. When STATUS = Closed, the entire screen is view-only: ASSIGNED_AGENT and all fields are non-editable and no assign/reassign action can be taken; all other statuses remain editable as currently specified. Tickets with STATUS = In Progress are also fully read-only on this screen (Assigned Agent protected, Save hidden, save blocked), the same treatment as Closed tickets. Assigned Agent lookup shows only agents with AGENT_STATUS = Active (Inactive agents are excluded). Active agents with AGENT_AVAILABILITY = Occupied are still shown in the list but cannot be selected or saved \u2014 selecting/saving an Occupied agent is blocked with a validation error; only Active + Available agents can be assigned."
+    },
+    {
+      "id": "support360.3.3",
+      "title": "All Tickets",
+      "parent_id": "support360.1",
+      "icon_image": "list_alt",
+      "description": "Admin overarching view and intervention on all tickets, no row-level restriction",
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "menu_path": "support360.3.3",
+      "functional_specs": "Admin-facing transaction on main_table SUPPORT360_TICKET showing every ticket with no row-level restriction (all Employees' tickets are visible, matching the existing support360_manage_all_tickets model). Columns: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display, from SUPPORT360_CATEGORY_MASTER), PRIORITY_CODE, PRIORITY_NAME (display, from SUPPORT360_PRIORITY_MASTER), STATUS, RAISED_BY, ASSIGNED_AGENT, REASSIGN_TO_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT, AGENT_COMMENTS, RESOLUTION_NOTES, CLOSED_DATE, CLOSED_BY, ACTIVITY_HISTORY. Actions: Assign (Open only), Reassign (Open/Assigned/In Progress only); ticket becomes fully read-only once STATUS = Closed. This is the screen the Admin Dashboard (support360_admin_dashboard) visuals drill into by clicked STATUS/PRIORITY_CODE/date bucket.",
+      "order": 1
     },
     {
       "id": "support360.6",
@@ -228,6 +242,39 @@
       "obj_type": "-",
       "menu_path": "support360.6",
       "functional_specs": "Group for Employee, Support Agent and Admin dashboards"
+    },
+    {
+      "id": "support360.6.4",
+      "title": "My Tickets by Priority",
+      "parent_id": "support360.6",
+      "icon_image": "bar_chart",
+      "description": "Chart showing count of the current Employee's own tickets grouped by PRIORITY_CODE",
+      "obj_name": "support360_my_tickets_by_priority",
+      "obj_type": "V",
+      "menu_path": "support360.6.4",
+      "functional_specs": "Standalone Employee-facing visual (chart type Bar or Pie, mirror the style of support360_ticket_count_by_priority) sourced from table SUPPORT360_TICKET, row-level filtered to RAISED_BY = current logged-in Employee. Group by PRIORITY_CODE (join to SUPPORT360_PRIORITY_MASTER.PRIORITY_CODE for PRIORITY_NAME label), measure = count of TICKET_NO. Standalone navigation entry under the Dashboards menu; no longer embedded in a dashboard page."
+    },
+    {
+      "id": "support360.6.5",
+      "title": "My Tickets Status Trend",
+      "parent_id": "support360.6",
+      "icon_image": "show_chart",
+      "description": "Trend chart showing the current Employee's own ticket counts by STATUS over time",
+      "obj_name": "support360_my_tickets_status_trend",
+      "obj_type": "V",
+      "menu_path": "support360.6.5",
+      "functional_specs": "Standalone Employee-facing visual (line/trend chart, mirror support360_tickets_status_trend) sourced from table SUPPORT360_TICKET, row-level filtered to RAISED_BY = current logged-in Employee. X-axis: CREATED_DATE (grouped by day/week to match the Admin trend chart granularity). Series: STATUS. Measure: count of TICKET_NO. Standalone navigation entry under the Dashboards menu; no longer embedded in a dashboard page."
+    },
+    {
+      "id": "support360.6.2",
+      "title": "Agent Dashboard",
+      "parent_id": "support360.6",
+      "icon_image": "support_agent",
+      "description": "Ticket Queue analytics dashboard for the Support Agent, summarizing their assigned queue.",
+      "obj_name": "support360_agent_dashboard",
+      "obj_type": "D",
+      "menu_path": "support360.6.2",
+      "functional_specs": "Dashboard scoped to the current Support Agent (row-level restriction to tickets unassigned or assigned to the logged-in agent). Composes: My Queue Count card, Unassigned Tickets Count card, Queue-by-Priority chart (support360_my_queue_by_priority), Queue-by-Status chart (support360_my_queue_by_status), and My Active Tickets grid (support360_my_active_tickets_grid)."
     },
     {
       "id": "support360.6.3",

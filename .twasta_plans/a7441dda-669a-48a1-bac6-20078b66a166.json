@@ -1,0 +1,202 @@
+{
+  "id": "a7441dda-669a-48a1-bac6-20078b66a166",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the resolve_raised_by_name business-logic function on support360_create_tick",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nThe \"Raised By\" is still not showing value",
+  "created_at": 1790661440.7630107,
+  "updated_at": 1791194259.3501701,
+  "todos": [
+    {
+      "id": "frs",
+      "step": "frs",
+      "label": "Generate Functional Requirements",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "app_json",
+      "step": "app_json",
+      "label": "Generate Application Structure",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "analyze_deps",
+      "step": "analyze_deps",
+      "label": "Analyze Object Dependencies",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "obj_support360_category_master",
+      "step": "object",
+      "label": "Build & verify: Category Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_category_master",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_priority_master",
+      "step": "object",
+      "label": "Build & verify: Priority Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_priority_master",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_my_agents",
+      "step": "object",
+      "label": "Build & verify: Agent Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_create_ticket",
+      "step": "object",
+      "label": "Build & verify: My Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_ticket_assignment",
+      "step": "object",
+      "label": "Build & verify: Ticket Assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_manage_ticket_queue",
+      "step": "object",
+      "label": "Build & verify: Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_resolved_tickets",
+      "step": "object",
+      "label": "Build & verify: Resolved Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_resolved_tickets",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_my_tickets_by_priority",
+      "step": "object",
+      "label": "Build & verify: My Tickets by Priority",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_by_priority",
+      "obj_type": "V",
+      "phase_id": "phase_3"
+    },
+    {
+      "id": "obj_support360_my_tickets_status_trend",
+      "step": "object",
+      "label": "Build & verify: My Tickets Status Trend",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_status_trend",
+      "obj_type": "V",
+      "phase_id": "phase_3"
+    },
+    {
+      "id": "obj_support360_agent_dashboard",
+      "step": "object",
+      "label": "Build & verify: Agent Dashboard",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_agent_dashboard",
+      "obj_type": "D",
+      "phase_id": "phase_4"
+    },
+    {
+      "id": "obj_support360_admin_dashboard",
+      "step": "object",
+      "label": "Build & verify: Admin Dashboard",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_admin_dashboard",
+      "obj_type": "D",
+      "phase_id": "phase_4"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase_1",
+      "title": "Master & lookup data",
+      "rationale": "Categories, priorities and the agent roster are reference data that the ticket transactions look up.",
+      "objects": [
+        "support360_category_master",
+        "support360_priority_master",
+        "support360_my_agents"
+      ]
+    },
+    {
+      "id": "phase_2",
+      "title": "Core ticket transactions",
+      "rationale": "Ticket creation comes first, then assignment to active and available agents, then queue handling and the resolved-ticket view. All of them depend on the master data.",
+      "objects": [
+        "support360_create_ticket",
+        "support360_ticket_assignment",
+        "support360_manage_ticket_queue",
+        "support360_resolved_tickets"
+      ]
+    },
+    {
+      "id": "phase_3",
+      "title": "Visuals",
+      "rationale": "The employee ticket charts need ticket transaction data to exist first.",
+      "objects": [
+        "support360_my_tickets_by_priority",
+        "support360_my_tickets_status_trend"
+      ]
+    },
+    {
+      "id": "phase_4",
+      "title": "Dashboards",
+      "rationale": "The agent and admin analytics dashboards sum up ticket data and can embed the finished visuals.",
+      "objects": [
+        "support360_agent_dashboard",
+        "support360_admin_dashboard"
+      ]
+    }
+  ],
+  "originating_prompt": "[The user currently has the \"Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nThe \"Raised By\" is still not showing value",
+  "resume_ref": {
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "plan_id": "a7441dda-669a-48a1-bac6-20078b66a166",
+    "scope": "phase"
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

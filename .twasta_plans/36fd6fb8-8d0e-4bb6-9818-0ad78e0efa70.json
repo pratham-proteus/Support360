@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "[The user currently has the \"Resolved Tickets\" screen open (object support360_resolved_tickets, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nDelete \"Resolved Tickets\" transaction",
   "created_at": 1789729344.3517046,
-  "updated_at": 1790078583.39311,
+  "updated_at": 1791194259.340297,
   "todos": [
     {
       "id": "frs",
@@ -336,7 +336,7 @@
   ],
   "originating_prompt": "[The user currently has the \"Resolved Tickets\" screen open (object support360_resolved_tickets, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nDelete \"Resolved Tickets\" transaction",
   "resume_ref": {
-    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
     "plan_id": "36fd6fb8-8d0e-4bb6-9818-0ad78e0efa70",
     "scope": "phase"
   },

@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Drop everything related to reassign",
   "created_at": 1789628824.5676637,
-  "updated_at": 1790078583.3917766,
+  "updated_at": 1791194259.339436,
   "todos": [
     {
       "id": "frs",
@@ -343,7 +343,7 @@
   ],
   "originating_prompt": "Drop everything related to reassign",
   "resume_ref": {
-    "session_id": "6c43590d-2dfe-4f34-be8f-dbc1ade8a88b",
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
     "plan_id": "96d7d243-514a-4f37-baee-6eaf3eb1e6d3",
     "scope": "phase"
   },

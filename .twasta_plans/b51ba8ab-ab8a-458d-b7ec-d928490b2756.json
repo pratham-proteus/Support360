@@ -1,0 +1,34 @@
+{
+  "id": "b51ba8ab-ab8a-458d-b7ec-d928490b2756",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "The Admin's 'Manage All Tickets' screen (support360_manage_all_tickets) already ",
+  "kind": "change",
+  "status": "completed",
+  "description": "The tickets created by an Employee are not visible for func admin. Can you check and resolve that issue.",
+  "created_at": 1790679904.5496867,
+  "updated_at": 1791194259.3507347,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Register missing navigation entry for the Admin 'Manage All Tickets' screen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1790679904.584015,
+      "completed_at": 1790679926.6457443
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "The tickets created by an Employee are not visible for func admin. Can you check and resolve that issue.",
+  "resume_ref": {
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "plan_id": "b51ba8ab-ab8a-458d-b7ec-d928490b2756",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

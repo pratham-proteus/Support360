@@ -74,16 +74,28 @@
       "size": "20",
       "key": false,
       "description": "Ticket status; defaults to Open on creation and is not user-editable",
-      "sequence": 4,
+      "sequence": 6,
       "mandatory": true,
       "allowed_values": [
         {
+          "value": "Open",
+          "label": "Open"
+        },
+        {
+          "value": "Assigned",
+          "label": "Assigned"
+        },
+        {
           "value": "In Progress",
-          "label": "Start Progress"
+          "label": "In Progress"
         },
         {
           "value": "Resolved",
           "label": "Resolved"
+        },
+        {
+          "value": "Closed",
+          "label": "Closed"
         }
       ],
       "primary_key": false,
@@ -95,7 +107,7 @@
       "size": "36",
       "key": false,
       "description": "The Employee who raised the ticket (current logged-in user)",
-      "sequence": 7,
+      "sequence": 3,
       "mandatory": true,
       "primary_key": false,
       "nullable": false
@@ -106,7 +118,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the ticket was created",
-      "sequence": 8,
+      "sequence": 10,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -117,7 +129,7 @@
       "size": "500",
       "key": false,
       "description": "One or more files supporting the ticket",
-      "sequence": 9,
+      "sequence": 12,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -128,7 +140,7 @@
       "size": "36",
       "key": false,
       "description": "User who uploaded the attachment",
-      "sequence": 10,
+      "sequence": 13,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -139,7 +151,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the attachment was uploaded",
-      "sequence": 11,
+      "sequence": 14,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -150,7 +162,7 @@
       "size": "36",
       "key": false,
       "description": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
-      "sequence": 3,
+      "sequence": 8,
       "allowed_values": [
         {
           "value": "AGENT01",
@@ -180,7 +192,7 @@
       "size": "36",
       "key": false,
       "description": "Internal unique identifier",
-      "sequence": 13,
+      "sequence": 21,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -191,7 +203,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was created",
-      "sequence": 14,
+      "sequence": 22,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -202,7 +214,7 @@
       "size": "10",
       "key": false,
       "description": "User who created the record",
-      "sequence": 15,
+      "sequence": 23,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -213,7 +225,7 @@
       "size": "15",
       "key": false,
       "description": "Terminal/IP the record was created from",
-      "sequence": 16,
+      "sequence": 24,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -224,7 +236,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was last changed",
-      "sequence": 17,
+      "sequence": 11,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -235,7 +247,7 @@
       "size": "10",
       "key": false,
       "description": "User who last changed the record",
-      "sequence": 18,
+      "sequence": 25,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -246,7 +258,7 @@
       "size": "15",
       "key": false,
       "description": "Terminal/IP the record was last changed from",
-      "sequence": 19,
+      "sequence": 26,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -257,7 +269,7 @@
       "size": "",
       "key": false,
       "description": "Accumulated comment thread between the Employee and the Support Agent (shown on drill-in)",
-      "sequence": 20,
+      "sequence": 16,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -268,7 +280,7 @@
       "size": "2000",
       "key": false,
       "description": "Type a comment here, then use the Reopen-Comment action to post it; this does not change the ticket STATUS",
-      "sequence": 21,
+      "sequence": 15,
       "mandatory": true,
       "primary_key": false,
       "nullable": false
@@ -279,7 +291,7 @@
       "size": "",
       "key": false,
       "description": "Chronological history of changes to this ticket (shown on drill-in)",
-      "sequence": 22,
+      "sequence": 20,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -290,7 +302,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the Employee confirmed and closed the ticket",
-      "sequence": 23,
+      "sequence": 18,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -301,7 +313,7 @@
       "size": "36",
       "key": false,
       "description": "Employee who confirmed and closed the ticket",
-      "sequence": 24,
+      "sequence": 19,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -312,7 +324,7 @@
       "size": "",
       "key": false,
       "description": "Notes describing how the ticket was resolved; mandatory before the ticket can be moved to Resolved",
-      "sequence": 25,
+      "sequence": 17,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -323,7 +335,7 @@
       "size": "36",
       "key": false,
       "description": "Agent to reassign this ticket to; used with the Reassign action, keeps STATUS unchanged",
-      "sequence": 26,
+      "sequence": 9,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -334,7 +346,7 @@
       "size": "100",
       "key": false,
       "description": "Display name of the Employee who raised the ticket, resolved from RAISED_BY at creation",
-      "sequence": 27,
+      "sequence": 7,
       "primary_key": false,
       "nullable": false,
       "mandatory": true

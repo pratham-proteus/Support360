@@ -391,42 +391,6 @@
                 "expression": "",
                 "edit_mask": "",
                 "validations": "",
-                "lookup": "",
-                "item_change": {
-                  "mode": "business_logic",
-                  "business_logic": {
-                    "method": "resolve_raised_by_name",
-                    "description": "Resolve the ticket-raiser's display name from their user id",
-                    "spec": "When RAISED_BY is set (auto-filled with the current logged-in user's id at ticket creation), look up that user's display name via the platform's current user/session directory and set RAISED_BY_NAME to the resolved name on this SUPPORT360_TICKET row. Return {\"updates\": {\"raised_by_name\": <resolved display name>}}. If no display name can be resolved, fall back to the raw user id so the field is never blank."
-                  }
-                }
-              }
-            },
-            {
-              "column": {
-                "name": "raised_by_name",
-                "db_name": "RAISED_BY_NAME",
-                "table_name": "SUPPORT360_TICKET",
-                "table_display_name": "Support ticket (main table)",
-                "group_name": "Others",
-                "col_type": "VARCHAR",
-                "db_size": "100",
-                "heading": "Raised By",
-                "descr": "Display name of the Employee who raised the ticket, resolved from RAISED_BY at creation",
-                "protect": "1",
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "width": 500,
-                "x": "140",
-                "y": "140",
-                "col_id": "10",
-                "format": "",
-                "default_function": "",
-                "default_value": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
                 "lookup": ""
               }
             },
@@ -804,28 +768,6 @@
           },
           "actions": [
             {
-              "name": "Assign Agent",
-              "handler": "navigate",
-              "scope": "row",
-              "visible_when": "{form.status} != \"Closed\"",
-              "navigate": {
-                "obj_name": "support360_ticket_assignment",
-                "param_map": {
-                  "TICKET_NO": "{form.ticket_no}"
-                }
-              },
-              "validations": [
-                {
-                  "type": "expression",
-                  "name": "Ticket is closed",
-                  "error_code": "TICKET_CLOSED_READONLY",
-                  "severity": "E",
-                  "message": "Ticket {form.ticket_no} is Closed and can no longer be assigned.",
-                  "expression": "{form.status} != \"Closed\""
-                }
-              ]
-            },
-            {
               "name": "Edit",
               "handler": "system",
               "system_op": "edit",
@@ -846,7 +788,8 @@
                   "message": "Ticket {form.ticket_no} is Closed and can no longer be edited or deleted.",
                   "expression": "{form.status} != \"Closed\""
                 }
-              ]
+              ],
+              "order": 1
             },
             {
               "name": "Delete",
@@ -869,7 +812,8 @@
                   "message": "Ticket {form.ticket_no} is Closed and can no longer be edited or deleted.",
                   "expression": "{form.status} != \"Closed\""
                 }
-              ]
+              ],
+              "order": 2
             }
           ],
           "validations": []
@@ -888,6 +832,15 @@
           "method": "log_ticket_created",
           "description": "Write a Created entry to the ticket Activity/History Log",
           "spec": "After a new SUPPORT360_TICKET row is added, insert one entry into the ticket's Activity/History Log (the Ticket Activity Log object's underlying table \u2014 table name to be confirmed once that object is designed) with TICKET_NO = the new ticket's ticket number, ACTION_TYPE = 'Created', FIELD_CHANGED = null, OLD_VALUE = null, NEW_VALUE = null, CHANGED_BY = the current logged-in user, and CHANGE_DATE = the current timestamp. This is a notification/audit write only and must never block or roll back the ticket save."
+        }
+      },
+      {
+        "event": "on-add",
+        "name": "resolve_raised_by_name",
+        "business_logic": {
+          "method": "resolve_raised_by_name",
+          "description": "Resolve the ticket-raiser's display name from their user id",
+          "spec": "After a new SUPPORT360_TICKET row is added, take the RAISED_BY value already set on the row (the current logged-in user's id) and look up that user's display name via the platform's current user/session directory. Set RAISED_BY_NAME to the resolved display name on this row. If no display name can be resolved, fall back to the raw RAISED_BY id so the field is never blank. Return {\"updates\": {\"raised_by_name\": <resolved value>}}. This must run unconditionally on every ticket add so RAISED_BY_NAME is never left null."
         }
       }
     ],

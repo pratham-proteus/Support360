@@ -15,7 +15,7 @@
       "query": {
         "condition": "and",
         "rules": [
-          { "id": "Criteria_1", "field": "SUPPORT360_TICKET.RAISED_BY", "DBNAME": "RAISED_BY", "tableName": "SUPPORT360_TICKET", "COLTYPE": "string", "currentFieldType": "string", "operator": "=", "queryOption": "F", "prevOption": "F", "customValue": ":user_employee", "promptLabel": "", "value": ":user_employee", "chipValue": [] },
+          { "id": "Criteria_1", "field": "SUPPORT360_TICKET.RAISED_BY", "DBNAME": "RAISED_BY", "tableName": "SUPPORT360_TICKET", "COLTYPE": "string", "currentFieldType": "string", "operator": "=", "queryOption": "F", "prevOption": "F", "customValue": "LoginUser", "promptLabel": "", "value": "LoginUser", "chipValue": [] },
           { "id": "Criteria_2", "field": "SUPPORT360_TICKET.CREATED_DATE", "DBNAME": "CREATED_DATE", "tableName": "SUPPORT360_TICKET", "COLTYPE": "date", "currentFieldType": "date", "operator": ">=", "queryOption": "P", "prevOption": "P", "customValue": "FixedValue", "promptLabel": "Created From", "promptVar": "created_from", "value": "2026-05-20", "chipValue": [] },
           { "id": "Criteria_3", "field": "SUPPORT360_TICKET.CREATED_DATE", "DBNAME": "CREATED_DATE", "tableName": "SUPPORT360_TICKET", "COLTYPE": "date", "currentFieldType": "date", "operator": "<=", "queryOption": "P", "prevOption": "P", "customValue": "FixedValue", "promptLabel": "Created To", "promptVar": "created_to", "value": ":calendar_today", "chipValue": [] }
         ]

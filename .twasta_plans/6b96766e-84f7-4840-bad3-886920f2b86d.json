@@ -1,0 +1,202 @@
+{
+  "id": "6b96766e-84f7-4840-bad3-886920f2b86d",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Remove the support360_employee_dashboard object and add 'My Tickets by Priority'",
+  "kind": "change",
+  "status": "completed",
+  "description": "Remove the Parent Dashboard 'Employee Dashboard' and keep 'My Tickets by Priority' and 'My Tickets Status Trend' under the Dashboard itself",
+  "created_at": 1790232711.0709424,
+  "updated_at": 1791194259.3495302,
+  "todos": [
+    {
+      "id": "frs",
+      "step": "frs",
+      "label": "Generate Functional Requirements",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "app_json",
+      "step": "app_json",
+      "label": "Generate Application Structure",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "analyze_deps",
+      "step": "analyze_deps",
+      "label": "Analyze Object Dependencies",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null
+    },
+    {
+      "id": "obj_support360_category_master",
+      "step": "object",
+      "label": "Build & verify: Category Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_category_master",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_priority_master",
+      "step": "object",
+      "label": "Build & verify: Priority Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_priority_master",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_my_agents",
+      "step": "object",
+      "label": "Build & verify: Agent Master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": "phase_1"
+    },
+    {
+      "id": "obj_support360_create_ticket",
+      "step": "object",
+      "label": "Build & verify: My Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_manage_ticket_queue",
+      "step": "object",
+      "label": "Build & verify: Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_ticket_assignment",
+      "step": "object",
+      "label": "Build & verify: Ticket Assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_resolved_tickets",
+      "step": "object",
+      "label": "Build & verify: Resolved Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_resolved_tickets",
+      "obj_type": "T",
+      "phase_id": "phase_2"
+    },
+    {
+      "id": "obj_support360_my_tickets_by_priority",
+      "step": "object",
+      "label": "Build & verify: My Tickets by Priority",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_by_priority",
+      "obj_type": "V",
+      "phase_id": "phase_3"
+    },
+    {
+      "id": "obj_support360_my_tickets_status_trend",
+      "step": "object",
+      "label": "Build & verify: My Tickets Status Trend",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_status_trend",
+      "obj_type": "V",
+      "phase_id": "phase_3"
+    },
+    {
+      "id": "obj_support360_agent_dashboard",
+      "step": "object",
+      "label": "Build & verify: Agent Dashboard",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_agent_dashboard",
+      "obj_type": "D",
+      "phase_id": "phase_4"
+    },
+    {
+      "id": "obj_support360_admin_dashboard",
+      "step": "object",
+      "label": "Build & verify: Admin Dashboard",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_admin_dashboard",
+      "obj_type": "D",
+      "phase_id": "phase_4"
+    }
+  ],
+  "phases": [
+    {
+      "id": "phase_1",
+      "title": "Master & lookup data",
+      "rationale": "Categories, priorities and agents are reference data that tickets and assignments depend on",
+      "objects": [
+        "support360_category_master",
+        "support360_priority_master",
+        "support360_my_agents"
+      ]
+    },
+    {
+      "id": "phase_2",
+      "title": "Core ticket transactions",
+      "rationale": "Ticket creation, the agent queue, assignment and resolution all use the master data",
+      "objects": [
+        "support360_create_ticket",
+        "support360_manage_ticket_queue",
+        "support360_ticket_assignment",
+        "support360_resolved_tickets"
+      ]
+    },
+    {
+      "id": "phase_3",
+      "title": "Employee visuals",
+      "rationale": "Charts for the employee's own tickets need ticket data to exist first",
+      "objects": [
+        "support360_my_tickets_by_priority",
+        "support360_my_tickets_status_trend"
+      ]
+    },
+    {
+      "id": "phase_4",
+      "title": "Dashboards",
+      "rationale": "Agent and admin analytics dashboards come last because they summarize the ticket data and visuals",
+      "objects": [
+        "support360_agent_dashboard",
+        "support360_admin_dashboard"
+      ]
+    }
+  ],
+  "originating_prompt": "Remove the Parent Dashboard 'Employee Dashboard' and keep 'My Tickets by Priority' and 'My Tickets Status Trend' under the Dashboard itself",
+  "resume_ref": {
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "plan_id": "6b96766e-84f7-4840-bad3-886920f2b86d",
+    "scope": "phase"
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

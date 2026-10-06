@@ -1,0 +1,142 @@
+{
+  "id": "5b9986d4-7710-419f-8f99-a55f72116ede",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Build out the existing Employee Dashboard (support360_employee_dashboard) by add",
+  "kind": "change",
+  "status": "completed",
+  "description": "Create an Employee Dashboard for Support360 using the existing ticket data and security rules. The dashboard should show only tickets raised by the currently logged-in employee and include summary cards for Total, Open, Assigned, In Progress, Resolved, and Closed tickets, a ticket-status chart. Do not create duplicate tables or business logic, and do not allow employees to view other employees' tickets. Use the existing Support360 data model, relationships, status values, and row-level security. After implementation, deploy the dashboard and perform a live runtime test to verify the counts, chart, ticket list, employee filtering, and navigation buttons work correctly.",
+  "created_at": 1791173522.7755427,
+  "updated_at": 1791194259.351207,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Register Total Tickets card in navigation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_total_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173522.8051832,
+      "completed_at": 1791173534.5314703
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Create Total Tickets count card",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_total_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173534.5815897,
+      "completed_at": 1791173583.6919782
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Register Assigned Tickets card in navigation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_assigned_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173583.7707996,
+      "completed_at": 1791173595.4137502
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Create Assigned Tickets count card",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_assigned_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173595.4695044,
+      "completed_at": 1791173638.6071477
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Register In Progress Tickets card in navigation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_in_progress_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173638.661772,
+      "completed_at": 1791173649.4461732
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Create In Progress Tickets count card",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_in_progress_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173649.4953196,
+      "completed_at": 1791173690.974572
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Register Closed Tickets card in navigation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_closed_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173691.0273974,
+      "completed_at": 1791173703.254307
+    },
+    {
+      "id": "change_8",
+      "step": "change",
+      "label": "Create Closed Tickets count card",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_closed_tickets_count",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791173703.3022983,
+      "completed_at": 1791173747.8577967
+    },
+    {
+      "id": "change_9",
+      "step": "change",
+      "label": "Update Employee Dashboard navigation description",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_employee_dashboard",
+      "obj_type": "D",
+      "phase_id": null,
+      "started_at": 1791173747.910001,
+      "completed_at": 1791173794.4802122
+    },
+    {
+      "id": "change_10",
+      "step": "change",
+      "label": "Compose Employee Dashboard with all cards, chart, and ticket list",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_employee_dashboard",
+      "obj_type": "D",
+      "phase_id": null,
+      "started_at": 1791173794.5359724,
+      "completed_at": 1791173868.5536833
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Create an Employee Dashboard for Support360 using the existing ticket data and security rules. The dashboard should show only tickets raised by the currently logged-in employee and include summary cards for Total, Open, Assigned, In Progress, Resolved, and Closed tickets, a ticket-status chart. Do not create duplicate tables or business logic, and do not allow employees to view other employees' tickets. Use the existing Support360 data model, relationships, status values, and row-level security. After implementation, deploy the dashboard and perform a live runtime test to verify the counts, chart, ticket list, employee filtering, and navigation buttons work correctly.",
+  "resume_ref": {
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "plan_id": "5b9986d4-7710-419f-8f99-a55f72116ede",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

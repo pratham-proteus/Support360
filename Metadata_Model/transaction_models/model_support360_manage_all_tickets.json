@@ -329,7 +329,9 @@
                     "business_logic": {
                       "method": "validate_ticket_status_transition",
                       "description": "Enforce the ticket status transition sequence",
-                      "spec": "Implement this validation using ONLY the platform's transaction record binding. Read the ticket's existing/prior STATUS from the row data the platform passes into the validation function as the current/original record context (the row already loaded for this edit) \u2014 do NOT issue any raw SQL query, do NOT open a direct database cursor/connection, and do NOT reference the table name SUPPORT360_TICKET as an executable SQL statement anywhere in this function. Read the requested new STATUS from the submitted form values. On add (_action = add), STATUS must be Open. On edit (_action = edit), allow no-change (existing STATUS == new STATUS). Allow only forward, single-step moves in the sequence Open -> Assigned -> In Progress -> Resolved -> Closed (no skipping, no reverse). Reject a move to Assigned unless ASSIGNED_AGENT is non-empty in the submitted form. Reject a move to In Progress unless the existing STATUS was Assigned. Reject a move to Resolved unless RESOLUTION_NOTES is non-empty in the submitted form. Return an error message describing the invalid transition when the rule fails, otherwise return null. Never let this function raise or propagate a raw database/SQL error."
+                      "spec": "Implement this validation using ONLY the platform's transaction record binding. Read the ticket's existing/prior STATUS from the row data the platform passes into the validation function as the current/original record context (the row already loaded for this edit) \u2014 do NOT issue any raw SQL query, do NOT open a direct database cursor/connection, and do NOT reference the table name SUPPORT360_TICKET as an executable SQL statement anywhere in this function. Read the requested new STATUS from the submitted form values. On add (_action = add), STATUS must be Open. On edit (_action = edit), allow no-change (existing STATUS == new STATUS). Allow only forward, single-step moves in the sequence Open -> Assigned -> In Progress -> Resolved -> Closed (no skipping, no reverse). Reject a move to Assigned unless ASSIGNED_AGENT is non-empty in the submitted form. Reject a move to In Progress unless the existing STATUS was Assigned. Reject a move to Resolved unless RESOLUTION_NOTES is non-empty in the submitted form. Return an error message describing the invalid transition when the rule fails, otherwise return null. Never let this function raise or propagate a raw database/SQL error.",
+                      "COMP_NAME": "field_validation__1__status__validate_ticket_status_transition",
+                      "METHOD_NAME": "run"
                     }
                   }
                 ],
@@ -403,12 +405,12 @@
             {
               "column": {
                 "name": "raised_by",
-                "db_name": "RAISED_BY",
+                "db_name": "RAISED_BY_NAME",
                 "col_type": "VARCHAR",
                 "heading": "Raised By",
                 "descr": "Employee who raised the ticket",
                 "group_name": "Assignment",
-                "mandatory": true,
+                "mandatory": false,
                 "x": "90",
                 "y": "90",
                 "col_id": "9",
@@ -423,7 +425,7 @@
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "",
+                "protect": "1",
                 "validations": "",
                 "lookup": ""
               }
@@ -467,34 +469,6 @@
                     }
                   ]
                 },
-                "protect": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "reassign_to_agent",
-                "db_name": "REASSIGN_TO_AGENT",
-                "col_type": "VARCHAR",
-                "heading": "Reassign To",
-                "descr": "Target agent to reassign this ticket to (used by the Reassign action)",
-                "group_name": "Assignment",
-                "x": "110",
-                "y": "110",
-                "col_id": "11",
-                "table_name": "SUPPORT360_TICKET",
-                "table_display_name": "Main ticket table",
-                "db_size": "36",
-                "width": 360,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "default_value": "",
-                "expression": "",
-                "edit_mask": "",
                 "protect": "",
                 "validations": "",
                 "lookup": ""

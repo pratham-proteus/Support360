@@ -1,0 +1,46 @@
+{
+  "id": "5ff06a9f-f0b1-4bb3-82b4-2987577860b2",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Create a new Employee Dashboard showing ticket metrics relevant to My Tickets an",
+  "kind": "change",
+  "status": "completed",
+  "description": "Make a new Dashboard named \"Employee Dashboard\" and show the relevant information of 'My Tickets' and 'Resolved Tickets' transactions.",
+  "created_at": 1790230224.9350066,
+  "updated_at": 1791194259.3473678,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Register Employee Dashboard in navigation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_employee_dashboard",
+      "obj_type": "D",
+      "phase_id": null,
+      "started_at": 1790230224.9658594,
+      "completed_at": 1790230244.5054657
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Create Employee Dashboard model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_employee_dashboard",
+      "obj_type": "D",
+      "phase_id": null,
+      "started_at": 1790230244.5588007,
+      "completed_at": 1790230321.3534565
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Make a new Dashboard named \"Employee Dashboard\" and show the relevant information of 'My Tickets' and 'Resolved Tickets' transactions.",
+  "resume_ref": {
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "plan_id": "5ff06a9f-f0b1-4bb3-82b4-2987577860b2",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

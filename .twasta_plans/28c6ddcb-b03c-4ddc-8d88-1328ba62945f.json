@@ -1,0 +1,82 @@
+{
+  "id": "28c6ddcb-b03c-4ddc-8d88-1328ba62945f",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add 'Ticket Count by Priority' and 'Tickets by Status Trend' charts to the Emplo",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nCan you check the 'Admin Dashboard' object/screen, and show the same chart for tickets in the 'Employee Dashboard' object",
+  "created_at": 1790230882.743905,
+  "updated_at": 1791194259.3478565,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Register new visual 'My Tickets by Priority' in application.json",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_by_priority",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1790230882.776412,
+      "completed_at": 1790230900.4478273
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Create model for 'My Tickets by Priority' visual",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_by_priority",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1790230900.5066738,
+      "completed_at": 1790230959.535645
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Register new visual 'My Tickets Status Trend' in application.json",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_status_trend",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1790230959.586653,
+      "completed_at": 1790230978.7739775
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Create model for 'My Tickets Status Trend' visual",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_status_trend",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1790230978.8377182,
+      "completed_at": 1790231050.148069
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Add both new charts to the Employee Dashboard",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_employee_dashboard",
+      "obj_type": "D",
+      "phase_id": null,
+      "started_at": 1790231050.1976268,
+      "completed_at": 1790231066.408497
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nCan you check the 'Admin Dashboard' object/screen, and show the same chart for tickets in the 'Employee Dashboard' object",
+  "resume_ref": {
+    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "plan_id": "28c6ddcb-b03c-4ddc-8d88-1328ba62945f",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

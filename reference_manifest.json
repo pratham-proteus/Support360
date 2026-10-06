@@ -1,7 +1,7 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-09-22T11:13:33.831460+00:00",
+  "generated_at": "2026-10-05T09:34:04.076610+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
@@ -19,32 +19,56 @@
     {
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
-      "title": "Manage Ticket Queue",
+      "title": "Ticket Queue",
       "description": "Agent views, works, and resolves tickets"
     },
     {
       "obj_name": "support360_category_master",
       "obj_type": "T",
-      "title": "Manage Category Master",
+      "title": "Category Master",
       "description": "Admin defines and maintains ticket categories"
     },
     {
       "obj_name": "support360_priority_master",
       "obj_type": "T",
-      "title": "Manage Priority Master",
+      "title": "Priority Master",
       "description": "Admin defines and maintains priority levels"
     },
     {
       "obj_name": "support360_my_agents",
       "obj_type": "T",
-      "title": "Manage Agent Master",
+      "title": "Agent Master",
       "description": "Admin maintains the master list of Support Agents with their availability and status."
     },
     {
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
-      "title": "Manage Ticket Assignment",
+      "title": "Ticket Assignment",
       "description": "Agent assigns the Support Agent handling a ticket; only Active agents are listed, and only Active + Available agents may"
+    },
+    {
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "title": "All Tickets",
+      "description": "Admin overarching view and intervention on all tickets, no row-level restriction"
+    },
+    {
+      "obj_name": "support360_my_tickets_by_priority",
+      "obj_type": "V",
+      "title": "My Tickets by Priority",
+      "description": "Chart showing count of the current Employee's own tickets grouped by PRIORITY_CODE"
+    },
+    {
+      "obj_name": "support360_my_tickets_status_trend",
+      "obj_type": "V",
+      "title": "My Tickets Status Trend",
+      "description": "Trend chart showing the current Employee's own ticket counts by STATUS over time"
+    },
+    {
+      "obj_name": "support360_agent_dashboard",
+      "obj_type": "D",
+      "title": "Agent Dashboard",
+      "description": "Ticket Queue analytics dashboard for the Support Agent, summarizing their assigned queue."
     },
     {
       "obj_name": "support360_admin_dashboard",
@@ -120,30 +144,30 @@
       "other_columns": [
         "TITLE VARCHAR",
         "DESCRIPTION TEXT",
-        "ASSIGNED_AGENT VARCHAR",
-        "CATEGORY_CODE VARCHAR",
-        "STATUS VARCHAR",
-        "PRIORITY_CODE VARCHAR",
         "RAISED_BY VARCHAR",
+        "CATEGORY_CODE VARCHAR",
+        "PRIORITY_CODE VARCHAR",
+        "STATUS VARCHAR",
+        "RAISED_BY_NAME VARCHAR",
+        "ASSIGNED_AGENT VARCHAR",
+        "REASSIGN_TO_AGENT VARCHAR",
         "CREATED_DATE DATETIME",
+        "CHG_DATE DATETIME",
         "ATTACHMENT VARCHAR",
         "ATTACHMENT_UPLOADED_BY VARCHAR",
         "ATTACHMENT_UPLOADED_DATE DATETIME",
+        "NEW_COMMENT VARCHAR",
+        "AGENT_COMMENTS TEXT",
+        "RESOLUTION_NOTES TEXT",
+        "CLOSED_DATE DATETIME",
+        "CLOSED_BY VARCHAR",
+        "ACTIVITY_HISTORY TEXT",
         "ID VARCHAR",
         "ADD_DATE DATETIME",
         "ADD_USER VARCHAR",
         "ADD_TERM VARCHAR",
-        "CHG_DATE DATETIME",
         "CHG_USER VARCHAR",
-        "CHG_TERM VARCHAR",
-        "AGENT_COMMENTS TEXT",
-        "NEW_COMMENT VARCHAR",
-        "ACTIVITY_HISTORY TEXT",
-        "CLOSED_DATE DATETIME",
-        "CLOSED_BY VARCHAR",
-        "RESOLUTION_NOTES TEXT",
-        "REASSIGN_TO_AGENT VARCHAR",
-        "RAISED_BY_NAME VARCHAR"
+        "CHG_TERM VARCHAR"
       ]
     },
     {

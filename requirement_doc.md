@@ -174,15 +174,9 @@
 - Additional data management: None; this activity is itself the cross-update target written by all other ticket actions.
 
 ## Dashboards
-### Employee Dashboard
-- Role: Employee
-- Criteria: RAISED_BY = current Employee (fixed default), CREATED_DATE range (default: last 90 days, adjustable).
-- Visuals:
-  - My Open Tickets Count — Card — count of own tickets with STATUS in (Open, Assigned, In Progress).
-  - My Tickets Awaiting Confirmation Count — Card — count of own tickets with STATUS = Resolved.
-  - My Tickets by Status — Pie-Chart — own tickets grouped by STATUS.
-  - My Tickets Grid — Grid — TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, LAST_UPDATED_DATE for own tickets.
-- Drill-through: My Open Tickets Count and My Tickets by Status drill to My Tickets (V) filtered by the clicked STATUS; My Tickets Grid rows drill to ticket detail.
+### Employee Dashboard (Note)
+- 'My Tickets by Priority' and 'My Tickets Status Trend' are no longer composed into a parent Employee Dashboard object. They are now standalone navigation entries under a top-level 'Dashboard' menu.
+- Each retains its existing scope: row-level filtered to RAISED_BY = current logged-in Employee.
 
 ### Support Agent Dashboard
 - Role: Support Agent
