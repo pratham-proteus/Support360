@@ -1,17 +1,18 @@
 ## Ticket Management
 ### Create Support Ticket
 - Description: Allows an Employee to log a new support ticket describing an issue or request they need help with.
-- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display-only), PRIORITY_CODE, PRIORITY_NAME (display-only), STATUS (defaults to Open), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), RAISED_BY_NAME (display-only, automatically resolved from the logged-in user's id to their display name when the ticket is created), CREATED_DATE, ATTACHMENT (one or more files).
+- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display-only), PRIORITY_CODE, PRIORITY_NAME (display-only), STATUS (defaults to Pending), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), RAISED_BY_NAME (display-only, automatically resolved from the logged-in user's id to their display name when the ticket is created), ASSIGNED_AGENT, ASSIGNED_AGENT_NAME (display-only, resolved from SUPPORT360_AGENT.AGENT_NAME via ASSIGNED_AGENT), CREATED_DATE, ATTACHMENT (one or more files).
 - Business rules:
   - TITLE, DESCRIPTION, CATEGORY_CODE and PRIORITY_CODE are mandatory; ticket cannot be saved without them.
   - RAISED_BY is mandatory and is automatically set to the id of the currently logged-in user; it is shown read-only on the Add screen as the resolved user id (never as a raw parameter token) and is not user-editable. No separate employee-name field is displayed alongside it.
-  - CATEGORY_CODE must exist in active Category master; PRIORITY_CODE must exist in active Priority master.
+  - CATEGORY_CODE must exist in active Category master; PRIORITY_NAME is selected from the active Priority master (lookup on PRIORITY_NAME).
   - When CATEGORY_CODE is selected, CATEGORY_NAME is automatically fetched from the Category master and displayed read-only; it is not user-editable and is cleared if CATEGORY_CODE is cleared.
-  - When PRIORITY_CODE is selected, PRIORITY_NAME is automatically fetched from the Priority master and displayed read-only; it is not user-editable and is cleared if PRIORITY_CODE is cleared.
+  - When PRIORITY_NAME is selected, PRIORITY_CODE is automatically resolved from the Priority master and held hidden and read-only (protected); it is not user-editable and is cleared if PRIORITY_NAME is cleared.
   - TICKET_NO is system-generated and unique.
-  - STATUS is set to Open automatically on creation and is not user-editable at creation.
+  - STATUS is set to Pending automatically on creation and is not user-editable at creation.
   - Show clear inline error messages when a mandatory field is missing or invalid, and a success message once the ticket is saved.
-- Business actions: Add, Edit (before assignment), Delete (own ticket, while Open), Search. Clicking Assign Agent opens the Ticket Assignment screen for the current ticket.
+  - When CATEGORY_CODE is selected (and changed), the ticket is automatically assigned to the Support Agent whose PREFERENCE equals the selected CATEGORY_CODE, but ONLY if that agent's AGENT_STATUS = Active and AGENT_AVAILABILITY = Available: ASSIGNED_AGENT is auto-filled from SUPPORT360_AGENT.AGENT_ID where SUPPORT360_AGENT.PREFERENCE = CATEGORY_CODE AND SUPPORT360_AGENT.AGENT_STATUS = Active AND SUPPORT360_AGENT.AGENT_AVAILABILITY = Available, with no user action required. When an agent is found this way, STATUS is also automatically changed from Pending to Assigned at the same time. If the matching agent is Active but Occupied (availability not Available), or if no agent has a matching PREFERENCE at all, ASSIGNED_AGENT remains unset and STATUS stays Pending.
+- Business actions: Add, Edit (before assignment), Delete (own ticket, while Open), Search. Clicking Assign Agent opens the Ticket Assignment screen for the current ticket. Assign Agent (on-demand action, visible only while STATUS = Pending and no agent is yet assigned): on click, looks up SUPPORT360_AGENT for an agent whose PREFERENCE equals the ticket's CATEGORY_CODE, AGENT_STATUS = Active, and AGENT_AVAILABILITY = Available (the same matching rule already used automatically when CATEGORY_CODE is selected, now also available on demand for tickets that were not auto-assigned); if a match is found, ASSIGNED_AGENT is set to that agent and STATUS changes to Assigned. If no eligible agent is found, nothing changes and a non-blocking message is shown.
 - Additional data management: Every ATTACHMENT uploaded is linked to the TICKET_NO with uploaded-by and uploaded-date; an entry is written to the ticket's Activity/History Log recording ticket creation.
 
 ### My Tickets
@@ -72,6 +73,17 @@
 - Business actions: Save/Update Assigned Agent.
 
 ## Admin Setup
+### My Agents
+- Description: Admin maintains the master list of Support Agents with their availability, status and preference.
+- Data points: AGENT_ID, AGENT_NAME, AGENT_AVAILABILITY (dropdown: Available, Occupied), AGENT_STATUS (dropdown: Active, Inactive), PREFERENCE (VARCHAR(50), dropdown, editable, optional — the agent's area of expertise/preference).
+- Business rules:
+  - AGENT_ID and AGENT_NAME are mandatory; AGENT_ID is unique.
+  - AGENT_AVAILABILITY must be one of Available, Occupied; AGENT_STATUS must be one of Active, Inactive.
+  - PREFERENCE must be one of HARDWARE, SOFTWARE, ACCESS, NETWORK.
+  - Deactivating an Agent (AGENT_STATUS set to Inactive) automatically sets AGENT_AVAILABILITY to Occupied and protects it from edits; activating the Agent restores AGENT_AVAILABILITY to Available and unprotects it.
+- Business actions: Search, Add, Edit, Activate Agent, Deactivate Agent.
+- Additional data management: None beyond master persistence.
+
 ### Manage Category Master
 - Description: Allows Admin to define and maintain the list of ticket categories used to classify support tickets.
 - Data points: CATEGORY_CODE, CATEGORY_NAME, DESCRIPTION, IS_ACTIVE.

@@ -12,7 +12,7 @@
 
 # Canonical stored spellings, keyed by their normalised (lower-case) form.
 CANONICAL_STATUS = {
-    'open': 'Open',
+    'pending': 'Pending',
     'assigned': 'Assigned',
     'in progress': 'In Progress',
     'resolved': 'Resolved',
@@ -65,9 +65,9 @@ def run(args):
         return None
 
     # Build a message tailored to what the ticket is currently sitting on.
-    if old_status == 'Open':
+    if old_status == 'Pending':
         msg = (
-            "Ticket %s is still Open. Assign it first (Ticket Assignment / Assign action) "
+            "Ticket %s is still Pending. Assign it first (Ticket Assignment / Assign action) "
             "before moving it to '%s'." % (ticket_no, new_status)
         )
     elif old_status == 'Assigned':

@@ -251,6 +251,11 @@
                       "color": "red",
                       "icon": "✕",
                       "label": "Closed"
+                    },
+                    {
+                      "when": "Pending",
+                      "color": "yellow",
+                      "label": "Pending"
                     }
                   ],
                   "defaultColor": "grey"

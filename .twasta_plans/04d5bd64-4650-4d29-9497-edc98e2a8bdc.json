@@ -1,0 +1,106 @@
+{
+  "id": "04d5bd64-4650-4d29-9497-edc98e2a8bdc",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Move the preference-based 'Assign Agent' action from Manage Ticket Queue to Crea",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Create Ticket\" screen open (object support360_create_ticket, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIt should check \"Preference\" = \"Category Name\" like 'HARDWARE' = 'HARDWARE'. If it matches, the Agent for preferred category should get assigned. The status of that ticket should change from 'Pending' to 'Assigned'. And also the 'assigned_agent' and 'assigned_agent_name' should get filled with the agent who is assigned. Add an 'Assign Agent' action/button to Create Ticket that runs this preference-matching logic on demand for the open ticket. Replace the 'Assign Agent' action/button form 'Ticket Queue' transaction to 'Create Ticket' transaction.",
+  "created_at": 1791364238.755079,
+  "updated_at": 1791365337.263162,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Document on-demand Assign Agent action on Create Ticket in FRS",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364238.7887616,
+      "completed_at": 1791364261.5539525
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Remove Assign Agent action mention from Manage Ticket Queue FRS section",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364261.6177409,
+      "completed_at": 1791364276.4784958
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Update Create Ticket nav entry to mention Assign Agent action",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364276.5396085,
+      "completed_at": 1791364300.5681746
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Update Manage Ticket Queue nav entry to drop Assign Agent action",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364300.6338832,
+      "completed_at": 1791364312.936248
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Add ASSIGNED_AGENT_NAME column, agent join, and Assign Agent action to Create Ticket model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364313.0034342,
+      "completed_at": 1791364372.8497806
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Implement assign_agent_by_preference business logic for Create Ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364372.9170835,
+      "completed_at": 1791364390.7415922
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Remove Assign Agent action from Manage Ticket Queue model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791364390.8966126,
+      "completed_at": 1791364410.9771235
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Create Ticket\" screen open (object support360_create_ticket, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIt should check \"Preference\" = \"Category Name\" like 'HARDWARE' = 'HARDWARE'. If it matches, the Agent for preferred category should get assigned. The status of that ticket should change from 'Pending' to 'Assigned'. And also the 'assigned_agent' and 'assigned_agent_name' should get filled with the agent who is assigned. Add an 'Assign Agent' action/button to Create Ticket that runs this preference-matching logic on demand for the open ticket. Replace the 'Assign Agent' action/button form 'Ticket Queue' transaction to 'Create Ticket' transaction.",
+  "resume_ref": {
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
+    "plan_id": "04d5bd64-4650-4d29-9497-edc98e2a8bdc",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

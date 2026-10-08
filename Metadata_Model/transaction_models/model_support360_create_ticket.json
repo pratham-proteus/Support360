@@ -99,23 +99,10 @@
                 "db_name": "CATEGORY_CODE",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
-                "heading": "Category",
+                "heading": "Category Code",
                 "descr": "Ticket category, picked from the active Category master",
                 "mandatory": true,
-                "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_CODE)",
-                "lookup_filter": "IS_ACTIVE = 'Y'",
                 "must_exist_in": "SUPPORT360_CATEGORY_MASTER",
-                "item_change": {
-                  "mode": "rule",
-                  "source_table": "SUPPORT360_CATEGORY_MASTER",
-                  "match_table_col": "CATEGORY_CODE",
-                  "fill": [
-                    {
-                      "form_col": "category_name",
-                      "table_col": "CATEGORY_NAME"
-                    }
-                  ]
-                },
                 "validations": [
                   {
                     "type": "builtin",
@@ -145,13 +132,44 @@
                 "db_size": "20",
                 "width": 200,
                 "key": false,
-                "hidden": "",
+                "hidden": true,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": ""
+                "protect": false,
+                "lookup": "",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_AGENT",
+                  "match_table_col": "PREFERENCE",
+                  "on_no_match": "leave",
+                  "conditions": [
+                    {
+                      "column": "AGENT_STATUS",
+                      "op": "=",
+                      "source": "const",
+                      "value": "Active"
+                    },
+                    {
+                      "column": "AGENT_AVAILABILITY",
+                      "op": "=",
+                      "source": "const",
+                      "value": "Available"
+                    }
+                  ],
+                  "fill": [
+                    {
+                      "form_col": "assigned_agent",
+                      "table_col": "AGENT_ID"
+                    },
+                    {
+                      "form_col": "status",
+                      "expr": "\"Assigned\""
+                    }
+                  ]
+                }
               }
             },
             {
@@ -161,9 +179,23 @@
                 "table_name": "SUPPORT360_CATEGORY_MASTER",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
-                "heading": "Category Name",
-                "descr": "Category name from the Category master (display only)",
-                "protect": "1",
+                "heading": "Ticket Category",
+                "descr": "Category name, picked from the active Category master; auto-fills Category Code",
+                "protect": false,
+                "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_NAME)",
+                "lookup_filter": "IS_ACTIVE = 'Y'",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_CATEGORY_MASTER",
+                  "match_table_col": "CATEGORY_NAME",
+                  "on_no_match": "clear",
+                  "fill": [
+                    {
+                      "form_col": "category_code",
+                      "table_col": "CATEGORY_CODE"
+                    }
+                  ]
+                },
                 "x": "50",
                 "y": "50",
                 "col_id": "5",
@@ -171,15 +203,14 @@
                 "db_size": "100",
                 "width": 500,
                 "key": false,
-                "mandatory": false,
-                "hidden": "",
+                "mandatory": true,
+                "hidden": false,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "validations": "",
-                "lookup": ""
+                "validations": ""
               }
             },
             {
@@ -191,8 +222,6 @@
                 "heading": "Priority",
                 "descr": "Ticket priority, picked from the active Priority master",
                 "mandatory": true,
-                "lookup": "SUPPORT360_PRIORITY_MASTER(PRIORITY_NAME, PRIORITY_CODE)",
-                "lookup_filter": "IS_ACTIVE = 'Y'",
                 "must_exist_in": "SUPPORT360_PRIORITY_MASTER",
                 "item_change": {
                   "mode": "rule",
@@ -234,13 +263,14 @@
                 "db_size": "20",
                 "width": 200,
                 "key": false,
-                "hidden": "",
+                "hidden": true,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": ""
+                "protect": true,
+                "lookup": ""
               }
             },
             {
@@ -251,8 +281,22 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Priority Name",
-                "descr": "Priority name from the Priority master (display only)",
-                "protect": "1",
+                "descr": "Priority name, picked from the active Priority master; auto-fills Priority Code",
+                "protect": false,
+                "lookup": "SUPPORT360_PRIORITY_MASTER(PRIORITY_NAME, PRIORITY_NAME)",
+                "lookup_filter": "IS_ACTIVE = 'Y'",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_PRIORITY_MASTER",
+                  "match_table_col": "PRIORITY_NAME",
+                  "on_no_match": "clear",
+                  "fill": [
+                    {
+                      "form_col": "priority_code",
+                      "table_col": "PRIORITY_CODE"
+                    }
+                  ]
+                },
                 "x": "70",
                 "y": "70",
                 "col_id": "7",
@@ -260,15 +304,14 @@
                 "db_size": "100",
                 "width": 500,
                 "key": false,
-                "mandatory": false,
-                "hidden": "",
+                "mandatory": true,
+                "hidden": false,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "validations": "",
-                "lookup": ""
+                "validations": ""
               }
             },
             {
@@ -279,7 +322,7 @@
                 "col_type": "VARCHAR",
                 "heading": "Status",
                 "descr": "Ticket status; defaults to Open on creation and is not user-editable",
-                "default_value": "Open",
+                "default_value": "Pending",
                 "mandatory": true,
                 "protect": "1",
                 "display": {
@@ -314,6 +357,11 @@
                       "color": "red",
                       "icon": "\u2715",
                       "label": "Closed"
+                    },
+                    {
+                      "when": "Pending",
+                      "color": "yellow",
+                      "label": "Pending"
                     }
                   ],
                   "defaultColor": "grey"
@@ -406,7 +454,7 @@
                 "protect": "1",
                 "x": "90",
                 "y": "90",
-                "col_id": "11",
+                "col_id": "10",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -435,7 +483,7 @@
                 },
                 "x": "100",
                 "y": "100",
-                "col_id": "12",
+                "col_id": "11",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "500",
@@ -464,7 +512,7 @@
                 "protect": "1",
                 "x": "110",
                 "y": "110",
-                "col_id": "13",
+                "col_id": "12",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "36",
@@ -492,7 +540,7 @@
                 "protect": "1",
                 "x": "120",
                 "y": "120",
-                "col_id": "14",
+                "col_id": "13",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -518,9 +566,9 @@
                 "descr": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
                 "hidden": 1,
                 "protect": "1",
-                "x": "150",
-                "y": "150",
-                "col_id": "15",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "36",
@@ -534,6 +582,34 @@
                 "edit_mask": "",
                 "validations": "",
                 "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "assigned_agent_name",
+                "db_name": "AGENT_NAME",
+                "table_name": "SUPPORT360_AGENT",
+                "table_display_name": "Agent master (lookup display)",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Assigned To",
+                "descr": "Name of the Support Agent currently assigned to this ticket (display only, looked up from SUPPORT360_AGENT.AGENT_NAME via ASSIGNED_AGENT)",
+                "protect": "1",
+                "hidden": false,
+                "key": false,
+                "mandatory": false,
+                "db_size": "100",
+                "width": 500,
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": ""
               }
             },
             {
@@ -622,34 +698,6 @@
             },
             {
               "column": {
-                "name": "add_term",
-                "db_name": "ADD_TERM",
-                "group_name": "Others",
-                "col_type": "VARCHAR",
-                "heading": "Added From",
-                "descr": "Terminal/IP the record was created from",
-                "default_value": ":audit_add_terminal",
-                "protect": "1",
-                "x": "190",
-                "y": "190",
-                "col_id": "19",
-                "table_name": "SUPPORT360_TICKET",
-                "table_display_name": "Support ticket (main table)",
-                "db_size": "15",
-                "width": 150,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
                 "name": "chg_date",
                 "db_name": "CHG_DATE",
                 "group_name": "Others",
@@ -658,9 +706,9 @@
                 "descr": "Date/time the record was last changed",
                 "default_value": ":audit_chg_date",
                 "protect": "1",
-                "x": "200",
-                "y": "200",
-                "col_id": "20",
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -686,41 +734,13 @@
                 "descr": "User who last changed the record",
                 "default_value": ":audit_chg_user",
                 "protect": "1",
-                "x": "210",
-                "y": "210",
-                "col_id": "21",
+                "x": "200",
+                "y": "200",
+                "col_id": "20",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "10",
                 "width": 100,
-                "key": false,
-                "mandatory": false,
-                "hidden": "",
-                "format": "",
-                "default_function": "",
-                "expression": "",
-                "edit_mask": "",
-                "validations": "",
-                "lookup": ""
-              }
-            },
-            {
-              "column": {
-                "name": "chg_term",
-                "db_name": "CHG_TERM",
-                "group_name": "Others",
-                "col_type": "VARCHAR",
-                "heading": "Changed From",
-                "descr": "Terminal/IP the record was last changed from",
-                "default_value": ":audit_chg_terminal",
-                "protect": "1",
-                "x": "220",
-                "y": "220",
-                "col_id": "22",
-                "table_name": "SUPPORT360_TICKET",
-                "table_display_name": "Support ticket (main table)",
-                "db_size": "15",
-                "width": 150,
                 "key": false,
                 "mandatory": false,
                 "hidden": "",
@@ -762,6 +782,15 @@
                   "join_table": "SUPPORT360_TICKET",
                   "join_column": "PRIORITY_CODE",
                   "join_type": "left"
+                },
+                {
+                  "table": "SUPPORT360_AGENT",
+                  "main_table": false,
+                  "table_descr": "Agent master (lookup display)",
+                  "column": "AGENT_ID",
+                  "join_table": "SUPPORT360_TICKET",
+                  "join_column": "ASSIGNED_AGENT",
+                  "join_type": "left"
                 }
               ]
             }
@@ -792,28 +821,18 @@
               "order": 1
             },
             {
-              "name": "Delete",
-              "handler": "system",
-              "system_op": "delete",
+              "name": "Assign Agent",
+              "handler": "business_logic",
               "scope": "row",
-              "visible_when": "{form.status} != \"Closed\"",
-              "validations": [
-                {
-                  "type": "expression",
-                  "name": "Must be own open ticket",
-                  "message": "Only your own tickets can be deleted, and only while STATUS is Open (current status: {form.status}).",
-                  "expression": "{form.status} == \"Open\""
-                },
-                {
-                  "type": "expression",
-                  "name": "Ticket is closed",
-                  "error_code": "TICKET_CLOSED_READONLY",
-                  "severity": "E",
-                  "message": "Ticket {form.ticket_no} is Closed and can no longer be edited or deleted.",
-                  "expression": "{form.status} != \"Closed\""
-                }
-              ],
-              "order": 2
+              "visible_when": "{form.status} == \"Pending\" && is_empty({form.assigned_agent})",
+              "order": 2,
+              "business_logic": {
+                "method": "assign_agent_by_preference",
+                "description": "Auto-assign the ticket to the Support Agent whose PREFERENCE matches the ticket category",
+                "spec": "On click, look up table SUPPORT360_AGENT where PREFERENCE = this ticket's CATEGORY_CODE (column SUPPORT360_TICKET.CATEGORY_CODE), AGENT_STATUS = 'Active', and AGENT_AVAILABILITY = 'Available'. If one or more agents match, pick one and set SUPPORT360_TICKET.ASSIGNED_AGENT = that agent's AGENT_ID and SUPPORT360_TICKET.STATUS = 'Assigned' on this row (return {\"updates\": {\"assigned_agent\": ..., \"status\": \"Assigned\"}}). ASSIGNED_AGENT_NAME needs no direct update \u2014 it resolves automatically via the new left join on ASSIGNED_AGENT. If no Active+Available agent has a matching PREFERENCE (including a matching agent that is Active but Occupied), make no changes and surface a non-blocking message that no eligible agent was found for this category.",
+                "COMP_NAME": "form_action__1__assign_agent_by_preference",
+                "METHOD_NAME": "run"
+              }
             }
           ],
           "validations": []

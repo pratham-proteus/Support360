@@ -1,0 +1,118 @@
+{
+  "id": "94f5fdaa-4a82-4549-a7a1-dfd4b1b23c74",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add a 'Pending' entry (color Yellow) to the STATUS column's status_tag display m",
+  "kind": "change",
+  "status": "completed",
+  "description": "The \"Status\" of value 'Pending' should be yellow.",
+  "created_at": 1791280124.666847,
+  "updated_at": 1791365337.2602274,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in All Tickets grid",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_all_tickets_grid",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791280124.7110405,
+      "completed_at": 1791280137.2966402
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in My Tickets grid",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets_grid",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791280137.3617334,
+      "completed_at": 1791280671.933917
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in My Active Tickets grid",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_active_tickets_grid",
+      "obj_type": "V",
+      "phase_id": null,
+      "started_at": 1791280672.0141132,
+      "completed_at": 1791280685.5713654
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in Create Ticket screen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791280685.6338334,
+      "completed_at": 1791280696.5140088
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in Resolved Tickets screen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_resolved_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791280696.5955596,
+      "completed_at": 1791280707.5332549
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in Manage Ticket Queue screen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791280707.6085854,
+      "completed_at": 1791280720.4766028
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in Manage All Tickets screen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791280720.553143,
+      "completed_at": 1791280743.877977
+    },
+    {
+      "id": "change_8",
+      "step": "change",
+      "label": "Add Pending=Yellow to STATUS display map in My Tickets screen",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791280743.9723823,
+      "completed_at": 1791280840.852815
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "The \"Status\" of value 'Pending' should be yellow.",
+  "resume_ref": {
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
+    "plan_id": "94f5fdaa-4a82-4549-a7a1-dfd4b1b23c74",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

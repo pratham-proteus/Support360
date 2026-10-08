@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Once the ticket 'Status' = 'Closed', it should not be editable. Make it view only everywhere.",
   "created_at": 1789983236.2974288,
-  "updated_at": 1791194259.343393,
+  "updated_at": 1791365337.2503757,
   "todos": [
     {
       "id": "change_1",
@@ -97,7 +97,7 @@
   "phases": [],
   "originating_prompt": "Once the ticket 'Status' = 'Closed', it should not be editable. Make it view only everywhere.",
   "resume_ref": {
-    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
     "plan_id": "c66df8d3-b64d-45f2-9fe9-5549e6b6a2e1",
     "scope": null
   },

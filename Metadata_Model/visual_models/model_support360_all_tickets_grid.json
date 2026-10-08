@@ -223,6 +223,11 @@
                     "when": "Closed",
                     "color": "red",
                     "label": "Closed"
+                  },
+                  {
+                    "when": "Pending",
+                    "color": "yellow",
+                    "label": "Pending"
                   }
                 ]
               },
@@ -893,6 +898,11 @@
                     "when": "Closed",
                     "color": "red",
                     "label": "Closed"
+                  },
+                  {
+                    "when": "Pending",
+                    "color": "yellow",
+                    "label": "Pending"
                   }
                 ]
               },

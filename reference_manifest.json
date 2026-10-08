@@ -1,20 +1,14 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-10-05T09:34:04.076610+00:00",
+  "generated_at": "2026-10-07T09:13:30.747246+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
-      "title": "My Tickets",
+      "title": "Create Ticket",
       "description": "Employee logs a new support ticket"
-    },
-    {
-      "obj_name": "support360_resolved_tickets",
-      "obj_type": "T",
-      "title": "Resolved Tickets",
-      "description": "Employee view of own tickets marked Resolved by the Support Agent"
     },
     {
       "obj_name": "support360_manage_ticket_queue",
@@ -43,14 +37,8 @@
     {
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
-      "title": "Ticket Assignment",
+      "title": "Ticket Management",
       "description": "Agent assigns the Support Agent handling a ticket; only Active agents are listed, and only Active + Available agents may"
-    },
-    {
-      "obj_name": "support360_manage_all_tickets",
-      "obj_type": "T",
-      "title": "All Tickets",
-      "description": "Admin overarching view and intervention on all tickets, no row-level restriction"
     },
     {
       "obj_name": "support360_my_tickets_by_priority",
@@ -88,6 +76,7 @@
         "AGENT_NAME VARCHAR",
         "AGENT_AVAILABILITY VARCHAR",
         "AGENT_STATUS VARCHAR",
+        "PREFERENCE VARCHAR",
         "ID VARCHAR",
         "ADD_DATE DATETIME",
         "ADD_USER VARCHAR",
@@ -143,30 +132,29 @@
       ],
       "other_columns": [
         "TITLE VARCHAR",
+        "RAISED_BY_NAME VARCHAR",
         "DESCRIPTION TEXT",
-        "RAISED_BY VARCHAR",
         "CATEGORY_CODE VARCHAR",
         "PRIORITY_CODE VARCHAR",
         "STATUS VARCHAR",
-        "RAISED_BY_NAME VARCHAR",
+        "RAISED_BY VARCHAR",
         "ASSIGNED_AGENT VARCHAR",
-        "REASSIGN_TO_AGENT VARCHAR",
         "CREATED_DATE DATETIME",
         "CHG_DATE DATETIME",
         "ATTACHMENT VARCHAR",
         "ATTACHMENT_UPLOADED_BY VARCHAR",
         "ATTACHMENT_UPLOADED_DATE DATETIME",
         "NEW_COMMENT VARCHAR",
+        "ADD_USER VARCHAR",
         "AGENT_COMMENTS TEXT",
-        "RESOLUTION_NOTES TEXT",
-        "CLOSED_DATE DATETIME",
-        "CLOSED_BY VARCHAR",
         "ACTIVITY_HISTORY TEXT",
         "ID VARCHAR",
+        "RESOLUTION_NOTES TEXT",
         "ADD_DATE DATETIME",
-        "ADD_USER VARCHAR",
-        "ADD_TERM VARCHAR",
+        "CLOSED_DATE DATETIME",
         "CHG_USER VARCHAR",
+        "CLOSED_BY VARCHAR",
+        "ADD_TERM VARCHAR",
         "CHG_TERM VARCHAR"
       ]
     },

@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Fix the Assign Ticket error in Support360. When an agent clicks Assign, correctly identify the currently logged-in user and map that user to the corresponding support agent. Do not require the user to sign in again if an active session already exists. Use the current session user/agent ID for the assignment, update ASSIGNED_AGENT on the ticket, and create the corresponding Activity Log entry. Also handle cases where the user is not mapped to an agent with a clear validation message. Test the complete flow: login \u2192 select ticket \u2192 Assign \u2192 select agent \u2192 save \u2192 verify assigned agent \u2192 verify Activity Log.",
   "created_at": 1787641291.4026868,
-  "updated_at": 1791194259.3253274,
+  "updated_at": 1791365337.2339404,
   "todos": [
     {
       "id": "frs",
@@ -332,7 +332,7 @@
   ],
   "originating_prompt": "Fix the Assign Ticket error in Support360. When an agent clicks Assign, correctly identify the currently logged-in user and map that user to the corresponding support agent. Do not require the user to sign in again if an active session already exists. Use the current session user/agent ID for the assignment, update ASSIGNED_AGENT on the ticket, and create the corresponding Activity Log entry. Also handle cases where the user is not mapped to an agent with a clear validation message. Test the complete flow: login \u2192 select ticket \u2192 Assign \u2192 select agent \u2192 save \u2192 verify assigned agent \u2192 verify Activity Log.",
   "resume_ref": {
-    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
     "plan_id": "ab9088ae-dc8b-4947-90fb-dce3702e0a96",
     "scope": "phase"
   },

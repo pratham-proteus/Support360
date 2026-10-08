@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Why is the agent still not getting assigned for the ticket ? Please fix that error. I am still getting that error",
   "created_at": 1788860232.662281,
-  "updated_at": 1791194259.3340025,
+  "updated_at": 1791365337.2418559,
   "todos": [
     {
       "id": "change_1",
@@ -25,7 +25,7 @@
   "phases": [],
   "originating_prompt": "Why is the agent still not getting assigned for the ticket ? Please fix that error. I am still getting that error",
   "resume_ref": {
-    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
     "plan_id": "468343e8-2510-40ed-8bd4-03250227599b",
     "scope": null
   },

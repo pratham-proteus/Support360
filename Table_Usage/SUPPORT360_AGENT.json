@@ -2,24 +2,6 @@
   "table_name": "SUPPORT360_AGENT",
   "objects": [
     {
-      "object_name": "support360_my_agents",
-      "form_no": "1",
-      "usage_type": "M",
-      "referred_columns": [
-        "AGENT_NAME",
-        "ADD_DATE",
-        "CHG_DATE",
-        "CHG_TERM",
-        "AGENT_AVAILABILITY",
-        "CHG_USER",
-        "ID",
-        "AGENT_ID",
-        "ADD_USER",
-        "AGENT_STATUS",
-        "ADD_TERM"
-      ]
-    },
-    {
       "object_name": "support360_resolved_tickets",
       "form_no": "1",
       "usage_type": "M",
@@ -48,12 +30,45 @@
       }
     },
     {
+      "object_name": "support360_my_agents",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "AGENT_STATUS",
+        "CHG_USER",
+        "ADD_USER",
+        "CHG_TERM",
+        "PREFERENCE",
+        "ID",
+        "AGENT_ID",
+        "AGENT_NAME",
+        "ADD_TERM",
+        "AGENT_AVAILABILITY",
+        "CHG_DATE",
+        "ADD_DATE"
+      ]
+    },
+    {
+      "object_name": "support360_create_ticket",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "AGENT_NAME",
+        "AGENT_ID"
+      ],
+      "join_info": {
+        "column": "AGENT_ID",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "ASSIGNED_AGENT"
+      }
+    },
+    {
       "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
-        "AGENT_ID",
-        "AGENT_NAME"
+        "AGENT_NAME",
+        "AGENT_ID"
       ],
       "join_info": {
         "column": "AGENT_ID",

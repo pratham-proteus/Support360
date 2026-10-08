@@ -2,17 +2,18 @@
   "object_name": "support360_my_agents",
   "tables": {
     "SUPPORT360_AGENT": [
-      "AGENT_NAME",
-      "ADD_DATE",
-      "CHG_DATE",
-      "CHG_TERM",
-      "AGENT_AVAILABILITY",
+      "AGENT_STATUS",
       "CHG_USER",
+      "ADD_USER",
+      "CHG_TERM",
+      "PREFERENCE",
       "ID",
       "AGENT_ID",
-      "ADD_USER",
-      "AGENT_STATUS",
-      "ADD_TERM"
+      "AGENT_NAME",
+      "ADD_TERM",
+      "AGENT_AVAILABILITY",
+      "CHG_DATE",
+      "ADD_DATE"
     ]
   }
 }

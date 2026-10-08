@@ -32,9 +32,9 @@ def run(args):
     if is_empty(current_user):
         return 'Unable to determine the current agent — please sign in again before assigning this ticket'
 
-    # Only Open tickets can be assigned
-    if status != 'Open':
-        return 'Only Open tickets can be assigned'
+    # Only Pending tickets can be assigned
+    if status != 'Pending':
+        return 'Only Pending tickets can be assigned'
 
     ts = now()
 

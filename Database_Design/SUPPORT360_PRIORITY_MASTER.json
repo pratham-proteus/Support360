@@ -19,7 +19,12 @@
       "key": false,
       "description": "Name of the priority level",
       "sequence": 2,
-      "mandatory": true
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_PRIORITY_MASTER",
+        "display_column": "PRIORITY_NAME",
+        "value_column": "PRIORITY_NAME"
+      }
     },
     {
       "column_name": "SEQUENCE_NO",

@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAnalyse the Admin dashboard and create similar dashboard to represent visuals for Ticket Queue.",
   "created_at": 1790232250.5157247,
-  "updated_at": 1791194259.3488636,
+  "updated_at": 1791365337.256284,
   "todos": [
     {
       "id": "frs",
@@ -67,12 +67,14 @@
       "error": null,
       "obj_name": "support360_my_agents",
       "obj_type": "T",
-      "phase_id": "phase_1"
+      "phase_id": "phase_1",
+      "review_iters": 1,
+      "stage": "bl_done"
     },
     {
       "id": "obj_support360_create_ticket",
       "step": "object",
-      "label": "Build & verify: My Tickets",
+      "label": "Build & verify: Create Ticket",
       "status": "completed",
       "error": null,
       "obj_name": "support360_create_ticket",
@@ -89,39 +91,19 @@
       "error": null,
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
-      "phase_id": "phase_3",
+      "phase_id": "phase_2",
       "review_iters": 1,
       "stage": "bl_done"
     },
     {
       "id": "obj_support360_ticket_assignment",
       "step": "object",
-      "label": "Build & verify: Ticket Assignment",
+      "label": "Build & verify: Ticket Management",
       "status": "completed",
       "error": null,
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
-      "phase_id": "phase_3"
-    },
-    {
-      "id": "obj_support360_resolved_tickets",
-      "step": "object",
-      "label": "Build & verify: Resolved Tickets",
-      "status": "completed",
-      "error": null,
-      "obj_name": "support360_resolved_tickets",
-      "obj_type": "T",
-      "phase_id": "phase_3"
-    },
-    {
-      "id": "obj_support360_manage_all_tickets",
-      "step": "object",
-      "label": "Build & verify: All Tickets",
-      "status": "completed",
-      "error": null,
-      "obj_name": "support360_manage_all_tickets",
-      "obj_type": "T",
-      "phase_id": "phase_3",
+      "phase_id": "phase_2",
       "review_iters": 1,
       "stage": "bl_done"
     },
@@ -133,7 +115,7 @@
       "error": null,
       "obj_name": "support360_my_tickets_by_priority",
       "obj_type": "V",
-      "phase_id": "phase_4"
+      "phase_id": "phase_3"
     },
     {
       "id": "obj_support360_my_tickets_status_trend",
@@ -143,7 +125,7 @@
       "error": null,
       "obj_name": "support360_my_tickets_status_trend",
       "obj_type": "V",
-      "phase_id": "phase_4"
+      "phase_id": "phase_3"
     },
     {
       "id": "obj_support360_agent_dashboard",
@@ -153,7 +135,7 @@
       "error": null,
       "obj_name": "support360_agent_dashboard",
       "obj_type": "D",
-      "phase_id": "phase_5"
+      "phase_id": "phase_4"
     },
     {
       "id": "obj_support360_admin_dashboard",
@@ -163,14 +145,14 @@
       "error": null,
       "obj_name": "support360_admin_dashboard",
       "obj_type": "D",
-      "phase_id": "phase_5"
+      "phase_id": "phase_4"
     }
   ],
   "phases": [
     {
       "id": "phase_1",
       "title": "Master & lookup data",
-      "rationale": "Categories, priorities and the agent roster are referenced by every ticket transaction, so they come first.",
+      "rationale": "Categories, priorities and agents are reference data that tickets and assignments point to.",
       "objects": [
         "support360_category_master",
         "support360_priority_master",
@@ -179,36 +161,27 @@
     },
     {
       "id": "phase_2",
-      "title": "Core ticket creation",
-      "rationale": "Ticket creation depends only on the masters and produces the ticket records that every later object works on.",
+      "title": "Core ticket transactions",
+      "rationale": "Ticket creation, queue handling and assignment all rely on the category, priority and agent masters.",
       "objects": [
-        "support360_create_ticket"
+        "support360_create_ticket",
+        "support360_manage_ticket_queue",
+        "support360_ticket_assignment"
       ]
     },
     {
       "id": "phase_3",
-      "title": "Ticket processing & views",
-      "rationale": "Queue handling, assignment, resolution views and admin oversight all work on tickets that already exist and on the agent master.",
-      "objects": [
-        "support360_manage_ticket_queue",
-        "support360_ticket_assignment",
-        "support360_resolved_tickets",
-        "support360_manage_all_tickets"
-      ]
-    },
-    {
-      "id": "phase_4",
       "title": "Visuals",
-      "rationale": "The employee ticket charts need populated ticket data.",
+      "rationale": "Employee ticket charts use ticket data, so they come after the transactions.",
       "objects": [
         "support360_my_tickets_by_priority",
         "support360_my_tickets_status_trend"
       ]
     },
     {
-      "id": "phase_5",
+      "id": "phase_4",
       "title": "Dashboards",
-      "rationale": "The agent and admin analytics dashboards go last because they may embed the visuals and depend on all ticket transactions.",
+      "rationale": "Agent and admin dashboards bring together the ticket data and visuals built in earlier phases.",
       "objects": [
         "support360_agent_dashboard",
         "support360_admin_dashboard"
@@ -217,7 +190,7 @@
   ],
   "originating_prompt": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAnalyse the Admin dashboard and create similar dashboard to represent visuals for Ticket Queue.",
   "resume_ref": {
-    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
     "plan_id": "d2871cc1-d320-4b82-a027-b05c763aefc9",
     "scope": "phase"
   },

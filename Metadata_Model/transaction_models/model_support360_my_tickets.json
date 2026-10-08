@@ -83,7 +83,7 @@
                 "width": 200,
                 "key": false,
                 "mandatory": false,
-                "hidden": "",
+                "hidden": 1,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
@@ -218,6 +218,11 @@
                       "color": "red",
                       "icon": "\u2715",
                       "label": "Closed"
+                    },
+                    {
+                      "when": "Pending",
+                      "color": "yellow",
+                      "label": "Pending"
                     }
                   ],
                   "defaultColor": "grey"

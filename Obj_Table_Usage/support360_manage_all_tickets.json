@@ -2,40 +2,39 @@
   "object_name": "support360_manage_all_tickets",
   "tables": {
     "SUPPORT360_TICKET": [
-      "ATTACHMENT_UPLOADED_DATE",
-      "ID",
-      "CREATED_DATE",
-      "TICKET_NO",
-      "PRIORITY_CODE",
-      "ASSIGNED_AGENT",
       "AGENT_COMMENTS",
-      "TITLE",
-      "CLOSED_DATE",
-      "CHG_USER",
+      "ASSIGNED_AGENT",
       "ADD_USER",
-      "RAISED_BY_NAME",
-      "CLOSED_BY",
-      "CHG_DATE",
-      "CHG_TERM",
+      "NEW_COMMENT",
       "DESCRIPTION",
       "RESOLUTION_NOTES",
-      "ACTIVITY_HISTORY",
-      "NEW_COMMENT",
-      "ATTACHMENT",
-      "CATEGORY_CODE",
-      "STATUS",
+      "TITLE",
+      "CHG_DATE",
       "ADD_DATE",
-      "ATTACHMENT_UPLOADED_BY",
-      "REASSIGN_TO_AGENT",
-      "ADD_TERM"
+      "TICKET_NO",
+      "CATEGORY_CODE",
+      "CREATED_DATE",
+      "RAISED_BY_NAME",
+      "ATTACHMENT_UPLOADED_DATE",
+      "ACTIVITY_HISTORY",
+      "ID",
+      "CHG_TERM",
+      "ADD_TERM",
+      "CHG_USER",
+      "STATUS",
+      "ATTACHMENT",
+      "CLOSED_DATE",
+      "PRIORITY_CODE",
+      "CLOSED_BY",
+      "ATTACHMENT_UPLOADED_BY"
     ],
     "SUPPORT360_CATEGORY_MASTER": [
-      "CATEGORY_CODE",
-      "CATEGORY_NAME"
+      "CATEGORY_NAME",
+      "CATEGORY_CODE"
     ],
     "SUPPORT360_PRIORITY_MASTER": [
-      "PRIORITY_NAME",
-      "PRIORITY_CODE"
+      "PRIORITY_CODE",
+      "PRIORITY_NAME"
     ]
   }
 }

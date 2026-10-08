@@ -60,12 +60,38 @@
       ]
     },
     {
+      "column_name": "PREFERENCE",
+      "data_type": "VARCHAR",
+      "size": "50",
+      "key": false,
+      "description": "Agent's preferred support domain",
+      "sequence": 5,
+      "allowed_values": [
+        {
+          "value": "HARDWARE",
+          "label": "HARDWARE"
+        },
+        {
+          "value": "SOFTWARE",
+          "label": "SOFTWARE"
+        },
+        {
+          "value": "ACCESS",
+          "label": "ACCESS"
+        },
+        {
+          "value": "NETWORK",
+          "label": "NETWORK"
+        }
+      ]
+    },
+    {
       "column_name": "ID",
       "data_type": "VARCHAR",
       "size": "36",
       "key": false,
       "description": "Internal record identifier",
-      "sequence": 5
+      "sequence": 6
     },
     {
       "column_name": "ADD_DATE",
@@ -73,7 +99,7 @@
       "size": "",
       "key": false,
       "description": "Record creation timestamp",
-      "sequence": 6
+      "sequence": 7
     },
     {
       "column_name": "ADD_USER",
@@ -81,7 +107,7 @@
       "size": "10",
       "key": false,
       "description": "User who created the record",
-      "sequence": 7
+      "sequence": 8
     },
     {
       "column_name": "ADD_TERM",
@@ -89,7 +115,7 @@
       "size": "15",
       "key": false,
       "description": "Terminal from which the record was created",
-      "sequence": 8
+      "sequence": 9
     },
     {
       "column_name": "CHG_DATE",
@@ -97,7 +123,7 @@
       "size": "",
       "key": false,
       "description": "Last change timestamp",
-      "sequence": 9
+      "sequence": 10
     },
     {
       "column_name": "CHG_USER",
@@ -105,7 +131,7 @@
       "size": "10",
       "key": false,
       "description": "User who last changed the record",
-      "sequence": 10
+      "sequence": 11
     },
     {
       "column_name": "CHG_TERM",
@@ -113,7 +139,7 @@
       "size": "15",
       "key": false,
       "description": "Terminal from which the record was last changed",
-      "sequence": 11
+      "sequence": 12
     }
   ]
 }

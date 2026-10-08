@@ -19,7 +19,12 @@
       "key": false,
       "description": "Name of the ticket category",
       "sequence": 2,
-      "mandatory": true
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_CATEGORY_MASTER",
+        "display_column": "CATEGORY_NAME",
+        "value_column": "CATEGORY_NAME"
+      }
     },
     {
       "column_name": "DESCRIPTION",

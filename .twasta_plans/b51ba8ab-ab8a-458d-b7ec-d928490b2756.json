@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "The tickets created by an Employee are not visible for func admin. Can you check and resolve that issue.",
   "created_at": 1790679904.5496867,
-  "updated_at": 1791194259.3507347,
+  "updated_at": 1791365337.258236,
   "todos": [
     {
       "id": "change_1",
@@ -25,7 +25,7 @@
   "phases": [],
   "originating_prompt": "The tickets created by an Employee are not visible for func admin. Can you check and resolve that issue.",
   "resume_ref": {
-    "session_id": "9fef7921-a397-4eec-9d05-c48e21472881",
+    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
     "plan_id": "b51ba8ab-ab8a-458d-b7ec-d928490b2756",
     "scope": null
   },
