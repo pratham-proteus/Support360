@@ -139,37 +139,7 @@
                 "expression": "",
                 "edit_mask": "",
                 "protect": false,
-                "lookup": "",
-                "item_change": {
-                  "mode": "rule",
-                  "source_table": "SUPPORT360_AGENT",
-                  "match_table_col": "PREFERENCE",
-                  "on_no_match": "leave",
-                  "conditions": [
-                    {
-                      "column": "AGENT_STATUS",
-                      "op": "=",
-                      "source": "const",
-                      "value": "Active"
-                    },
-                    {
-                      "column": "AGENT_AVAILABILITY",
-                      "op": "=",
-                      "source": "const",
-                      "value": "Available"
-                    }
-                  ],
-                  "fill": [
-                    {
-                      "form_col": "assigned_agent",
-                      "table_col": "AGENT_ID"
-                    },
-                    {
-                      "form_col": "status",
-                      "expr": "\"Assigned\""
-                    }
-                  ]
-                }
+                "lookup": ""
               }
             },
             {
@@ -321,7 +291,7 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Status",
-                "descr": "Ticket status; defaults to Open on creation and is not user-editable",
+                "descr": "Defaults to Pending; set to Assigned automatically when the matching agent is not Occupied.",
                 "default_value": "Pending",
                 "mandatory": true,
                 "protect": "1",
@@ -444,6 +414,34 @@
             },
             {
               "column": {
+                "name": "raised_by_name",
+                "db_name": "RAISED_BY_NAME",
+                "group_name": "Others",
+                "col_type": "VARCHAR",
+                "heading": "Raised By Name",
+                "descr": "Display name of the employee who raised the ticket, resolved from the logged-in user's id when the ticket was created",
+                "hidden": true,
+                "protect": "1",
+                "mandatory": false,
+                "key": false,
+                "x": "140",
+                "y": "140",
+                "col_id": "10",
+                "table_name": "SUPPORT360_TICKET",
+                "table_display_name": "Support ticket (main table)",
+                "db_size": "100",
+                "width": 500,
+                "default_value": "",
+                "default_function": "",
+                "format": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": ""
+              }
+            },
+            {
+              "column": {
                 "name": "created_date",
                 "db_name": "CREATED_DATE",
                 "group_name": "Basic",
@@ -454,7 +452,7 @@
                 "protect": "1",
                 "x": "90",
                 "y": "90",
-                "col_id": "10",
+                "col_id": "11",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -483,7 +481,7 @@
                 },
                 "x": "100",
                 "y": "100",
-                "col_id": "11",
+                "col_id": "12",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "500",
@@ -512,7 +510,7 @@
                 "protect": "1",
                 "x": "110",
                 "y": "110",
-                "col_id": "12",
+                "col_id": "13",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "36",
@@ -540,7 +538,7 @@
                 "protect": "1",
                 "x": "120",
                 "y": "120",
-                "col_id": "13",
+                "col_id": "14",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -566,9 +564,9 @@
                 "descr": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
                 "hidden": 1,
                 "protect": "1",
-                "x": "140",
-                "y": "140",
-                "col_id": "14",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "36",
@@ -600,9 +598,9 @@
                 "mandatory": false,
                 "db_size": "100",
                 "width": 500,
-                "x": "150",
-                "y": "150",
-                "col_id": "15",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
                 "edit_mask": "",
                 "validations": "",
                 "lookup": "",
@@ -623,9 +621,9 @@
                 "default_value": "auto_generate()",
                 "protect": "1",
                 "hidden": 1,
-                "x": "160",
-                "y": "160",
-                "col_id": "16",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "36",
@@ -650,9 +648,9 @@
                 "descr": "Date/time the record was created",
                 "default_value": ":audit_add_date",
                 "protect": "1",
-                "x": "170",
-                "y": "170",
-                "col_id": "17",
+                "x": "180",
+                "y": "180",
+                "col_id": "18",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -678,9 +676,9 @@
                 "descr": "User who created the record",
                 "default_value": ":audit_add_user",
                 "protect": "1",
-                "x": "180",
-                "y": "180",
-                "col_id": "18",
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "10",
@@ -706,9 +704,9 @@
                 "descr": "Date/time the record was last changed",
                 "default_value": ":audit_chg_date",
                 "protect": "1",
-                "x": "190",
-                "y": "190",
-                "col_id": "19",
+                "x": "200",
+                "y": "200",
+                "col_id": "20",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "",
@@ -734,9 +732,9 @@
                 "descr": "User who last changed the record",
                 "default_value": ":audit_chg_user",
                 "protect": "1",
-                "x": "200",
-                "y": "200",
-                "col_id": "20",
+                "x": "210",
+                "y": "210",
+                "col_id": "21",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "10",
@@ -819,20 +817,6 @@
                 }
               ],
               "order": 1
-            },
-            {
-              "name": "Assign Agent",
-              "handler": "business_logic",
-              "scope": "row",
-              "visible_when": "{form.status} == \"Pending\" && is_empty({form.assigned_agent})",
-              "order": 2,
-              "business_logic": {
-                "method": "assign_agent_by_preference",
-                "description": "Auto-assign the ticket to the Support Agent whose PREFERENCE matches the ticket category",
-                "spec": "On click, look up table SUPPORT360_AGENT where PREFERENCE = this ticket's CATEGORY_CODE (column SUPPORT360_TICKET.CATEGORY_CODE), AGENT_STATUS = 'Active', and AGENT_AVAILABILITY = 'Available'. If one or more agents match, pick one and set SUPPORT360_TICKET.ASSIGNED_AGENT = that agent's AGENT_ID and SUPPORT360_TICKET.STATUS = 'Assigned' on this row (return {\"updates\": {\"assigned_agent\": ..., \"status\": \"Assigned\"}}). ASSIGNED_AGENT_NAME needs no direct update \u2014 it resolves automatically via the new left join on ASSIGNED_AGENT. If no Active+Available agent has a matching PREFERENCE (including a matching agent that is Active but Occupied), make no changes and surface a non-blocking message that no eligible agent was found for this category.",
-                "COMP_NAME": "form_action__1__assign_agent_by_preference",
-                "METHOD_NAME": "run"
-              }
             }
           ],
           "validations": []
@@ -860,6 +844,15 @@
           "method": "resolve_raised_by_name",
           "description": "Resolve the ticket-raiser's display name from their user id",
           "spec": "After a new SUPPORT360_TICKET row is added, take the RAISED_BY value already set on the row (the current logged-in user's id) and look up that user's display name via the platform's current user/session directory. Set RAISED_BY_NAME to the resolved display name on this row. If no display name can be resolved, fall back to the raw RAISED_BY id so the field is never blank. Return {\"updates\": {\"raised_by_name\": <resolved value>}}. This must run unconditionally on every ticket add so RAISED_BY_NAME is never left null."
+        }
+      },
+      {
+        "event": "on-add",
+        "name": "auto_assign_agent",
+        "business_logic": {
+          "method": "auto_assign_agent",
+          "description": "Auto-assign the ticket to a matching available agent",
+          "spec": "After a new SUPPORT360_TICKET row is added, select from SUPPORT360_AGENT the agent whose PREFERENCE equals the new ticket's CATEGORY_CODE, AGENT_STATUS = 'Active', and AGENT_AVAILABILITY = 'Available'. If a matching agent is found, update this ticket row to set ASSIGNED_AGENT to that agent's AGENT_ID and STATUS to 'Assigned'. If no matching agent is found (no agent with that PREFERENCE, or the only matching agent is Active but Occupied), leave ASSIGNED_AGENT unset and STATUS unchanged (remains 'Pending'). This is a notification/auto-assignment write only and must never block or roll back the ticket save; any failure in this step must be caught and ignored so the ticket save still commits."
         }
       }
     ],

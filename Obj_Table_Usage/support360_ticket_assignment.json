@@ -2,30 +2,31 @@
   "object_name": "support360_ticket_assignment",
   "tables": {
     "SUPPORT360_TICKET": [
-      "TITLE",
-      "CHG_DATE",
       "STATUS",
-      "ATTACHMENT_UPLOADED_DATE",
-      "ATTACHMENT",
-      "ASSIGNED_AGENT",
-      "ADD_USER",
       "ATTACHMENT_UPLOADED_BY",
-      "DESCRIPTION",
-      "PRIORITY_CODE",
-      "ADD_DATE",
-      "CREATED_DATE",
-      "TICKET_NO",
+      "ASSIGNED_AGENT",
       "CATEGORY_CODE",
+      "PRIORITY_CODE",
+      "RAISED_BY_NAME",
+      "ADD_USER",
+      "TITLE",
+      "ADD_DATE",
+      "ATTACHMENT_UPLOADED_DATE",
+      "TICKET_NO",
+      "CHG_USER",
       "RAISED_BY",
-      "CHG_USER"
+      "DESCRIPTION",
+      "CREATED_DATE",
+      "ATTACHMENT",
+      "CHG_DATE"
     ],
     "SUPPORT360_AGENT": [
-      "AGENT_NAME",
-      "AGENT_ID"
+      "AGENT_ID",
+      "AGENT_NAME"
     ],
     "SUPPORT360_CATEGORY_MASTER": [
-      "CATEGORY_NAME",
-      "CATEGORY_CODE"
+      "CATEGORY_CODE",
+      "CATEGORY_NAME"
     ],
     "SUPPORT360_PRIORITY_MASTER": [
       "PRIORITY_CODE",

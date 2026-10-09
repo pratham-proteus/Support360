@@ -31,7 +31,7 @@
       "size": "",
       "key": false,
       "description": "Full description of the issue or request",
-      "sequence": 4,
+      "sequence": 3,
       "mandatory": true,
       "primary_key": false,
       "nullable": false
@@ -42,7 +42,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket category, picked from the active Category master",
-      "sequence": 5,
+      "sequence": 4,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_CATEGORY_MASTER",
@@ -58,7 +58,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket priority, picked from the active Priority master",
-      "sequence": 6,
+      "sequence": 5,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_PRIORITY_MASTER",
@@ -74,16 +74,28 @@
       "size": "20",
       "key": false,
       "description": "Ticket status; defaults to Open on creation and is not user-editable",
-      "sequence": 7,
+      "sequence": 6,
       "mandatory": true,
       "allowed_values": [
         {
+          "value": "Pending",
+          "label": "Pending"
+        },
+        {
+          "value": "Assigned",
+          "label": "Assigned"
+        },
+        {
           "value": "In Progress",
-          "label": "Start Progress"
+          "label": "In Progress"
         },
         {
           "value": "Resolved",
           "label": "Resolved"
+        },
+        {
+          "value": "Closed",
+          "label": "Closed"
         }
       ],
       "primary_key": false,
@@ -117,7 +129,7 @@
       "size": "500",
       "key": false,
       "description": "One or more files supporting the ticket",
-      "sequence": 11,
+      "sequence": 10,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -128,7 +140,7 @@
       "size": "36",
       "key": false,
       "description": "User who uploaded the attachment",
-      "sequence": 12,
+      "sequence": 11,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -139,7 +151,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the attachment was uploaded",
-      "sequence": 13,
+      "sequence": 12,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -150,7 +162,7 @@
       "size": "36",
       "key": false,
       "description": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
-      "sequence": 8,
+      "sequence": 13,
       "allowed_values": [
         {
           "value": "AGENT01",
@@ -180,7 +192,7 @@
       "size": "36",
       "key": false,
       "description": "Internal unique identifier",
-      "sequence": 16,
+      "sequence": 14,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -191,7 +203,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was created",
-      "sequence": 17,
+      "sequence": 15,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -202,18 +214,7 @@
       "size": "10",
       "key": false,
       "description": "User who created the record",
-      "sequence": 15,
-      "primary_key": false,
-      "nullable": true,
-      "mandatory": false
-    },
-    {
-      "column_name": "ADD_TERM",
-      "data_type": "VARCHAR",
-      "size": "15",
-      "key": false,
-      "description": "Terminal/IP the record was created from",
-      "sequence": 23,
+      "sequence": 16,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -224,7 +225,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was last changed",
-      "sequence": 10,
+      "sequence": 17,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -236,17 +237,6 @@
       "key": false,
       "description": "User who last changed the record",
       "sequence": 18,
-      "primary_key": false,
-      "nullable": true,
-      "mandatory": false
-    },
-    {
-      "column_name": "CHG_TERM",
-      "data_type": "VARCHAR",
-      "size": "15",
-      "key": false,
-      "description": "Terminal/IP the record was last changed from",
-      "sequence": 25,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -279,7 +269,7 @@
       "size": "",
       "key": false,
       "description": "Chronological history of changes to this ticket (shown on drill-in)",
-      "sequence": 15,
+      "sequence": 19,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -323,10 +313,26 @@
       "size": "100",
       "key": false,
       "description": "Display name of the Employee who raised the ticket, resolved from RAISED_BY at creation",
-      "sequence": 3,
+      "sequence": 8,
       "primary_key": false,
       "nullable": false,
       "mandatory": true
+    },
+    {
+      "column_name": "ADD_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit: terminal/IP the record was created from",
+      "sequence": 23
+    },
+    {
+      "column_name": "CHG_TERM",
+      "data_type": "VARCHAR",
+      "size": "15",
+      "key": false,
+      "description": "Audit: terminal/IP the record was last changed from",
+      "sequence": 25
     }
   ]
 }

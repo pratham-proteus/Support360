@@ -1,13 +1,13 @@
 {
-  "id": "d2871cc1-d320-4b82-a027-b05c763aefc9",
+  "id": "c92ad863-68c5-467b-a47d-dd696dea5e88",
   "project": "Support360",
   "backend": "autoagent",
-  "title": "Register the existing support360_agent_dashboard object in application.json navi",
+  "title": "Rewrite the assign_agent form action business logic on support360_ticket_assignm",
   "kind": "change",
   "status": "completed",
-  "description": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAnalyse the Admin dashboard and create similar dashboard to represent visuals for Ticket Queue.",
-  "created_at": 1790232250.5157247,
-  "updated_at": 1791526462.533112,
+  "description": "Change request (not a new object): edit the code of the existing form action `assign_agent` on support360_ticket_assignment.\n\nRewrite the function body of assign_agent so that it does the following:\n\n1. If STATUS is already 'Assigned', show \"Ticket already assigned\" and stop.\n2. Query SUPPORT360_AGENT for the first row where UPPER(TRIM(PREFERENCE)) = UPPER(TRIM(CATEGORY_NAME of the current ticket)), AGENT_STATUS = 'Active' and AGENT_AVAILABILITY = 'Available', ordered by AGENT_ID. Use CATEGORY_NAME (text like HARDWARE), NOT CATEGORY_CODE.\n3. If an agent is found, set on the current record: ASSIGNED_AGENT = AGENT_ID, ASSIGNED_AGENT_NAME = the agent's name column, STATUS = 'Assigned'. Then save and refresh the form.\n4. If no agent is found, show \"No available agent found for <CATEGORY_NAME>\" and change nothing.\n\nThe action currently has no working logic, so this is a code change to that function, not a model change. Apply it now and show me the final code of assign_agent.",
+  "created_at": 1791451750.082199,
+  "updated_at": 1791526462.5436816,
   "todos": [
     {
       "id": "frs",
@@ -67,9 +67,7 @@
       "error": null,
       "obj_name": "support360_my_agents",
       "obj_type": "T",
-      "phase_id": "phase_1",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_1"
     },
     {
       "id": "obj_support360_create_ticket",
@@ -79,9 +77,7 @@
       "error": null,
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_manage_ticket_queue",
@@ -91,9 +87,7 @@
       "error": null,
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_ticket_assignment",
@@ -103,9 +97,7 @@
       "error": null,
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_my_tickets_by_priority",
@@ -152,7 +144,7 @@
     {
       "id": "phase_1",
       "title": "Master & lookup data",
-      "rationale": "Categories, priorities and agents are reference data that tickets and assignments point to.",
+      "rationale": "Admin-maintained reference data (categories, priorities, agents) that tickets and assignment depend on",
       "objects": [
         "support360_category_master",
         "support360_priority_master",
@@ -161,8 +153,8 @@
     },
     {
       "id": "phase_2",
-      "title": "Core ticket transactions",
-      "rationale": "Ticket creation, queue handling and assignment all rely on the category, priority and agent masters.",
+      "title": "Core transactions",
+      "rationale": "Ticket creation, queue handling and auto-assignment reference the category, priority and agent masters",
       "objects": [
         "support360_create_ticket",
         "support360_manage_ticket_queue",
@@ -172,7 +164,7 @@
     {
       "id": "phase_3",
       "title": "Visuals",
-      "rationale": "Employee ticket charts use ticket data, so they come after the transactions.",
+      "rationale": "Employee ticket charts by priority and status trend are built on ticket data that now exists",
       "objects": [
         "support360_my_tickets_by_priority",
         "support360_my_tickets_status_trend"
@@ -181,17 +173,17 @@
     {
       "id": "phase_4",
       "title": "Dashboards",
-      "rationale": "Agent and admin dashboards bring together the ticket data and visuals built in earlier phases.",
+      "rationale": "Agent and Admin analytics dashboards embed the visuals and summarize the ticket and assignment data",
       "objects": [
         "support360_agent_dashboard",
         "support360_admin_dashboard"
       ]
     }
   ],
-  "originating_prompt": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAnalyse the Admin dashboard and create similar dashboard to represent visuals for Ticket Queue.",
+  "originating_prompt": "Change request (not a new object): edit the code of the existing form action `assign_agent` on support360_ticket_assignment.\n\nRewrite the function body of assign_agent so that it does the following:\n\n1. If STATUS is already 'Assigned', show \"Ticket already assigned\" and stop.\n2. Query SUPPORT360_AGENT for the first row where UPPER(TRIM(PREFERENCE)) = UPPER(TRIM(CATEGORY_NAME of the current ticket)), AGENT_STATUS = 'Active' and AGENT_AVAILABILITY = 'Available', ordered by AGENT_ID. Use CATEGORY_NAME (text like HARDWARE), NOT CATEGORY_CODE.\n3. If an agent is found, set on the current record: ASSIGNED_AGENT = AGENT_ID, ASSIGNED_AGENT_NAME = the agent's name column, STATUS = 'Assigned'. Then save and refresh the form.\n4. If no agent is found, show \"No available agent found for <CATEGORY_NAME>\" and change nothing.\n\nThe action currently has no working logic, so this is a code change to that function, not a model change. Apply it now and show me the final code of assign_agent.",
   "resume_ref": {
     "session_id": "76c83f91-3a65-43a6-92f3-7a640aeb0580",
-    "plan_id": "d2871cc1-d320-4b82-a027-b05c763aefc9",
+    "plan_id": "c92ad863-68c5-467b-a47d-dd696dea5e88",
     "scope": "phase"
   },
   "depends_on": [],

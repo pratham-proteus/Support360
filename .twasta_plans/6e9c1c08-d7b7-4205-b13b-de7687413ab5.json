@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Don't keep \"My Tickets\" transaction visible",
   "created_at": 1789996812.2560234,
-  "updated_at": 1791365337.2514784,
+  "updated_at": 1791526462.5285146,
   "todos": [
     {
       "id": "frs",
@@ -354,7 +354,7 @@
   ],
   "originating_prompt": "Don't keep \"My Tickets\" transaction visible",
   "resume_ref": {
-    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
+    "session_id": "76c83f91-3a65-43a6-92f3-7a640aeb0580",
     "plan_id": "6e9c1c08-d7b7-4205-b13b-de7687413ab5",
     "scope": "phase"
   },

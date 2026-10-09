@@ -1,13 +1,13 @@
 {
-  "id": "d2871cc1-d320-4b82-a027-b05c763aefc9",
+  "id": "b2d45702-c009-4be5-97f5-f6e1fc3c5173",
   "project": "Support360",
   "backend": "autoagent",
-  "title": "Register the existing support360_agent_dashboard object in application.json navi",
+  "title": "Implement the business-logic code behind the already-wired \"Assign Agent\" button",
   "kind": "change",
   "status": "completed",
-  "description": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAnalyse the Admin dashboard and create similar dashboard to represent visuals for Ticket Queue.",
-  "created_at": 1790232250.5157247,
-  "updated_at": 1791526462.533112,
+  "description": "On the form \"Manage Ticket Assignment\" (support360_ticket_assignment), the \"Assign Agent\" button currently does nothing when clicked. Implement its action now.\n\nOn click:\n1. Read Category Name (e.g. HARDWARE) from the current record.\n2. Look in the Agent Master table for the first agent where Preference equals Category Name (case-insensitive), Status = Active and Availability = Available, ordered by Agent ID.\n3. If found, set on the current record:\n   A. Assigned Agent = that agent's Agent ID\n   B. Assigned Agent Name = that agent's Agent Name\n   C. Status = \"Assigned\"\n   Then save the record and refresh the form so the new values show immediately.\n4. If no agent is found, show the message \"No available agent found for <Category Name>\" and change nothing.\n5. If Status is already \"Assigned\", show \"Ticket already assigned\" and do nothing.\n\nDo not delete or rename any field. Only add or fix the logic of the Assign Agent button. After building, tell me exactly which fields and which table the button reads and writes.",
+  "created_at": 1791451207.5994034,
+  "updated_at": 1791526462.5422843,
   "todos": [
     {
       "id": "frs",
@@ -67,9 +67,7 @@
       "error": null,
       "obj_name": "support360_my_agents",
       "obj_type": "T",
-      "phase_id": "phase_1",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_1"
     },
     {
       "id": "obj_support360_create_ticket",
@@ -79,9 +77,7 @@
       "error": null,
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_manage_ticket_queue",
@@ -91,9 +87,7 @@
       "error": null,
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_ticket_assignment",
@@ -103,9 +97,7 @@
       "error": null,
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
-      "phase_id": "phase_2",
-      "review_iters": 1,
-      "stage": "bl_done"
+      "phase_id": "phase_2"
     },
     {
       "id": "obj_support360_my_tickets_by_priority",
@@ -152,7 +144,7 @@
     {
       "id": "phase_1",
       "title": "Master & lookup data",
-      "rationale": "Categories, priorities and agents are reference data that tickets and assignments point to.",
+      "rationale": "Categories, priorities and the support agent roster are referenced by every ticket and by assignment logic, so they come first.",
       "objects": [
         "support360_category_master",
         "support360_priority_master",
@@ -162,7 +154,7 @@
     {
       "id": "phase_2",
       "title": "Core ticket transactions",
-      "rationale": "Ticket creation, queue handling and assignment all rely on the category, priority and agent masters.",
+      "rationale": "Ticket creation, queue handling and auto-matched agent assignment depend on the category, priority and agent masters.",
       "objects": [
         "support360_create_ticket",
         "support360_manage_ticket_queue",
@@ -172,7 +164,7 @@
     {
       "id": "phase_3",
       "title": "Visuals",
-      "rationale": "Employee ticket charts use ticket data, so they come after the transactions.",
+      "rationale": "Employee ticket charts need ticket data with priority and status already in place.",
       "objects": [
         "support360_my_tickets_by_priority",
         "support360_my_tickets_status_trend"
@@ -181,17 +173,17 @@
     {
       "id": "phase_4",
       "title": "Dashboards",
-      "rationale": "Agent and admin dashboards bring together the ticket data and visuals built in earlier phases.",
+      "rationale": "The agent and admin dashboards bring together the ticket transactions and visuals built in earlier phases.",
       "objects": [
         "support360_agent_dashboard",
         "support360_admin_dashboard"
       ]
     }
   ],
-  "originating_prompt": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAnalyse the Admin dashboard and create similar dashboard to represent visuals for Ticket Queue.",
+  "originating_prompt": "On the form \"Manage Ticket Assignment\" (support360_ticket_assignment), the \"Assign Agent\" button currently does nothing when clicked. Implement its action now.\n\nOn click:\n1. Read Category Name (e.g. HARDWARE) from the current record.\n2. Look in the Agent Master table for the first agent where Preference equals Category Name (case-insensitive), Status = Active and Availability = Available, ordered by Agent ID.\n3. If found, set on the current record:\n   A. Assigned Agent = that agent's Agent ID\n   B. Assigned Agent Name = that agent's Agent Name\n   C. Status = \"Assigned\"\n   Then save the record and refresh the form so the new values show immediately.\n4. If no agent is found, show the message \"No available agent found for <Category Name>\" and change nothing.\n5. If Status is already \"Assigned\", show \"Ticket already assigned\" and do nothing.\n\nDo not delete or rename any field. Only add or fix the logic of the Assign Agent button. After building, tell me exactly which fields and which table the button reads and writes.",
   "resume_ref": {
     "session_id": "76c83f91-3a65-43a6-92f3-7a640aeb0580",
-    "plan_id": "d2871cc1-d320-4b82-a027-b05c763aefc9",
+    "plan_id": "b2d45702-c009-4be5-97f5-f6e1fc3c5173",
     "scope": "phase"
   },
   "depends_on": [],

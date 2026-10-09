@@ -1070,6 +1070,25 @@
                   "expression": "{form.status} != \"Closed\""
                 }
               ]
+            },
+            {
+              "name": "Assign Agent",
+              "handler": "message",
+              "scope": "row",
+              "visible_when": "{form.status} == \"Pending\" and is_empty({form.assigned_agent})",
+              "business_logic": {
+                "method": "assign_agent",
+                "description": "Open the Ticket Assignment screen for this ticket so an agent can be assigned",
+                "spec": "Given the current record's TICKET_NO (PK), open the support360_ticket_assignment screen passing TICKET_NO so the admin/agent can assign an agent to this ticket from there. Only applicable while STATUS = 'Pending' and ASSIGNED_AGENT is empty/null on the current record. Return {\"message\": \"Opening ticket assignment for {TICKET_NO}\"} to confirm the navigation; return {\"error\": \"...\"} if the ticket no longer qualifies (status is not Pending or an agent is already assigned)."
+              },
+              "validations": [
+                {
+                  "type": "expression",
+                  "name": "Ticket must be Pending and unassigned",
+                  "message": "Ticket {form.ticket_no} must be Pending with no agent assigned to use Assign Agent (current status {form.status}).",
+                  "expression": "{form.status} == \"Pending\" and is_empty({form.assigned_agent})"
+                }
+              ]
             }
           ]
         }

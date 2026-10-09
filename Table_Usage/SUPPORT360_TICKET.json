@@ -78,100 +78,6 @@
       }
     },
     {
-      "object_name": "support360_manage_all_tickets",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "AGENT_COMMENTS",
-        "ASSIGNED_AGENT",
-        "ADD_USER",
-        "NEW_COMMENT",
-        "DESCRIPTION",
-        "RESOLUTION_NOTES",
-        "TITLE",
-        "CHG_DATE",
-        "ADD_DATE",
-        "TICKET_NO",
-        "CATEGORY_CODE",
-        "CREATED_DATE",
-        "RAISED_BY_NAME",
-        "ATTACHMENT_UPLOADED_DATE",
-        "ACTIVITY_HISTORY",
-        "ID",
-        "CHG_TERM",
-        "ADD_TERM",
-        "CHG_USER",
-        "STATUS",
-        "ATTACHMENT",
-        "CLOSED_DATE",
-        "PRIORITY_CODE",
-        "CLOSED_BY",
-        "ATTACHMENT_UPLOADED_BY"
-      ],
-      "join_info": {
-        "column": "PRIORITY_CODE",
-        "join_table": "SUPPORT360_PRIORITY_MASTER",
-        "join_column": "PRIORITY_CODE"
-      }
-    },
-    {
-      "object_name": "support360_ticket_assignment",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "TITLE",
-        "STATUS",
-        "ATTACHMENT_UPLOADED_DATE",
-        "RAISED_BY",
-        "CHG_DATE",
-        "ATTACHMENT",
-        "ASSIGNED_AGENT",
-        "CHG_USER",
-        "ADD_USER",
-        "DESCRIPTION",
-        "PRIORITY_CODE",
-        "ADD_DATE",
-        "TICKET_NO",
-        "CATEGORY_CODE",
-        "CREATED_DATE",
-        "ATTACHMENT_UPLOADED_BY"
-      ],
-      "join_info": {
-        "column": "PRIORITY_CODE",
-        "join_table": "SUPPORT360_PRIORITY_MASTER",
-        "join_column": "PRIORITY_CODE"
-      }
-    },
-    {
-      "object_name": "support360_create_ticket",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "RAISED_BY",
-        "DESCRIPTION",
-        "STATUS",
-        "CATEGORY_CODE",
-        "CREATED_DATE",
-        "ATTACHMENT_UPLOADED_BY",
-        "ATTACHMENT_UPLOADED_DATE",
-        "ADD_USER",
-        "CHG_DATE",
-        "CHG_USER",
-        "ID",
-        "TITLE",
-        "ATTACHMENT",
-        "ADD_DATE",
-        "ASSIGNED_AGENT",
-        "TICKET_NO",
-        "PRIORITY_CODE"
-      ],
-      "join_info": {
-        "column": "ASSIGNED_AGENT",
-        "join_table": "SUPPORT360_AGENT",
-        "join_column": "AGENT_ID"
-      }
-    },
-    {
       "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
       "usage_type": "R",
@@ -194,6 +100,102 @@
         "ASSIGNED_AGENT",
         "TICKET_NO",
         "PRIORITY_CODE"
+      ],
+      "join_info": {
+        "column": "ASSIGNED_AGENT",
+        "join_table": "SUPPORT360_AGENT",
+        "join_column": "AGENT_ID"
+      }
+    },
+    {
+      "object_name": "support360_manage_all_tickets",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "ATTACHMENT_UPLOADED_BY",
+        "ADD_TERM",
+        "ID",
+        "ADD_DATE",
+        "CHG_USER",
+        "CLOSED_BY",
+        "TICKET_NO",
+        "RAISED_BY_NAME",
+        "DESCRIPTION",
+        "CREATED_DATE",
+        "ATTACHMENT",
+        "ATTACHMENT_UPLOADED_DATE",
+        "TITLE",
+        "CLOSED_DATE",
+        "ADD_USER",
+        "RESOLUTION_NOTES",
+        "ACTIVITY_HISTORY",
+        "CATEGORY_CODE",
+        "ASSIGNED_AGENT",
+        "AGENT_COMMENTS",
+        "PRIORITY_CODE",
+        "CHG_TERM",
+        "NEW_COMMENT",
+        "STATUS",
+        "CHG_DATE"
+      ],
+      "join_info": {
+        "column": "PRIORITY_CODE",
+        "join_table": "SUPPORT360_PRIORITY_MASTER",
+        "join_column": "PRIORITY_CODE"
+      }
+    },
+    {
+      "object_name": "support360_ticket_assignment",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "STATUS",
+        "ASSIGNED_AGENT",
+        "CATEGORY_CODE",
+        "PRIORITY_CODE",
+        "RAISED_BY_NAME",
+        "ADD_USER",
+        "CHG_DATE",
+        "TITLE",
+        "ADD_DATE",
+        "ATTACHMENT_UPLOADED_DATE",
+        "TICKET_NO",
+        "CHG_USER",
+        "RAISED_BY",
+        "DESCRIPTION",
+        "CREATED_DATE",
+        "ATTACHMENT",
+        "ATTACHMENT_UPLOADED_BY"
+      ],
+      "join_info": {
+        "column": "PRIORITY_CODE",
+        "join_table": "SUPPORT360_PRIORITY_MASTER",
+        "join_column": "PRIORITY_CODE"
+      }
+    },
+    {
+      "object_name": "support360_create_ticket",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "STATUS",
+        "ASSIGNED_AGENT",
+        "CATEGORY_CODE",
+        "PRIORITY_CODE",
+        "RAISED_BY_NAME",
+        "ADD_USER",
+        "CHG_DATE",
+        "TITLE",
+        "ADD_DATE",
+        "ATTACHMENT_UPLOADED_DATE",
+        "TICKET_NO",
+        "CHG_USER",
+        "RAISED_BY",
+        "DESCRIPTION",
+        "ID",
+        "CREATED_DATE",
+        "ATTACHMENT",
+        "ATTACHMENT_UPLOADED_BY"
       ],
       "join_info": {
         "column": "ASSIGNED_AGENT",

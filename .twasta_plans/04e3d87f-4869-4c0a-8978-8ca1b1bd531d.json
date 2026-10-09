@@ -1,0 +1,34 @@
+{
+  "id": "04e3d87f-4869-4c0a-8978-8ca1b1bd531d",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the auto_assign_agent follow-up logic in support360_create_ticket so it matc",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nFix the auto_assign_agent follow-up in support360_create_ticket. It currently matches SUPPORT360_AGENT.PREFERENCE against the ticket's CATEGORY_CODE, which never matches because agent preferences are category NAMES (HARDWARE, SOFTWARE, ACCESS, NETWORK).\n\nUpdate the business_logic spec and the function so that it:\n1. Reads the new ticket's CATEGORY_CODE, then looks up CATEGORY_NAME from SUPPORT360_CATEGORY_MASTER where CATEGORY_CODE = the ticket's CATEGORY_CODE. Do not read CATEGORY_NAME from SUPPORT360_TICKET (that column is not stored there).\n2. Finds agents in SUPPORT360_AGENT where UPPER(TRIM(PREFERENCE)) = UPPER(TRIM(category name)) and AGENT_STATUS = 'Active'. If several match, prefer one with AGENT_AVAILABILITY = 'Available', then the lowest AGENT_ID.\n3. If the chosen agent's AGENT_AVAILABILITY is 'Available': update this ticket row so ASSIGNED_AGENT = AGENT_ID and STATUS = 'Assigned', and return {\"updates\": {\"assigned_agent\": <AGENT_ID>, \"status\": \"Assigned\"}}.\n4. If the chosen agent is 'Occupied', or no Active agent matches: leave ASSIGNED_AGENT empty and STATUS = 'Pending'.\n5. Wrap the whole function in error handling so that any failure is caught and logged and the ticket save still commits.\n6. If the Ticket Activity Log table does not exist yet, skip the log write silently.\n\nChange nothing else in the JSON.",
+  "created_at": 1791526419.4788957,
+  "updated_at": 1791526462.5442543,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix auto_assign_agent follow-up logic in support360_create_ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791526419.5285666,
+      "completed_at": 1791526445.330608
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nFix the auto_assign_agent follow-up in support360_create_ticket. It currently matches SUPPORT360_AGENT.PREFERENCE against the ticket's CATEGORY_CODE, which never matches because agent preferences are category NAMES (HARDWARE, SOFTWARE, ACCESS, NETWORK).\n\nUpdate the business_logic spec and the function so that it:\n1. Reads the new ticket's CATEGORY_CODE, then looks up CATEGORY_NAME from SUPPORT360_CATEGORY_MASTER where CATEGORY_CODE = the ticket's CATEGORY_CODE. Do not read CATEGORY_NAME from SUPPORT360_TICKET (that column is not stored there).\n2. Finds agents in SUPPORT360_AGENT where UPPER(TRIM(PREFERENCE)) = UPPER(TRIM(category name)) and AGENT_STATUS = 'Active'. If several match, prefer one with AGENT_AVAILABILITY = 'Available', then the lowest AGENT_ID.\n3. If the chosen agent's AGENT_AVAILABILITY is 'Available': update this ticket row so ASSIGNED_AGENT = AGENT_ID and STATUS = 'Assigned', and return {\"updates\": {\"assigned_agent\": <AGENT_ID>, \"status\": \"Assigned\"}}.\n4. If the chosen agent is 'Occupied', or no Active agent matches: leave ASSIGNED_AGENT empty and STATUS = 'Pending'.\n5. Wrap the whole function in error handling so that any failure is caught and logged and the ticket save still commits.\n6. If the Ticket Activity Log table does not exist yet, skip the log write silently.\n\nChange nothing else in the JSON.",
+  "resume_ref": {
+    "session_id": "76c83f91-3a65-43a6-92f3-7a640aeb0580",
+    "plan_id": "04e3d87f-4869-4c0a-8978-8ca1b1bd531d",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

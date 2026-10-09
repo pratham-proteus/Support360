@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Give a Color for 'Status' = 'Closed' with RED everywhere",
   "created_at": 1789980974.984316,
-  "updated_at": 1791365337.2497413,
+  "updated_at": 1791526462.5266938,
   "todos": [
     {
       "id": "frs",
@@ -203,7 +203,7 @@
   ],
   "originating_prompt": "Give a Color for 'Status' = 'Closed' with RED everywhere",
   "resume_ref": {
-    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
+    "session_id": "76c83f91-3a65-43a6-92f3-7a640aeb0580",
     "plan_id": "566e2f22-c97d-4f5f-97dc-2b073e5c0baf",
     "scope": "phase"
   },

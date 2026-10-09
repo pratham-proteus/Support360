@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Status should be in different colors everywhere. Like the 'Open' is in Blue, 'Start Progress' is in Orange.",
   "created_at": 1789980169.1510904,
-  "updated_at": 1791365337.2491283,
+  "updated_at": 1791526462.52609,
   "todos": [
     {
       "id": "change_1",
@@ -97,7 +97,7 @@
   "phases": [],
   "originating_prompt": "Status should be in different colors everywhere. Like the 'Open' is in Blue, 'Start Progress' is in Orange.",
   "resume_ref": {
-    "session_id": "7f370ffe-4fda-4e4d-8a31-2f33caacc352",
+    "session_id": "76c83f91-3a65-43a6-92f3-7a640aeb0580",
     "plan_id": "9f8d1cac-15df-4aa9-a429-f53468961167",
     "scope": null
   },
