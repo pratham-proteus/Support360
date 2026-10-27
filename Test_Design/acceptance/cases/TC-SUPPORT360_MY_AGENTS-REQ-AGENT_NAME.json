@@ -1,0 +1,59 @@
+{
+  "id": "TC-SUPPORT360_MY_AGENTS-REQ-AGENT_NAME",
+  "title": "Agent Master: cannot save without Agent Name",
+  "object": "support360_my_agents",
+  "surface": "app",
+  "type": "negative",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_my_agents"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "agent_id",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "agent_availability",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "agent_status",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "preference",
+      "value": "@synthetic"
+    },
+    {
+      "do": "click_action",
+      "name": "save"
+    },
+    {
+      "expect": "message",
+      "kind": "error"
+    },
+    {
+      "expect": "field_state",
+      "field": "agent_name",
+      "state": "error"
+    },
+    {
+      "do": "screenshot",
+      "label": "blocked"
+    }
+  ],
+  "seed_hash": "9871f695094ebb13"
+}

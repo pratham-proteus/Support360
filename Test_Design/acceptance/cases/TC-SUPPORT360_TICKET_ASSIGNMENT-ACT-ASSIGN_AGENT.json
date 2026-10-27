@@ -1,0 +1,39 @@
+{
+  "id": "TC-SUPPORT360_TICKET_ASSIGNMENT-ACT-ASSIGN_AGENT",
+  "title": "Ticket Management: action 'Assign Agent' runs",
+  "object": "support360_ticket_assignment",
+  "surface": "app",
+  "type": "positive",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_ticket_assignment"
+    },
+    {
+      "do": "click_action",
+      "name": "Assign Agent",
+      "form": "1"
+    },
+    {
+      "do": "screenshot",
+      "label": "after action"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "notes": "Seeded smoke test of the button — the agent adds what it must change.",
+  "seed_hash": "6135aa98e09a4627"
+}

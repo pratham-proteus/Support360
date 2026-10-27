@@ -1,0 +1,60 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-EDIT",
+  "title": "Create Ticket: a record can be edited",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "positive",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "preconditions": [
+    {
+      "do": "seed_record",
+      "obj": "support360_create_ticket",
+      "save_as": "rec"
+    }
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "select_row",
+      "record": "rec"
+    },
+    {
+      "do": "click_action",
+      "name": "edit"
+    },
+    {
+      "do": "fill",
+      "field": "description",
+      "value": "@synthetic"
+    },
+    {
+      "do": "click_action",
+      "name": "save_close"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "record",
+      "obj": "support360_create_ticket",
+      "where": {
+        "description": "@filled"
+      }
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "ca0b09f2bf33fa40"
+}

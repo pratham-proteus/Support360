@@ -1,0 +1,54 @@
+{
+  "id": "TC-SUPPORT360_MY_AGENTS-ACT-DEACTIVATE_AGENT",
+  "title": "Agent Master: action 'Deactivate Agent' runs",
+  "object": "support360_my_agents",
+  "surface": "app",
+  "type": "positive",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "preconditions": [
+    {
+      "do": "seed_record",
+      "obj": "support360_my_agents",
+      "save_as": "rec"
+    }
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_my_agents"
+    },
+    {
+      "do": "select_row",
+      "record": "rec"
+    },
+    {
+      "do": "click_action",
+      "name": "Deactivate Agent",
+      "form": "1"
+    },
+    {
+      "do": "click_action",
+      "name": "confirm"
+    },
+    {
+      "do": "screenshot",
+      "label": "after action"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "notes": "Seeded smoke test of the button — the agent adds what it must change.",
+  "seed_hash": "a037fef59bfb8980"
+}

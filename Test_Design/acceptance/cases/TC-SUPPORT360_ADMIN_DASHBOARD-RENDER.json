@@ -1,0 +1,35 @@
+{
+  "id": "TC-SUPPORT360_ADMIN_DASHBOARD-RENDER",
+  "title": "Admin Dashboard: renders without an error",
+  "object": "support360_admin_dashboard",
+  "surface": "app",
+  "type": "smoke",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [
+    "FRS-6.3"
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_admin_dashboard"
+    },
+    {
+      "expect": "visual_has_data",
+      "obj": "support360_admin_dashboard",
+      "allow_empty": true
+    },
+    {
+      "do": "screenshot",
+      "label": "rendered"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "485ff19478f8c4b8"
+}

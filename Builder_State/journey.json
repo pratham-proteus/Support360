@@ -1,0 +1,43 @@
+{
+  "check_log": [
+    {
+      "at": 1793003326.7347898,
+      "by": "pratham.dukhande",
+      "failed": null,
+      "message": "Playwright is not installed on this server (pip install playwright && python -m playwright install chromium)",
+      "method": "auto",
+      "obj": "T:support360_create_ticket",
+      "passed": null,
+      "result": "error",
+      "run_id": "20261026-135846-552c48"
+    }
+  ],
+  "checks": {},
+  "last_test": {
+    "T:support360_create_ticket": {
+      "at": 1793003326.7347848,
+      "message": "Playwright is not installed on this server (pip install playwright && python -m playwright install chromium)",
+      "run_id": "20261026-135846-552c48",
+      "status": "error"
+    }
+  },
+  "skipped": [],
+  "tests": {
+    "20261026-135846-552c48": {
+      "applied": true,
+      "by": "pratham.dukhande",
+      "by_id": "60f25627-06b2-433d-8aec-656b3a45f6fc",
+      "finished_at": 1793003326.734792,
+      "objects": [
+        [
+          "T",
+          "support360_create_ticket"
+        ]
+      ],
+      "started_at": 1793003326.6820743,
+      "status": "failed"
+    }
+  },
+  "updated_at": 1793003326.734794,
+  "version": 1
+}

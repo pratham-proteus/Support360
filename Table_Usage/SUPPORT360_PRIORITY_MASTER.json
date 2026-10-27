@@ -20,35 +20,20 @@
       ]
     },
     {
-      "object_name": "support360_resolved_tickets",
+      "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
-        "PRIORITY_NAME",
-        "PRIORITY_CODE"
-      ],
-      "join_info": {
-        "column": "PRIORITY_CODE",
-        "join_table": "SUPPORT360_TICKET",
-        "join_column": "PRIORITY_CODE"
-      }
-    },
-    {
-      "object_name": "support360_my_tickets",
-      "form_no": "1",
-      "usage_type": "M",
-      "referred_columns": [
-        "PRIORITY_CODE",
         "PRIORITY_NAME"
       ],
       "join_info": {
-        "column": "PRIORITY_CODE",
+        "column": "PRIORITY_NAME",
         "join_table": "SUPPORT360_TICKET",
-        "join_column": "PRIORITY_CODE"
+        "join_column": "PRIORITY_NAME"
       }
     },
     {
-      "object_name": "support360_manage_ticket_queue",
+      "object_name": "support360_resolved_tickets",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
@@ -66,6 +51,19 @@
       "form_no": "1",
       "usage_type": "M",
       "referred_columns": [
+        "PRIORITY_NAME"
+      ],
+      "join_info": {
+        "column": "PRIORITY_NAME",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "PRIORITY_NAME"
+      }
+    },
+    {
+      "object_name": "support360_my_tickets",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
         "PRIORITY_CODE",
         "PRIORITY_NAME"
       ],
@@ -80,22 +78,8 @@
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
-        "PRIORITY_CODE",
-        "PRIORITY_NAME"
-      ],
-      "join_info": {
-        "column": "PRIORITY_CODE",
-        "join_table": "SUPPORT360_TICKET",
-        "join_column": "PRIORITY_CODE"
-      }
-    },
-    {
-      "object_name": "support360_create_ticket",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "PRIORITY_CODE",
-        "PRIORITY_NAME"
+        "PRIORITY_NAME",
+        "PRIORITY_CODE"
       ],
       "join_info": {
         "column": "PRIORITY_CODE",

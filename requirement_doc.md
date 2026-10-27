@@ -1,18 +1,20 @@
 ## Ticket Management
 ### Create Support Ticket
 - Description: Allows an Employee to log a new support ticket describing an issue or request they need help with.
-- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY_CODE, CATEGORY_NAME (display-only), PRIORITY_CODE, PRIORITY_NAME (display-only), STATUS (defaults to Pending), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), RAISED_BY_NAME (display-only, automatically resolved from the logged-in user's id to their display name when the ticket is created), ASSIGNED_AGENT, ASSIGNED_AGENT_NAME (display-only, resolved from SUPPORT360_AGENT.AGENT_NAME via ASSIGNED_AGENT), CREATED_DATE, ATTACHMENT (one or more files).
+- Data points: TICKET_NO (auto-generated), TITLE, DESCRIPTION, CATEGORY (dropdown, static list: HARDWARE, SOFTWARE, ACCESS, NETWORK; shown on the Create Ticket form immediately after DESCRIPTION, mandatory), PRIORITY_NAME, STATUS (defaults to Pending), RAISED_BY (current Employee - mandatory, auto-filled with the logged-in user's user id, displayed read-only), RAISED_BY_NAME (display-only, resolved from the logged-in user's id (RAISED_BY) to that user's EMAIL address, looked up from the platform's user/session login directory — the same directory of people who log in to the system — NOT from the Support Agent master; falls back to the raw RAISED_BY id if no email can be resolved), ASSIGNED_AGENT, ASSIGNED_AGENT_NAME (display-only, resolved from SUPPORT360_AGENT.AGENT_NAME via ASSIGNED_AGENT), CREATED_DATE, ATTACHMENT (one or more files).
 - Business rules:
-  - TITLE, DESCRIPTION, CATEGORY_CODE and PRIORITY_CODE are mandatory; ticket cannot be saved without them.
-  - RAISED_BY is mandatory and is automatically set to the id of the currently logged-in user; it is shown read-only on the Add screen as the resolved user id (never as a raw parameter token) and is not user-editable. No separate employee-name field is displayed alongside it.
-  - CATEGORY_CODE must exist in active Category master; PRIORITY_NAME is selected from the active Priority master (lookup on PRIORITY_NAME).
-  - When CATEGORY_CODE is selected, CATEGORY_NAME is automatically fetched from the Category master and displayed read-only; it is not user-editable and is cleared if CATEGORY_CODE is cleared.
-  - When PRIORITY_NAME is selected, PRIORITY_CODE is automatically resolved from the Priority master and held hidden and read-only (protected); it is not user-editable and is cleared if PRIORITY_NAME is cleared.
+  - TITLE, DESCRIPTION, CATEGORY and PRIORITY_NAME are all mandatory; ticket cannot be saved without them. CATEGORY is shown on the Create Ticket form immediately after the DESCRIPTION field.
+  - RAISED_BY is mandatory and is automatically set to the id of the currently logged-in user; it is shown read-only on the Add screen as the resolved user id (never as a raw parameter token) and is not user-editable.
+  - RAISED_BY_NAME is resolved from RAISED_BY to that user's email address via a lookup against the platform's user/session login directory (the directory of people who log in to the system), NOT against the Support Agent master. This resolution happens as part of the same save as the new ticket (pre_commit), not as a separate step afterward. If no email can be resolved for that user id, RAISED_BY_NAME falls back to the raw RAISED_BY id so it is never blank.
+  - CATEGORY is a mandatory dropdown with a fixed static list of values: HARDWARE, SOFTWARE, ACCESS, NETWORK (no longer sourced from SUPPORT360_CATEGORY_MASTER). The SUPPORT360_CATEGORY_MASTER table, its admin maintenance, and other screens referencing CATEGORY_NAME are unchanged — only the Create Ticket field is affected.
+  - PRIORITY_NAME is a mandatory dropdown selected from the active Priority master (SUPPORT360_PRIORITY_MASTER where IS_ACTIVE = 'Y'). Note: this dropdown continues to be populated live from SUPPORT360_PRIORITY_MASTER (where IS_ACTIVE = 'Y') — only the dedicated admin maintenance screen for this master has been removed; the underlying table and its data are unchanged.
   - TICKET_NO is system-generated and unique.
   - STATUS is set to Pending automatically on creation and is not user-editable at creation.
   - Show clear inline error messages when a mandatory field is missing or invalid, and a success message once the ticket is saved.
-  - When CATEGORY_CODE is selected (and changed), the ticket is automatically assigned to the Support Agent whose PREFERENCE equals the selected CATEGORY_CODE, but ONLY if that agent's AGENT_STATUS = Active and AGENT_AVAILABILITY = Available: ASSIGNED_AGENT is auto-filled from SUPPORT360_AGENT.AGENT_ID where SUPPORT360_AGENT.PREFERENCE = CATEGORY_CODE AND SUPPORT360_AGENT.AGENT_STATUS = Active AND SUPPORT360_AGENT.AGENT_AVAILABILITY = Available, with no user action required. When an agent is found this way, STATUS is also automatically changed from Pending to Assigned at the same time. If the matching agent is Active but Occupied (availability not Available), or if no agent has a matching PREFERENCE at all, ASSIGNED_AGENT remains unset and STATUS stays Pending.
-- Business actions: Add, Edit (before assignment), Delete (own ticket, while Open), Search.
+  - When CATEGORY is selected (and changed), the ticket is automatically assigned to the Support Agent whose PREFERENCE equals the selected CATEGORY value, but ONLY if that agent's AGENT_STATUS = Active (and, per existing logic, AGENT_AVAILABILITY as previously implemented): ASSIGNED_AGENT is auto-filled from SUPPORT360_AGENT.AGENT_ID where SUPPORT360_AGENT.PREFERENCE = CATEGORY AND SUPPORT360_AGENT.AGENT_STATUS = Active AND SUPPORT360_AGENT.AGENT_AVAILABILITY = Available. When an agent is found this way, STATUS is also automatically changed from Pending to Assigned at the same time. If the matching agent is Active but Occupied (availability not Available), or if no agent has a matching PREFERENCE at all, ASSIGNED_AGENT remains unset and STATUS stays Pending.
+  - If the matching agent (PREFERENCE = CATEGORY_NAME, AGENT_STATUS = Active) is Occupied rather than Available, ASSIGNED_AGENT is still auto-filled with that agent and STATUS is automatically changed from Pending to Queued instead of Assigned. Once an Agent resolves the ticket, STATUS becomes Resolved; a ticket with STATUS = Resolved is read-only everywhere — on no screen can its fields or status be changed. On the Admin "Manage All Tickets" screen, a manager can also trigger this same auto-match manually via an "Assign Agent" button, visible only while STATUS = Pending.
+  - Note: the ticket's category is identified solely by CATEGORY_NAME. The CATEGORY_CODE column has been fully removed from SUPPORT360_TICKET and from every screen/grid that referenced it (Create Ticket, Manage Ticket Queue, Manage All Tickets, Ticket Assignment, My Tickets, Resolved Tickets, Ticket Activity Log, ticket grids, Admin Dashboard criteria, and the ticket business area). CATEGORY_NAME remains the mandatory dropdown sourced from SUPPORT360_CATEGORY_MASTER where IS_ACTIVE = 'Y', and the CATEGORY_NAME-to-SUPPORT360_AGENT.PREFERENCE auto-assign logic is unchanged.
+- Business actions: Add, Edit (before assignment), Delete (own ticket, while Pending), Search.
 - Additional data management: Every ATTACHMENT uploaded is linked to the TICKET_NO with uploaded-by and uploaded-date; an entry is written to the ticket's Activity/History Log recording ticket creation.
 
 ### My Tickets
@@ -20,44 +22,44 @@
 - Data points: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE; on drill-in: full DESCRIPTION, ATTACHMENT list, AGENT_COMMENTS, ACTIVITY_HISTORY.
 - Business rules:
   - Employee can only view/act on tickets where RAISED_BY = current Employee (row-level restriction to own tickets).
-  - Attachments can be added by the Employee at any point in the ticket's life, regardless of STATUS — except once the ticket is Closed, after which no further attachments may be added.
-  - Ticket can be moved to Closed only by the Employee, and only when STATUS = Resolved.
-  - Once STATUS = Closed, the ticket becomes fully read-only everywhere it appears (Create Support Ticket, My Tickets, Manage Ticket Queue, Manage All Tickets, Ticket Assignment): no field may be edited, no attachment may be added, no comment may be posted, and no status-changing or assignment action may be run.
-- Business actions: Search, Filter (by STATUS, CATEGORY_CODE, PRIORITY_CODE, date range), View, Add-attachment, Confirm-and-close, Reopen-comment (add comment; does not change status).
-- Additional data management: Confirm-and-close action updates STATUS to Closed, stamps CLOSED_DATE and CLOSED_BY, and writes an entry to the Activity/History Log.
+  - Attachments can be added by the Employee at any point in the ticket's life, regardless of STATUS — except once the ticket is Resolved, after which no further attachments may be added.
+  - Resolved is the final status for a ticket; a ticket cannot be reopened once it reaches Resolved.
+  - Once STATUS = Resolved, the ticket becomes fully read-only everywhere it appears (Create Support Ticket, My Tickets, Manage Ticket Queue, Manage All Tickets, Ticket Assignment): no field may be edited, no attachment may be added, no comment may be posted, and no status-changing or assignment action may be run.
+- Business actions: Search, Filter (by STATUS, CATEGORY_CODE, PRIORITY_CODE, date range), View, Add-attachment, Add-comment.
+- Additional data management: None beyond the ticket's own Activity/History Log, which records every status change, comment, and attachment addition.
 
 ### Resolved Tickets
-- Description: Lets an Employee view the tickets they raised that are currently in Resolved status, and either confirm-close them or reopen them back to In Progress.
+- Description: Lets an Employee view the tickets they raised that are currently in Resolved status, which is the final status for a ticket.
 - Data points: TICKET_NO, TITLE, CATEGORY_CODE, PRIORITY_CODE, STATUS (fixed to Resolved), ASSIGNED_AGENT, CREATED_DATE, CHG_DATE; on drill-in: DESCRIPTION, ATTACHMENT, AGENT_COMMENTS, RESOLUTION_NOTES, ACTIVITY_HISTORY.
 - Business rules:
   - View is restricted to tickets where RAISED_BY = current Employee and STATUS = 'Resolved' only (row-level and status restriction).
   - Add, Edit and Delete are disabled; this is a read-only list.
-  - Close Ticket and Reopen Ticket are both blocked with an inline error if the ticket's STATUS has since changed away from Resolved.
-  - The ticket record remains editable by the Employee while STATUS = Resolved; once the ticket is Closed or Reopened it is no longer editable from this view.
-- Business actions: Close Ticket, Reopen Ticket.
-- Additional data management: Close Ticket moves STATUS to Closed and stamps CLOSED_DATE and CLOSED_BY; Reopen Ticket moves STATUS back to In Progress; both actions write an entry to the Ticket Activity Log.
+  - Resolved is the final status for a ticket; tickets cannot be reopened once Resolved, and no action on this screen can change the STATUS.
+- Business actions: Search, View.
+- Additional data management: None; this is a read-only view of tickets already in their final Resolved status.
 
 ## Agent Ticket Desk
 ### Manage Ticket Queue
 - Description: Enables a Support Agent to view incoming and assigned tickets, take ownership, work them through resolution, and communicate with the Employee via comments.
 - Data points: TICKET_NO, TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY, ASSIGNED_AGENT, CREATED_DATE, LAST_UPDATED_DATE, ATTACHMENT list, COMMENT (text, commented-by, commented-date, list), RESOLUTION_NOTES.
 - Business rules:
-  - Only tickets with STATUS in (Open, Assigned, In Progress) that are unassigned or assigned to the current Agent are actionable by that Agent.
-  - Assignment of a ticket is not performed from this screen; it is done from the separate Ticket Assignment screen. The ticket queue grid/list shows the assigned agent's name (not just the agent code) in an "Assigned To" column; a ticket must already be assigned before it can move to In Progress.
-  - Starting work moves STATUS from Assigned to In Progress.
+  - Only tickets with STATUS in (Open, Assigned) that are unassigned or assigned to the current Agent are actionable by that Agent.
+  - Assignment of a ticket is not performed from this screen; it is done from the separate Ticket Assignment screen. The ticket queue grid/list shows the assigned agent's name (not just the agent code) in an "Assigned To" column; a ticket must already be assigned before it can move to Resolved.
   - RESOLUTION_NOTES is mandatory before a ticket can be moved to Resolved.
-  - STATUS follows a strict forward-only flow: Open → Assigned → In Progress (shown as 'Start Progress') → Resolved. No other transition is permitted from this screen.
-  - A ticket with STATUS = Open cannot be set directly to 'In Progress' (Start Progress) or 'Resolved'. It must first be moved to Assigned from the Ticket Assignment screen (Manage Ticket Assignment) or via the Assign action.
-  - Only a ticket with STATUS = Assigned may be changed to 'In Progress' (displayed as 'Start Progress').
-  - Only a ticket with STATUS = In Progress may be changed to 'Resolved' (Resolution Notes remain mandatory before resolving).
-  - Changing STATUS to the same value, or backwards (e.g. In Progress → Assigned, Resolved → In Progress), is rejected with a clear inline error naming the current status and the attempted status.
+  - STATUS follows a strict forward-only flow: Open → Assigned → Resolved. No other transition is permitted from this screen; tickets transition directly from Assigned to Resolved with no intermediate In Progress step.
+  - A ticket with STATUS = Open cannot be set directly to 'Resolved'. It must first be moved to Assigned from the Ticket Assignment screen (Manage Ticket Assignment) or via the Assign action.
+  - Only a ticket with STATUS = Assigned may be changed to 'Resolved' (Resolution Notes remain mandatory before resolving).
+  - Changing STATUS to the same value, or backwards (e.g. Resolved → Assigned), is rejected with a clear inline error naming the current status and the attempted status.
   - Attachments can be added by the Agent at any point in the ticket's life, regardless of STATUS.
   - Show inline error messages for invalid transitions or missing mandatory fields (e.g. resolving without RESOLUTION_NOTES), and success messages on save.
-  - Support Agents can directly edit ticket fields (TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY) from Manage Ticket Queue using the standard Edit action, in addition to the dedicated Start Progress, Add Comment, Add Attachment, and Resolve actions; ASSIGNED_AGENT is maintained only from the Ticket Assignment screen.
-  - When an Agent edits a ticket, the STATUS dropdown offers only two selectable values: Start Progress (stored as In Progress) and Resolved. Assigned is no longer a user-selectable status on this screen — it is set only by the assignment action.
-  - A ticket with STATUS = Reopen can be moved to In Progress by the Support Agent using the Start Progress action, and from In Progress to Resolved using the Resolve action — the same sequence as Assigned → In Progress → Resolved.
+  - Support Agents can directly edit ticket fields (TITLE, DESCRIPTION, CATEGORY_CODE, PRIORITY_CODE, STATUS, RAISED_BY) from Manage Ticket Queue using the standard Edit action, in addition to the dedicated Add Comment, Add Attachment, and Resolve actions; ASSIGNED_AGENT is maintained only from the Ticket Assignment screen.
+  - When an Agent edits a ticket, the STATUS dropdown offers only one selectable value: Resolved. Assigned is no longer a user-selectable status on this screen — it is set only by the assignment action.
+  - A ticket with STATUS = Reopen returns to Assigned, and can then be moved to Resolved by the Support Agent using the Resolve action — the same sequence as Assigned → Resolved.
   - The Raised By column shown to the Agent displays the raiser's resolved display name (RAISED_BY_NAME), never the raw user id.
-- Business actions: Search, Filter (by STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), View, Edit, Start-progress, Add-comment, Add-attachment, Resolve.
+  - STATUS additionally supports the value 'Not Resolved' alongside Pending, Assigned, Queued and Resolved. The Agent selects 'Not Resolved' from the Status dropdown on an Assigned/Queued ticket when the issue cannot be resolved.
+  - When the Agent sets STATUS to 'Not Resolved' and clicks Save or Save & Close, the Add Comment field (NEW_COMMENT) is mandatory; the ticket cannot be saved without a comment explaining why it was not resolved.
+  - If a ticket's STATUS is Pending, it cannot be moved directly to Resolved or Not Resolved; the ticket must first be moved to Assigned or Queued (i.e. assigned to a Support Agent) before it can be set to Resolved or Not Resolved. Attempting to set STATUS from Pending to Resolved or Not Resolved must be blocked with a clear inline error message instructing the Agent to assign the ticket first.
+- Business actions: Search, Filter (by STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT), View, Edit, Add-comment, Add-attachment, Resolve.
 - Additional data management: Every assignment, status change, comment, and attachment addition writes a timestamped entry to the ticket's Activity/History Log capturing old value, new value, and changed-by.
 
 ### Ticket Assignment
@@ -96,24 +98,6 @@
   - PREFERENCE must be one of HARDWARE, SOFTWARE, ACCESS, NETWORK.
   - Deactivating an Agent (AGENT_STATUS set to Inactive) automatically sets AGENT_AVAILABILITY to Occupied and protects it from edits; activating the Agent restores AGENT_AVAILABILITY to Available and unprotects it.
 - Business actions: Search, Add, Edit, Activate Agent, Deactivate Agent.
-- Additional data management: None beyond master persistence.
-
-### Manage Category Master
-- Description: Allows Admin to define and maintain the list of ticket categories used to classify support tickets.
-- Data points: CATEGORY_CODE, CATEGORY_NAME, DESCRIPTION, IS_ACTIVE.
-- Business rules:
-  - CATEGORY_CODE and CATEGORY_NAME are mandatory and unique.
-  - A Category cannot be deactivated/deleted if it is referenced by any existing ticket; it can only be marked inactive (retained for historical tickets) in that case.
-- Business actions: Search, Add, Edit, Delete (only if unused), Activate/Deactivate.
-- Additional data management: None beyond master persistence.
-
-### Manage Priority Master
-- Description: Allows Admin to define and maintain the list of priority levels used to rank ticket urgency.
-- Data points: PRIORITY_CODE, PRIORITY_NAME, SEQUENCE_NO (for sort order/severity ranking), IS_ACTIVE.
-- Business rules:
-  - PRIORITY_CODE, PRIORITY_NAME and SEQUENCE_NO are mandatory; PRIORITY_CODE and SEQUENCE_NO are unique.
-  - A Priority cannot be deactivated/deleted if it is referenced by any existing ticket; it can only be marked inactive in that case.
-- Business actions: Search, Add, Edit, Delete (only if unused), Activate/Deactivate.
 - Additional data management: None beyond master persistence.
 
 ## Search, Filters & Dashboards

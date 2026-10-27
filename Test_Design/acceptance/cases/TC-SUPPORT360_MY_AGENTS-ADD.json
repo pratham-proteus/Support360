@@ -1,0 +1,73 @@
+{
+  "id": "TC-SUPPORT360_MY_AGENTS-ADD",
+  "title": "Agent Master: a valid record can be added",
+  "object": "support360_my_agents",
+  "surface": "app",
+  "type": "positive",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_my_agents"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "agent_id",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "agent_name",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "agent_availability",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "agent_status",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "preference",
+      "value": "@synthetic"
+    },
+    {
+      "do": "screenshot",
+      "label": "filled"
+    },
+    {
+      "do": "click_action",
+      "name": "save_close"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "record",
+      "obj": "support360_my_agents",
+      "where": {
+        "agent_name": "@filled"
+      }
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "385b242a4adb0eae"
+}

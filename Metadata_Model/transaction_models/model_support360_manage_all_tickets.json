@@ -96,13 +96,13 @@
             {
               "column": {
                 "name": "category_code",
-                "db_name": "CATEGORY_CODE",
+                "db_name": "CATEGORY_NAME",
                 "col_type": "VARCHAR",
                 "heading": "Category",
                 "descr": "Ticket category, must exist in active Category master",
                 "group_name": "Classification",
                 "mandatory": true,
-                "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_CODE)",
+                "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_NAME)",
                 "must_exist_in": "SUPPORT360_CATEGORY_MASTER",
                 "validations": [
                   {
@@ -113,7 +113,7 @@
                     "builtin": {
                       "kind": "must_exist_in_master",
                       "table": "SUPPORT360_CATEGORY_MASTER",
-                      "match_column": "CATEGORY_CODE",
+                      "match_column": "CATEGORY_NAME",
                       "conditions": [
                         {
                           "column": "IS_ACTIVE",
@@ -131,8 +131,8 @@
                 "col_id": "4",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
-                "db_size": "20",
-                "width": 200,
+                "db_size": "100",
+                "width": 500,
                 "key": false,
                 "hidden": "",
                 "format": "",
@@ -174,13 +174,13 @@
             {
               "column": {
                 "name": "priority_code",
-                "db_name": "PRIORITY_CODE",
+                "db_name": "PRIORITY_NAME",
                 "col_type": "VARCHAR",
                 "heading": "Priority",
                 "descr": "Ticket priority, must exist in active Priority master",
                 "group_name": "Classification",
                 "mandatory": true,
-                "lookup": "SUPPORT360_PRIORITY_MASTER(PRIORITY_NAME, PRIORITY_CODE)",
+                "lookup": "SUPPORT360_PRIORITY_MASTER(PRIORITY_NAME, PRIORITY_NAME)",
                 "must_exist_in": "SUPPORT360_PRIORITY_MASTER",
                 "validations": [
                   {
@@ -191,7 +191,7 @@
                     "builtin": {
                       "kind": "must_exist_in_master",
                       "table": "SUPPORT360_PRIORITY_MASTER",
-                      "match_column": "PRIORITY_CODE",
+                      "match_column": "PRIORITY_NAME",
                       "conditions": [
                         {
                           "column": "IS_ACTIVE",
@@ -209,8 +209,8 @@
                 "col_id": "6",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
-                "db_size": "20",
-                "width": 200,
+                "db_size": "100",
+                "width": 500,
                 "key": false,
                 "hidden": "",
                 "format": "",
@@ -271,16 +271,12 @@
                       "display": "Assigned"
                     },
                     {
-                      "data": "In Progress",
-                      "display": "In Progress"
+                      "data": "Queued",
+                      "display": "Queued"
                     },
                     {
                       "data": "Resolved",
                       "display": "Resolved"
-                    },
-                    {
-                      "data": "Closed",
-                      "display": "Closed"
                     }
                   ]
                 },
@@ -298,12 +294,6 @@
                       "color": "amber",
                       "icon": "\u25cf",
                       "label": "Assigned"
-                    },
-                    {
-                      "when": "In Progress",
-                      "color": "orange",
-                      "icon": "\u25cf",
-                      "label": "In Progress"
                     },
                     {
                       "when": "Resolved",
@@ -333,8 +323,8 @@
                     "message": "Invalid status transition for ticket {form.ticket_no}.",
                     "business_logic": {
                       "method": "validate_ticket_status_transition",
-                      "description": "Enforce the ticket status transition sequence",
-                      "spec": "Implement this validation using ONLY the platform's transaction record binding. Read the ticket's existing/prior STATUS from the row data the platform passes into the validation function as the current/original record context (the row already loaded for this edit) \u2014 do NOT issue any raw SQL query, do NOT open a direct database cursor/connection, and do NOT reference the table name SUPPORT360_TICKET as an executable SQL statement anywhere in this function. Read the requested new STATUS from the submitted form values. On add (_action = add), STATUS must be Open. On edit (_action = edit), allow no-change (existing STATUS == new STATUS). Allow only forward, single-step moves in the sequence Open -> Assigned -> In Progress -> Resolved -> Closed (no skipping, no reverse). Reject a move to Assigned unless ASSIGNED_AGENT is non-empty in the submitted form. Reject a move to In Progress unless the existing STATUS was Assigned. Reject a move to Resolved unless RESOLUTION_NOTES is non-empty in the submitted form. Return an error message describing the invalid transition when the rule fails, otherwise return null. Never let this function raise or propagate a raw database/SQL error.",
+                      "description": "Enforce the ticket status transition sequence (Assigned -> Resolved, Reopen -> Assigned)",
+                      "spec": "Implement this validation using ONLY the platform's transaction record binding. Read the ticket's existing/prior STATUS from the row data the platform passes into the validation function as the current/original record context (the row already loaded for this edit) \u2014 do NOT issue any raw SQL query, do NOT open a direct database cursor/connection, and do NOT reference the table name SUPPORT360_TICKET as an executable SQL statement anywhere in this function. Read the requested new STATUS from the submitted form values. On add (_action = add), STATUS must be Open. On edit (_action = edit), allow no-change (existing STATUS == new STATUS). STATUS may only move Assigned -> Resolved, or Reopen -> Assigned on SUPPORT360_TICKET (no skipping, no reverse, no other transitions). Reject a move to Assigned unless ASSIGNED_AGENT is non-empty in the submitted form. Reject a move to Resolved unless RESOLUTION_NOTES is non-empty in the submitted form. Return an error message describing the invalid transition when the rule fails, otherwise return null. Never let this function raise or propagate a raw database/SQL error.",
                       "COMP_NAME": "field_validation__1__status__validate_ticket_status_transition",
                       "METHOD_NAME": "run"
                     }
@@ -983,18 +973,18 @@
                   "table": "SUPPORT360_CATEGORY_MASTER",
                   "main_table": false,
                   "table_descr": "Category master (lookup)",
-                  "column": "CATEGORY_CODE",
+                  "column": "CATEGORY_NAME",
                   "join_table": "SUPPORT360_TICKET",
-                  "join_column": "CATEGORY_CODE",
+                  "join_column": "CATEGORY_NAME",
                   "join_type": "left"
                 },
                 {
                   "table": "SUPPORT360_PRIORITY_MASTER",
                   "main_table": false,
                   "table_descr": "Priority master (lookup)",
-                  "column": "PRIORITY_CODE",
+                  "column": "PRIORITY_NAME",
                   "join_table": "SUPPORT360_TICKET",
-                  "join_column": "PRIORITY_CODE",
+                  "join_column": "PRIORITY_NAME",
                   "join_type": "left"
                 }
               ]
@@ -1014,6 +1004,13 @@
               "error_code": "CLOSED_LOCKED",
               "message": "Title, Description, Category and Priority cannot be changed once the ticket is Closed.",
               "expression": "{form.status} != \"Closed\""
+            },
+            {
+              "type": "expression",
+              "name": "Fields locked when Resolved",
+              "error_code": "RESOLVED_LOCKED",
+              "message": "Ticket {form.ticket_no} is Resolved and cannot be changed.",
+              "expression": "{form.status} != \"Resolved\""
             }
           ],
           "actions": [
@@ -1041,6 +1038,14 @@
                   "severity": "E",
                   "message": "Ticket {form.ticket_no} is Closed and cannot be changed.",
                   "expression": "{form.status} != \"Closed\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Fields locked when Resolved",
+                  "error_code": "TICKET_RESOLVED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Resolved and cannot be changed.",
+                  "expression": "{form.status} != \"Resolved\""
                 }
               ]
             },
@@ -1068,6 +1073,14 @@
                   "severity": "E",
                   "message": "Ticket {form.ticket_no} is Closed and cannot be changed.",
                   "expression": "{form.status} != \"Closed\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Fields locked when Resolved",
+                  "error_code": "TICKET_RESOLVED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Resolved and cannot be changed.",
+                  "expression": "{form.status} != \"Resolved\""
                 }
               ]
             },
@@ -1075,18 +1088,20 @@
               "name": "Assign Agent",
               "handler": "message",
               "scope": "row",
-              "visible_when": "{form.status} == \"Pending\" and is_empty({form.assigned_agent})",
+              "visible_when": "{form.status} == \"Pending\"",
               "business_logic": {
-                "method": "assign_agent",
-                "description": "Open the Ticket Assignment screen for this ticket so an agent can be assigned",
-                "spec": "Given the current record's TICKET_NO (PK), open the support360_ticket_assignment screen passing TICKET_NO so the admin/agent can assign an agent to this ticket from there. Only applicable while STATUS = 'Pending' and ASSIGNED_AGENT is empty/null on the current record. Return {\"message\": \"Opening ticket assignment for {TICKET_NO}\"} to confirm the navigation; return {\"error\": \"...\"} if the ticket no longer qualifies (status is not Pending or an agent is already assigned)."
+                "method": "assign_agent_by_preference",
+                "description": "Auto-match and assign this Pending ticket to the agent whose PREFERENCE equals the ticket's CATEGORY_NAME",
+                "spec": "Given the current record's TICKET_NO and CATEGORY_NAME, require STATUS = 'Pending' (otherwise return {\"error\": \"Ticket is no longer Pending.\"}). Look up SUPPORT360_AGENT for an agent where PREFERENCE = the ticket's CATEGORY_NAME and AGENT_STATUS = 'Active'. If found and AGENT_AVAILABILITY = 'Available': update SUPPORT360_TICKET setting ASSIGNED_AGENT = that agent's AGENT_ID, STATUS = 'Assigned', CHG_DATE = now(), CHG_USER = current user; append an ACTIVITY_HISTORY entry (action_type 'Assigned', field_changed 'ASSIGNED_AGENT', old_value blank, new_value the agent, changed_by current user, timestamp now); return {\"message\": \"Ticket assigned to \" + AGENT_ID}. If found but AGENT_AVAILABILITY != 'Available' (Occupied): update SUPPORT360_TICKET setting ASSIGNED_AGENT = that agent's AGENT_ID, STATUS = 'Queued', CHG_DATE = now(), CHG_USER = current user; append the same kind of ACTIVITY_HISTORY entry with action_type 'Queued'; return {\"message\": \"Matching agent is occupied; ticket queued to \" + AGENT_ID}. If no agent has a matching PREFERENCE at all: make no changes and return {\"message\": \"No agent matches this ticket's category preference; ticket remains Pending.\"}.",
+                "COMP_NAME": "form_action__1__assign_agent_by_preference",
+                "METHOD_NAME": "run"
               },
               "validations": [
                 {
                   "type": "expression",
-                  "name": "Ticket must be Pending and unassigned",
-                  "message": "Ticket {form.ticket_no} must be Pending with no agent assigned to use Assign Agent (current status {form.status}).",
-                  "expression": "{form.status} == \"Pending\" and is_empty({form.assigned_agent})"
+                  "name": "Ticket must be Pending",
+                  "message": "Ticket {form.ticket_no} must be Pending to use Assign Agent (current status {form.status}).",
+                  "expression": "{form.status} == \"Pending\""
                 }
               ]
             }

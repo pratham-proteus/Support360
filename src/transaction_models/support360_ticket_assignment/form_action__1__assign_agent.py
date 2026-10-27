@@ -18,30 +18,46 @@ def run(args):
         return 'Ticket number is required to assign an agent.'
 
     ticket = db.query_one(
-        'SELECT CATEGORY_CODE FROM SUPPORT360_TICKET '
-        'WHERE TICKET_NO = :ticket_no',
+        'SELECT t.STATUS AS STATUS, t.CATEGORY_NAME AS CATEGORY_NAME '
+        'FROM SUPPORT360_TICKET t '
+        'WHERE t.TICKET_NO = :ticket_no',
         {'ticket_no': ticket_no}
     )
 
     if not ticket:
         return 'Ticket ' + str(ticket_no) + ' could not be found.'
 
-    category_code = ticket.get('CATEGORY_CODE')
+    status = ticket.get('STATUS')
+    category_name = ticket.get('CATEGORY_NAME')
 
-    agents = db.query(
-        'SELECT AGENT_ID, AGENT_NAME FROM SUPPORT360_AGENT '
-        'WHERE PREFERENCE = :category_code '
-        "AND AGENT_STATUS = 'Active' AND AGENT_AVAILABILITY = 'Available'",
-        {'category_code': category_code}
-    )
-
-    if not agents or len(agents) != 1:
+    if status != 'Pending':
         return {
-            'updates': {},
-            'message': 'No available agent found for ' + str(category_code),
+            'errors': [{
+                'code': 'TICKET_ALREADY_ASSIGNED',
+                'field': 'status',
+                'type': 'E',
+                'message': 'Ticket already assigned',
+            }],
+            'error': 'Ticket already assigned',
         }
 
-    agent = agents[0]
+    agent = db.query_one(
+        'SELECT AGENT_ID, AGENT_NAME FROM SUPPORT360_AGENT '
+        'WHERE PREFERENCE = :category_name '
+        "AND AGENT_STATUS = 'Active' AND AGENT_AVAILABILITY = 'Available'",
+        {'category_name': category_name}
+    )
+
+    if not agent:
+        return {
+            'errors': [{
+                'code': 'NO_AGENT_AVAILABLE',
+                'field': 'assigned_agent',
+                'type': 'E',
+                'message': 'No active and available agent found with matching preference for category ' + str(category_name) + '.',
+            }],
+            'error': 'No active and available agent found with matching preference for category ' + str(category_name) + '.',
+        }
 
     db.update(
         'SUPPORT360_TICKET',
@@ -55,6 +71,7 @@ def run(args):
 
     return {
         'updates': {
+            'TICKET_NO': ticket_no,
             'ASSIGNED_AGENT': agent.get('AGENT_ID'),
             'ASSIGNED_AGENT_NAME': agent.get('AGENT_NAME'),
             'STATUS': 'Assigned',

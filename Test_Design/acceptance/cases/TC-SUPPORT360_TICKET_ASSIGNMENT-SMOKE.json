@@ -1,0 +1,32 @@
+{
+  "id": "TC-SUPPORT360_TICKET_ASSIGNMENT-SMOKE",
+  "title": "Ticket Management: the screen opens and lists records",
+  "object": "support360_ticket_assignment",
+  "surface": "app",
+  "type": "smoke",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_ticket_assignment"
+    },
+    {
+      "expect": "row_count",
+      "min": 0
+    },
+    {
+      "do": "screenshot",
+      "label": "list"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "e8c68ebb61dd6501"
+}

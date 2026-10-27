@@ -1,0 +1,50 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-ACT-EDIT",
+  "title": "Create Ticket: action 'Edit' runs",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "positive",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "preconditions": [
+    {
+      "do": "seed_record",
+      "obj": "support360_create_ticket",
+      "save_as": "rec"
+    }
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "select_row",
+      "record": "rec"
+    },
+    {
+      "do": "click_action",
+      "name": "Edit",
+      "form": "1"
+    },
+    {
+      "do": "screenshot",
+      "label": "after action"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "notes": "Seeded smoke test of the button — the agent adds what it must change.",
+  "seed_hash": "11abe6c7acbfe10b"
+}

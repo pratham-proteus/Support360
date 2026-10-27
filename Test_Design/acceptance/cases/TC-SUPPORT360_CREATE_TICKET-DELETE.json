@@ -1,0 +1,48 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-DELETE",
+  "title": "Create Ticket: a record can be deleted",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "positive",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "preconditions": [
+    {
+      "do": "seed_record",
+      "obj": "support360_create_ticket",
+      "save_as": "rec"
+    }
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "select_row",
+      "record": "rec"
+    },
+    {
+      "do": "click_action",
+      "name": "delete"
+    },
+    {
+      "do": "click_action",
+      "name": "confirm"
+    },
+    {
+      "expect": "no_record",
+      "obj": "support360_create_ticket",
+      "record": "rec"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "b8830cef55f1c259"
+}

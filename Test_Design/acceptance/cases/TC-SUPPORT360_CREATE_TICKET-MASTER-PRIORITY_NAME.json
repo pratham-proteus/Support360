@@ -1,0 +1,54 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-MASTER-PRIORITY_NAME",
+  "title": "Create Ticket: Priority Name not in its master list is refused",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "negative",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "title",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "description",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "category_name",
+      "value": "@lookup"
+    },
+    {
+      "do": "fill",
+      "field": "priority_name",
+      "value": "@not_in_master"
+    },
+    {
+      "do": "click_action",
+      "name": "save"
+    },
+    {
+      "expect": "message",
+      "kind": "error"
+    },
+    {
+      "do": "screenshot",
+      "label": "refused"
+    }
+  ],
+  "seed_hash": "df331d7efd618632"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-REQ-CATEGORY_NAME",
+  "title": "Create Ticket: cannot save without Ticket Category",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "negative",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "title",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "description",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "priority_name",
+      "value": "@lookup"
+    },
+    {
+      "do": "click_action",
+      "name": "save"
+    },
+    {
+      "expect": "message",
+      "kind": "error"
+    },
+    {
+      "expect": "field_state",
+      "field": "category_name",
+      "state": "error"
+    },
+    {
+      "do": "screenshot",
+      "label": "blocked"
+    }
+  ],
+  "seed_hash": "42ae6e9ff5e5cf4d"
+}

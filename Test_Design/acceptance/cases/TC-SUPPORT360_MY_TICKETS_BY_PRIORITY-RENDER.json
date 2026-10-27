@@ -1,0 +1,33 @@
+{
+  "id": "TC-SUPPORT360_MY_TICKETS_BY_PRIORITY-RENDER",
+  "title": "My Tickets by Priority: renders without an error",
+  "object": "support360_my_tickets_by_priority",
+  "surface": "app",
+  "type": "smoke",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_my_tickets_by_priority"
+    },
+    {
+      "expect": "visual_has_data",
+      "obj": "support360_my_tickets_by_priority",
+      "allow_empty": true
+    },
+    {
+      "do": "screenshot",
+      "label": "rendered"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "400444c803af0c01"
+}

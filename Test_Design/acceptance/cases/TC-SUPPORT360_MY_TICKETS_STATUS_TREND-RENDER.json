@@ -1,0 +1,35 @@
+{
+  "id": "TC-SUPPORT360_MY_TICKETS_STATUS_TREND-RENDER",
+  "title": "My Tickets Status Trend: renders without an error",
+  "object": "support360_my_tickets_status_trend",
+  "surface": "app",
+  "type": "smoke",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [
+    "FRS-4.11"
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_my_tickets_status_trend"
+    },
+    {
+      "expect": "visual_has_data",
+      "obj": "support360_my_tickets_status_trend",
+      "allow_empty": true
+    },
+    {
+      "do": "screenshot",
+      "label": "rendered"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "7a0f0ebd78c403e1"
+}

@@ -126,7 +126,7 @@
             "chipValue": [
               "Pending",
               "Assigned",
-              "In Progress"
+              "Queued"
             ]
           }
         ]

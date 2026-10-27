@@ -1,0 +1,41 @@
+{
+  "id": "TC-SUPPORT360_TICKET_ASSIGNMENT-ADD",
+  "title": "Ticket Management: a valid record can be added",
+  "object": "support360_ticket_assignment",
+  "surface": "app",
+  "type": "positive",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_ticket_assignment"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "screenshot",
+      "label": "filled"
+    },
+    {
+      "do": "click_action",
+      "name": "save_close"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "151f60afef67a675"
+}

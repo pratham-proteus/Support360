@@ -42,18 +42,29 @@
             "COLTYPE": "CHAR",
             "DBSIZE": 20,
             "DEFAULTFUNCTION": "",
-            "DESCRIPTION": "Priority code, matches SUPPORT360_PRIORITY_MASTER.PRIORITY_CODE.",
+            "DESCRIPTION": "Priority code.",
             "ROW_SECURITY": false,
             "COL_SECURITY": false,
             "HIDDEN": false
           },
           {
-            "DBNAME": "CATEGORY_CODE",
-            "DISPLAY_NAME": "Category",
+            "DBNAME": "PRIORITY_NAME",
+            "DISPLAY_NAME": "Priority Name",
             "COLTYPE": "CHAR",
-            "DBSIZE": 20,
+            "DBSIZE": 100,
             "DEFAULTFUNCTION": "",
-            "DESCRIPTION": "Category code, matches SUPPORT360_CATEGORY_MASTER.CATEGORY_CODE.",
+            "DESCRIPTION": "Priority name, matches SUPPORT360_PRIORITY_MASTER.PRIORITY_NAME.",
+            "ROW_SECURITY": false,
+            "COL_SECURITY": false,
+            "HIDDEN": false
+          },
+          {
+            "DBNAME": "CATEGORY_NAME",
+            "DISPLAY_NAME": "Category Name",
+            "COLTYPE": "CHAR",
+            "DBSIZE": 100,
+            "DEFAULTFUNCTION": "",
+            "DESCRIPTION": "Category name, matches SUPPORT360_CATEGORY_MASTER.CATEGORY_NAME.",
             "ROW_SECURITY": false,
             "COL_SECURITY": false,
             "HIDDEN": false
@@ -162,22 +173,22 @@
         "LEFT_TABLE": "SUPPORT360_TICKET",
         "RIGHT_TABLE": "SUPPORT360_CATEGORY_MASTER",
         "JOIN_TYPE": "LEFT",
-        "JOIN_CONDITION": "SUPPORT360_TICKET.CATEGORY_CODE = SUPPORT360_CATEGORY_MASTER.CATEGORY_CODE",
-        "DESCRIPTION": "Ticket's category code matches the category master's code."
+        "JOIN_CONDITION": "SUPPORT360_TICKET.CATEGORY_NAME = SUPPORT360_CATEGORY_MASTER.CATEGORY_NAME",
+        "DESCRIPTION": "Ticket's category name matches the category master's name."
       },
       {
         "JOIN_ID": "J002",
         "LEFT_TABLE": "SUPPORT360_TICKET",
         "RIGHT_TABLE": "SUPPORT360_PRIORITY_MASTER",
         "JOIN_TYPE": "LEFT",
-        "JOIN_CONDITION": "SUPPORT360_TICKET.PRIORITY_CODE = SUPPORT360_PRIORITY_MASTER.PRIORITY_CODE",
-        "DESCRIPTION": "Ticket's priority code matches the priority master's code."
+        "JOIN_CONDITION": "SUPPORT360_TICKET.PRIORITY_NAME = SUPPORT360_PRIORITY_MASTER.PRIORITY_NAME",
+        "DESCRIPTION": "Ticket's priority name matches the priority master's name."
       }
     ],
     "ROW_SECURITY": [],
     "COLUMN_SECURITY": [],
     "MAIN_TABLE": "SUPPORT360_TICKET",
-    "JOINS_DESCRIPTION": "Tickets join the category master on CATEGORY_CODE and the priority master on PRIORITY_CODE. Filter criteria (TICKET_NO, STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY, CREATED_DATE) are all literal columns on SUPPORT360_TICKET.",
+    "JOINS_DESCRIPTION": "Tickets join the category master on CATEGORY_NAME and the priority master on PRIORITY_NAME. Filter criteria (TICKET_NO, STATUS, PRIORITY_CODE, CATEGORY_CODE, ASSIGNED_AGENT, RAISED_BY, CREATED_DATE) are all literal columns on SUPPORT360_TICKET.",
     "AI_INSTRUCTIONS": "",
     "EXAMPLE_QUESTIONS": [],
     "CREATE_TARGETS": [],

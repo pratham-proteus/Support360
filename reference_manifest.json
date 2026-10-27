@@ -1,32 +1,20 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-10-09T05:51:49.288129+00:00",
+  "generated_at": "2026-10-27T06:06:39.905138+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
       "title": "Create Ticket",
-      "description": "Employee logs a new support ticket"
+      "description": "Employee logs a new support ticket. CATEGORY (static dropdown: HARDWARE, SOFTWARE, ACCESS, NETWORK) is visible on the fo"
     },
     {
       "obj_name": "support360_manage_ticket_queue",
       "obj_type": "T",
       "title": "Ticket Queue",
-      "description": "Agent views, works, and resolves tickets"
-    },
-    {
-      "obj_name": "support360_category_master",
-      "obj_type": "T",
-      "title": "Category Master",
-      "description": "Admin defines and maintains ticket categories"
-    },
-    {
-      "obj_name": "support360_priority_master",
-      "obj_type": "T",
-      "title": "Priority Master",
-      "description": "Admin defines and maintains priority levels"
+      "description": "Agent views, works, and resolves tickets. STATUS now also supports a 'Not Resolved' value (in addition to Pending, Assig"
     },
     {
       "obj_name": "support360_my_agents",
@@ -133,8 +121,9 @@
       "other_columns": [
         "TITLE VARCHAR",
         "DESCRIPTION TEXT",
-        "CATEGORY_CODE VARCHAR",
-        "PRIORITY_CODE VARCHAR",
+        "CATEGORY VARCHAR",
+        "CATEGORY_NAME VARCHAR",
+        "PRIORITY_NAME VARCHAR",
         "STATUS VARCHAR",
         "RAISED_BY VARCHAR",
         "RAISED_BY_NAME VARCHAR",
@@ -142,18 +131,20 @@
         "ATTACHMENT VARCHAR",
         "ATTACHMENT_UPLOADED_BY VARCHAR",
         "ATTACHMENT_UPLOADED_DATE DATETIME",
-        "ASSIGNED_AGENT VARCHAR",
-        "ID VARCHAR",
-        "NEW_COMMENT VARCHAR",
-        "ADD_DATE DATETIME",
         "AGENT_COMMENTS TEXT",
-        "ADD_USER VARCHAR",
-        "RESOLUTION_NOTES TEXT",
-        "CHG_DATE DATETIME",
-        "CLOSED_DATE DATETIME",
-        "CHG_USER VARCHAR",
-        "CLOSED_BY VARCHAR",
+        "ASSIGNED_AGENT VARCHAR",
+        "NEW_COMMENT VARCHAR",
+        "ID VARCHAR",
         "ACTIVITY_HISTORY TEXT",
+        "ADD_DATE DATETIME",
+        "CLOSED_DATE DATETIME",
+        "RESOLUTION_NOTES TEXT",
+        "ADD_USER VARCHAR",
+        "CLOSED_BY VARCHAR",
+        "CATEGORY_CODE VARCHAR",
+        "CHG_DATE DATETIME",
+        "PRIORITY_CODE VARCHAR",
+        "CHG_USER VARCHAR",
         "ADD_TERM VARCHAR",
         "CHG_TERM VARCHAR"
       ]

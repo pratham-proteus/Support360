@@ -1,0 +1,62 @@
+{
+  "id": "TC-SUPPORT360_MANAGE_TICKET_QUEUE-EDIT",
+  "title": "Ticket Queue: a record can be edited",
+  "object": "support360_manage_ticket_queue",
+  "surface": "app",
+  "type": "positive",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [
+    "FRS-2.1"
+  ],
+  "preconditions": [
+    {
+      "do": "seed_record",
+      "obj": "support360_manage_ticket_queue",
+      "save_as": "rec"
+    }
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_manage_ticket_queue"
+    },
+    {
+      "do": "select_row",
+      "record": "rec"
+    },
+    {
+      "do": "click_action",
+      "name": "edit"
+    },
+    {
+      "do": "fill",
+      "field": "new_comment",
+      "value": "@synthetic"
+    },
+    {
+      "do": "click_action",
+      "name": "save_close"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "record",
+      "obj": "support360_manage_ticket_queue",
+      "where": {
+        "new_comment": "@filled"
+      }
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "5811f456e7498b38"
+}

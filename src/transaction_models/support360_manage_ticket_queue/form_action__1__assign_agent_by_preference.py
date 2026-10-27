@@ -12,17 +12,17 @@
 
 
 def run(args):
-    category = args.get('category_code')
+    category = args.get('category_name')
 
     # Fall back to the stored ticket's category if the form value is missing
     if is_empty(category) and not_empty(args.get('ticket_no')):
         category = db.scalar(
-            'SELECT category_code FROM ' + db.t('SUPPORT360_TICKET') +
+            'SELECT category_name FROM ' + db.t('SUPPORT360_TICKET') +
             ' WHERE ticket_no = :t',
             {'t': args.get('ticket_no')})
 
     if is_empty(category):
-        return {'errors': [{'code': 'AAPNOCAT', 'field': 'category_code', 'type': 'P',
+        return {'errors': [{'code': 'AAPNOCAT', 'field': 'category_name', 'type': 'P',
                             'message': 'Ticket has no category; no eligible agent was found.'}]}
 
     category = str(category).strip()
@@ -33,7 +33,7 @@ def run(args):
         " AND agent_status = 'Active'"
         " AND agent_availability = 'Available'"
         ' ORDER BY agent_id',
-        {'pref': category.upper()})
+        {'pref': category})
 
     if not agent:
         return {'errors': [{'code': 'AAPNOAGT', 'field': 'assigned_agent', 'type': 'P',

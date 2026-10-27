@@ -42,7 +42,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket category, picked from the active Category master",
-      "sequence": 4,
+      "sequence": 18,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_CATEGORY_MASTER",
@@ -58,7 +58,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket priority, picked from the active Priority master",
-      "sequence": 5,
+      "sequence": 19,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_PRIORITY_MASTER",
@@ -74,7 +74,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket status; defaults to Open on creation and is not user-editable",
-      "sequence": 6,
+      "sequence": 7,
       "mandatory": true,
       "allowed_values": [
         {
@@ -86,16 +86,12 @@
           "label": "Assigned"
         },
         {
-          "value": "In Progress",
-          "label": "In Progress"
+          "value": "Queued",
+          "label": "Queued"
         },
         {
           "value": "Resolved",
           "label": "Resolved"
-        },
-        {
-          "value": "Closed",
-          "label": "Closed"
         }
       ],
       "primary_key": false,
@@ -107,7 +103,7 @@
       "size": "36",
       "key": false,
       "description": "The Employee who raised the ticket (current logged-in user)",
-      "sequence": 7,
+      "sequence": 8,
       "mandatory": true,
       "primary_key": false,
       "nullable": false
@@ -118,7 +114,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the ticket was created",
-      "sequence": 9,
+      "sequence": 10,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -129,7 +125,7 @@
       "size": "500",
       "key": false,
       "description": "One or more files supporting the ticket",
-      "sequence": 10,
+      "sequence": 11,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -140,7 +136,7 @@
       "size": "36",
       "key": false,
       "description": "User who uploaded the attachment",
-      "sequence": 11,
+      "sequence": 12,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -151,7 +147,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the attachment was uploaded",
-      "sequence": 12,
+      "sequence": 13,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -162,7 +158,7 @@
       "size": "36",
       "key": false,
       "description": "Support Agent the ticket is assigned to (set by Agent Ticket Desk); used here only to gate edit before assignment",
-      "sequence": 13,
+      "sequence": 14,
       "allowed_values": [
         {
           "value": "AGENT01",
@@ -192,7 +188,7 @@
       "size": "36",
       "key": false,
       "description": "Internal unique identifier",
-      "sequence": 14,
+      "sequence": 15,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -203,7 +199,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was created",
-      "sequence": 15,
+      "sequence": 16,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -214,7 +210,7 @@
       "size": "10",
       "key": false,
       "description": "User who created the record",
-      "sequence": 16,
+      "sequence": 17,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -225,7 +221,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the record was last changed",
-      "sequence": 17,
+      "sequence": 18,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -236,7 +232,7 @@
       "size": "10",
       "key": false,
       "description": "User who last changed the record",
-      "sequence": 18,
+      "sequence": 19,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -247,7 +243,7 @@
       "size": "",
       "key": false,
       "description": "Accumulated comment thread between the Employee and the Support Agent (shown on drill-in)",
-      "sequence": 15,
+      "sequence": 13,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -269,7 +265,7 @@
       "size": "",
       "key": false,
       "description": "Chronological history of changes to this ticket (shown on drill-in)",
-      "sequence": 19,
+      "sequence": 15,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -280,7 +276,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the Employee confirmed and closed the ticket",
-      "sequence": 17,
+      "sequence": 16,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -291,7 +287,7 @@
       "size": "36",
       "key": false,
       "description": "Employee who confirmed and closed the ticket",
-      "sequence": 18,
+      "sequence": 17,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -313,10 +309,38 @@
       "size": "100",
       "key": false,
       "description": "Display name of the Employee who raised the ticket, resolved from RAISED_BY at creation",
-      "sequence": 8,
+      "sequence": 9,
       "primary_key": false,
       "nullable": false,
       "mandatory": true
+    },
+    {
+      "column_name": "CATEGORY_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Category name, picked from the active Category master",
+      "sequence": 5,
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_CATEGORY_MASTER",
+        "display_column": "CATEGORY_NAME",
+        "value_column": "CATEGORY_NAME"
+      }
+    },
+    {
+      "column_name": "PRIORITY_NAME",
+      "data_type": "VARCHAR",
+      "size": "100",
+      "key": false,
+      "description": "Priority name, picked from the active Priority master",
+      "sequence": 6,
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_PRIORITY_MASTER",
+        "display_column": "PRIORITY_NAME",
+        "value_column": "PRIORITY_NAME"
+      }
     },
     {
       "column_name": "ADD_TERM",
@@ -333,6 +357,33 @@
       "key": false,
       "description": "Audit: terminal/IP the record was last changed from",
       "sequence": 25
+    },
+    {
+      "column_name": "CATEGORY",
+      "data_type": "VARCHAR",
+      "size": "50",
+      "key": false,
+      "description": "Category of the issue or request, selected from a fixed list",
+      "sequence": 4,
+      "mandatory": true,
+      "allowed_values": [
+        {
+          "value": "HARDWARE",
+          "label": "HARDWARE"
+        },
+        {
+          "value": "SOFTWARE",
+          "label": "SOFTWARE"
+        },
+        {
+          "value": "ACCESS",
+          "label": "ACCESS"
+        },
+        {
+          "value": "NETWORK",
+          "label": "NETWORK"
+        }
+      ]
     }
   ]
 }

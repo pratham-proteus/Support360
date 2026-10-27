@@ -124,7 +124,7 @@
             {
               "column": {
                 "name": "category_code",
-                "db_name": "CATEGORY_CODE",
+                "db_name": "CATEGORY_NAME",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Category",
@@ -135,8 +135,8 @@
                 "col_id": "5",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
-                "db_size": "20",
-                "width": 200,
+                "db_size": "100",
+                "width": 500,
                 "key": false,
                 "mandatory": false,
                 "hidden": "",
@@ -180,7 +180,7 @@
             {
               "column": {
                 "name": "priority_code",
-                "db_name": "PRIORITY_CODE",
+                "db_name": "PRIORITY_NAME",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Priority",
@@ -191,8 +191,8 @@
                 "col_id": "7",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
-                "db_size": "20",
-                "width": 200,
+                "db_size": "100",
+                "width": 500,
                 "key": false,
                 "mandatory": false,
                 "hidden": "",
@@ -240,7 +240,7 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Status",
-                "descr": "Current ticket status; changed only via Assign / Start Progress / Resolve actions",
+                "descr": "Current ticket status; changed only via Assign / Resolve actions",
                 "protect": "",
                 "display": {
                   "type": "status_tag",
@@ -258,10 +258,10 @@
                       "label": "Assigned"
                     },
                     {
-                      "when": "In Progress",
-                      "color": "orange",
-                      "icon": "\u25f7",
-                      "label": "In Progress"
+                      "when": "Queued",
+                      "color": "blue",
+                      "icon": "\u25cf",
+                      "label": "Queued"
                     },
                     {
                       "when": "Resolved",
@@ -270,10 +270,10 @@
                       "label": "Resolved"
                     },
                     {
-                      "when": "Closed",
+                      "when": "Not Resolved",
                       "color": "red",
                       "icon": "\u2715",
-                      "label": "Closed"
+                      "label": "Not Resolved"
                     }
                   ],
                   "defaultColor": "grey"
@@ -323,12 +323,12 @@
                   "mask": "ddlb",
                   "values": [
                     {
-                      "data": "In Progress",
-                      "display": "Start Progress"
-                    },
-                    {
                       "data": "Resolved",
                       "display": "Resolved"
+                    },
+                    {
+                      "data": "Not Resolved",
+                      "display": "Not Resolved"
                     }
                   ]
                 },
@@ -341,8 +341,8 @@
                     "message": "Ticket {form.ticket_no} cannot be changed to that status from its current status {form.status}.",
                     "business_logic": {
                       "method": "validate_ticket_status_transition",
-                      "description": "Allow Assigned -> In Progress, In Progress -> Resolved, and Reopen -> In Progress on SUPPORT360_TICKET.STATUS",
-                      "spec": "Reject any STATUS change on SUPPORT360_TICKET other than Assigned -> In Progress, In Progress -> Resolved, and Reopen -> In Progress; in particular an Open ticket may never be set directly to In Progress or Resolved.",
+                      "description": "Allow Assigned -> Resolved, Assigned -> Not Resolved, Queued -> Not Resolved, and Reopen -> Assigned on SUPPORT360_TICKET.STATUS",
+                      "spec": "Reject any STATUS change on SUPPORT360_TICKET other than Assigned -> Resolved, Assigned -> Not Resolved, Queued -> Not Resolved, and Reopen -> Assigned; in particular a Pending ticket may never be set directly to Resolved or Not Resolved.",
                       "COMP_NAME": "field_validation__1__status__validate_ticket_status_transition",
                       "METHOD_NAME": "run"
                     }
@@ -715,18 +715,18 @@
                   "table": "SUPPORT360_CATEGORY_MASTER",
                   "main_table": false,
                   "table_descr": "Category master (lookup display)",
-                  "column": "CATEGORY_CODE",
+                  "column": "CATEGORY_NAME",
                   "join_table": "SUPPORT360_TICKET",
-                  "join_column": "CATEGORY_CODE",
+                  "join_column": "CATEGORY_NAME",
                   "join_type": "left"
                 },
                 {
                   "table": "SUPPORT360_PRIORITY_MASTER",
                   "main_table": false,
                   "table_descr": "Priority master (lookup display)",
-                  "column": "PRIORITY_CODE",
+                  "column": "PRIORITY_NAME",
                   "join_table": "SUPPORT360_TICKET",
-                  "join_column": "PRIORITY_CODE",
+                  "join_column": "PRIORITY_NAME",
                   "join_type": "left"
                 },
                 {
@@ -770,6 +770,14 @@
                   "severity": "E",
                   "message": "Ticket {form.ticket_no} is Closed and cannot be edited.",
                   "expression": "{form.status} != \"Closed\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Comment required when Not Resolved",
+                  "error_code": "TQ_COMMENT_REQUIRED_NOT_RESOLVED",
+                  "severity": "E",
+                  "message": "A comment is required in Add Comment when Status is set to Not Resolved.",
+                  "expression": "{form.status} != \"Not Resolved\" || {form.new_comment} != \"\""
                 }
               ],
               "order": 2

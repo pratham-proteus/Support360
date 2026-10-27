@@ -7,14 +7,14 @@
           "COLUMN": [
             {
               "COLID": 2,
-              "NAME": "SUPPORT360_PRIORITY_MASTER_PRIORITY_CODE",
+              "NAME": "SUPPORT360_PRIORITY_MASTER_PRIORITY_NAME",
               "DBTABLE": "SUPPORT360_PRIORITY_MASTER",
-              "DBNAME": "PRIORITY_CODE",
+              "DBNAME": "PRIORITY_NAME",
               "tableName": "SUPPORT360_PRIORITY_MASTER",
               "tableDisplayName": "Priority Master",
-              "content": "Priority Code",
-              "name": "Priority Code",
-              "descr": "Priority Code",
+              "content": "Priority Name",
+              "name": "Priority Name",
+              "descr": "Priority Name",
               "type": "string",
               "JAVATYPE": "java.lang.String",
               "COLTYPE": "CHAR",
@@ -118,13 +118,34 @@
             "customValue": "FixedValue",
             "promptLabel": "Status",
             "value": "",
-            "chipValue": ["Open", "Assigned", "In Progress", "Resolved", "Closed"],
+            "chipValue": [
+              "Open",
+              "Assigned",
+              "In Progress",
+              "Resolved",
+              "Closed"
+            ],
             "options": [
-              { "data": "Open", "display": "Open" },
-              { "data": "Assigned", "display": "Assigned" },
-              { "data": "In Progress", "display": "In Progress" },
-              { "data": "Resolved", "display": "Resolved" },
-              { "data": "Closed", "display": "Closed" }
+              {
+                "data": "Open",
+                "display": "Open"
+              },
+              {
+                "data": "Assigned",
+                "display": "Assigned"
+              },
+              {
+                "data": "In Progress",
+                "display": "In Progress"
+              },
+              {
+                "data": "Resolved",
+                "display": "Resolved"
+              },
+              {
+                "data": "Closed",
+                "display": "Closed"
+              }
             ]
           }
         ],
@@ -137,7 +158,10 @@
     "SCHEMA_TYPE": "S",
     "OUTPUT_TYPE": "JSON",
     "DATABASE_TYPE": "1",
-    "DATABASE_DETAIL": { "DATABASE_NAME": "PostgreSQL", "TYPE": 1 }
+    "DATABASE_DETAIL": {
+      "DATABASE_NAME": "PostgreSQL",
+      "TYPE": 1
+    }
   },
   "LAYOUT_DATA": {
     "visualLayout": {
@@ -150,43 +174,246 @@
       "linkOptions": "",
       "OutputType": "JSON",
       "options": [
-        { "optionId": "BarOrientation", "optionName": "BarOrientation", "optionHeading": "Orientation", "dataType": "string", "defaultValue": "horizontal", "listOfValues": "horizontal,vertical", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "BarType", "optionName": "BarType", "optionHeading": "Bar Type", "dataType": "string", "defaultValue": "simple", "listOfValues": "simple,stacked", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showGrandTotals", "optionName": "showGrandTotals", "optionHeading": "Show Grand Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showTotals", "optionName": "showTotals", "optionHeading": "Show Totals", "dataType": "string", "defaultValue": "off", "listOfValues": "off,on", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showAggregationLabels", "optionName": "showAggregationLabels", "optionHeading": "Show Aggregation Labels", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "sortingColumns", "optionName": "sortingColumns", "optionHeading": "Sorting Columns", "dataType": "string", "defaultValue": "", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "numberFormat", "optionName": "numberFormat", "optionHeading": "Number Format", "dataType": "string", "defaultValue": "", "listOfValues": "", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "configuratorButton", "optionName": "configuratorButton", "optionHeading": "Configurator Button", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showFilter", "optionName": "showFilter", "optionHeading": "Show Filter", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showAxisTitle", "optionName": "showAxisTitle", "optionHeading": "Show Axis Title", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "xAxisLabel", "optionName": "xAxisLabel", "optionHeading": "X Axis Label", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "yAxisLabel", "optionName": "yAxisLabel", "optionHeading": "Y Axis Label", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showLines", "optionName": "showLines", "optionHeading": "Show Lines", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showRange", "optionName": "showRange", "optionHeading": "Show Range", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "themeColor", "optionName": "themeColor", "optionHeading": "Theme Color", "dataType": "string", "defaultValue": "", "listOfValues": "Blue,Green,Orange,Pink,Purple,Yellow,Default", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "toolbar", "optionName": "toolbar", "optionHeading": "Toolbar", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "multipleMeasures", "optionName": "multipleMeasures", "optionHeading": "Multiple Measures", "dataType": "boolean", "defaultValue": "true", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "chartBackgroundColor", "optionName": "chartBackgroundColor", "optionHeading": "Background", "dataType": "string", "defaultValue": "Transparent", "listOfValues": "White,Transparent", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "axisTextColor", "optionName": "axisTextColor", "optionHeading": "Axis Text Color", "dataType": "string", "defaultValue": "black", "listOfValues": "Black,White", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showMeasures", "optionName": "showMeasures", "optionHeading": "Show Measures", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "showDataLabels", "optionName": "showDataLabels", "optionHeading": "Show Data Labels", "dataType": "boolean", "defaultValue": "false", "listOfValues": "true,false", "allowChange": "true", "optionType": "inner" },
-        { "optionId": "autoRefreshSeconds", "optionName": "autoRefreshSeconds", "optionHeading": "Auto Refresh (seconds)", "dataType": "number", "defaultValue": "0", "listOfValues": "", "allowChange": "true", "optionType": "inner" }
+        {
+          "optionId": "BarOrientation",
+          "optionName": "BarOrientation",
+          "optionHeading": "Orientation",
+          "dataType": "string",
+          "defaultValue": "horizontal",
+          "listOfValues": "horizontal,vertical",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "BarType",
+          "optionName": "BarType",
+          "optionHeading": "Bar Type",
+          "dataType": "string",
+          "defaultValue": "simple",
+          "listOfValues": "simple,stacked",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showGrandTotals",
+          "optionName": "showGrandTotals",
+          "optionHeading": "Show Grand Totals",
+          "dataType": "string",
+          "defaultValue": "off",
+          "listOfValues": "off,on",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showTotals",
+          "optionName": "showTotals",
+          "optionHeading": "Show Totals",
+          "dataType": "string",
+          "defaultValue": "off",
+          "listOfValues": "off,on",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showAggregationLabels",
+          "optionName": "showAggregationLabels",
+          "optionHeading": "Show Aggregation Labels",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "sortingColumns",
+          "optionName": "sortingColumns",
+          "optionHeading": "Sorting Columns",
+          "dataType": "string",
+          "defaultValue": "",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "numberFormat",
+          "optionName": "numberFormat",
+          "optionHeading": "Number Format",
+          "dataType": "string",
+          "defaultValue": "",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "configuratorButton",
+          "optionName": "configuratorButton",
+          "optionHeading": "Configurator Button",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showFilter",
+          "optionName": "showFilter",
+          "optionHeading": "Show Filter",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showAxisTitle",
+          "optionName": "showAxisTitle",
+          "optionHeading": "Show Axis Title",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "xAxisLabel",
+          "optionName": "xAxisLabel",
+          "optionHeading": "X Axis Label",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "yAxisLabel",
+          "optionName": "yAxisLabel",
+          "optionHeading": "Y Axis Label",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showLines",
+          "optionName": "showLines",
+          "optionHeading": "Show Lines",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showRange",
+          "optionName": "showRange",
+          "optionHeading": "Show Range",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "themeColor",
+          "optionName": "themeColor",
+          "optionHeading": "Theme Color",
+          "dataType": "string",
+          "defaultValue": "",
+          "listOfValues": "Blue,Green,Orange,Pink,Purple,Yellow,Default",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "toolbar",
+          "optionName": "toolbar",
+          "optionHeading": "Toolbar",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "multipleMeasures",
+          "optionName": "multipleMeasures",
+          "optionHeading": "Multiple Measures",
+          "dataType": "boolean",
+          "defaultValue": "true",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "chartBackgroundColor",
+          "optionName": "chartBackgroundColor",
+          "optionHeading": "Background",
+          "dataType": "string",
+          "defaultValue": "Transparent",
+          "listOfValues": "White,Transparent",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "axisTextColor",
+          "optionName": "axisTextColor",
+          "optionHeading": "Axis Text Color",
+          "dataType": "string",
+          "defaultValue": "black",
+          "listOfValues": "Black,White",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showMeasures",
+          "optionName": "showMeasures",
+          "optionHeading": "Show Measures",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "showDataLabels",
+          "optionName": "showDataLabels",
+          "optionHeading": "Show Data Labels",
+          "dataType": "boolean",
+          "defaultValue": "false",
+          "listOfValues": "true,false",
+          "allowChange": "true",
+          "optionType": "inner"
+        },
+        {
+          "optionId": "autoRefreshSeconds",
+          "optionName": "autoRefreshSeconds",
+          "optionHeading": "Auto Refresh (seconds)",
+          "dataType": "number",
+          "defaultValue": "0",
+          "listOfValues": "",
+          "allowChange": "true",
+          "optionType": "inner"
+        }
       ],
       "ColumnGroups": [
         {
-          "GroupID": 1, "GroupName": "Rows", "StandardName": "Rows", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "GroupID": 1,
+          "GroupName": "Rows",
+          "StandardName": "Rows",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
           "COLUMNS": [
             {
               "COLID": 2,
-              "NAME": "SUPPORT360_PRIORITY_MASTER_PRIORITY_CODE",
+              "NAME": "SUPPORT360_PRIORITY_MASTER_PRIORITY_NAME",
               "DBTABLE": "SUPPORT360_PRIORITY_MASTER",
-              "DBNAME": "PRIORITY_CODE",
+              "DBNAME": "PRIORITY_NAME",
               "tableName": "SUPPORT360_PRIORITY_MASTER",
               "tableDisplayName": "Priority Master",
-              "content": "Priority Code",
-              "name": "Priority Code",
-              "descr": "Priority Code",
+              "content": "Priority Name",
+              "name": "Priority Name",
+              "descr": "Priority Name",
               "type": "string",
               "JAVATYPE": "java.lang.String",
               "COLTYPE": "CHAR",
@@ -218,9 +445,22 @@
             }
           ]
         },
-        { "GroupID": 2, "GroupName": "Columns", "StandardName": "Columns", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0, "COLUMNS": [] },
         {
-          "GroupID": 3, "GroupName": "Values", "StandardName": "Values", "AllowedColumnTypes": "ANY", "MinColumns": 0, "MaxColumns": 0,
+          "GroupID": 2,
+          "GroupName": "Columns",
+          "StandardName": "Columns",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
+          "COLUMNS": []
+        },
+        {
+          "GroupID": 3,
+          "GroupName": "Values",
+          "StandardName": "Values",
+          "AllowedColumnTypes": "ANY",
+          "MinColumns": 0,
+          "MaxColumns": 0,
           "COLUMNS": [
             {
               "COLID": 3,

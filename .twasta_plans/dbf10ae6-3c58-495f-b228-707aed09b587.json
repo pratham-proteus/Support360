@@ -1,0 +1,34 @@
+{
+  "id": "dbf10ae6-3c58-495f-b228-707aed09b587",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change SQL table references in the backfill process script from uppercase to low",
+  "kind": "change",
+  "status": "completed",
+  "description": "Change all three SQL table references to lowercase:\n\nLine 22: FROM SUPPORT360_TICKET t \u2192 FROM support360_ticket t\nLine 45: FROM SUPPORT360_AGENT \u2192 FROM support360_agent\nLine 63: 'SUPPORT360_TICKET' \u2192 'support360_ticket'\nProceed with this",
+  "created_at": 1792648244.2856853,
+  "updated_at": 1793097738.8667605,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Lowercase table references in backfill process SQL",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_backfill_raised_by_email",
+      "obj_type": "G",
+      "phase_id": null,
+      "started_at": 1792648244.3250062,
+      "completed_at": 1792650155.9702826
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Change all three SQL table references to lowercase:\n\nLine 22: FROM SUPPORT360_TICKET t \u2192 FROM support360_ticket t\nLine 45: FROM SUPPORT360_AGENT \u2192 FROM support360_agent\nLine 63: 'SUPPORT360_TICKET' \u2192 'support360_ticket'\nProceed with this",
+  "resume_ref": {
+    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "plan_id": "dbf10ae6-3c58-495f-b228-707aed09b587",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

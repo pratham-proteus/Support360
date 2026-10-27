@@ -1,0 +1,41 @@
+{
+  "run_id": "20261026-135846-552c48",
+  "project": "Support360",
+  "status": "failed",
+  "started_at": "2026-10-26T08:28:46+00:00",
+  "started_by": "pratham.dukhande",
+  "pid": 1442955,
+  "host": "devubuntu-270823",
+  "options": {
+    "case_ids": [],
+    "objects": [
+      "support360_create_ticket"
+    ],
+    "surfaces": [],
+    "personas": [],
+    "trace": "failed",
+    "base_url": "https://dev.platform.twasta.ai",
+    "headless": true,
+    "env": "",
+    "ledger": true,
+    "driver": "playwright"
+  },
+  "total": 11,
+  "done": 0,
+  "skipped_invalid": [],
+  "counts": {},
+  "cases": [],
+  "environment": {
+    "base_url": "https://dev.platform.twasta.ai",
+    "run_root": "/run/9783c670-a1c8-4ff7-8e0a-b43bf9d49ebe/Support360",
+    "project": "Support360",
+    "owner": "pratham.dukhande@proteustech.in",
+    "app_version": null,
+    "env": null,
+    "driver": "playwright"
+  },
+  "error": "Playwright is not installed on this server (pip install playwright && python -m playwright install chromium)",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/ui_testing/case_browser.py\", line 209, in __enter__\n    from playwright.sync_api import sync_playwright\nModuleNotFoundError: No module named 'playwright'\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/ui_testing/runner.py\", line 515, in _run_thread\n    with backend:\n         ^^^^^^^\n  File \"/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/ui_testing/case_browser.py\", line 211, in __enter__\n    raise RuntimeError(\"Playwright is not installed on this server \"\nRuntimeError: Playwright is not installed on this server (pip install playwright && python -m playwright install chromium)\n",
+  "finished_at": "2026-10-26T08:28:46+00:00",
+  "data_ledger": {}
+}

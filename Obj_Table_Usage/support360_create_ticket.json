@@ -3,35 +3,28 @@
   "tables": {
     "SUPPORT360_TICKET": [
       "STATUS",
-      "ATTACHMENT_UPLOADED_BY",
+      "CATEGORY_NAME",
+      "CREATED_DATE",
       "ASSIGNED_AGENT",
-      "CATEGORY_CODE",
-      "PRIORITY_CODE",
-      "RAISED_BY_NAME",
-      "ADD_USER",
-      "TITLE",
+      "CHG_DATE",
       "ADD_DATE",
       "ATTACHMENT_UPLOADED_DATE",
-      "TICKET_NO",
-      "CHG_USER",
-      "RAISED_BY",
-      "DESCRIPTION",
-      "ID",
-      "CREATED_DATE",
       "ATTACHMENT",
-      "CHG_DATE"
-    ],
-    "SUPPORT360_CATEGORY_MASTER": [
-      "CATEGORY_CODE",
-      "CATEGORY_NAME"
-    ],
-    "SUPPORT360_PRIORITY_MASTER": [
-      "PRIORITY_CODE",
-      "PRIORITY_NAME"
+      "ID",
+      "RAISED_BY",
+      "ADD_USER",
+      "CATEGORY",
+      "CHG_USER",
+      "TICKET_NO",
+      "DESCRIPTION",
+      "PRIORITY_NAME",
+      "RAISED_BY_NAME",
+      "TITLE",
+      "ATTACHMENT_UPLOADED_BY"
     ],
     "SUPPORT360_AGENT": [
-      "AGENT_ID",
-      "AGENT_NAME"
+      "AGENT_NAME",
+      "AGENT_ID"
     ]
   }
 }

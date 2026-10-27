@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "scope": {
+    "surfaces": [
+      "app",
+      "site"
+    ]
+  },
+  "personas": {
+    "owner": {
+      "roles": []
+    }
+  },
+  "data_policy": {
+    "keep_test_data": true
+  }
+}

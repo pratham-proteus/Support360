@@ -1,0 +1,48 @@
+{
+  "id": "TC-SUPPORT360_MY_AGENTS-DELETE",
+  "title": "Agent Master: a record can be deleted",
+  "object": "support360_my_agents",
+  "surface": "app",
+  "type": "positive",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "preconditions": [
+    {
+      "do": "seed_record",
+      "obj": "support360_my_agents",
+      "save_as": "rec"
+    }
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_my_agents"
+    },
+    {
+      "do": "select_row",
+      "record": "rec"
+    },
+    {
+      "do": "click_action",
+      "name": "delete"
+    },
+    {
+      "do": "click_action",
+      "name": "confirm"
+    },
+    {
+      "expect": "no_record",
+      "obj": "support360_my_agents",
+      "record": "rec"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "f9b0852b5ff7c473"
+}

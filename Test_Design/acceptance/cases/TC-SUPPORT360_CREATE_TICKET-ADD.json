@@ -1,0 +1,68 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-ADD",
+  "title": "Create Ticket: a valid record can be added",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "positive",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "title",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "description",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "category_name",
+      "value": "@lookup"
+    },
+    {
+      "do": "fill",
+      "field": "priority_name",
+      "value": "@lookup"
+    },
+    {
+      "do": "screenshot",
+      "label": "filled"
+    },
+    {
+      "do": "click_action",
+      "name": "save_close"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "record",
+      "obj": "support360_create_ticket",
+      "where": {
+        "description": "@filled"
+      }
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "68aadf3089109d30"
+}

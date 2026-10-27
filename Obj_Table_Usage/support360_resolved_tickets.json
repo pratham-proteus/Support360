@@ -2,22 +2,24 @@
   "object_name": "support360_resolved_tickets",
   "tables": {
     "SUPPORT360_TICKET": [
-      "ATTACHMENT",
-      "AGENT_COMMENTS",
-      "PRIORITY_CODE",
-      "TITLE",
       "CLOSED_BY",
-      "DESCRIPTION",
-      "CLOSED_DATE",
-      "CREATED_DATE",
       "CATEGORY_CODE",
-      "RAISED_BY",
+      "CREATED_DATE",
       "STATUS",
-      "CHG_DATE",
-      "ACTIVITY_HISTORY",
       "TICKET_NO",
       "ASSIGNED_AGENT",
-      "RESOLUTION_NOTES"
+      "DESCRIPTION",
+      "RESOLUTION_NOTES",
+      "CHG_DATE",
+      "AGENT_COMMENTS",
+      "PRIORITY_CODE",
+      "ATTACHMENT",
+      "RAISED_BY",
+      "TITLE",
+      "ACTIVITY_HISTORY",
+      "CLOSED_DATE",
+      "PRIORITY_NAME",
+      "CATEGORY_NAME"
     ],
     "SUPPORT360_CATEGORY_MASTER": [
       "CATEGORY_NAME",
@@ -28,8 +30,8 @@
       "PRIORITY_CODE"
     ],
     "SUPPORT360_AGENT": [
-      "AGENT_NAME",
-      "AGENT_ID"
+      "AGENT_ID",
+      "AGENT_NAME"
     ]
   }
 }

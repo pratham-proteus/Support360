@@ -1,0 +1,70 @@
+{
+  "id": "8021bdb9-4ad7-4025-94ff-40d359c9e907",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add a status-transition rule: a ticket in 'Pending' status cannot move directly ",
+  "kind": "change",
+  "status": "completed",
+  "description": "If ticket status is 'Pending', it should not move on 'Resolved' or 'Not Resolved'. The ticket status should be assigned first.",
+  "created_at": 1792659241.6379867,
+  "updated_at": 1793097738.8673084,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Add Pending-to-Resolved transition rule to FRS",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1792659241.6798432,
+      "completed_at": 1792661588.1720822
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Note the new status-transition guard in Manage Ticket Queue nav spec",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792659255.7821708,
+      "completed_at": 1792659267.99519
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Block Pending\u2192Resolved/Not Resolved in Manage Ticket Queue status validation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792659268.0806787,
+      "completed_at": 1792659280.6072059
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Block Pending\u2192Resolved/Not Resolved in Manage All Tickets status validation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792659280.814161,
+      "completed_at": 1792659293.9630892
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "If ticket status is 'Pending', it should not move on 'Resolved' or 'Not Resolved'. The ticket status should be assigned first.",
+  "resume_ref": {
+    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "plan_id": "8021bdb9-4ad7-4025-94ff-40d359c9e907",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

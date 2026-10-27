@@ -1,0 +1,54 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-REQ-TITLE",
+  "title": "Create Ticket: cannot save without Title",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "negative",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "description",
+      "value": "@synthetic"
+    },
+    {
+      "do": "fill",
+      "field": "category_name",
+      "value": "@lookup"
+    },
+    {
+      "do": "fill",
+      "field": "priority_name",
+      "value": "@lookup"
+    },
+    {
+      "do": "click_action",
+      "name": "save"
+    },
+    {
+      "expect": "message",
+      "kind": "error"
+    },
+    {
+      "expect": "field_state",
+      "field": "title",
+      "state": "error"
+    },
+    {
+      "do": "screenshot",
+      "label": "blocked"
+    }
+  ],
+  "seed_hash": "b8228efa0a8d92a8"
+}

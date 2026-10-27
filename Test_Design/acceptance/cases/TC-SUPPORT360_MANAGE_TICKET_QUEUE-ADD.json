@@ -1,0 +1,55 @@
+{
+  "id": "TC-SUPPORT360_MANAGE_TICKET_QUEUE-ADD",
+  "title": "Ticket Queue: a valid record can be added",
+  "object": "support360_manage_ticket_queue",
+  "surface": "app",
+  "type": "positive",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [
+    "FRS-2.1"
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_manage_ticket_queue"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "fill",
+      "field": "new_comment",
+      "value": "@synthetic"
+    },
+    {
+      "do": "screenshot",
+      "label": "filled"
+    },
+    {
+      "do": "click_action",
+      "name": "save_close"
+    },
+    {
+      "expect": "message",
+      "kind": "error",
+      "absent": true
+    },
+    {
+      "expect": "record",
+      "obj": "support360_manage_ticket_queue",
+      "where": {
+        "new_comment": "@filled"
+      }
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "81866ddb4d523299"
+}

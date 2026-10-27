@@ -72,14 +72,14 @@
             {
               "column": {
                 "name": "category_code",
-                "db_name": "CATEGORY_CODE",
+                "db_name": "CATEGORY_NAME",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Category",
                 "descr": "Ticket category",
                 "protect": "1",
                 "mandatory": true,
-                "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_CODE)",
+                "lookup": "",
                 "x": "30",
                 "y": "30",
                 "col_id": "3",
@@ -128,14 +128,14 @@
             {
               "column": {
                 "name": "priority_code",
-                "db_name": "PRIORITY_CODE",
+                "db_name": "PRIORITY_NAME",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Priority",
                 "descr": "Ticket priority",
                 "protect": "1",
                 "mandatory": true,
-                "lookup": "SUPPORT360_PRIORITY_MASTER(PRIORITY_NAME, PRIORITY_CODE)",
+                "lookup": "",
                 "x": "50",
                 "y": "50",
                 "col_id": "5",
@@ -225,31 +225,31 @@
                     {
                       "when": "Open",
                       "color": "blue",
-                      "icon": "●",
+                      "icon": "\u25cf",
                       "label": "Open"
                     },
                     {
                       "when": "Assigned",
                       "color": "amber",
-                      "icon": "●",
+                      "icon": "\u25cf",
                       "label": "Assigned"
                     },
                     {
                       "when": "In Progress",
                       "color": "orange",
-                      "icon": "◷",
+                      "icon": "\u25f7",
                       "label": "In Progress"
                     },
                     {
                       "when": "Resolved",
                       "color": "teal",
-                      "icon": "✓",
+                      "icon": "\u2713",
                       "label": "Resolved"
                     },
                     {
                       "when": "Closed",
                       "color": "red",
-                      "icon": "✕",
+                      "icon": "\u2715",
                       "label": "Closed"
                     },
                     {
@@ -650,16 +650,16 @@
             "search_columns": [
               "TICKET_NO",
               "TITLE",
-              "CATEGORY_CODE",
-              "PRIORITY_CODE",
+              "CATEGORY_NAME",
+              "PRIORITY_NAME",
               "STATUS",
               "ASSIGNED_AGENT",
               "CREATED_DATE",
               "CHG_DATE"
             ],
             "filter_columns": [
-              "CATEGORY_CODE",
-              "PRIORITY_CODE",
+              "CATEGORY_NAME",
+              "PRIORITY_NAME",
               "CREATED_DATE"
             ]
           },

@@ -1,0 +1,41 @@
+{
+  "id": "TC-SUPPORT360_MANAGE_TICKET_QUEUE-REQ-NEW_COMMENT",
+  "title": "Ticket Queue: cannot save without Add Comment",
+  "object": "support360_manage_ticket_queue",
+  "surface": "app",
+  "type": "negative",
+  "priority": "medium",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [
+    "FRS-2.1"
+  ],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_manage_ticket_queue"
+    },
+    {
+      "do": "click_action",
+      "name": "add"
+    },
+    {
+      "do": "click_action",
+      "name": "save"
+    },
+    {
+      "expect": "message",
+      "kind": "error"
+    },
+    {
+      "expect": "field_state",
+      "field": "new_comment",
+      "state": "error"
+    },
+    {
+      "do": "screenshot",
+      "label": "blocked"
+    }
+  ],
+  "seed_hash": "bbbc7ff314a2a986"
+}

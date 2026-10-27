@@ -14,7 +14,7 @@
               "tableDisplayName": "Ticket",
               "content": "Total Open Tickets",
               "name": "Total Open Tickets",
-              "descr": "Organization-wide count of tickets with STATUS in (Open, Assigned, In Progress)",
+              "descr": "Organization-wide count of tickets with STATUS in (Pending, Assigned, Queued)",
               "type": "number",
               "JAVATYPE": "java.lang.Integer",
               "COLTYPE": "NUMBER",
@@ -67,7 +67,7 @@
             "chipValue": [
               "Pending",
               "Assigned",
-              "In Progress"
+              "Queued"
             ]
           }
         ],
@@ -76,7 +76,7 @@
     },
     "VISUAL_NAME": "Card",
     "SCHEMA_NAME": "support360_ticket_schema",
-    "SCHEMA_DESCR": "Card count of all open tickets organization-wide (STATUS in Open, Assigned, In Progress)",
+    "SCHEMA_DESCR": "Card count of all open tickets organization-wide (STATUS in Pending, Assigned, Queued)",
     "SCHEMA_TYPE": "S",
     "OUTPUT_TYPE": "JSON",
     "DATABASE_TYPE": "1",
@@ -193,7 +193,7 @@
               "tableDisplayName": "Ticket",
               "content": "Total Open Tickets",
               "name": "Total Open Tickets",
-              "descr": "Organization-wide count of tickets with STATUS in (Open, Assigned, In Progress)",
+              "descr": "Organization-wide count of tickets with STATUS in (Pending, Assigned, Queued)",
               "type": "number",
               "JAVATYPE": "java.lang.Integer",
               "COLTYPE": "NUMBER",

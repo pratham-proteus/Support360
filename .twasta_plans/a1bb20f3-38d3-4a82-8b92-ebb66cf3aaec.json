@@ -1,0 +1,34 @@
+{
+  "id": "a1bb20f3-38d3-4a82-8b92-ebb66cf3aaec",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix a hardcoded wrong table name in the ticket-created logging business-logic fu",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAlso, the \"ticket created\" log step writes to the table SUPPORT360_TICKET_ACTIVITY_LOG, but the real table is SUPPORT360_TICKET_ACTLOG. Please correct the table name there.",
+  "created_at": 1791538208.1570053,
+  "updated_at": 1793097738.857579,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Correct table name in the ticket-created activity log function",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1791538208.1948826,
+      "completed_at": 1791538222.7041311
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nAlso, the \"ticket created\" log step writes to the table SUPPORT360_TICKET_ACTIVITY_LOG, but the real table is SUPPORT360_TICKET_ACTLOG. Please correct the table name there.",
+  "resume_ref": {
+    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "plan_id": "a1bb20f3-38d3-4a82-8b92-ebb66cf3aaec",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

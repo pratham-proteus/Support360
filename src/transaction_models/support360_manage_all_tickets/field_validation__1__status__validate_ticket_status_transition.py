@@ -5,16 +5,18 @@
 # method: validate_ticket_status_transition
 # description: Validate that the new ticket status is an allowed transition.
 # functional_specification:
-#   STATUS may only be 'In Progress' or 'Resolved'. On edit the stored status is
-#   read and the transition checked: Resolved is a terminal state (it cannot be
-#   re-opened to In Progress); a ticket may only move to In Progress when an agent
-#   is assigned; a ticket may only move to Resolved when it has resolution notes
-#   and an assigned agent. Re-selecting the same status is reported as an
-#   informational prompt. Resolving a ticket that has no agent comments raises an
-#   override-able warning.
+#   STATUS may only move forward along Pending -> Assigned -> Queued ->
+#   Resolved. Skipping ahead is allowed (e.g. Pending -> Queued), but moving
+#   backward is rejected. Resolved is final and can never change once set. On
+#   edit the stored status is read and the transition checked against this
+#   order; a ticket may only move to Resolved when it has resolution notes and
+#   an assigned agent. Re-selecting the same status is reported as an
+#   informational prompt. Resolving a ticket that has no agent comments raises
+#   an override-able warning.
 
 
-ALLOWED = ['In Progress', 'Resolved']
+ALLOWED = ['Pending', 'Assigned', 'Queued', 'Resolved']
+STATUS_ORDER = {'Pending': 0, 'Assigned': 1, 'Queued': 2, 'Resolved': 3}
 
 
 def run(args):
@@ -27,8 +29,8 @@ def run(args):
     if is_empty(new_status):
         return 'Status is required.'
 
-    if not in_list(new_status, 'In Progress,Resolved'):
-        return 'Invalid status "' + str(new_status) + '". Allowed values are: In Progress, Resolved.'
+    if not in_list(new_status, 'Pending,Assigned,Queued,Resolved'):
+        return 'Invalid status "' + str(new_status) + '". Allowed values are: Pending, Assigned, Queued, Resolved.'
 
     assigned = coalesce(args.get('ASSIGNED_AGENT'), '')
     old_status = ''
@@ -43,14 +45,20 @@ def run(args):
             if is_empty(assigned):
                 assigned = coalesce(cur.get('ASSIGNED_AGENT'), '')
 
-    if old_status == 'Resolved' and new_status != 'Resolved':
-        out['errors'].append({'code': 'VSTAT1', 'field': 'status', 'type': 'E',
-                              'message': 'Ticket is already Resolved. A resolved ticket cannot be moved back to '
-                                         + str(new_status) + '.'})
+    if not_empty(old_status) and old_status != new_status:
+        if old_status == 'Resolved':
+            out['errors'].append({'code': 'VSTAT1', 'field': 'status', 'type': 'E',
+                                  'message': 'Ticket is already Resolved. A resolved ticket cannot be moved to '
+                                             + str(new_status) + '.'})
+        elif STATUS_ORDER.get(new_status, -1) < STATUS_ORDER.get(old_status, -1):
+            out['errors'].append({'code': 'VSTAT1', 'field': 'status', 'type': 'E',
+                                  'message': 'Status cannot move backward from ' + str(old_status)
+                                             + ' to ' + str(new_status) + '.'})
 
-    if new_status == 'In Progress' and is_empty(assigned):
-        out['errors'].append({'code': 'VSTAT2', 'field': 'status', 'type': 'E',
-                              'message': 'Assign an agent before setting the status to In Progress.'})
+    if old_status == 'Pending' and new_status in ('Resolved', 'Not Resolved'):
+        out['errors'].append({'code': 'VSTAT7', 'field': 'status', 'type': 'E',
+                              'message': 'This ticket must be assigned to an agent before it can be marked '
+                                         'Resolved or Not Resolved. Please assign the ticket first.'})
 
     if new_status == 'Resolved':
         if is_empty(assigned):

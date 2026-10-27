@@ -1,0 +1,94 @@
+{
+  "id": "0e86197b-6a4a-4329-8302-e27d47698ab7",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Rework how SUPPORT360_TICKET.RAISED_BY_NAME is populated: resolve it from the lo",
+  "kind": "change",
+  "status": "error",
+  "description": "Here is the earlier plan again.\n\n(a) Step 1, for tickets that already exist: For every ticket where the \u201craised by name\u201d (RAISED_BY_NAME) is empty, fill it in once. Right now the plan copies the long user ID (RAISED_BY, like 97b79196\u2026) into it. I don\u2019t want the ID. I want the person\u2019s email.\n\n(b) Step 3, for new tickets: When a ticket is saved, find the logged-in person\u2019s email and save it as RAISED_BY_NAME in the same save. If the email cannot be found, keep the ID instead.\n\nWhat I need: Use the same method for both (a) and (b). Look up the email from the user directory (the same list of users that the system keeps for people who log in), using the saved user ID. Do not look it up from the Agent Master. Create Ticket already shows the email on screen, so use the same source it uses. If the email cannot be found, keep the ID.\n\nPlease do not change anything else.",
+  "created_at": 1792400273.3693824,
+  "updated_at": 1793097738.859175,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update FRS: RAISED_BY_NAME now stores resolved email, not display name",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1792400273.4142706,
+      "completed_at": 1792400296.5471027
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Rewrite resolve_raised_by_name to resolve EMAIL from the user/session directory, not the Agent master",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792400296.6355414,
+      "completed_at": 1792400367.6072128
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Move raised_by_name resolution from on-add to pre_commit on support360_create_ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792400367.7770944,
+      "completed_at": 1792400426.6777081
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Register the one-time backfill process in navigation",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_backfill_raised_by_email",
+      "obj_type": "G",
+      "phase_id": null,
+      "started_at": 1792400426.7743351,
+      "completed_at": 1792400439.7060199
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Create the backfill General Process model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_backfill_raised_by_email",
+      "obj_type": "G",
+      "phase_id": null,
+      "started_at": 1792400439.7806492,
+      "completed_at": 1792400479.852568
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Add the backfill process's email-resolution function",
+      "status": "error",
+      "error": "I couldn't apply this change automatically \u2014 the edit didn't take. Try rephrasing what you want, or adjust it in the designer. [the agent did not use any write tools \u2014 PreToolUse:Agent hook error: Tool Agent is not allowed for this task]",
+      "obj_name": "support360_backfill_raised_by_email",
+      "obj_type": "G",
+      "phase_id": null,
+      "started_at": 1792400479.926356,
+      "completed_at": 1792400572.1567044
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Here is the earlier plan again.\n\n(a) Step 1, for tickets that already exist: For every ticket where the \u201craised by name\u201d (RAISED_BY_NAME) is empty, fill it in once. Right now the plan copies the long user ID (RAISED_BY, like 97b79196\u2026) into it. I don\u2019t want the ID. I want the person\u2019s email.\n\n(b) Step 3, for new tickets: When a ticket is saved, find the logged-in person\u2019s email and save it as RAISED_BY_NAME in the same save. If the email cannot be found, keep the ID instead.\n\nWhat I need: Use the same method for both (a) and (b). Look up the email from the user directory (the same list of users that the system keeps for people who log in), using the saved user ID. Do not look it up from the Agent Master. Create Ticket already shows the email on screen, so use the same source it uses. If the email cannot be found, keep the ID.\n\nPlease do not change anything else.",
+  "resume_ref": {
+    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "plan_id": "0e86197b-6a4a-4329-8302-e27d47698ab7",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

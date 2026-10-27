@@ -33,7 +33,7 @@
         ]
       },
       {
-        "PARAM_NAME": "CATEGORY_CODE",
+        "PARAM_NAME": "CATEGORY_NAME",
         "PROMPT_LABEL": "Category",
         "DEFAULT_VALUE": "%",
         "DATA_TYPE": "string",
@@ -41,7 +41,8 @@
         "BROADCAST_TO": [
           "VIS_TICKET_COUNT_BY_STATUS"
         ],
-        "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_CODE)"
+        "lookup": "SUPPORT360_CATEGORY_MASTER(CATEGORY_NAME, CATEGORY_NAME)",
+        "lookup_filter": "IS_ACTIVE='Y'"
       }
     ],
     "VISUALS": [
@@ -67,9 +68,9 @@
             "GLOBAL_PARAM": "CREATED_TO"
           },
           {
-            "VISUAL_PARAM": "SUPPORT360_TICKET.CATEGORY_CODE",
+            "VISUAL_PARAM": "SUPPORT360_TICKET.CATEGORY_NAME",
             "BIND_TYPE": "global",
-            "GLOBAL_PARAM": "CATEGORY_CODE"
+            "GLOBAL_PARAM": "CATEGORY_NAME"
           }
         ]
       },

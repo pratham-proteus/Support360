@@ -1,0 +1,106 @@
+{
+  "id": "05ef0a4c-ed1f-4b15-8ae6-15a31687241c",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Remove the 'In Progress' ticket status everywhere (status displays, dropdown opt",
+  "kind": "change",
+  "status": "completed",
+  "description": "Remove the status 'In Progress'",
+  "created_at": 1792580072.2623498,
+  "updated_at": 1793097738.8623555,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update FRS: drop 'In Progress' status and 'Start Ticket Progress' action",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1792580072.3023422,
+      "completed_at": 1792580124.449759
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Update Manage Ticket Queue nav description to drop 'In Progress' from actionable-status filter",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792580124.525743,
+      "completed_at": 1792580141.207951
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Remove 'In Progress' status display/option and update transition validation on Manage Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792580141.2821717,
+      "completed_at": 1792580158.581799
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Update status-transition logic for Manage Ticket Queue to drop In Progress",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792580158.6751823,
+      "completed_at": 1792580179.872865
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Remove 'In Progress' status display/option and update transition validation on Manage All Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792580180.022289,
+      "completed_at": 1792580205.2540517
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Update status-transition logic for Manage All Tickets to drop In Progress",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792580205.332277,
+      "completed_at": 1792580252.3046567
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Remove 'In Progress' from STATUS display map on Create Ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1792580252.450722,
+      "completed_at": 1792580262.760795
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Remove the status 'In Progress'",
+  "resume_ref": {
+    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "plan_id": "05ef0a4c-ed1f-4b15-8ae6-15a31687241c",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": ""
+}

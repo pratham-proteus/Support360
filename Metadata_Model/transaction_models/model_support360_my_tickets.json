@@ -139,7 +139,7 @@
                 "width": 200,
                 "key": false,
                 "mandatory": false,
-                "hidden": "",
+                "hidden": 1,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
@@ -867,6 +867,14 @@
                   "severity": "E",
                   "message": "Ticket {form.ticket_no} is Closed; attachments can no longer be added.",
                   "expression": "{form.status} != \"Closed\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Ticket is resolved",
+                  "error_code": "TICKET_RESOLVED_READONLY",
+                  "severity": "E",
+                  "message": "Ticket {form.ticket_no} is Resolved and cannot be changed.",
+                  "expression": "{form.status} != \"Resolved\""
                 }
               ]
             }

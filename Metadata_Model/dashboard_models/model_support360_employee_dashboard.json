@@ -79,18 +79,6 @@
         "CRITERIA_BINDINGS": []
       },
       {
-        "VISUAL_ID": "VIS_KPI_RESOLVED",
-        "VISUAL_NAME": "Resolved",
-        "POSITION": {
-          "X": 0,
-          "Y": 2,
-          "WIDTH": 3,
-          "HEIGHT": 2
-        },
-        "VISUAL_CONFIG_REF": "model_support360_my_awaiting_confirmation_count.json",
-        "CRITERIA_BINDINGS": []
-      },
-      {
         "VISUAL_ID": "VIS_KPI_CLOSED",
         "VISUAL_NAME": "Closed",
         "POSITION": {

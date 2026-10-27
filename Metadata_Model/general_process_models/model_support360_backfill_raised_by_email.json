@@ -1,0 +1,33 @@
+{
+  "obj_name": "support360_backfill_raised_by_email",
+  "name": "Backfill Raised By Email",
+  "description": "One-time administrative process to backfill RAISED_BY_NAME on existing SUPPORT360_TICKET rows with the raiser's resolved email (or the raw RAISED_BY id if no email can be resolved). Safe to re-run: rows already carrying a resolved value are excluded by the source filter.",
+
+  "source_connection_id": "",
+  "source_kind": "sql",
+  "source_sql": "SELECT TICKET_NO AS ticket_no, RAISED_BY AS raised_by FROM SUPPORT360_TICKET WHERE RAISED_BY_NAME IS NULL OR RAISED_BY_NAME = ''",
+  "default_params": {},
+
+  "calculations": [],
+
+  "persist_mode": "table",
+  "business_logic": {
+    "mode": "business_logic",
+    "business_logic": {
+      "method": "backfill_raised_by_email",
+      "language": "plpgsql",
+      "description": "Pre-persist hook: for every row given, resolve raised_by to that user's email via the platform's user/session login directory (the same lookup used by support360_create_ticket's resolve_raised_by_name business logic; never SUPPORT360_AGENT); if no email is found, use the raw raised_by id instead. Return the rows with raised_by_name set to the resolved value so the table persist writes it.",
+      "spec": "For each row in rows: look up the email for row.raised_by in the platform's user/session login directory (same source as support360_create_ticket's resolve_raised_by_name hook). Set row.raised_by_name to that email if found, otherwise to row.raised_by unchanged. Return { \"rows\": rows } with raised_by_name populated on every row; do not alter ticket_no or raised_by. No errors/warnings are expected in normal operation."
+    }
+  },
+  "target_connection_id": "",
+  "target_format": "",
+  "target_table": "SUPPORT360_TICKET",
+  "target_columns": [
+    { "name": "ticket_no", "type": "string", "source": "ticket_no" },
+    { "name": "raised_by_name", "type": "string", "source": "raised_by_name" }
+  ],
+  "key_columns": ["ticket_no"],
+
+  "execution_mode": "direct"
+}

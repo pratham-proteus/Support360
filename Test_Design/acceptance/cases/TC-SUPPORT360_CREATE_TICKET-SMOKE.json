@@ -1,0 +1,32 @@
+{
+  "id": "TC-SUPPORT360_CREATE_TICKET-SMOKE",
+  "title": "Create Ticket: the screen opens and lists records",
+  "object": "support360_create_ticket",
+  "surface": "app",
+  "type": "smoke",
+  "priority": "high",
+  "persona": "owner",
+  "origin": "seed",
+  "requirement": [],
+  "steps": [
+    {
+      "do": "open_screen",
+      "obj": "support360_create_ticket"
+    },
+    {
+      "expect": "row_count",
+      "min": 0
+    },
+    {
+      "do": "screenshot",
+      "label": "list"
+    },
+    {
+      "expect": "no_console_errors"
+    },
+    {
+      "expect": "no_failed_requests"
+    }
+  ],
+  "seed_hash": "43bce4deac5b3154"
+}
