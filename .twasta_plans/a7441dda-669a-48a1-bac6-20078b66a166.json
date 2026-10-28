@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "[The user currently has the \"Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nThe \"Raised By\" is still not showing value",
   "created_at": 1790661440.7630107,
-  "updated_at": 1793097738.8453202,
+  "updated_at": 1793171628.662455,
   "todos": [
     {
       "id": "frs",
@@ -193,10 +193,11 @@
   ],
   "originating_prompt": "[The user currently has the \"Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nThe \"Raised By\" is still not showing value",
   "resume_ref": {
-    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
     "plan_id": "a7441dda-669a-48a1-bac6-20078b66a166",
     "scope": "phase"
   },
   "depends_on": [],
-  "result_summary": ""
+  "result_summary": "",
+  "awaiting_answer": false
 }

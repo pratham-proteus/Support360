@@ -1,7 +1,7 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-10-27T06:06:39.905138+00:00",
+  "generated_at": "2026-10-28T04:15:15.498247+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
@@ -78,13 +78,13 @@
       "table_name": "SUPPORT360_CATEGORY_MASTER",
       "description": "",
       "key_columns": [
-        "CATEGORY_CODE VARCHAR"
+        "ID VARCHAR"
       ],
       "other_columns": [
+        "CATEGORY_CODE VARCHAR",
         "CATEGORY_NAME VARCHAR",
         "DESCRIPTION VARCHAR",
         "IS_ACTIVE VARCHAR",
-        "ID VARCHAR",
         "ADD_DATE DATETIME",
         "ADD_USER VARCHAR",
         "ADD_TERM VARCHAR",
@@ -133,7 +133,6 @@
         "ATTACHMENT_UPLOADED_DATE DATETIME",
         "AGENT_COMMENTS TEXT",
         "ASSIGNED_AGENT VARCHAR",
-        "NEW_COMMENT VARCHAR",
         "ID VARCHAR",
         "ACTIVITY_HISTORY TEXT",
         "ADD_DATE DATETIME",
@@ -141,10 +140,11 @@
         "RESOLUTION_NOTES TEXT",
         "ADD_USER VARCHAR",
         "CLOSED_BY VARCHAR",
-        "CATEGORY_CODE VARCHAR",
         "CHG_DATE DATETIME",
-        "PRIORITY_CODE VARCHAR",
         "CHG_USER VARCHAR",
+        "NEW_COMMENT VARCHAR",
+        "CATEGORY_CODE VARCHAR",
+        "PRIORITY_CODE VARCHAR",
         "ADD_TERM VARCHAR",
         "CHG_TERM VARCHAR"
       ]

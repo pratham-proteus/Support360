@@ -2,24 +2,6 @@
   "table_name": "SUPPORT360_CATEGORY_MASTER",
   "objects": [
     {
-      "object_name": "support360_category_master",
-      "form_no": "1",
-      "usage_type": "M",
-      "referred_columns": [
-        "ADD_USER",
-        "ADD_DATE",
-        "DESCRIPTION",
-        "CATEGORY_CODE",
-        "ADD_TERM",
-        "ID",
-        "CHG_USER",
-        "IS_ACTIVE",
-        "CHG_TERM",
-        "CATEGORY_NAME",
-        "CHG_DATE"
-      ]
-    },
-    {
       "object_name": "support360_manage_ticket_queue",
       "form_no": "1",
       "usage_type": "R",
@@ -86,6 +68,24 @@
         "join_table": "SUPPORT360_TICKET",
         "join_column": "CATEGORY_CODE"
       }
+    },
+    {
+      "object_name": "support360_category_master",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "IS_ACTIVE",
+        "ADD_TERM",
+        "CHG_USER",
+        "CHG_TERM",
+        "CATEGORY_NAME",
+        "DESCRIPTION",
+        "ADD_DATE",
+        "ID",
+        "ADD_USER",
+        "CATEGORY_CODE",
+        "CHG_DATE"
+      ]
     }
   ]
 }

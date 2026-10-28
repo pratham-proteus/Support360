@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "If ticket status is 'Pending', it should not move on 'Resolved' or 'Not Resolved'. The ticket status should be assigned first.",
   "created_at": 1792659241.6379867,
-  "updated_at": 1793097738.8673084,
+  "updated_at": 1793171628.681513,
   "todos": [
     {
       "id": "change_1",
@@ -61,10 +61,11 @@
   "phases": [],
   "originating_prompt": "If ticket status is 'Pending', it should not move on 'Resolved' or 'Not Resolved'. The ticket status should be assigned first.",
   "resume_ref": {
-    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
     "plan_id": "8021bdb9-4ad7-4025-94ff-40d359c9e907",
     "scope": null
   },
   "depends_on": [],
-  "result_summary": ""
+  "result_summary": "",
+  "awaiting_answer": false
 }

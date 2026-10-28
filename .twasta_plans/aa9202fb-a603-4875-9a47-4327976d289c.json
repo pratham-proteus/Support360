@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "You still not fixed the error where Admin is selecting an agent to assign a ticket, but the error says the ticket must be with OPEN status. But it's already in OPEN status. Why is it throwing an error there ? Please fix that error",
   "created_at": 1788858672.681152,
-  "updated_at": 1793097738.82571,
+  "updated_at": 1793171628.6446953,
   "todos": [
     {
       "id": "change_1",
@@ -25,10 +25,11 @@
   "phases": [],
   "originating_prompt": "You still not fixed the error where Admin is selecting an agent to assign a ticket, but the error says the ticket must be with OPEN status. But it's already in OPEN status. Why is it throwing an error there ? Please fix that error",
   "resume_ref": {
-    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
     "plan_id": "aa9202fb-a603-4875-9a47-4327976d289c",
     "scope": null
   },
   "depends_on": [],
-  "result_summary": ""
+  "result_summary": "",
+  "awaiting_answer": false
 }

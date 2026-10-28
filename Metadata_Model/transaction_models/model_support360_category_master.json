@@ -16,9 +16,9 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Category Code",
-                "descr": "Unique code identifying the category",
-                "key": true,
-                "mandatory": true,
+                "descr": "Primary key of the Category Master. System auto-generated when a new category is created \u2014 the Admin no longer types it in; it is shown read-only on the Add screen. Remains mandatory and NOT NULL internally, and must remain unique.",
+                "key": false,
+                "mandatory": false,
                 "validations": [
                   {
                     "type": "builtin",
@@ -40,10 +40,10 @@
                 "hidden": "",
                 "format": "",
                 "default_function": "",
-                "default_value": "",
+                "default_value": "auto_generate()",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "",
+                "protect": "1",
                 "lookup": ""
               }
             },
@@ -189,7 +189,7 @@
                 "table_display_name": "Category master (main table)",
                 "db_size": "36",
                 "width": 360,
-                "key": false,
+                "key": true,
                 "mandatory": false,
                 "format": "",
                 "default_function": "",
@@ -437,6 +437,17 @@
     "pre_commit": [],
     "post_commit": [],
     "follow_up_actions": [],
-    "attach_docs": []
+    "attach_docs": [],
+    "vector_search": {
+      "enabled": true,
+      "columns": [
+        "category_name"
+      ],
+      "key_column": "category_code",
+      "display_column": "category_name",
+      "allow_alias": true,
+      "auto": true,
+      "reason": "looked up by support360_create_ticket, support360_manage_all_tickets; searched by category_name"
+    }
   }
 }

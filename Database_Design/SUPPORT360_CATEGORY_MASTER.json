@@ -4,12 +4,20 @@
   "project": "Support360",
   "columns": [
     {
+      "column_name": "ID",
+      "data_type": "VARCHAR",
+      "size": "36",
+      "key": true,
+      "description": "Internal unique identifier",
+      "sequence": 1
+    },
+    {
       "column_name": "CATEGORY_CODE",
       "data_type": "VARCHAR",
       "size": "20",
-      "key": true,
+      "key": false,
       "description": "Unique code identifying the category",
-      "sequence": 1,
+      "sequence": 2,
       "mandatory": true
     },
     {
@@ -18,7 +26,7 @@
       "size": "100",
       "key": false,
       "description": "Name of the ticket category",
-      "sequence": 2,
+      "sequence": 3,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_CATEGORY_MASTER",
@@ -32,7 +40,7 @@
       "size": "500",
       "key": false,
       "description": "Optional detailed description of the category",
-      "sequence": 3
+      "sequence": 4
     },
     {
       "column_name": "IS_ACTIVE",
@@ -40,7 +48,7 @@
       "size": "1",
       "key": false,
       "description": "Whether the category is active or inactive",
-      "sequence": 4,
+      "sequence": 5,
       "mandatory": true,
       "allowed_values": [
         {
@@ -52,14 +60,6 @@
           "label": "Inactive"
         }
       ]
-    },
-    {
-      "column_name": "ID",
-      "data_type": "VARCHAR",
-      "size": "36",
-      "key": false,
-      "description": "Internal unique identifier",
-      "sequence": 5
     },
     {
       "column_name": "ADD_DATE",

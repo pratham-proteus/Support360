@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nCan you check the 'Admin Dashboard' object/screen, and show the same chart for tickets in the 'Employee Dashboard' object",
   "created_at": 1792409707.1063673,
-  "updated_at": 1793097738.8417284,
+  "updated_at": 1793171628.6587956,
   "todos": [
     {
       "id": "change_1",
@@ -73,10 +73,11 @@
   "phases": [],
   "originating_prompt": "[The user currently has the \"support360_employee_dashboard\" screen open (object support360_employee_dashboard, type D). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nCan you check the 'Admin Dashboard' object/screen, and show the same chart for tickets in the 'Employee Dashboard' object",
   "resume_ref": {
-    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
     "plan_id": "28c6ddcb-b03c-4ddc-8d88-1328ba62945f",
     "scope": null
   },
   "depends_on": [],
-  "result_summary": ""
+  "result_summary": "",
+  "awaiting_answer": false
 }

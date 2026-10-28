@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "The ticket will be in \"Pending\" status if there is no agent matching its preference. For example, if Rajesh's preference is Hardware, the ticket should be assigned to Rajesh automatically, and the \"Agent ID\" and \"Assigned Agent Name\" fields should be filled automatically.\n\nIf there is an agent whose preference matches the ticket's category, the ticket should be assigned automatically. If no agent has a preference matching the category, the ticket should remain Pending.\n\nThere should be a button called \"Assign Agent\" in the \"Ticket Management\" transaction, visible only for Pending tickets, so the manager can assign the ticket manually.\n\nIf the assigned agent is not available, the ticket status should be \"Queued\". Once the ticket is resolved, the status should change to \"Resolved\". If the ticket status is \"Resolved\", it should not be editable anywhere.",
   "created_at": 1792989918.5137367,
-  "updated_at": 1793097738.8687565,
+  "updated_at": 1793171628.682907,
   "todos": [
     {
       "id": "change_1",
@@ -133,10 +133,11 @@
   "phases": [],
   "originating_prompt": "The ticket will be in \"Pending\" status if there is no agent matching its preference. For example, if Rajesh's preference is Hardware, the ticket should be assigned to Rajesh automatically, and the \"Agent ID\" and \"Assigned Agent Name\" fields should be filled automatically.\n\nIf there is an agent whose preference matches the ticket's category, the ticket should be assigned automatically. If no agent has a preference matching the category, the ticket should remain Pending.\n\nThere should be a button called \"Assign Agent\" in the \"Ticket Management\" transaction, visible only for Pending tickets, so the manager can assign the ticket manually.\n\nIf the assigned agent is not available, the ticket status should be \"Queued\". Once the ticket is resolved, the status should change to \"Resolved\". If the ticket status is \"Resolved\", it should not be editable anywhere.",
   "resume_ref": {
-    "session_id": "a9f6cdc5-c5f9-460b-9ed2-28c8ac9ab3b1",
+    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
     "plan_id": "5bd24ab6-46c6-4eb5-88b8-86d7e3cf2a6d",
     "scope": null
   },
   "depends_on": [],
-  "result_summary": ""
+  "result_summary": "",
+  "awaiting_answer": false
 }

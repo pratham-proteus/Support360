@@ -42,7 +42,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket category, picked from the active Category master",
-      "sequence": 18,
+      "sequence": 21,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_CATEGORY_MASTER",
@@ -58,7 +58,7 @@
       "size": "20",
       "key": false,
       "description": "Ticket priority, picked from the active Priority master",
-      "sequence": 19,
+      "sequence": 22,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_PRIORITY_MASTER",
@@ -254,7 +254,7 @@
       "size": "2000",
       "key": false,
       "description": "Type a comment here, then use the Reopen-Comment action to post it; this does not change the ticket STATUS",
-      "sequence": 14,
+      "sequence": 20,
       "mandatory": true,
       "primary_key": false,
       "nullable": false
