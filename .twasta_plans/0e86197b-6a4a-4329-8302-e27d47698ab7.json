@@ -7,7 +7,7 @@
   "status": "error",
   "description": "Here is the earlier plan again.\n\n(a) Step 1, for tickets that already exist: For every ticket where the \u201craised by name\u201d (RAISED_BY_NAME) is empty, fill it in once. Right now the plan copies the long user ID (RAISED_BY, like 97b79196\u2026) into it. I don\u2019t want the ID. I want the person\u2019s email.\n\n(b) Step 3, for new tickets: When a ticket is saved, find the logged-in person\u2019s email and save it as RAISED_BY_NAME in the same save. If the email cannot be found, keep the ID instead.\n\nWhat I need: Use the same method for both (a) and (b). Look up the email from the user directory (the same list of users that the system keeps for people who log in), using the saved user ID. Do not look it up from the Agent Master. Create Ticket already shows the email on screen, so use the same source it uses. If the email cannot be found, keep the ID.\n\nPlease do not change anything else.",
   "created_at": 1792400273.3693824,
-  "updated_at": 1793861307.2199113,
+  "updated_at": 1793871138.854216,
   "todos": [
     {
       "id": "change_1",
@@ -85,7 +85,7 @@
   "phases": [],
   "originating_prompt": "Here is the earlier plan again.\n\n(a) Step 1, for tickets that already exist: For every ticket where the \u201craised by name\u201d (RAISED_BY_NAME) is empty, fill it in once. Right now the plan copies the long user ID (RAISED_BY, like 97b79196\u2026) into it. I don\u2019t want the ID. I want the person\u2019s email.\n\n(b) Step 3, for new tickets: When a ticket is saved, find the logged-in person\u2019s email and save it as RAISED_BY_NAME in the same save. If the email cannot be found, keep the ID instead.\n\nWhat I need: Use the same method for both (a) and (b). Look up the email from the user directory (the same list of users that the system keeps for people who log in), using the saved user ID. Do not look it up from the Agent Master. Create Ticket already shows the email on screen, so use the same source it uses. If the email cannot be found, keep the ID.\n\nPlease do not change anything else.",
   "resume_ref": {
-    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "session_id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
     "plan_id": "0e86197b-6a4a-4329-8302-e27d47698ab7",
     "scope": null
   },

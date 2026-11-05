@@ -16,25 +16,6 @@
       }
     },
     {
-      "object_name": "support360_my_agents",
-      "form_no": "1",
-      "usage_type": "M",
-      "referred_columns": [
-        "ADD_DATE",
-        "ADD_USER",
-        "CHG_DATE",
-        "CHG_USER",
-        "ID",
-        "AGENT_NAME",
-        "AGENT_ID",
-        "ADD_TERM",
-        "AGENT_STATUS",
-        "CHG_TERM",
-        "AGENT_AVAILABILITY",
-        "PREFERENCE"
-      ]
-    },
-    {
       "object_name": "support360_ticket_assignment",
       "form_no": "1",
       "usage_type": "R",
@@ -89,6 +70,25 @@
         "join_table": "SUPPORT360_TICKET",
         "join_column": "ASSIGNED_AGENT"
       }
+    },
+    {
+      "object_name": "support360_my_agents",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "AGENT_STATUS",
+        "AGENT_ID",
+        "PREFERENCE",
+        "ID",
+        "ADD_USER",
+        "AGENT_NAME",
+        "ADD_TERM",
+        "CHG_DATE",
+        "AGENT_AVAILABILITY",
+        "ADD_DATE",
+        "CHG_TERM",
+        "CHG_USER"
+      ]
     }
   ]
 }

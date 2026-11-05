@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "In Admin Setup -> Manage All Tickets The Status is changing from Open to Assigned when Admin is selecting an agent. But When Admin selected an agent to assign the ticket and clicks on Save & Close it gives error \" A new ticket must be created with status 'Open', not 'Assigned' \"",
   "created_at": 1788862327.809143,
-  "updated_at": 1793861307.183399,
+  "updated_at": 1793871138.8258102,
   "todos": [
     {
       "id": "change_1",
@@ -25,7 +25,7 @@
   "phases": [],
   "originating_prompt": "In Admin Setup -> Manage All Tickets The Status is changing from Open to Assigned when Admin is selecting an agent. But When Admin selected an agent to assign the ticket and clicks on Save & Close it gives error \" A new ticket must be created with status 'Open', not 'Assigned' \"",
   "resume_ref": {
-    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "session_id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
     "plan_id": "c5982855-3368-4c57-9223-033303576022",
     "scope": null
   },

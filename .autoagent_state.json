@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+  "id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
   "project": "Support360",
   "description": "Build a **General Help Desk application for enterprises**.\n\nThe system should have 3 roles: **Employee, Support Agent, and Admin**.\n\n\nCore features:\n\n* Employees can create support tickets with **title, description, category, priority, and attachment**.\n* Support Agents can **view, assign, update, comment on, and resolve tickets**.\n* Ticket status should follow: **Open \u2192 Assigned \u2192 In Progress \u2192 Resolved \u2192 Closed**.\n* Employees can view their tickets and track status.\n* Admin can manage **users, categories, priorities, and tickets**.\n* Provide **search, filtering, and dashboards** showing ticket count by status and priority.\n* Add proper **mandatory-field validation, error messages, and success messages**.\n* Store all ticket changes in an **activity/history log**.\n* Create a clean, simple, enterprise-style UI.\n\nMake the application fully functional with working **frontend, backend, database, authentication, validations, and workflows**.\n\n=== CONFIRMED SCOPE AND COMPLEXITY (user-approved \u2014 this OVERRIDES any conflicting inference from the brief) ===\n* Which functional areas should the Help Desk cover?\n  - Include: Ticket Creation & My Tickets; Agent Ticket Desk; Status Workflow & Rules; Admin Setup (Categories & Priorities); Search, Filters & Dashboards; Activity & History Log\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Email Notifications; Response Time Targets (SLA); Knowledge Base & Canned Replies\n* How complete should this first version be?\n  - Include: Standard\n* What should each role see when they log in?\n  - Include: Employee: my open tickets; Agent: my queue and workload; Admin: overall ticket health\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Agent performance comparison\n* How should a ticket move from Resolved to Closed?\n  - Include: Employee confirms\n* How should file attachments work on tickets?\n  - Include: Multiple files, any time\nWrite the specification to cover EXACTLY this confirmed scope at the confirmed complexity level: include every confirmed item, honour every added point, and do not add functional areas, activities or enterprise features beyond it.",
   "active_plan_id": "7703dc8a-ed4f-4a86-8c1b-6cbac3c560d2",
@@ -12069,7 +12069,7 @@
       "id": "7703dc8a-ed4f-4a86-8c1b-6cbac3c560d2",
       "title": "Remove agent-availability and 'Queued'-status logic from all ticket-assignment c",
       "kind": "change",
-      "status": "paused",
+      "status": "error",
       "description": "Remove the use of agent availability or a \u201cQueued\u201d status anywhere. Assignment depends only on Preference and round-robin order.\n\nRemove the unconditional Pending \u2192 Assigned change from the pre-commit hook. Status should become Assigned only in the post-commit hook, after an agent is actually selected.\nIf no active agent matches the ticket\u2019s Category, keep the status as Pending and leave Assigned To empty.",
       "todos": [
         {
@@ -12082,7 +12082,7 @@
           "obj_type": null,
           "phase_id": null,
           "started_at": 1793782435.7427683,
-          "completed_at": 1793788625.400873
+          "completed_at": 1793868529.1335394
         },
         {
           "id": "change_2",
@@ -12094,7 +12094,7 @@
           "obj_type": "T",
           "phase_id": null,
           "started_at": 1793782486.2164695,
-          "completed_at": 1793788650.1706407
+          "completed_at": 1793868546.4412062
         },
         {
           "id": "change_3",
@@ -12106,7 +12106,7 @@
           "obj_type": "T",
           "phase_id": null,
           "started_at": 1793782500.094621,
-          "completed_at": 1793782511.0571384
+          "completed_at": 1793868556.9037695
         },
         {
           "id": "change_4",
@@ -12118,7 +12118,7 @@
           "obj_type": "T",
           "phase_id": null,
           "started_at": 1793782511.1658957,
-          "completed_at": 1793782571.0024717
+          "completed_at": 1793868574.785852
         },
         {
           "id": "change_5",
@@ -12130,7 +12130,7 @@
           "obj_type": "T",
           "phase_id": null,
           "started_at": 1793782571.1068258,
-          "completed_at": 1793782584.748198
+          "completed_at": 1793868588.4693224
         },
         {
           "id": "change_6",
@@ -12142,19 +12142,19 @@
           "obj_type": "T",
           "phase_id": null,
           "started_at": 1793782584.8805063,
-          "completed_at": 1793782593.2829971
+          "completed_at": 1793868603.575895
         },
         {
           "id": "change_7",
           "step": "change",
           "label": "Make create_ticket post_commit assignment preference/round-robin only, status conditional",
-          "status": "error",
-          "error": "I couldn't apply this change automatically \u2014 the edit didn't take. Try rephrasing what you want, or adjust it in the designer. [the agent did not use any write tools \u2014 Agent did not use any write tools]",
+          "status": "completed",
+          "error": null,
           "obj_name": "support360_create_ticket",
           "obj_type": "T",
           "phase_id": null,
           "started_at": 1793782593.5170507,
-          "completed_at": 1793782605.839968
+          "completed_at": 1793868618.9991992
         },
         {
           "id": "change_8",
@@ -12245,7 +12245,7 @@
       "phases": [],
       "profile_id": null,
       "created_at": 1793782435.2955127,
-      "updated_at": 1793858057.339509,
+      "updated_at": 1793868368.3158183,
       "depends_on": [],
       "dependency_spec": null,
       "run_scope": null

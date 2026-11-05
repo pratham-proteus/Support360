@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "If there are multiple agents for a single preference, the created tickets should get assigned in an ascending order of the Agents Name on click of save in 'Create Ticket' transaction. In our system the first agent who will get assigned with the ticket is Omkar, after one ticket is assigned to Omkar the other ticket must get assigned to Prem as the alphabet P comes after O. The next ticket should be assigned to Sandeep. And next created ticket should get assigned to Omkar again.",
   "created_at": 1793768863.198123,
-  "updated_at": 1793861307.2429352,
+  "updated_at": 1793871138.8758798,
   "todos": [
     {
       "id": "change_1",
@@ -49,7 +49,7 @@
   "phases": [],
   "originating_prompt": "If there are multiple agents for a single preference, the created tickets should get assigned in an ascending order of the Agents Name on click of save in 'Create Ticket' transaction. In our system the first agent who will get assigned with the ticket is Omkar, after one ticket is assigned to Omkar the other ticket must get assigned to Prem as the alphabet P comes after O. The next ticket should be assigned to Sandeep. And next created ticket should get assigned to Omkar again.",
   "resume_ref": {
-    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "session_id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
     "plan_id": "8e278d68-5f65-4348-8d9c-fac4b1a27258",
     "scope": null
   },

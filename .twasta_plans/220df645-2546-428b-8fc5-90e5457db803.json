@@ -7,7 +7,7 @@
   "status": "error",
   "description": "The Ticket Category column still holds Category Code value. The Category code should get delete and only Category Name should be there in the dropdown",
   "created_at": 1793009157.840886,
-  "updated_at": 1793861307.233596,
+  "updated_at": 1793871138.868609,
   "todos": [
     {
       "id": "change_1",
@@ -193,7 +193,7 @@
   "phases": [],
   "originating_prompt": "The Ticket Category column still holds Category Code value. The Category code should get delete and only Category Name should be there in the dropdown",
   "resume_ref": {
-    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "session_id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
     "plan_id": "220df645-2546-428b-8fc5-90e5457db803",
     "scope": null
   },

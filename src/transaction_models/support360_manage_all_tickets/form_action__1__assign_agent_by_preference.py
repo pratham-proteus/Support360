@@ -27,8 +27,12 @@ def run(args):
 
         category = (args.get('CATEGORY') or '').strip()
 
-        agent = db.get('SUPPORT360_AGENT', {'AGENT_ID': assigned_agent, 'AGENT_STATUS': 'Active', 'PREFERENCE': category})
+        agent = db.get('SUPPORT360_AGENT', {'AGENT_ID': assigned_agent, 'AGENT_STATUS': 'Active'})
         if not agent:
+            return {'error': 'Selected agent ' + assigned_agent + ' was not found.'}
+
+        preference_list = [p.strip() for p in (agent.get('PREFERENCE') or '').split(',')]
+        if category not in preference_list:
             return {'error': 'Selected agent ' + assigned_agent + ' was not found.'}
 
         agent_name = (agent['AGENT_NAME'] or '').strip()

@@ -104,11 +104,11 @@
 
 ### My Agents
 - Description: Admin maintains the master list of Support Agents with their status and preference.
-- Data points: AGENT_ID, AGENT_NAME, AGENT_STATUS (dropdown: Active, Inactive), PREFERENCE (VARCHAR(50), dropdown, editable, optional — the agent's area of expertise/preference).
+- Data points: AGENT_ID, AGENT_NAME, AGENT_STATUS (dropdown: Active, Inactive), PREFERENCE (multi-select checkbox, editable, optional — one or more of the agent's areas of expertise/preference).
 - Business rules:
   - AGENT_ID and AGENT_NAME are mandatory; AGENT_ID is unique.
   - AGENT_STATUS must be one of Active, Inactive.
-  - PREFERENCE must be one of HARDWARE, SOFTWARE, ACCESS, NETWORK.
+  - PREFERENCE is a multi-select checkbox field allowing the Admin to select one or more of HARDWARE, SOFTWARE, ACCESS, NETWORK, OTHER SUPPORT for an agent. Any downstream logic matching a ticket's CATEGORY against an agent's PREFERENCE treats the match as "CATEGORY is one of the agent's selected preferences," not as an exact single-value equality.
   - Deactivating an Agent (AGENT_STATUS set to Inactive) protects it from edits; activating the Agent unprotects it.
 - Business actions: Search, Add, Edit, Activate Agent, Deactivate Agent.
 - Additional data management: None beyond master persistence.

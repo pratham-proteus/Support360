@@ -1,7 +1,7 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-11-04T10:37:05.214795+00:00",
+  "generated_at": "2026-11-05T08:49:48.226370+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
@@ -26,7 +26,7 @@
       "obj_name": "support360_my_agents",
       "obj_type": "T",
       "title": "Agent Master",
-      "description": "Admin maintains the master list of Support Agents with their status."
+      "description": "Admin maintains the master list of Support Agents with their status. PREFERENCE is now a multi-select checkbox field \u2014 t"
     },
     {
       "obj_name": "support360_ticket_assignment",

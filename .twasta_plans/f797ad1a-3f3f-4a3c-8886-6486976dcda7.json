@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Build it",
   "created_at": 1792409707.119453,
-  "updated_at": 1793861307.220551,
+  "updated_at": 1793871138.8547404,
   "todos": [
     {
       "id": "change_1",
@@ -37,7 +37,7 @@
   "phases": [],
   "originating_prompt": "Build it",
   "resume_ref": {
-    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "session_id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
     "plan_id": "f797ad1a-3f3f-4a3c-8886-6486976dcda7",
     "scope": null
   },

@@ -31,17 +31,26 @@ def run(args):
             return None
         category = str(category).strip().upper()
 
-        ordered_agents = db.query(
-            'SELECT AGENT_ID, AGENT_NAME FROM ' + db.t('SUPPORT360_AGENT') +
+        active_agents = db.query(
+            'SELECT AGENT_ID, AGENT_NAME, PREFERENCE FROM ' + db.t('SUPPORT360_AGENT') +
             ' WHERE AGENT_STATUS = :status'
-            ' AND PREFERENCE = :pref'
             ' AND AGENT_ID IS NOT NULL'
             ' ORDER BY AGENT_ID ASC',
-            {'pref': category, 'status': 'Active'})
-        if not ordered_agents:
+            {'status': 'Active'})
+        if not active_agents:
             return None
 
-        agent_ids = [str(a['AGENT_ID']).strip() for a in ordered_agents]
+        def _preferences(raw):
+            # PREFERENCE stores a delimited list from the Agent Master multi-select.
+            raw = str(raw or '')
+            for sep in (',', ';', '|'):
+                raw = raw.replace(sep, ',')
+            return [p.strip().upper() for p in raw.split(',') if p.strip()]
+
+        agent_ids = [str(a['AGENT_ID']).strip() for a in active_agents
+                     if category in _preferences(a.get('PREFERENCE'))]
+        if not agent_ids:
+            return None
 
         last_ticket = db.query_one(
             'SELECT ASSIGNED_AGENT FROM ' + db.t('SUPPORT360_TICKET') +

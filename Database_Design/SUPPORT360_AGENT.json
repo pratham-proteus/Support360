@@ -33,7 +33,6 @@
       "key": false,
       "description": "Current availability of the agent",
       "sequence": 3,
-      "mandatory": true,
       "allowed_values": [
         {
           "value": "Available",
@@ -67,9 +66,9 @@
     {
       "column_name": "PREFERENCE",
       "data_type": "VARCHAR",
-      "size": "50",
+      "size": "200",
       "key": false,
-      "description": "Agent's preferred support domain",
+      "description": "Agent's preferred support domains (one or more)",
       "sequence": 5,
       "mandatory": true,
       "allowed_values": [

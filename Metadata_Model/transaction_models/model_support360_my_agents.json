@@ -230,10 +230,10 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Preference",
-                "descr": "Agent's preferred support domain",
+                "descr": "Agent's preferred support domains (one or more)",
                 "mandatory": true,
                 "edit_mask": {
-                  "mask": "ddlb",
+                  "mask": "checkbox",
                   "values": [
                     {
                       "data": "HARDWARE",
@@ -261,7 +261,7 @@
                 "y": "50",
                 "col_id": "5",
                 "table_display_name": "Support agent master",
-                "db_size": "50",
+                "db_size": "200",
                 "width": 500,
                 "key": false,
                 "hidden": "",
