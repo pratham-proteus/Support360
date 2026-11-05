@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "objects": {
+    "T:support360_create_ticket": {
+      "obj_type": "T",
+      "obj_name": "support360_create_ticket",
+      "verified_at": 1793788619.2516057,
+      "verify_ok": true,
+      "verify_summary": "\u2713 support360_create_ticket passed the CRUD test.",
+      "verify_fingerprint": "99841f3516faae8d"
+    }
+  }
+}

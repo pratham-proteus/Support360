@@ -16,9 +16,9 @@
       "column_name": "PRIORITY_NAME",
       "data_type": "VARCHAR",
       "size": "100",
-      "key": false,
+      "key": true,
       "description": "Name of the priority level",
-      "sequence": 2,
+      "sequence": 1,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_PRIORITY_MASTER",

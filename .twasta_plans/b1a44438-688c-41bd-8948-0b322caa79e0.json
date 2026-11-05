@@ -1,0 +1,119 @@
+{
+  "id": "b1a44438-688c-41bd-8948-0b322caa79e0",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add Category\u2192Category Code auto-fill on Create Ticket, and a Pending\u2192Assigned st",
+  "kind": "change",
+  "status": "completed",
+  "description": "Keep the item change on selection on Category for Category Code. When user selects the Category from dropdown, the Category Code should be fetched automatically. The status should change from 'Pending' to 'Assigned' on click of Save or Save & Close. Rest keep the functionality unchanged.",
+  "created_at": 1793257857.645665,
+  "updated_at": 1793861307.2378018,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update FRS Create Ticket section with Category Code auto-fill and Pending\u2192Assigned save rule",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793257857.894601,
+      "completed_at": 1793257882.0095239
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Update application.json specs for the three ticket transaction screens",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793257882.0972157,
+      "completed_at": 1793257941.1435156
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Add Category\u2192Category Code item_change and Pending\u2192Assigned pre_commit hook to Create Ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793257941.2316642,
+      "completed_at": 1793257976.1933546
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Implement set_status_assigned_on_save pre_commit function for Create Ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793257976.290258,
+      "completed_at": 1793257991.7929246
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Add Pending\u2192Assigned pre_commit hook to Manage Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793257991.9927933,
+      "completed_at": 1793258020.395808
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Implement set_status_assigned_on_save pre_commit function for Manage Ticket Queue",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793258020.4841118,
+      "completed_at": 1793258042.939487
+    },
+    {
+      "id": "change_7",
+      "step": "change",
+      "label": "Add Pending\u2192Assigned pre_commit hook to Manage All Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793258043.1519475,
+      "completed_at": 1793258075.070233
+    },
+    {
+      "id": "change_8",
+      "step": "change",
+      "label": "Implement set_status_assigned_on_save pre_commit function for Manage All Tickets",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793258075.1911125,
+      "completed_at": 1793258105.2702694
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Keep the item change on selection on Category for Category Code. When user selects the Category from dropdown, the Category Code should be fetched automatically. The status should change from 'Pending' to 'Assigned' on click of Save or Save & Close. Rest keep the functionality unchanged.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "b1a44438-688c-41bd-8948-0b322caa79e0",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

@@ -5,7 +5,7 @@
 # function_name: auto_assign_agent
 # language: python
 # description: Auto-assign a new ticket to the Active agent whose PREFERENCE matches its CATEGORY
-# functional_specification: After a new SUPPORT360_TICKET row is committed (action = add), if the ticket has no ASSIGNED_AGENT yet (the CATEGORY item_change normally assigns it on the form; this covers imports, the API and the Assistant), select from SUPPORT360_AGENT the Active agents whose PREFERENCE equals the ticket's CATEGORY (case/space insensitive), preferring AGENT_AVAILABILITY = 'Available', then the lowest AGENT_ID. An Available agent sets ASSIGNED_AGENT + STATUS = 'Assigned'; an Occupied one sets ASSIGNED_AGENT + STATUS = 'Queued'; no match leaves STATUS = 'Pending'. An assignment is recorded in SUPPORT360_TICKET_ACTLOG. Runs after the save has committed and must never block it.
+# functional_specification: After a new SUPPORT360_TICKET row is committed (action = add), if the ticket has no ASSIGNED_AGENT yet (the CATEGORY item_change normally assigns it on the form; this covers imports, the API and the Assistant), select from SUPPORT360_AGENT the Active agents whose PREFERENCE equals the ticket's CATEGORY (case/space insensitive), ignoring AGENT_AVAILABILITY entirely. Assign round-robin by ascending AGENT_ID: the agent after whoever most recently received a ticket in that category, wrapping to the lowest AGENT_ID. Always sets ASSIGNED_AGENT + STATUS = 'Assigned'; no match leaves STATUS = 'Pending'. An assignment is recorded in SUPPORT360_TICKET_ACTLOG. Runs after the save has committed and must never block it.
 # business_logic: Auto-assign a new ticket to the Active agent whose PREFERENCE matches its CATEGORY
 
 ACTIVITY_LOG_TABLE = 'SUPPORT360_TICKET_ACTLOG'
@@ -31,19 +31,35 @@ def run(args):
             return None
         category = str(category).strip().upper()
 
-        chosen = db.query_one(
-            'SELECT AGENT_ID, AGENT_AVAILABILITY FROM ' + db.t('SUPPORT360_AGENT') +
+        ordered_agents = db.query(
+            'SELECT AGENT_ID, AGENT_NAME FROM ' + db.t('SUPPORT360_AGENT') +
             ' WHERE AGENT_STATUS = :status'
-            ' AND TRIM(UPPER(PREFERENCE)) = :pref'
+            ' AND PREFERENCE = :pref'
             ' AND AGENT_ID IS NOT NULL'
-            ' ORDER BY CASE WHEN AGENT_AVAILABILITY = :available THEN 0 ELSE 1 END, AGENT_ID',
-            {'pref': category, 'status': 'Active', 'available': 'Available'})
-        if not chosen:
+            ' ORDER BY AGENT_ID ASC',
+            {'pref': category, 'status': 'Active'})
+        if not ordered_agents:
             return None
 
-        agent_id = str(chosen['AGENT_ID']).strip()
-        available = str(chosen['AGENT_AVAILABILITY'] or '').strip() == 'Available'
-        status = 'Assigned' if available else 'Queued'
+        agent_ids = [str(a['AGENT_ID']).strip() for a in ordered_agents]
+
+        last_ticket = db.query_one(
+            'SELECT ASSIGNED_AGENT FROM ' + db.t('SUPPORT360_TICKET') +
+            ' WHERE CATEGORY = :category'
+            ' AND TICKET_NO != :ticket_no'
+            ' AND ASSIGNED_AGENT IS NOT NULL'
+            " AND ASSIGNED_AGENT <> ''"
+            ' ORDER BY CREATED_DATE DESC, TICKET_NO DESC',
+            {'category': category, 'ticket_no': ticket_no})
+
+        last_agent_id = str(last_ticket['ASSIGNED_AGENT']).strip() if last_ticket else None
+        if last_agent_id:
+            # Round-robin: first matching agent past the last one assigned, wrapping to the lowest.
+            agent_id = next((a for a in agent_ids if a > last_agent_id), agent_ids[0])
+        else:
+            agent_id = agent_ids[0]
+
+        status = 'Assigned'
 
         db.update('SUPPORT360_TICKET',
                   {'ASSIGNED_AGENT': agent_id, 'STATUS': status},

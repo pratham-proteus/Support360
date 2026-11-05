@@ -19,7 +19,12 @@
       "key": false,
       "description": "Name of the support agent",
       "sequence": 2,
-      "mandatory": true
+      "mandatory": true,
+      "lookup": {
+        "table": "SUPPORT360_AGENT",
+        "display_column": "AGENT_NAME",
+        "value_column": "AGENT_NAME"
+      }
     },
     {
       "column_name": "AGENT_AVAILABILITY",
@@ -66,6 +71,7 @@
       "key": false,
       "description": "Agent's preferred support domain",
       "sequence": 5,
+      "mandatory": true,
       "allowed_values": [
         {
           "value": "HARDWARE",
@@ -82,6 +88,10 @@
         {
           "value": "NETWORK",
           "label": "NETWORK"
+        },
+        {
+          "value": "OTHER SUPPORT",
+          "label": "OTHER SUPPORT"
         }
       ]
     },

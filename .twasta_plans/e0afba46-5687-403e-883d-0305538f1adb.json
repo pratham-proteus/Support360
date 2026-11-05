@@ -1,0 +1,97 @@
+{
+  "id": "e0afba46-5687-403e-883d-0305538f1adb",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Switch the preference-based round-robin ticket assignment ordering from ascendin",
+  "kind": "change",
+  "status": "completed",
+  "description": "When a user creates a ticket from the Create Ticket transaction, the ticket must be automatically assigned to an agent based on the agent\u2019s Preference.\n\nIf multiple agents share the same preference, the tickets must be distributed among them in a round-robin manner, following the ascending order of the agents as listed in Agent Master:\n\nThe first ticket is assigned to the first agent.\nThe second ticket is assigned to the second agent.\nThe third ticket is assigned to the third agent.\nThe fourth ticket is assigned to the first agent again, and the cycle continues in the same order.",
+  "created_at": 1793770334.5101209,
+  "updated_at": 1793861307.2437148,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update Create Ticket nav description to reflect AGENT_ID ordering",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793770334.805117,
+      "completed_at": 1793770346.0815854
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Switch round-robin key to AGENT_ID in Create Ticket's category item_change assignment logic",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793770346.175378,
+      "completed_at": 1793770368.0017927
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Switch round-robin key to AGENT_ID in Create Ticket's post-commit auto-assign logic",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793770368.1637137,
+      "completed_at": 1793770377.6108146
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Switch round-robin key to AGENT_ID in Manage Ticket Queue's assign-by-preference action",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793770377.8076744,
+      "completed_at": 1793770418.3378572
+    },
+    {
+      "id": "change_5",
+      "step": "change",
+      "label": "Switch round-robin key to AGENT_ID in Manage All Tickets' assign-by-preference action",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793770418.5841258,
+      "completed_at": 1793770458.8302078,
+      "note": "already in place, nothing needed changing"
+    },
+    {
+      "id": "change_6",
+      "step": "change",
+      "label": "Switch round-robin key to AGENT_ID in Ticket Assignment's auto-match Assign Agent action",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793770459.0105429,
+      "completed_at": 1793770519.9615996,
+      "note": "already in place, nothing needed changing"
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "When a user creates a ticket from the Create Ticket transaction, the ticket must be automatically assigned to an agent based on the agent\u2019s Preference.\n\nIf multiple agents share the same preference, the tickets must be distributed among them in a round-robin manner, following the ascending order of the agents as listed in Agent Master:\n\nThe first ticket is assigned to the first agent.\nThe second ticket is assigned to the second agent.\nThe third ticket is assigned to the third agent.\nThe fourth ticket is assigned to the first agent again, and the cycle continues in the same order.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "e0afba46-5687-403e-883d-0305538f1adb",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

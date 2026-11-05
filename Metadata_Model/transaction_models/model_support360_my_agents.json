@@ -84,7 +84,7 @@
                 "col_type": "VARCHAR",
                 "heading": "Availability",
                 "descr": "Current availability of the agent",
-                "mandatory": true,
+                "mandatory": false,
                 "default_value": "Available",
                 "edit_mask": {
                   "mask": "ddlb",
@@ -133,7 +133,7 @@
                 "db_size": "20",
                 "width": 200,
                 "key": false,
-                "hidden": "",
+                "hidden": true,
                 "format": "",
                 "default_function": "",
                 "expression": "",
@@ -250,6 +250,10 @@
                     {
                       "data": "NETWORK",
                       "display": "NETWORK"
+                    },
+                    {
+                      "data": "OTHER SUPPORT",
+                      "display": "OTHER SUPPORT"
                     }
                   ]
                 },

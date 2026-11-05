@@ -2,19 +2,6 @@
   "table_name": "SUPPORT360_CATEGORY_MASTER",
   "objects": [
     {
-      "object_name": "support360_manage_ticket_queue",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "CATEGORY_NAME"
-      ],
-      "join_info": {
-        "column": "CATEGORY_NAME",
-        "join_table": "SUPPORT360_TICKET",
-        "join_column": "CATEGORY_NAME"
-      }
-    },
-    {
       "object_name": "support360_resolved_tickets",
       "form_no": "1",
       "usage_type": "R",
@@ -29,34 +16,7 @@
       }
     },
     {
-      "object_name": "support360_manage_all_tickets",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "CATEGORY_NAME"
-      ],
-      "join_info": {
-        "column": "CATEGORY_NAME",
-        "join_table": "SUPPORT360_TICKET",
-        "join_column": "CATEGORY_NAME"
-      }
-    },
-    {
       "object_name": "support360_my_tickets",
-      "form_no": "1",
-      "usage_type": "R",
-      "referred_columns": [
-        "CATEGORY_CODE",
-        "CATEGORY_NAME"
-      ],
-      "join_info": {
-        "column": "CATEGORY_CODE",
-        "join_table": "SUPPORT360_TICKET",
-        "join_column": "CATEGORY_CODE"
-      }
-    },
-    {
-      "object_name": "support360_ticket_assignment",
       "form_no": "1",
       "usage_type": "R",
       "referred_columns": [
@@ -86,6 +46,46 @@
         "CATEGORY_CODE",
         "CHG_DATE"
       ]
+    },
+    {
+      "object_name": "support360_ticket_assignment",
+      "form_no": "1",
+      "usage_type": "M",
+      "referred_columns": [
+        "CATEGORY_CODE",
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_CODE",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "CATEGORY_CODE"
+      }
+    },
+    {
+      "object_name": "support360_manage_ticket_queue",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_NAME",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "CATEGORY_NAME"
+      }
+    },
+    {
+      "object_name": "support360_manage_all_tickets",
+      "form_no": "1",
+      "usage_type": "R",
+      "referred_columns": [
+        "CATEGORY_NAME"
+      ],
+      "join_info": {
+        "column": "CATEGORY_NAME",
+        "join_table": "SUPPORT360_TICKET",
+        "join_column": "CATEGORY_NAME"
+      }
     }
   ]
 }

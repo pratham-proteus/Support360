@@ -1,0 +1,71 @@
+{
+  "id": "ee2e5bf0-2473-4559-9641-1fe40f0a0f43",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change the agent auto-assignment tie-break on Create Ticket from ascending AGENT",
+  "kind": "change",
+  "status": "completed",
+  "description": "If there are multiple agents for a single preference, the created tickets should get assigned in an ascending order of the Agents Name on click of save in 'Create Ticket' transaction.",
+  "created_at": 1793768450.350103,
+  "updated_at": 1793861307.2422292,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Document agent-name tie-break rule in FRS",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768450.6213224,
+      "completed_at": 1793768460.4692767
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Update support360_create_ticket nav description for agent tie-break",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768460.5565088,
+      "completed_at": 1793768474.0384762
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Order candidate agents by AGENT_NAME ascending in category item_change assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768474.1312134,
+      "completed_at": 1793768482.0328312
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Order candidate agents by AGENT_NAME ascending in post-commit auto-assign fallback",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768482.2053275,
+      "completed_at": 1793768491.8190117
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "If there are multiple agents for a single preference, the created tickets should get assigned in an ascending order of the Agents Name on click of save in 'Create Ticket' transaction.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "ee2e5bf0-2473-4559-9641-1fe40f0a0f43",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

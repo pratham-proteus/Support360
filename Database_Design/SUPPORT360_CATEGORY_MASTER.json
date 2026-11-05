@@ -15,18 +15,18 @@
       "column_name": "CATEGORY_CODE",
       "data_type": "VARCHAR",
       "size": "20",
-      "key": false,
+      "key": true,
       "description": "Unique code identifying the category",
-      "sequence": 2,
+      "sequence": 1,
       "mandatory": true
     },
     {
       "column_name": "CATEGORY_NAME",
       "data_type": "VARCHAR",
       "size": "100",
-      "key": false,
+      "key": true,
       "description": "Name of the ticket category",
-      "sequence": 3,
+      "sequence": 1,
       "mandatory": true,
       "lookup": {
         "table": "SUPPORT360_CATEGORY_MASTER",

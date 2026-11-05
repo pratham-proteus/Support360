@@ -1,0 +1,35 @@
+{
+  "id": "9a9a771b-5dc3-4264-a9ba-8744a6aa0196",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix pre_commit hook for support360_ticket_assignment that incorrectly blocks the",
+  "kind": "change",
+  "status": "completed",
+  "description": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "created_at": 1793772828.312433,
+  "updated_at": 1793861307.245662,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Remove faulty assigned_agent guard from status-change pre_commit hook",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793772828.5584474,
+      "completed_at": 1793772836.4425292
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "9a9a771b-5dc3-4264-a9ba-8744a6aa0196",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

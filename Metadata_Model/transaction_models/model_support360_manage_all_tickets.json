@@ -271,10 +271,6 @@
                       "display": "Assigned"
                     },
                     {
-                      "data": "Queued",
-                      "display": "Queued"
-                    },
-                    {
                       "data": "Resolved",
                       "display": "Resolved"
                     }
@@ -392,6 +388,10 @@
                     {
                       "form_col": "resolution_notes",
                       "when": "{form.status} == \"Closed\""
+                    },
+                    {
+                      "form_col": "assigned_agent_name",
+                      "when": "{form.status} != \"Pending\""
                     }
                   ]
                 }
@@ -447,26 +447,49 @@
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
-                "edit_mask": {
-                  "mask": "ddlb",
-                  "values": [
-                    {
-                      "data": "AGENT01",
-                      "display": "AGENT01"
-                    },
-                    {
-                      "data": "AGENT02",
-                      "display": "AGENT02"
-                    },
-                    {
-                      "data": "AGENT03",
-                      "display": "AGENT03"
-                    }
-                  ]
-                },
-                "protect": "",
+                "edit_mask": "",
+                "protect": "1",
                 "validations": "",
                 "lookup": ""
+              }
+            },
+            {
+              "column": {
+                "name": "assigned_agent_name",
+                "db_name": "AGENT_NAME",
+                "table_name": "SUPPORT360_AGENT",
+                "table_display_name": "Agent master (lookup)",
+                "col_type": "VARCHAR",
+                "heading": "Assigned Agent Name",
+                "descr": "Agent name resolved from the Assigned Agent (display only)",
+                "group_name": "Assignment",
+                "protect": "",
+                "mandatory": false,
+                "key": false,
+                "db_size": "100",
+                "width": 500,
+                "col_id": "11",
+                "hidden": "",
+                "format": "",
+                "default_function": "",
+                "default_value": "",
+                "expression": "",
+                "edit_mask": "",
+                "validations": "",
+                "lookup": "SUPPORT360_AGENT(AGENT_NAME, AGENT_NAME)",
+                "item_change": {
+                  "mode": "rule",
+                  "fill": [
+                    {
+                      "form_col": "assigned_agent",
+                      "table_col": "AGENT_ID"
+                    }
+                  ],
+                  "source_table": "SUPPORT360_AGENT",
+                  "match_table_col": "AGENT_NAME"
+                },
+                "x": "110",
+                "y": "110"
               }
             },
             {
@@ -479,9 +502,9 @@
                 "group_name": "Assignment",
                 "protect": "1",
                 "default_value": ":audit_add_date",
-                "x": "110",
-                "y": "110",
-                "col_id": "11",
+                "x": "120",
+                "y": "120",
+                "col_id": "12",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -507,9 +530,9 @@
                 "group_name": "Assignment",
                 "protect": "1",
                 "default_value": ":audit_chg_date",
-                "x": "120",
-                "y": "120",
-                "col_id": "12",
+                "x": "130",
+                "y": "130",
+                "col_id": "13",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -549,9 +572,9 @@
                     }
                   ]
                 },
-                "x": "130",
-                "y": "130",
-                "col_id": "13",
+                "x": "140",
+                "y": "140",
+                "col_id": "14",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "500",
@@ -577,9 +600,9 @@
                 "descr": "User who uploaded the attachment",
                 "group_name": "Attachments & Comments",
                 "protect": "1",
-                "x": "140",
-                "y": "140",
-                "col_id": "14",
+                "x": "150",
+                "y": "150",
+                "col_id": "15",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "36",
@@ -605,9 +628,9 @@
                 "descr": "Date/time the attachment was uploaded",
                 "group_name": "Attachments & Comments",
                 "protect": "1",
-                "x": "150",
-                "y": "150",
-                "col_id": "15",
+                "x": "160",
+                "y": "160",
+                "col_id": "16",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -632,9 +655,9 @@
                 "heading": "Add Comment",
                 "descr": "Enter a new comment; it is appended to Agent Comments and logged with commented-by/date",
                 "group_name": "Attachments & Comments",
-                "x": "160",
-                "y": "160",
-                "col_id": "16",
+                "x": "170",
+                "y": "170",
+                "col_id": "17",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "2000",
@@ -661,9 +684,9 @@
                 "descr": "Running list of comments (text, commented-by, commented-date)",
                 "group_name": "Attachments & Comments",
                 "protect": "1",
-                "x": "170",
-                "y": "170",
-                "col_id": "17",
+                "x": "180",
+                "y": "180",
+                "col_id": "18",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -688,9 +711,9 @@
                 "heading": "Resolution Notes",
                 "descr": "Mandatory before a ticket can be moved to Resolved",
                 "group_name": "Resolution",
-                "x": "180",
-                "y": "180",
-                "col_id": "18",
+                "x": "190",
+                "y": "190",
+                "col_id": "19",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -717,9 +740,9 @@
                 "descr": "Date/time the ticket was closed",
                 "group_name": "Resolution",
                 "protect": "1",
-                "x": "190",
-                "y": "190",
-                "col_id": "19",
+                "x": "200",
+                "y": "200",
+                "col_id": "20",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -745,9 +768,9 @@
                 "descr": "User who closed the ticket",
                 "group_name": "Resolution",
                 "protect": "1",
-                "x": "200",
-                "y": "200",
-                "col_id": "20",
+                "x": "210",
+                "y": "210",
+                "col_id": "21",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "36",
@@ -773,9 +796,9 @@
                 "descr": "System-generated chronological log of every change (old value, new value, changed-by); read-only",
                 "group_name": "Activity Log",
                 "protect": "1",
-                "x": "210",
-                "y": "210",
-                "col_id": "21",
+                "x": "220",
+                "y": "220",
+                "col_id": "22",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -802,9 +825,9 @@
                 "group_name": "Others",
                 "hidden": 1,
                 "protect": "1",
-                "x": "220",
-                "y": "220",
-                "col_id": "22",
+                "x": "230",
+                "y": "230",
+                "col_id": "23",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "36",
@@ -830,9 +853,9 @@
                 "group_name": "Others",
                 "protect": "1",
                 "default_value": ":audit_add_date",
-                "x": "230",
-                "y": "230",
-                "col_id": "23",
+                "x": "240",
+                "y": "240",
+                "col_id": "24",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "",
@@ -858,9 +881,9 @@
                 "group_name": "Others",
                 "protect": "1",
                 "default_value": ":audit_add_user",
-                "x": "240",
-                "y": "240",
-                "col_id": "24",
+                "x": "250",
+                "y": "250",
+                "col_id": "25",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "10",
@@ -886,9 +909,9 @@
                 "group_name": "Others",
                 "protect": "1",
                 "default_value": ":audit_add_terminal",
-                "x": "250",
-                "y": "250",
-                "col_id": "25",
+                "x": "260",
+                "y": "260",
+                "col_id": "26",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "15",
@@ -914,9 +937,9 @@
                 "group_name": "Others",
                 "protect": "1",
                 "default_value": ":audit_chg_user",
-                "x": "260",
-                "y": "260",
-                "col_id": "26",
+                "x": "270",
+                "y": "270",
+                "col_id": "27",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "10",
@@ -942,9 +965,9 @@
                 "group_name": "Others",
                 "protect": "1",
                 "default_value": ":audit_chg_terminal",
-                "x": "270",
-                "y": "270",
-                "col_id": "27",
+                "x": "280",
+                "y": "280",
+                "col_id": "28",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Main ticket table",
                 "db_size": "15",
@@ -985,6 +1008,15 @@
                   "column": "PRIORITY_NAME",
                   "join_table": "SUPPORT360_TICKET",
                   "join_column": "PRIORITY_NAME",
+                  "join_type": "left"
+                },
+                {
+                  "table": "SUPPORT360_AGENT",
+                  "main_table": false,
+                  "table_descr": "Agent master (lookup)",
+                  "column": "AGENT_ID",
+                  "join_table": "SUPPORT360_TICKET",
+                  "join_column": "ASSIGNED_AGENT",
                   "join_type": "left"
                 }
               ]
@@ -1092,7 +1124,7 @@
               "business_logic": {
                 "method": "assign_agent_by_preference",
                 "description": "Auto-match and assign this Pending ticket to the agent whose PREFERENCE equals the ticket's CATEGORY_NAME",
-                "spec": "Given the current record's TICKET_NO and CATEGORY_NAME, require STATUS = 'Pending' (otherwise return {\"error\": \"Ticket is no longer Pending.\"}). Look up SUPPORT360_AGENT for an agent where PREFERENCE = the ticket's CATEGORY_NAME and AGENT_STATUS = 'Active'. If found and AGENT_AVAILABILITY = 'Available': update SUPPORT360_TICKET setting ASSIGNED_AGENT = that agent's AGENT_ID, STATUS = 'Assigned', CHG_DATE = now(), CHG_USER = current user; append an ACTIVITY_HISTORY entry (action_type 'Assigned', field_changed 'ASSIGNED_AGENT', old_value blank, new_value the agent, changed_by current user, timestamp now); return {\"message\": \"Ticket assigned to \" + AGENT_ID}. If found but AGENT_AVAILABILITY != 'Available' (Occupied): update SUPPORT360_TICKET setting ASSIGNED_AGENT = that agent's AGENT_ID, STATUS = 'Queued', CHG_DATE = now(), CHG_USER = current user; append the same kind of ACTIVITY_HISTORY entry with action_type 'Queued'; return {\"message\": \"Matching agent is occupied; ticket queued to \" + AGENT_ID}. If no agent has a matching PREFERENCE at all: make no changes and return {\"message\": \"No agent matches this ticket's category preference; ticket remains Pending.\"}.",
+                "spec": "STATUS changes from Pending to Assigned only when the agent-assignment action successfully matches an Active agent by CATEGORY preference, round-robin by ascending AGENT_ID; agent availability is not considered and there is no Queued status. If no Active agent matches, STATUS remains Pending and ASSIGNED_AGENT stays empty.",
                 "COMP_NAME": "form_action__1__assign_agent_by_preference",
                 "METHOD_NAME": "run"
               },
@@ -1102,6 +1134,13 @@
                   "name": "Ticket must be Pending",
                   "message": "Ticket {form.ticket_no} must be Pending to use Assign Agent (current status {form.status}).",
                   "expression": "{form.status} == \"Pending\""
+                },
+                {
+                  "type": "expression",
+                  "name": "Agent must be selected",
+                  "error_code": "AGENT_NOT_SELECTED",
+                  "message": "Please choose an agent in the Assigned Agent field before clicking Assign Agent.",
+                  "expression": "not_empty({form.assigned_agent})"
                 }
               ]
             }
@@ -1118,6 +1157,14 @@
           "method": "log_ticket_admin_change",
           "description": "Write an Activity/History Log entry for every Admin change to a ticket",
           "spec": "For the header form (SUPPORT360_TICKET), on both add and edit: build a log entry line with the current timestamp, the changed-by user (current logged in user), the action_type ('Created' on add, else 'Edited' or 'Status-Changed' when STATUS differs from the previous stored value, or 'Assigned'/'Reassigned' when ASSIGNED_AGENT differs, or 'Commented' when NEW_COMMENT is non-empty, or 'Attachment-Added' when ATTACHMENT differs, or 'Closed' when STATUS becomes 'Closed'), and for each changed field the field name, old value and new value. Append the formatted entry (or entries, one per changed field) to the ACTIVITY_HISTORY text column of the header row before commit. When NEW_COMMENT is non-empty, also append a formatted 'commented-by / commented-date / text' block to AGENT_COMMENTS and clear NEW_COMMENT. When STATUS is being set to 'Closed', stamp CLOSED_DATE = now() and CLOSED_BY = current user if not already set. Return null on success; return {\"error\": \"...\"} only on an unrecoverable failure (never block a normal save for logging)."
+        }
+      },
+      {
+        "mode": "business_logic",
+        "business_logic": {
+          "method": "set_status_assigned_on_save",
+          "description": "Flip a Pending ticket to Assigned on save only when an Active agent is matched",
+          "spec": "STATUS changes from Pending to Assigned only when the agent-assignment action successfully matches an Active agent by CATEGORY preference, round-robin by ascending AGENT_ID; agent availability is not considered and there is no Queued status. If no Active agent matches, STATUS remains Pending and ASSIGNED_AGENT stays empty."
         }
       }
     ],

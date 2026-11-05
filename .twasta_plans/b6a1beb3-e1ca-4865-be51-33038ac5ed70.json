@@ -1,0 +1,72 @@
+{
+  "id": "b6a1beb3-e1ca-4865-be51-33038ac5ed70",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Make agent auto-assignment ignore availability/queued state everywhere it's impl",
+  "kind": "change",
+  "status": "completed",
+  "description": "Ignore the availability of agents and queued status. Just assign the tickets in ascending order of the Agent Id and set status = 'Assigned'",
+  "created_at": 1793771589.8884025,
+  "updated_at": 1793861307.244445,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Remove stale availability/Queued wording from auto_assign_agent (support360_create_ticket)",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793771590.160432,
+      "completed_at": 1793771602.6529205
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Remove availability filter wording from Assign Agent action (support360_manage_ticket_queue)",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_ticket_queue",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793771602.8317018,
+      "completed_at": 1793771617.3141742
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Apply the same availability-ignoring, ascending-AGENT_ID round-robin fix to Assign Agent action (support360_manage_all_tickets)",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_manage_all_tickets",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793771617.517143,
+      "completed_at": 1793771657.3907359,
+      "note": "already in place, nothing needed changing"
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Make Assign Agent (support360_ticket_assignment) deterministic ascending-AGENT_ID and drop availability filter",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793771657.6053221,
+      "completed_at": 1793771677.736106
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Ignore the availability of agents and queued status. Just assign the tickets in ascending order of the Agent Id and set status = 'Assigned'",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "b6a1beb3-e1ca-4865-be51-33038ac5ed70",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "When I assign a ticket to an agent or change its status, I cannot see who raised the ticket. Please show the name or email of the person who raised the ticket on these screens. It should be saved when the ticket is created and also shown for the old tickets. Please do not change anything else.",
   "created_at": 1792398402.9294295,
-  "updated_at": 1793171628.6740487,
+  "updated_at": 1793861307.2193696,
   "todos": [
     {
       "id": "change_1",
@@ -49,7 +49,7 @@
   "phases": [],
   "originating_prompt": "When I assign a ticket to an agent or change its status, I cannot see who raised the ticket. Please show the name or email of the person who raised the ticket on these screens. It should be saved when the ticket is created and also shown for the old tickets. Please do not change anything else.",
   "resume_ref": {
-    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
     "plan_id": "05159233-f80e-4c70-8fc6-cea75216c954",
     "scope": null
   },

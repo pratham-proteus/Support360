@@ -1,0 +1,35 @@
+{
+  "id": "00b11967-3e30-4e66-8c2a-cdefc3066364",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the Save/Save & Close status transition on Manage Ticket Assignment so that ",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"Manage Ticket Assignment\" transaction, the tickets with status Pending are getting the agents manually, but the status is not changing from 'Pending' to 'Assigned' on click of Save. The status should change from 'Pending' to 'Assigned' on click of Save when user manually assigns an agent.",
+  "created_at": 1793609448.1197069,
+  "updated_at": 1793861307.2393162,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix pre_commit status transition logic for manual agent assignment",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793609448.3876245,
+      "completed_at": 1793609458.692802
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"Manage Ticket Assignment\" transaction, the tickets with status Pending are getting the agents manually, but the status is not changing from 'Pending' to 'Assigned' on click of Save. The status should change from 'Pending' to 'Assigned' on click of Save when user manually assigns an agent.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "00b11967-3e30-4e66-8c2a-cdefc3066364",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

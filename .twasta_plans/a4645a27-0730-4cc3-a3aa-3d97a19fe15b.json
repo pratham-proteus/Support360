@@ -1,0 +1,71 @@
+{
+  "id": "a4645a27-0730-4cc3-a3aa-3d97a19fe15b",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Add a new static dropdown value 'OTHER SUPPORT' to the Category field on the Cre",
+  "kind": "change",
+  "status": "completed",
+  "description": "Add a new dropdown value in 'Category' as \"OTHER SUPPORT\". So, the new Category dropdown will have \"HARDWARE\", \"SOFTWARE\", \"ACCESS\", \"NETWOK\" and \"OTHER SUPPORT\".",
+  "created_at": 1793176595.5840151,
+  "updated_at": 1793861307.2367265,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update FRS Create Support Ticket section with new CATEGORY value",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793176595.9431243,
+      "completed_at": 1793183002.6727974
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Update application.json nav entry for support360_create_ticket with new category value",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793176607.9983628,
+      "completed_at": 1793183026.5279932
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Add OTHER SUPPORT to CATEGORY column allowed values on support360_create_ticket model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793176618.9921207,
+      "completed_at": 1793183064.8392713
+    },
+    {
+      "id": "change_4",
+      "step": "change",
+      "label": "Add OTHER SUPPORT to PREFERENCE column allowed values on support360_my_agents model",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_my_agents",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793176629.3784757,
+      "completed_at": 1793183103.207226
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Add a new dropdown value in 'Category' as \"OTHER SUPPORT\". So, the new Category dropdown will have \"HARDWARE\", \"SOFTWARE\", \"ACCESS\", \"NETWOK\" and \"OTHER SUPPORT\".",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "a4645a27-0730-4cc3-a3aa-3d97a19fe15b",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

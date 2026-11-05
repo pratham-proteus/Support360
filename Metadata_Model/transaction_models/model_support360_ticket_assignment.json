@@ -26,7 +26,7 @@
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket main table",
                 "db_size": "30",
-                "width": 300,
+                "width": 81,
                 "hidden": "",
                 "format": "",
                 "default_function": "",
@@ -52,7 +52,7 @@
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket main table",
                 "db_size": "200",
-                "width": 500,
+                "width": 157,
                 "key": false,
                 "mandatory": false,
                 "hidden": "",
@@ -174,13 +174,13 @@
                 "width": 360,
                 "key": false,
                 "mandatory": false,
-                "hidden": "",
+                "hidden": true,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
                 "edit_mask": "",
-                "protect": "1"
+                "protect": true
               }
             },
             {
@@ -192,7 +192,7 @@
                 "col_type": "VARCHAR",
                 "heading": "Assigned Agent Name",
                 "descr": "Name of the assigned Support Agent (from Agent master)",
-                "protect": "1",
+                "protect": "",
                 "x": "50",
                 "y": "50",
                 "col_id": "5",
@@ -208,7 +208,18 @@
                 "expression": "",
                 "edit_mask": "",
                 "validations": "",
-                "lookup": ""
+                "lookup": "SUPPORT360_AGENT(AGENT_NAME, AGENT_NAME)",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_AGENT",
+                  "match_table_col": "AGENT_NAME",
+                  "fill": [
+                    {
+                      "form_col": "assigned_agent",
+                      "table_col": "AGENT_ID"
+                    }
+                  ]
+                }
               }
             },
             {
@@ -249,6 +260,10 @@
                     {
                       "form_col": "assigned_agent",
                       "when": "{form.status} == \"Closed\" or {form.status} == \"In Progress\" or {form.status} == \"Resolved\""
+                    },
+                    {
+                      "form_col": "assigned_agent_name",
+                      "when": "{form.status} != \"Pending\""
                     }
                   ]
                 }
@@ -300,7 +315,7 @@
                 "width": 500,
                 "key": false,
                 "mandatory": false,
-                "hidden": "",
+                "hidden": true,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
@@ -356,7 +371,7 @@
                 "width": 200,
                 "key": false,
                 "mandatory": false,
-                "hidden": "",
+                "hidden": true,
                 "format": "",
                 "default_function": "",
                 "default_value": "",
@@ -543,7 +558,7 @@
                 "heading": "Added On",
                 "descr": "Record creation timestamp",
                 "protect": "1",
-                "x": "170",
+                "x": "160",
                 "y": "170",
                 "col_id": "17",
                 "table_name": "SUPPORT360_TICKET",
@@ -571,7 +586,7 @@
                 "heading": "Added By",
                 "descr": "User who created the record",
                 "protect": "1",
-                "x": "180",
+                "x": "170",
                 "y": "180",
                 "col_id": "18",
                 "table_name": "SUPPORT360_TICKET",
@@ -599,7 +614,7 @@
                 "heading": "Changed On",
                 "descr": "Record last-updated timestamp",
                 "protect": "1",
-                "x": "190",
+                "x": "180",
                 "y": "190",
                 "col_id": "19",
                 "table_name": "SUPPORT360_TICKET",
@@ -627,7 +642,7 @@
                 "heading": "Changed By",
                 "descr": "User who last updated the record",
                 "protect": "1",
-                "x": "200",
+                "x": "190",
                 "y": "200",
                 "col_id": "20",
                 "table_name": "SUPPORT360_TICKET",
@@ -699,7 +714,8 @@
                   "message": "Adding new ticket assignments is not allowed from this screen.",
                   "expression": "false"
                 }
-              ]
+              ],
+              "order": 1
             },
             {
               "name": "Save",
@@ -768,27 +784,8 @@
                   "message": "Ticket {form.ticket_no} is Resolved and cannot be changed.",
                   "expression": "{form.status} != \"Resolved\""
                 }
-              ]
-            },
-            {
-              "name": "Assign Agent",
-              "handler": "business_logic",
-              "business_logic": {
-                "method": "assign_agent",
-                "descr": "Auto-assign ASSIGNED_AGENT from SUPPORT360_AGENT where PREFERENCE equals the ticket's CATEGORY_NAME (lookup table SUPPORT360_CATEGORY_MASTER.CATEGORY_NAME), filtered to AGENT_STATUS = Active and AGENT_AVAILABILITY = Available; if no such agent exists, leave ASSIGNED_AGENT unchanged and show an inline message that no eligible agent was found."
-              },
-              "scope": "form",
-              "visible_when": "{form.status} == \"Pending\"",
-              "validations": [
-                {
-                  "type": "expression",
-                  "name": "Ticket already assigned",
-                  "error_code": "TICKET_ALREADY_ASSIGNED",
-                  "severity": "E",
-                  "message": "Ticket already assigned",
-                  "expression": "{form.status} == \"Pending\""
-                }
-              ]
+              ],
+              "order": 2
             }
           ],
           "validations": [
@@ -814,7 +811,16 @@
     ],
     "actions": [],
     "cross_updates": [],
-    "pre_commit": [],
+    "pre_commit": [
+      {
+        "mode": "business_logic",
+        "business_logic": {
+          "method": "set_status_assigned_on_save",
+          "description": "Change STATUS from Pending to Assigned on save",
+          "spec": "Run on Save and Save & Close for this ticket assignment screen. If the header's STATUS is currently 'Pending', change it to 'Assigned' before the commit completes. Leave STATUS unchanged for any other value (Assigned, Queued, Resolved, Not Resolved). This mirrors the pre_commit hook on support360_create_ticket and support360_manage_ticket_queue that auto-advances a Pending ticket to Assigned on save."
+        }
+      }
+    ],
     "post_commit": [],
     "attach_docs": [],
     "follow_up_actions": [],

@@ -1,14 +1,14 @@
 {
   "project_name": "Support360",
   "project_description": "Support ticketing platform for employees to raise issues and support agents/admins to track, assign and resolve tickets with full audit history.",
-  "generated_at": "2026-10-28T04:15:15.498247+00:00",
+  "generated_at": "2026-11-04T10:37:05.214795+00:00",
   "owner_user_id": "",
   "navigation_summary": [
     {
       "obj_name": "support360_create_ticket",
       "obj_type": "T",
       "title": "Create Ticket",
-      "description": "Employee logs a new support ticket. CATEGORY (static dropdown: HARDWARE, SOFTWARE, ACCESS, NETWORK) is visible on the fo"
+      "description": "Employee logs a new support ticket. CATEGORY (static dropdown: HARDWARE, SOFTWARE, ACCESS, NETWORK, OTHER SUPPORT) is vi"
     },
     {
       "obj_name": "support360_manage_ticket_queue",
@@ -17,10 +17,16 @@
       "description": "Agent views, works, and resolves tickets. STATUS now also supports a 'Not Resolved' value (in addition to Pending, Assig"
     },
     {
+      "obj_name": "support360_category_master",
+      "obj_type": "T",
+      "title": "Category Master",
+      "description": "Admin maintains the master list of ticket categories."
+    },
+    {
       "obj_name": "support360_my_agents",
       "obj_type": "T",
       "title": "Agent Master",
-      "description": "Admin maintains the master list of Support Agents with their availability and status."
+      "description": "Admin maintains the master list of Support Agents with their status."
     },
     {
       "obj_name": "support360_ticket_assignment",
@@ -78,11 +84,11 @@
       "table_name": "SUPPORT360_CATEGORY_MASTER",
       "description": "",
       "key_columns": [
-        "ID VARCHAR"
+        "ID VARCHAR",
+        "CATEGORY_CODE VARCHAR",
+        "CATEGORY_NAME VARCHAR"
       ],
       "other_columns": [
-        "CATEGORY_CODE VARCHAR",
-        "CATEGORY_NAME VARCHAR",
         "DESCRIPTION VARCHAR",
         "IS_ACTIVE VARCHAR",
         "ADD_DATE DATETIME",
@@ -97,10 +103,10 @@
       "table_name": "SUPPORT360_PRIORITY_MASTER",
       "description": "",
       "key_columns": [
-        "PRIORITY_CODE VARCHAR"
+        "PRIORITY_CODE VARCHAR",
+        "PRIORITY_NAME VARCHAR"
       ],
       "other_columns": [
-        "PRIORITY_NAME VARCHAR",
         "SEQUENCE_NO NUMBER",
         "IS_ACTIVE VARCHAR",
         "ID VARCHAR",
@@ -131,17 +137,17 @@
         "ATTACHMENT VARCHAR",
         "ATTACHMENT_UPLOADED_BY VARCHAR",
         "ATTACHMENT_UPLOADED_DATE DATETIME",
-        "AGENT_COMMENTS TEXT",
         "ASSIGNED_AGENT VARCHAR",
         "ID VARCHAR",
-        "ACTIVITY_HISTORY TEXT",
+        "AGENT_COMMENTS TEXT",
         "ADD_DATE DATETIME",
-        "CLOSED_DATE DATETIME",
         "RESOLUTION_NOTES TEXT",
         "ADD_USER VARCHAR",
-        "CLOSED_BY VARCHAR",
+        "CLOSED_DATE DATETIME",
         "CHG_DATE DATETIME",
+        "CLOSED_BY VARCHAR",
         "CHG_USER VARCHAR",
+        "ACTIVITY_HISTORY TEXT",
         "NEW_COMMENT VARCHAR",
         "CATEGORY_CODE VARCHAR",
         "PRIORITY_CODE VARCHAR",

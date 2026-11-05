@@ -1,0 +1,35 @@
+{
+  "id": "f686ac36-6ab0-4f1f-90c3-3882f59b31ac",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the field_item_change function so its returned update keys match the platfor",
+  "kind": "change",
+  "status": "completed",
+  "description": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "created_at": 1793772496.029084,
+  "updated_at": 1793861307.2450845,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix uppercase update keys in category auto-assign item_change function",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793772496.2779205,
+      "completed_at": 1793772508.3198214
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "f686ac36-6ab0-4f1f-90c3-3882f59b31ac",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

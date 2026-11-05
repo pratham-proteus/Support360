@@ -5,10 +5,10 @@
 # description: Re-assign the current ticket from its current agent to the agent chosen in REASSIGN_TO_AGENT.
 # functional_specification:
 #   Validates that the ticket exists, is not Resolved, is currently assigned, and
-#   that REASSIGN_TO_AGENT holds a different, Active and Available agent. On success
-#   ASSIGNED_AGENT is switched to the new agent, the previous agent is released to
-#   Available, the new agent is marked Occupied, ACTIVITY_HISTORY / CHG_DATE are
-#   updated, REASSIGN_TO_AGENT is cleared and an 'Assigned' row is written to
+#   that REASSIGN_TO_AGENT holds a different, Active agent matching the ticket's
+#   CATEGORY by PREFERENCE. On success ASSIGNED_AGENT is switched to the new
+#   agent, STATUS is set to 'Assigned', ACTIVITY_HISTORY / CHG_DATE are updated,
+#   REASSIGN_TO_AGENT is cleared and an 'Assigned' row is written to
 #   SUPPORT360_TICKET_ACTLOG.
 
 
@@ -31,7 +31,7 @@ def run(args):
         return 'Ticket number is required to re-assign a ticket.'
 
     ticket = db.query_one(
-        'SELECT TICKET_NO, STATUS, ASSIGNED_AGENT, ACTIVITY_HISTORY '
+        'SELECT TICKET_NO, STATUS, ASSIGNED_AGENT, ACTIVITY_HISTORY, CATEGORY '
         'FROM ' + db.t('SUPPORT360_TICKET') + ' WHERE TICKET_NO = :t',
         {'t': ticket_no})
     if not ticket:
@@ -59,7 +59,7 @@ def run(args):
                                          '. Choose a different agent.'})
 
     new_agent = db.query_one(
-        'SELECT AGENT_ID, AGENT_NAME, AGENT_STATUS, AGENT_AVAILABILITY '
+        'SELECT AGENT_ID, AGENT_NAME, AGENT_STATUS, PREFERENCE '
         'FROM ' + db.t('SUPPORT360_AGENT') + ' WHERE AGENT_ID = :a',
         {'a': new_agent_id})
     if not new_agent:
@@ -69,11 +69,11 @@ def run(args):
         if coalesce(new_agent.get('AGENT_STATUS'), '') != 'Active':
             out['errors'].append({'code': 'REASG5', 'field': 'reassign_to_agent', 'type': 'E',
                                   'message': 'Agent ' + str(new_agent_id) + ' is not Active.'})
-        elif coalesce(new_agent.get('AGENT_AVAILABILITY'), '') != 'Available':
+        elif coalesce(new_agent.get('PREFERENCE'), '') != coalesce(ticket.get('CATEGORY'), ''):
             if 'REASG6' not in ignored:
                 out['errors'].append({'code': 'REASG6', 'field': 'reassign_to_agent', 'type': 'W',
                                       'message': 'Agent ' + str(new_agent_id) +
-                                                 ' is currently Occupied with other work.'})
+                                                 ' does not prefer the ticket\'s category.'})
 
     blocking = [e for e in out['errors'] if coalesce(e.get('type'), 'E') == 'E']
     if blocking:
@@ -94,19 +94,11 @@ def run(args):
     db.update(db.t('SUPPORT360_TICKET'),
               {'ASSIGNED_AGENT': new_agent_id,
                'REASSIGN_TO_AGENT': None,
-               'STATUS': 'In Progress',
+               'STATUS': 'Assigned',
                'ACTIVITY_HISTORY': history,
                'CHG_DATE': stamp,
                'CHG_USER': user},
               {'TICKET_NO': ticket_no})
-
-    db.update(db.t('SUPPORT360_AGENT'),
-              {'AGENT_AVAILABILITY': 'Occupied', 'CHG_DATE': stamp, 'CHG_USER': user},
-              {'AGENT_ID': new_agent_id})
-
-    db.update(db.t('SUPPORT360_AGENT'),
-              {'AGENT_AVAILABILITY': 'Available', 'CHG_DATE': stamp, 'CHG_USER': user},
-              {'AGENT_ID': prev_agent})
 
     db.insert(db.t('SUPPORT360_TICKET_ACTLOG'), {
         'ID': _new_id(),
@@ -122,14 +114,14 @@ def run(args):
         'ADD_TERM': args.get('ADD_TERM'),
     })
 
-    if cur_status != 'In Progress':
+    if cur_status != 'Assigned':
         db.insert(db.t('SUPPORT360_TICKET_ACTLOG'), {
             'ID': _new_id(),
             'TICKET_NO': ticket_no,
             'ACTION_TYPE': 'Status-Changed',
             'FIELD_CHANGED': 'STATUS',
             'OLD_VALUE': cur_status,
-            'NEW_VALUE': 'In Progress',
+            'NEW_VALUE': 'Assigned',
             'CHANGED_BY': user,
             'CHANGE_DATE': stamp,
             'ADD_DATE': stamp,

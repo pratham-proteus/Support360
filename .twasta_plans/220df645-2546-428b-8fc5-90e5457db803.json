@@ -7,7 +7,7 @@
   "status": "error",
   "description": "The Ticket Category column still holds Category Code value. The Category code should get delete and only Category Name should be there in the dropdown",
   "created_at": 1793009157.840886,
-  "updated_at": 1793171628.6874342,
+  "updated_at": 1793861307.233596,
   "todos": [
     {
       "id": "change_1",
@@ -19,7 +19,7 @@
       "obj_type": null,
       "phase_id": null,
       "started_at": 1793009157.8866246,
-      "completed_at": 1793160915.690941
+      "completed_at": 1793599718.4555383
     },
     {
       "id": "change_2",
@@ -31,7 +31,7 @@
       "obj_type": "T",
       "phase_id": null,
       "started_at": 1793009178.0472038,
-      "completed_at": 1793160928.0909612
+      "completed_at": 1793359138.276243
     },
     {
       "id": "change_3",
@@ -43,7 +43,7 @@
       "obj_type": "D",
       "phase_id": null,
       "started_at": 1793009191.804037,
-      "completed_at": 1793080910.4580245
+      "completed_at": 1793353302.824558
     },
     {
       "id": "change_4",
@@ -193,7 +193,7 @@
   "phases": [],
   "originating_prompt": "The Ticket Category column still holds Category Code value. The Category code should get delete and only Category Name should be there in the dropdown",
   "resume_ref": {
-    "session_id": "70a3ab2e-b9f9-4c52-8247-6d65702ab263",
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
     "plan_id": "220df645-2546-428b-8fc5-90e5457db803",
     "scope": null
   },

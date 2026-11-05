@@ -86,10 +86,6 @@
           "label": "Assigned"
         },
         {
-          "value": "Queued",
-          "label": "Queued"
-        },
-        {
           "value": "Resolved",
           "label": "Resolved"
         }
@@ -243,7 +239,7 @@
       "size": "",
       "key": false,
       "description": "Accumulated comment thread between the Employee and the Support Agent (shown on drill-in)",
-      "sequence": 13,
+      "sequence": 15,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -265,7 +261,7 @@
       "size": "",
       "key": false,
       "description": "Chronological history of changes to this ticket (shown on drill-in)",
-      "sequence": 15,
+      "sequence": 19,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -276,7 +272,7 @@
       "size": "",
       "key": false,
       "description": "Date/time the Employee confirmed and closed the ticket",
-      "sequence": 16,
+      "sequence": 17,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -287,7 +283,7 @@
       "size": "36",
       "key": false,
       "description": "Employee who confirmed and closed the ticket",
-      "sequence": 17,
+      "sequence": 18,
       "primary_key": false,
       "nullable": true,
       "mandatory": false
@@ -382,6 +378,10 @@
         {
           "value": "NETWORK",
           "label": "NETWORK"
+        },
+        {
+          "value": "OTHER SUPPORT",
+          "label": "OTHER SUPPORT"
         }
       ]
     }

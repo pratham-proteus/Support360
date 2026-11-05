@@ -2,37 +2,41 @@
   "object_name": "support360_manage_all_tickets",
   "tables": {
     "SUPPORT360_TICKET": [
-      "ADD_DATE",
-      "ATTACHMENT_UPLOADED_BY",
-      "CLOSED_BY",
-      "ADD_TERM",
-      "CREATED_DATE",
-      "PRIORITY_NAME",
-      "TITLE",
-      "ASSIGNED_AGENT",
-      "TICKET_NO",
-      "ATTACHMENT",
-      "RESOLUTION_NOTES",
-      "AGENT_COMMENTS",
       "CLOSED_DATE",
+      "RESOLUTION_NOTES",
+      "TITLE",
       "CHG_USER",
-      "NEW_COMMENT",
-      "DESCRIPTION",
-      "STATUS",
-      "CHG_DATE",
-      "ID",
-      "CHG_TERM",
-      "ADD_USER",
-      "CATEGORY_NAME",
-      "ATTACHMENT_UPLOADED_DATE",
+      "TICKET_NO",
+      "ACTIVITY_HISTORY",
       "RAISED_BY_NAME",
-      "ACTIVITY_HISTORY"
+      "AGENT_COMMENTS",
+      "ATTACHMENT",
+      "ADD_TERM",
+      "ID",
+      "STATUS",
+      "NEW_COMMENT",
+      "CATEGORY_NAME",
+      "CHG_DATE",
+      "ADD_USER",
+      "ADD_DATE",
+      "CLOSED_BY",
+      "CREATED_DATE",
+      "ATTACHMENT_UPLOADED_BY",
+      "ATTACHMENT_UPLOADED_DATE",
+      "CHG_TERM",
+      "DESCRIPTION",
+      "ASSIGNED_AGENT",
+      "PRIORITY_NAME"
     ],
     "SUPPORT360_CATEGORY_MASTER": [
       "CATEGORY_NAME"
     ],
     "SUPPORT360_PRIORITY_MASTER": [
       "PRIORITY_NAME"
+    ],
+    "SUPPORT360_AGENT": [
+      "AGENT_NAME",
+      "AGENT_ID"
     ]
   }
 }

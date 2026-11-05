@@ -1,0 +1,35 @@
+{
+  "id": "96f22726-dbe7-48e2-a19a-20040dbb41ae",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Fix the broken pre_commit hook set_status_assigned_on_save in support360_ticket_",
+  "kind": "change",
+  "status": "completed",
+  "description": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "created_at": 1793857892.829918,
+  "updated_at": 1793861307.2507238,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Fix pre_commit hook to read header fields correctly",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793857893.1090336,
+      "completed_at": 1793857902.2101269
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "96f22726-dbe7-48e2-a19a-20040dbb41ae",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

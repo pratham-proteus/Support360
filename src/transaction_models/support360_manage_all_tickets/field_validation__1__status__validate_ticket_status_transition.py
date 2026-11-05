@@ -5,9 +5,9 @@
 # method: validate_ticket_status_transition
 # description: Validate that the new ticket status is an allowed transition.
 # functional_specification:
-#   STATUS may only move forward along Pending -> Assigned -> Queued ->
-#   Resolved. Skipping ahead is allowed (e.g. Pending -> Queued), but moving
-#   backward is rejected. Resolved is final and can never change once set. On
+#   STATUS may only move forward along Pending -> Assigned -> Resolved.
+#   Skipping ahead is allowed, but moving backward is rejected. Resolved is
+#   final and can never change once set. On
 #   edit the stored status is read and the transition checked against this
 #   order; a ticket may only move to Resolved when it has resolution notes and
 #   an assigned agent. Re-selecting the same status is reported as an
@@ -15,8 +15,8 @@
 #   an override-able warning.
 
 
-ALLOWED = ['Pending', 'Assigned', 'Queued', 'Resolved']
-STATUS_ORDER = {'Pending': 0, 'Assigned': 1, 'Queued': 2, 'Resolved': 3}
+ALLOWED = ['Pending', 'Assigned', 'Resolved']
+STATUS_ORDER = {'Pending': 0, 'Assigned': 1, 'Resolved': 2}
 
 
 def run(args):
@@ -29,8 +29,8 @@ def run(args):
     if is_empty(new_status):
         return 'Status is required.'
 
-    if not in_list(new_status, 'Pending,Assigned,Queued,Resolved'):
-        return 'Invalid status "' + str(new_status) + '". Allowed values are: Pending, Assigned, Queued, Resolved.'
+    if not in_list(new_status, 'Pending,Assigned,Resolved'):
+        return 'Invalid status "' + str(new_status) + '". Allowed values are: Pending, Assigned, Resolved.'
 
     assigned = coalesce(args.get('ASSIGNED_AGENT'), '')
     old_status = ''

@@ -1,0 +1,35 @@
+{
+  "id": "7df3ffce-07ec-4878-887e-728019f2cf3e",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Re-add the Category Master screen to application navigation under Manager Setup.",
+  "kind": "change",
+  "status": "completed",
+  "description": "Make that Category Master screen visible again.",
+  "created_at": 1793177203.3527467,
+  "updated_at": 1793861307.237248,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Restore Category Master navigation entry",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_category_master",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793177203.6322818,
+      "completed_at": 1793177216.4972427
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Make that Category Master screen visible again.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "7df3ffce-07ec-4878-887e-728019f2cf3e",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

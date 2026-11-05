@@ -7,6 +7,12 @@
           "form_title": "Create Ticket",
           "form_descr": "Employee logs a new support ticket",
           "form_no": "1",
+          "list_view": {
+            "edit_lock": {
+              "expression": "{form.status} == \"Closed\"",
+              "reason": "Closed tickets cannot be edited."
+            }
+          },
           "main_table": "SUPPORT360_TICKET",
           "columns": [
             {
@@ -47,7 +53,7 @@
                 "descr": "Short title describing the issue or request",
                 "mandatory": true,
                 "x": "20",
-                "y": "110",
+                "y": "20",
                 "col_id": "2",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -75,7 +81,7 @@
                 "descr": "Full description of the issue or request",
                 "mandatory": true,
                 "x": "30",
-                "y": "210",
+                "y": "30",
                 "col_id": "3",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -110,7 +116,7 @@
                 "db_size": "50",
                 "width": 500,
                 "x": "40",
-                "y": "310",
+                "y": "40",
                 "col_id": "4",
                 "edit_mask": {
                   "mask": "ddlb",
@@ -130,24 +136,31 @@
                     {
                       "data": "NETWORK",
                       "display": "NETWORK"
+                    },
+                    {
+                      "data": "OTHER SUPPORT",
+                      "display": "OTHER SUPPORT"
                     }
                   ]
-                },
-                "item_change": {
-                  "mode": "business_logic",
-                  "business_logic": {
-                    "method": "assign_agent_by_preference",
-                    "description": "Auto-assign ticket to the agent whose PREFERENCE matches the selected CATEGORY: STATUS becomes Assigned if that agent is Active+Available, Queued if Active+Occupied, otherwise the ticket stays Pending.",
-                    "COMP_NAME": "field_item_change__1__category__assign_agent_by_preference",
-                    "METHOD_NAME": "run"
-                  }
                 },
                 "format": "",
                 "default_function": "",
                 "default_value": "",
                 "expression": "",
                 "validations": "",
-                "lookup": ""
+                "lookup": "",
+                "item_change": {
+                  "mode": "rule",
+                  "source_table": "SUPPORT360_CATEGORY_MASTER",
+                  "match_table_col": "CATEGORY_NAME",
+                  "match_value": "{form.category}",
+                  "fill": [
+                    {
+                      "form_col": "category_code",
+                      "table_col": "CATEGORY_CODE"
+                    }
+                  ]
+                }
               }
             },
             {
@@ -184,7 +197,7 @@
                   }
                 ],
                 "x": "50",
-                "y": "410",
+                "y": "50",
                 "col_id": "5",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "100",
@@ -233,7 +246,7 @@
                   }
                 ],
                 "x": "60",
-                "y": "610",
+                "y": "60",
                 "col_id": "6",
                 "table_display_name": "Support ticket (main table)",
                 "db_size": "100",
@@ -267,7 +280,7 @@
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Status",
-                "descr": "Defaults to Pending; set to Assigned automatically when a matching Active+Available agent is found, or to Queued when the matching agent is Active but Occupied; remains Pending if no agent has a matching preference. A Resolved ticket is read-only everywhere.",
+                "descr": "Defaults to Pending; set to Assigned automatically when a matching Active agent is found by round-robin (ascending AGENT_ID) assignment; remains Pending if no Active agent has a matching preference. A Resolved ticket is read-only everywhere.",
                 "default_value": "Pending",
                 "mandatory": true,
                 "protect": "1",
@@ -293,12 +306,6 @@
                       "label": "Resolved"
                     },
                     {
-                      "when": "Queued",
-                      "color": "purple",
-                      "icon": "\u25cf",
-                      "label": "Queued"
-                    },
-                    {
                       "when": "Pending",
                       "color": "yellow",
                       "label": "Pending"
@@ -307,7 +314,7 @@
                   "defaultColor": "grey"
                 },
                 "x": "70",
-                "y": "710",
+                "y": "70",
                 "col_id": "7",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -327,32 +334,6 @@
                     {
                       "form_col": "status",
                       "expr": "{form.status}"
-                    }
-                  ],
-                  "protect": [
-                    {
-                      "form_col": "title",
-                      "when": "{form.status} == \"Closed\""
-                    },
-                    {
-                      "form_col": "description",
-                      "when": "{form.status} == \"Closed\""
-                    },
-                    {
-                      "form_col": "category_name",
-                      "when": "{form.status} == \"Closed\""
-                    },
-                    {
-                      "form_col": "category",
-                      "when": "{form.status} == \"Closed\""
-                    },
-                    {
-                      "form_col": "priority_name",
-                      "when": "{form.status} == \"Closed\""
-                    },
-                    {
-                      "form_col": "attachment",
-                      "when": "{form.status} == \"Closed\""
                     }
                   ]
                 }
@@ -425,7 +406,7 @@
                 "default_value": "now()",
                 "protect": "1",
                 "x": "80",
-                "y": "810",
+                "y": "80",
                 "col_id": "10",
                 "table_name": "SUPPORT360_TICKET",
                 "table_display_name": "Support ticket (main table)",
@@ -763,13 +744,13 @@
                 "heading": "Category Code",
                 "descr": "Category code resolved from the selected CATEGORY via the Category master; required by SUPPORT360_TICKET.CATEGORY_CODE (NOT NULL)",
                 "mandatory": true,
-                "hidden": false,
+                "hidden": true,
                 "protect": true,
                 "key": false,
                 "db_size": "20",
                 "width": 200,
                 "x": "90",
-                "y": "510",
+                "y": "90",
                 "col_id": "22",
                 "default_value": "",
                 "default_function": "",
@@ -797,7 +778,7 @@
                 "db_size": "20",
                 "width": 200,
                 "x": "100",
-                "y": "910",
+                "y": "100",
                 "col_id": "23",
                 "default_value": "",
                 "default_function": "",
@@ -863,6 +844,15 @@
         }
       }
     ],
+    "unit_test": {
+      "sample": {
+        "category_name": "@lookup",
+        "priority_name": "@lookup",
+        "category_code": "HW",
+        "priority_code": "P1"
+      },
+      "note": "Codes are filled from the masters by item_change; steer the synthetic row to real master values"
+    },
     "actions": [],
     "cross_updates": [],
     "pre_commit": [],
@@ -881,8 +871,8 @@
         "mode": "business_logic",
         "business_logic": {
           "method": "auto_assign_agent",
-          "description": "Auto-assign the ticket to a matching available agent",
-          "spec": "After a new ticket is committed (action = add) with no ASSIGNED_AGENT yet, pick the Active SUPPORT360_AGENT whose PREFERENCE equals the ticket's CATEGORY, preferring AGENT_AVAILABILITY = 'Available'. Available -> ASSIGNED_AGENT + STATUS = 'Assigned'; Occupied -> ASSIGNED_AGENT + STATUS = 'Queued'; no match -> STATUS stays 'Pending'. Logs the assignment to SUPPORT360_TICKET_ACTLOG. Never blocks the save."
+          "description": "Auto-assign the ticket to the next agent in round-robin order by ascending AGENT_ID among Active agents whose PREFERENCE matches CATEGORY",
+          "spec": "After a new ticket is committed (action = add) with no ASSIGNED_AGENT yet: find all SUPPORT360_AGENT rows where AGENT_STATUS = 'Active' and PREFERENCE equals the ticket's CATEGORY. Ignore AGENT_AVAILABILITY entirely \u2014 it is never checked. If no Active agent matches, leave STATUS = 'Pending' and ASSIGNED_AGENT empty. If one or more match, assign round-robin by ascending AGENT_ID: look up the most recently created ticket in SUPPORT360_TICKET (by CREATED_DATE descending, excluding this ticket) where CATEGORY equals this ticket's CATEGORY and ASSIGNED_AGENT is not empty. If found, pick the first matching Active agent (ordered ascending by AGENT_ID) whose AGENT_ID is strictly greater than that previous ticket's ASSIGNED_AGENT; if none is greater, wrap around to the matching agent with the lowest AGENT_ID. If no prior assigned ticket exists for that category, pick the matching agent with the lowest AGENT_ID. Set ASSIGNED_AGENT to that agent's AGENT_ID and STATUS = 'Assigned'. Never set STATUS to 'Queued' \u2014 that status is no longer used. Log the assignment to SUPPORT360_TICKET_ACTLOG. Never blocks the save."
         }
       }
     ],

@@ -1,0 +1,35 @@
+{
+  "id": "bcf0ad8d-34b4-491c-9f6b-717c9853457f",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Implement the no-op pre_commit hook on support360_ticket_assignment so that manu",
+  "kind": "change",
+  "status": "completed",
+  "description": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "created_at": 1793854710.0931656,
+  "updated_at": 1793861307.2474804,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Implement pre_commit status transition on manual agent save",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_ticket_assignment",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793854710.4800155,
+      "completed_at": 1793854722.856245
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Fix it \u2014 apply the recommended fix from your investigation above.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "bcf0ad8d-34b4-491c-9f6b-717c9853457f",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

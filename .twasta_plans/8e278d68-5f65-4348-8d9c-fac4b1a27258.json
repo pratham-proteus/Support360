@@ -1,0 +1,59 @@
+{
+  "id": "8e278d68-5f65-4348-8d9c-fac4b1a27258",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change the Create Ticket auto-assignment logic from 'always pick the first activ",
+  "kind": "change",
+  "status": "completed",
+  "description": "If there are multiple agents for a single preference, the created tickets should get assigned in an ascending order of the Agents Name on click of save in 'Create Ticket' transaction. In our system the first agent who will get assigned with the ticket is Omkar, after one ticket is assigned to Omkar the other ticket must get assigned to Prem as the alphabet P comes after O. The next ticket should be assigned to Sandeep. And next created ticket should get assigned to Omkar again.",
+  "created_at": 1793768863.198123,
+  "updated_at": 1793861307.2429352,
+  "todos": [
+    {
+      "id": "change_1",
+      "step": "change",
+      "label": "Update FRS: describe round-robin agent assignment for Create Ticket",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768863.4647715,
+      "completed_at": 1793768874.27015
+    },
+    {
+      "id": "change_2",
+      "step": "change",
+      "label": "Update application.json: reflect round-robin assignment in support360_create_ticket description",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768874.3551738,
+      "completed_at": 1793768884.0995805
+    },
+    {
+      "id": "change_3",
+      "step": "change",
+      "label": "Implement round-robin logic in the save-time auto-assign function",
+      "status": "completed",
+      "error": null,
+      "obj_name": "support360_create_ticket",
+      "obj_type": "T",
+      "phase_id": null,
+      "started_at": 1793768884.1915326,
+      "completed_at": 1793768899.9246943
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "If there are multiple agents for a single preference, the created tickets should get assigned in an ascending order of the Agents Name on click of save in 'Create Ticket' transaction. In our system the first agent who will get assigned with the ticket is Omkar, after one ticket is assigned to Omkar the other ticket must get assigned to Prem as the alphabet P comes after O. The next ticket should be assigned to Sandeep. And next created ticket should get assigned to Omkar again.",
+  "resume_ref": {
+    "session_id": "97a4c631-a97f-42a2-93be-2dd45f5edc25",
+    "plan_id": "8e278d68-5f65-4348-8d9c-fac4b1a27258",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

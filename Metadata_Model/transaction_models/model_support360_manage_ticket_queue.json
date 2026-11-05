@@ -258,12 +258,6 @@
                       "label": "Assigned"
                     },
                     {
-                      "when": "Queued",
-                      "color": "blue",
-                      "icon": "\u25cf",
-                      "label": "Queued"
-                    },
-                    {
                       "when": "Resolved",
                       "color": "teal",
                       "icon": "\u2713",
@@ -777,7 +771,7 @@
                   "error_code": "TQ_COMMENT_REQUIRED_NOT_RESOLVED",
                   "severity": "E",
                   "message": "A comment is required in Add Comment when Status is set to Not Resolved.",
-                  "expression": "{form.status} != \"Not Resolved\" || {form.new_comment} != \"\""
+                  "expression": "{form.status} != \"Not Resolved\" or {form.new_comment} != \"\""
                 }
               ],
               "order": 2
@@ -789,7 +783,16 @@
     ],
     "actions": [],
     "cross_updates": [],
-    "pre_commit": [],
+    "pre_commit": [
+      {
+        "mode": "business_logic",
+        "business_logic": {
+          "method": "set_status_assigned_on_save",
+          "description": "Flip a Pending ticket to Assigned on save",
+          "spec": "Before the ticket is committed on Save or Save & Close (action = add or edit), if STATUS = 'Pending', set STATUS = 'Assigned'. Leave STATUS unchanged for any other current value (including the existing 'Not Resolved' transition logic and its mandatory Add Comment rule, which are untouched)."
+        }
+      }
+    ],
     "post_commit": [],
     "follow_up_actions": [],
     "attach_docs": [],

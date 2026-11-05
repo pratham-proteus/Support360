@@ -4,10 +4,11 @@
 # description: Reassign the selected ticket to another agent.
 # functional_specification:
 #   Validates that the ticket exists, is not already Resolved, that a target agent
-#   has been chosen, that the target agent is Active and different from the current
-#   assignee, then updates SUPPORT360_TICKET.ASSIGNED_AGENT and writes an
-#   'Assigned' row into SUPPORT360_TICKET_ACTLOG recording old and new agent.
-#   Warns (override-able) when the target agent is currently Occupied.
+#   has been chosen, that the target agent is Active, matches the ticket's
+#   category by PREFERENCE, and is different from the current assignee, then
+#   updates SUPPORT360_TICKET.ASSIGNED_AGENT and STATUS to 'Assigned', and
+#   writes an 'Assigned' row into SUPPORT360_TICKET_ACTLOG recording old and
+#   new agent.
 
 
 def run(args):
@@ -24,7 +25,7 @@ def run(args):
         return out
 
     ticket = db.query_one(
-        'SELECT TICKET_NO, STATUS, ASSIGNED_AGENT FROM ' + db.t('SUPPORT360_TICKET') +
+        'SELECT TICKET_NO, STATUS, ASSIGNED_AGENT, CATEGORY FROM ' + db.t('SUPPORT360_TICKET') +
         ' WHERE TICKET_NO = :t', {'t': ticket_no})
 
     if not ticket:
@@ -46,7 +47,7 @@ def run(args):
     else:
         new_agent = str(new_agent).strip()
         agent = db.query_one(
-            'SELECT AGENT_ID, AGENT_NAME, AGENT_STATUS, AGENT_AVAILABILITY FROM ' +
+            'SELECT AGENT_ID, AGENT_NAME, AGENT_STATUS, PREFERENCE FROM ' +
             db.t('SUPPORT360_AGENT') + ' WHERE AGENT_ID = :a', {'a': new_agent})
 
         if not agent:
@@ -59,10 +60,10 @@ def run(args):
             if new_agent == cur_agent:
                 out['errors'].append({'code': 'RA007', 'field': 'reassign_to_agent', 'type': 'E',
                                       'message': 'The ticket is already assigned to this agent.'})
-            if (agent['AGENT_AVAILABILITY'] or '').strip() == 'Occupied' and 'RA008' not in ignored:
-                out['errors'].append({'code': 'RA008', 'field': 'reassign_to_agent', 'type': 'W',
+            if (agent['PREFERENCE'] or '').strip() != (ticket.get('CATEGORY') or '').strip():
+                out['errors'].append({'code': 'RA008', 'field': 'reassign_to_agent', 'type': 'E',
                                       'message': 'Agent ' + (agent['AGENT_NAME'] or new_agent) +
-                                                 ' is currently Occupied. Reassign anyway?'})
+                                                 ' does not support this ticket\'s category.'})
 
     blocking = [e for e in out['errors'] if e.get('type', 'E') == 'E']
     if blocking:

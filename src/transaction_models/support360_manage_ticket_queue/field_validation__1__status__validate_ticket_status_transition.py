@@ -14,18 +14,17 @@
 CANONICAL_STATUS = {
     'pending': 'Pending',
     'assigned': 'Assigned',
-    'queued': 'Queued',
     'resolved': 'Resolved',
     'not resolved': 'Not Resolved',
 }
 
 # Forward order of the lifecycle - index determines allowed direction of travel.
-STATUS_ORDER = ['Pending', 'Assigned', 'Queued', 'Resolved']
+STATUS_ORDER = ['Pending', 'Assigned', 'Resolved']
 
 # 'Not Resolved' sits outside the linear forward order above - it may only be
 # reached from these statuses (never directly from Pending).
 NOT_RESOLVED = 'Not Resolved'
-NOT_RESOLVED_ALLOWED_SOURCES = ('Assigned', 'Queued')
+NOT_RESOLVED_ALLOWED_SOURCES = ('Assigned',)
 
 ERROR_CODE = 'TQ_STATUS_TRANSITION'
 
