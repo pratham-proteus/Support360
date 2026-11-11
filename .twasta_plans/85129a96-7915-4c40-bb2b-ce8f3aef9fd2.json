@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Replace the 'Assign Agent' action/button from \"Create Ticket\" transaction to \"Ticket Management\" transaction.",
   "created_at": 1791442097.3924475,
-  "updated_at": 1793871138.8492122,
+  "updated_at": 1794371475.0526052,
   "todos": [
     {
       "id": "frs",
@@ -182,7 +182,7 @@
   ],
   "originating_prompt": "Replace the 'Assign Agent' action/button from \"Create Ticket\" transaction to \"Ticket Management\" transaction.",
   "resume_ref": {
-    "session_id": "cdc6a09d-0822-4822-82ba-44e8003af20a",
+    "session_id": "ad3495d2-d9e4-43ac-abd6-1838ffe477dc",
     "plan_id": "85129a96-7915-4c40-bb2b-ce8f3aef9fd2",
     "scope": "phase"
   },
