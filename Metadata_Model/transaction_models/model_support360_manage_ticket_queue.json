@@ -124,7 +124,7 @@
             {
               "column": {
                 "name": "category_code",
-                "db_name": "CATEGORY_NAME",
+                "db_name": "CATEGORY",
                 "group_name": "Basic",
                 "col_type": "VARCHAR",
                 "heading": "Category",
@@ -711,7 +711,7 @@
                   "table_descr": "Category master (lookup display)",
                   "column": "CATEGORY_NAME",
                   "join_table": "SUPPORT360_TICKET",
-                  "join_column": "CATEGORY_NAME",
+                  "join_column": "CATEGORY",
                   "join_type": "left"
                 },
                 {

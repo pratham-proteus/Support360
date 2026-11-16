@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "If in the Admin Set up -> Manage All tickets, if anyone is Assigning a ticket and writing the assigned person name and changing the Status to assign don't give an error. Let the ticket be assigned to the concerned person",
   "created_at": 1788775085.4553673,
-  "updated_at": 1794371475.0237732,
+  "updated_at": 1794809263.8152947,
   "todos": [
     {
       "id": "change_1",
@@ -37,7 +37,7 @@
   "phases": [],
   "originating_prompt": "If in the Admin Set up -> Manage All tickets, if anyone is Assigning a ticket and writing the assigned person name and changing the Status to assign don't give an error. Let the ticket be assigned to the concerned person",
   "resume_ref": {
-    "session_id": "ad3495d2-d9e4-43ac-abd6-1838ffe477dc",
+    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
     "plan_id": "3282b427-6d95-409f-ab0f-28380ce213d4",
     "scope": null
   },

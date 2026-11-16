@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "id": "ad3495d2-d9e4-43ac-abd6-1838ffe477dc",
+  "id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
   "project": "Support360",
   "description": "Build a **General Help Desk application for enterprises**.\n\nThe system should have 3 roles: **Employee, Support Agent, and Admin**.\n\n\nCore features:\n\n* Employees can create support tickets with **title, description, category, priority, and attachment**.\n* Support Agents can **view, assign, update, comment on, and resolve tickets**.\n* Ticket status should follow: **Open \u2192 Assigned \u2192 In Progress \u2192 Resolved \u2192 Closed**.\n* Employees can view their tickets and track status.\n* Admin can manage **users, categories, priorities, and tickets**.\n* Provide **search, filtering, and dashboards** showing ticket count by status and priority.\n* Add proper **mandatory-field validation, error messages, and success messages**.\n* Store all ticket changes in an **activity/history log**.\n* Create a clean, simple, enterprise-style UI.\n\nMake the application fully functional with working **frontend, backend, database, authentication, validations, and workflows**.\n\n=== CONFIRMED SCOPE AND COMPLEXITY (user-approved \u2014 this OVERRIDES any conflicting inference from the brief) ===\n* Which functional areas should the Help Desk cover?\n  - Include: Ticket Creation & My Tickets; Agent Ticket Desk; Status Workflow & Rules; Admin Setup (Categories & Priorities); Search, Filters & Dashboards; Activity & History Log\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Email Notifications; Response Time Targets (SLA); Knowledge Base & Canned Replies\n* How complete should this first version be?\n  - Include: Standard\n* What should each role see when they log in?\n  - Include: Employee: my open tickets; Agent: my queue and workload; Admin: overall ticket health\n  - EXCLUDE (explicitly declined by the user \u2014 do NOT specify these): Agent performance comparison\n* How should a ticket move from Resolved to Closed?\n  - Include: Employee confirms\n* How should file attachments work on tickets?\n  - Include: Multiple files, any time\nWrite the specification to cover EXACTLY this confirmed scope at the confirmed complexity level: include every confirmed item, honour every added point, and do not add functional areas, activities or enterprise features beyond it.",
   "active_plan_id": "7703dc8a-ed4f-4a86-8c1b-6cbac3c560d2",
@@ -12245,7 +12245,7 @@
       "phases": [],
       "profile_id": null,
       "created_at": 1793782435.2955127,
-      "updated_at": 1793868368.3158183,
+      "updated_at": 1794393358.1483753,
       "depends_on": [],
       "dependency_spec": null,
       "run_scope": null
@@ -12330,6 +12330,34 @@
       "profile_id": null,
       "created_at": 1793857892.7593565,
       "updated_at": 1793857892.759357,
+      "depends_on": [],
+      "dependency_spec": null,
+      "run_scope": null
+    },
+    {
+      "id": "b9ff7aa0-43db-484e-8055-0b8c874e4387",
+      "title": "Change",
+      "kind": "change",
+      "status": "completed",
+      "description": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket Desk\" folder. It should contain the value from the 'Create Ticket' transaction 'category' field.",
+      "todos": [
+        {
+          "id": "change_turn",
+          "step": "change",
+          "label": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket D",
+          "status": "completed",
+          "error": null,
+          "obj_name": null,
+          "obj_type": null,
+          "phase_id": null,
+          "started_at": 1794392962.459245,
+          "completed_at": 1794392997.804011
+        }
+      ],
+      "phases": [],
+      "profile_id": null,
+      "created_at": 1794392962.459241,
+      "updated_at": 1794392962.4592414,
       "depends_on": [],
       "dependency_spec": null,
       "run_scope": null

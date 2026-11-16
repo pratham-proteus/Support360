@@ -1,0 +1,35 @@
+{
+  "id": "b9ff7aa0-43db-484e-8055-0b8c874e4387",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change",
+  "kind": "change",
+  "status": "completed",
+  "description": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket Desk\" folder. It should contain the value from the 'Create Ticket' transaction 'category' field.",
+  "created_at": 1794392962.5325284,
+  "updated_at": 1794809263.875844,
+  "todos": [
+    {
+      "id": "change_turn",
+      "step": "change",
+      "label": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket D",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1794392962.459245,
+      "completed_at": 1794392997.804011
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket Desk\" folder. It should contain the value from the 'Create Ticket' transaction 'category' field.",
+  "resume_ref": {
+    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
+    "plan_id": "b9ff7aa0-43db-484e-8055-0b8c874e4387",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

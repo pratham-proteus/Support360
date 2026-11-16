@@ -1,0 +1,49 @@
+{
+  "report": {
+    "ok": true,
+    "summary": "PASS",
+    "project": "Support360",
+    "obj_name": "support360_manage_ticket_queue",
+    "passed": 2,
+    "failed": 0,
+    "steps": [
+      {
+        "name": "deploy schema",
+        "status": "PASS",
+        "issue": null,
+        "detail": "schema=twasta",
+        "check": "record"
+      },
+      {
+        "name": "list records",
+        "status": "PASS",
+        "issue": null,
+        "detail": "9 row(s)",
+        "check": "record"
+      },
+      {
+        "name": "add, edit and delete a record",
+        "status": "SKIP",
+        "issue": null,
+        "detail": "this screen's Add is refused by its own rule '1 == 2' — records are written elsewhere, so there is nothing to add here",
+        "check": "record"
+      }
+    ],
+    "checks": [
+      {
+        "id": "record",
+        "kind": "record",
+        "name": "",
+        "label": "Add, list, open, edit and delete a record",
+        "steps": 3,
+        "status": "passed",
+        "first_failure": null
+      }
+    ],
+    "first_failure": null,
+    "emitted_events": []
+  },
+  "at": "2026-11-11T10:29:50+00:00",
+  "by": "pratham.dukhande@proteustech.in",
+  "via": "Ask-AI"
+}

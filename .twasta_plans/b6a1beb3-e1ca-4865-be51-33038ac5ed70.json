@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Ignore the availability of agents and queued status. Just assign the tickets in ascending order of the Agent Id and set status = 'Assigned'",
   "created_at": 1793771589.8884025,
-  "updated_at": 1794371475.0789118,
+  "updated_at": 1794809263.872172,
   "todos": [
     {
       "id": "change_1",
@@ -62,7 +62,7 @@
   "phases": [],
   "originating_prompt": "Ignore the availability of agents and queued status. Just assign the tickets in ascending order of the Agent Id and set status = 'Assigned'",
   "resume_ref": {
-    "session_id": "ad3495d2-d9e4-43ac-abd6-1838ffe477dc",
+    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
     "plan_id": "b6a1beb3-e1ca-4865-be51-33038ac5ed70",
     "scope": null
   },
