@@ -2,8 +2,6 @@
 name: app-troubleshooter
 description: "Investigate a question about how the GENERATED APPLICATION behaves at run time — a user seeing wrong, missing or unexpected data, a total that doesn't add up, a record that vanished or changed, a save/action that failed, a visual or dashboard showing the wrong numbers. It VERIFIES the claim against the live data (read-only SELECTs, runs visuals like the runtime), reads the preview-run log, the business-logic trace and the record audit trail, reads the model to see what the screen computes, and returns a verdict (confirmed / not confirmed) with evidence, the root cause and a recommended fix. READ-ONLY: it never changes anything."
 tools: Bash, Read, Grep, Glob
-model: claude-haiku-5-5
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

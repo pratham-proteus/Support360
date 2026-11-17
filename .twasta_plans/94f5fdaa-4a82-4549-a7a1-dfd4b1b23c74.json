@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "The \"Status\" of value 'Pending' should be yellow.",
   "created_at": 1791280124.666847,
-  "updated_at": 1794809263.8424468,
+  "updated_at": 1794913977.2199106,
   "todos": [
     {
       "id": "change_1",
@@ -109,7 +109,7 @@
   "phases": [],
   "originating_prompt": "The \"Status\" of value 'Pending' should be yellow.",
   "resume_ref": {
-    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
     "plan_id": "94f5fdaa-4a82-4549-a7a1-dfd4b1b23c74",
     "scope": null
   },

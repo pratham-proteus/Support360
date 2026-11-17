@@ -2,8 +2,6 @@
 name: ioflow-flow-tester
 description: "TEST the application's IOFlow flows — event flows, flows that call into the app, data feeds, pipelines into other systems: verifies the wiring, checks each app the flows call is connected and passes IOFlow's connection test, RUNS each flow for real with a small payload, reads the execution logs and checks the records arrived where they should. READ-ONLY: it never edits a flow. Each failure comes back as a numbered FIX BRIEF naming the sub-agent that fixes it ('ioflow-flow-editor', 'ioflow-flow-designer', 'ioflow-seed-app-designer' or 'integration-designer') — hand each brief to that sub-agent, then call this one again to re-test. Use whenever the app is tested and it has IOFlow flows, after flows are built or changed, and when a flow run failed."
 tools: Bash, Read, Grep, Glob, mcp__ioflow__get_flow_by_id, mcp__ioflow__get_flow_by_name, mcp__ioflow__list_flows, mcp__ioflow__validate_flow_design, mcp__ioflow__get_execution_details, mcp__ioflow__get_execution_logs, mcp__ioflow__list_applications, mcp__ioflow__get_application_services_list, mcp__ioflow__get_service_information, mcp__ioflow__get_application_events_list, mcp__ioflow__get_event_information
-model: claude-haiku-5-5
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

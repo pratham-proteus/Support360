@@ -19,7 +19,51 @@ Application to be built on a custom framework which provides builtin functionali
 -There are template available for each type of object.
 --(D)Dashboard page composes multiple Visual (V) components on the same page to show key metrics, trends and analytics together. A dashboard itself does not query data — each Visual it contains has its own criteria, data points and logic.
 --(T)Transaction management handles functionalities to search, show result, list recent, add, edit, delete on a header only or header detail entity(transaction or master).
---(V)Visual is a built-in BI component of the twasta runtime. Like a report it has criteria, data points and logic that determine the data shown. Supported visualisation styles include tabular Grid, Pivot, Column-Chart, Bar-Chart, Line-Chart, Stacked-Column-Chart, Pie-Chart, Doughnut-Chart, Bubble-Chart, Scatter-Chart, Card, Map, Calendar, Tree, Feeds, HTML. Use V for any output that is essentially a tabular list, pivot, or graphical visualization. Multiple Visuals are composed together to build a Dashboard.
+--(V)Visual is a built-in BI component of the twasta runtime. Like a report it has criteria, data points and logic that determine the data shown. Use V for any output that is essentially a tabular list, pivot, or graphical visualization. Multiple Visuals are composed together to build a Dashboard. Visual types the runtime supports (from the live visual catalog):
+    - Column: Compare a measure across categories, vertical bars.
+    - Bar: Same as Column, horizontal — good for long labels.
+    - Line: How a measure moves over time.
+    - Scatter: Correlation between two measures, one dot per row.
+    - Pie: Share of a whole across a few categories — as a pie or a donut.
+    - Stacked Column: Totals split into a breakdown within each bar.
+    - Column Line: Columns plus a line, for two different measures.
+    - Grid: Table with totals, grouping and multi-row select.
+    - Pivot: Cross-tab of rows × columns × measures.
+    - Feeds: Activity or news style feed of records.
+    - DoughNut: Up to three target-vs-achievement rings, totals in the centre.
+    - Html: Your own HTML template rendered per row.
+    - XSL: XML data transformed through an XSL stylesheet.
+    - MultiStackLine: Multiple stacked series with overlay lines.
+    - Card: A single headline number, optionally with a sparkline.
+    - Map: Points on a map, or regions shaded by a measure.
+    - Calendar: Date-based records on a calendar: full month, compact month, week, day or list.
+    - Tree: Hierarchical data as an expandable tree.
+    - TaskScheduler: Tasks and jobs over time on a Gantt timeline.
+    - Tabular: A plain list of records, one row each.
+    - Bubble Chart: Scatter with a third measure as the bubble size.
+    - Heatmap: Matrix of cells coloured by density or value.
+    - Gauge: Progress of a value toward its target.
+    - Treemap: Nested rectangles sized by value, with drill levels.
+    - Funnel: Stage-by-stage conversion down a pipeline.
+    - Waterfall: Signed +/− contributions bridging to a total.
+    - Radar: Compare profiles across several axes at once.
+    - Sankey: Flow volume between two sets of entities.
+    - Document: A laid-out document over these rows — designed in the document designer, one document per identity you name.
+    - Histogram: How values spread — counts per range (ages, amounts, durations).
+    - Box Plot: Median, quartiles and outliers of a value, per category.
+    - Slicer: A value list on a dashboard — picking values filters the other tiles.
+    - Calendar Heatmap: A square per day over the year, shaded by a measure.
+    - Diverging Bar: Two measures back to back — population pyramid, agree vs disagree.
+    - Lollipop: A lighter column: a stick and a dot; two measures make a dumbbell (before → after).
+    - Slope: How each series moved between periods — or its rank in each (bump).
+    - Range: A value with its low–high range as a band, or with error bars.
+    - Candlestick: Open, high, low and close per period (prices, readings).
+    - Marimekko: Columns as wide as their share of the total, split by segment.
+    - Network: Who is linked to whom — nodes and weighted links (circle or force layout).
+    - Word Cloud: Words sized by weight or frequency (tags, reasons, products).
+    - Decomposition Tree: Break a total down level by level, choosing each branch.
+    - Kanban: Cards in a column per status (lanes), with counts and totals.
+    Name each Visual's type by its exact name from this list. Choose by what the reader must see, using the descriptions. When the same records are split by a value (a status, a stage, a category), pick a type that does the split inside ONE visual instead of making one visual per value.
 --(R)Report is a pixel-format Jasper report: output designed for PRINTING or for sharing with external business partners as a PDF. Use R for print-layout documents of any kind — invoices, statements, certificates, ledgers, delivery notes/challans, purchase orders, receipts, letters, address/barcode LABELS — and ALWAYS for any document that is SIGNED and EXCHANGED with another party (quotations, contracts, agreements, approval sheets). If it will be printed, signed, or sent outside the business as a document, it is R. Formatting powers: headers/footers, multi-level grouping with sub-totals and grand-totals, page breaks, signature blocks, statutory/printable layouts. Do NOT use R for on-screen tabular lists or pivot summaries — those must be V.
 --(G)Generate data, based on criteria input, performs data processing, preview the data and allows editing and saves the generate data to a table. It requires separate navigation items to show the generated data.
 --(U)Transaction Wizard is a GUIDED, step-by-step face on an existing transaction (T): pick from a list, type a few fields, SCAN a barcode/QR into columns, loop per line, review the lines in a grid, confirm, save, print — with branches, related data beside a step, and sub-wizards that pause it to complete another transaction. Use U for handheld / shop-floor capture and for a simpler path through a long form for occasional users. It owns no data and no rules: the record is saved through the transaction's own save, so the T stays in the menu too.

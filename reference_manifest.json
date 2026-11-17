@@ -31,7 +31,7 @@
     {
       "obj_name": "support360_ticket_assignment",
       "obj_type": "T",
-      "title": "Ticket Management",
+      "title": "Ticket Assignment",
       "description": "Agent assigns the Support Agent handling a ticket; Assign Agent no longer requires pre-selecting an agent \u2014 it auto-matc"
     },
     {

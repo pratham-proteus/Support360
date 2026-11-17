@@ -2,8 +2,6 @@
 name: visual-data-validator
 description: "VERIFY that Visuals (V) work and show CORRECT data — run after the visual-analytics-designer creates or changes any visual, and whenever the user doubts a visual's numbers. Give it the visual object name(s) (+ what each should show). It renders each visual exactly like the runtime (visual_data), checks it shows data on first open (no needs_input, no empty result over a populated table), independently recomputes the numbers straight from the base tables (run_select) and audits criteria defaults + lookups. READ-ONLY: it returns numbered findings with severity and the concrete fix — route fixes back to the visual-analytics-designer, then validate once more."
 tools: Read, Grep, Glob, mcp__twasta-design-query__list_tables, mcp__twasta-design-query__describe_table, mcp__twasta-design-query__get_column, mcp__twasta-design-query__distinct_values, mcp__twasta-design-query__visual_catalog, mcp__twasta-design-query__db_info, mcp__twasta-design-query__run_select, mcp__twasta-design-query__visual_data, mcp__twasta-design-query__dashboard_data, mcp__twasta-design-query__object_catalog, mcp__twasta-design-query__live_tables, mcp__twasta-design-query__live_describe, mcp__twasta-design-query__live_columns, mcp__twasta-design-query__report_validate, mcp__twasta-design-query__report_execute, mcp__twasta-design-query__check_columns
-model: claude-haiku-5-5
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

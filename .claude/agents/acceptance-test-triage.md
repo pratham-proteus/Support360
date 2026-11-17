@@ -2,8 +2,6 @@
 name: acceptance-test-triage
 description: "JUDGE a UI acceptance-test run's failures. Give it the run id (from 'acceptance-test-designer'). For each failed case it reads the evidence (steps, screenshots, console, network, server and business-logic logs) against the FRS and the model, classifies it as a product defect / test defect / environment issue with severity, expected vs actual, repro and the suspected object, applies the verdicts to the defect register and rebuilds the report. Returns the bug list. Read-only towards the application."
 tools: Bash, Read, Grep, Glob, Write
-model: claude-haiku-5-5
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

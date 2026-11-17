@@ -24,7 +24,12 @@ THE CLI (run with Bash; pure stdlib, needs no working dir):
     python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/web_content.py inspect <URL|FILE>
     python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py import-web "<OBJ_NAME>" --source <URL|FILE> --map '<json>' --key <DB_COL> [options]
     python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py import-image <IMAGE_URL>
-    python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py execute "<OBJ_NAME>" <add|edit|delete|list|load> --payload '<json>'
+  Existing records — use these payloads exactly (no other shape works):
+    python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py execute "<OBJ>" list --payload '{"limit": 50}'   # every row carries its key as `_txn_id`
+    python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py execute "<OBJ>" load --payload '{"txn_id": "<_txn_id>"}'   # one record's full current values
+    python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py execute "<OBJ>" edit --payload '{"txn_id": "<_txn_id>", "header": {"<column>": "<new value>"}}'   # `header` holds ONLY the columns you change, named as `load` returns them
+    python3 /home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/tools/app_api.py execute "<OBJ>" delete --payload '{"txn_id": "<_txn_id>"}'   # raw removal; it does not run the Delete button's rules
+    `<_txn_id>` is the row's `_txn_id` from `list` / `load` (the txn_id `create` prints): the key value itself for a one-column key (e.g. "TSK-00034"), a JSON string such as "{\"ORDER_NO\": \"SO-1\", \"LINE_NO\": 2}" for a key of several columns. Key columns inside `header` never pick the record.
 
 WORKFLOW:
 1. IDENTIFY the object. The task message tells you the object name (and usually the row count). If it's unclear, run `list-objects`.
@@ -37,8 +42,8 @@ WORKFLOW:
 
 BACKFILL MODE — filling values into rows that already exist:
 When the task is to give EXISTING records a value (a column was just added, or the old rows carry placeholder data), do NOT insert new rows and do NOT write an UPDATE statement:
-- `execute "<OBJ>" list --payload '{}'` to read the rows back (it returns the key of each), then `load` one when you need its full current shape.
-- For each row, `execute "<OBJ>" edit --payload '<the row with your new values>'` — the same engine path a user editing the screen takes, so validation, item_change logic, cross-updates and the audit trail all run. Send the row's KEY unchanged; change only the columns you were asked to fill.
+- `execute "<OBJ>" list` reads the rows back; each carries its key as `_txn_id`, and its current values (no `load` needed).
+- For each row, `execute "<OBJ>" edit --payload '{"txn_id": "<_txn_id>", "header": {<ONLY the columns you fill>}}'` (shapes above) — the same engine path a user editing the screen takes, so validation, item_change logic, cross-updates and the audit trail all run. Edit ONE row first; when it saves, do the rest in one Bash loop.
 - Vary the values realistically across rows (a table where every deal is in the same state is not test data), and keep any distribution the task asked for. Report how many rows you updated, and name any that failed with the engine's reason.
 
 IMPORT MODE — loading REAL data from a reference source:

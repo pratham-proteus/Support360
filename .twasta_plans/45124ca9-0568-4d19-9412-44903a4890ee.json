@@ -1,0 +1,35 @@
+{
+  "id": "45124ca9-0568-4d19-9412-44903a4890ee",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change",
+  "kind": "change",
+  "status": "completed",
+  "description": "Please add an Assign Agent button on the Ticket Assignment screen.\n\nRight now, when no agent exists in Agent Master, new tickets stay Pending with no agent. When the Manager clicks Assign Agent after agents are added, the system should:\n\nFind all tickets with the status Pending and no assigned agent. If the Manager selects specific tickets, process only those.\nFor each ticket, find the active agents in Agent Master whose Preference matches the ticket\u2019s Category.\nAssign the tickets in a round-robin manner, in ascending order of the agents. The first ticket goes to the first agent, the second to the second agent, and so on. After the last agent, start again from the first.\nFill in the Assigned Agent and Assigned Agent Name fields.\nChange the ticket Status from Pending to Assigned.\n\nOther rules\n\nDo not check agent availability.\nIf no agent matches a ticket\u2019s category, leave that ticket as Pending.\nTickets that are already assigned must not be changed.\nAfter the button is clicked, show a short message such as \u201c3 tickets assigned, 1 still pending\u201d.",
+  "created_at": 1794912158.4446485,
+  "updated_at": 1794913977.2549672,
+  "todos": [
+    {
+      "id": "change_turn",
+      "step": "change",
+      "label": "Please add an Assign Agent button on the Ticket Assignment screen.",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1794912158.3489592,
+      "completed_at": 1794912354.5743887
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Please add an Assign Agent button on the Ticket Assignment screen.\n\nRight now, when no agent exists in Agent Master, new tickets stay Pending with no agent. When the Manager clicks Assign Agent after agents are added, the system should:\n\nFind all tickets with the status Pending and no assigned agent. If the Manager selects specific tickets, process only those.\nFor each ticket, find the active agents in Agent Master whose Preference matches the ticket\u2019s Category.\nAssign the tickets in a round-robin manner, in ascending order of the agents. The first ticket goes to the first agent, the second to the second agent, and so on. After the last agent, start again from the first.\nFill in the Assigned Agent and Assigned Agent Name fields.\nChange the ticket Status from Pending to Assigned.\n\nOther rules\n\nDo not check agent availability.\nIf no agent matches a ticket\u2019s category, leave that ticket as Pending.\nTickets that are already assigned must not be changed.\nAfter the button is clicked, show a short message such as \u201c3 tickets assigned, 1 still pending\u201d.",
+  "resume_ref": {
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
+    "plan_id": "45124ca9-0568-4d19-9412-44903a4890ee",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

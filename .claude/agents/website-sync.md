@@ -2,7 +2,6 @@
 name: website-sync
 description: "Bring a website that was rebuilt from a LIVE site in line with it: REPAIR a rebuild that looks different from the original (pages re-drafted from a browser capture of the live pages — their own text, pictures, colours and layout), or ADOPT changes made on the live site since migration (a three-way diff per band: baseline vs live now vs Twasta now, so edits made in Twasta are kept or raised as conflicts). Use whenever the user says the built site doesn't look like the real one, or asks to re-sync / refresh / update the website from the live site. It plans first and returns OPEN QUESTIONS (conflicts, new and removed pages) — relay them and pass the answers back; it then applies, checks clone fidelity, and never publishes."
 tools: Bash, Read, Edit, Grep, Glob
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

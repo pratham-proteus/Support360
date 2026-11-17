@@ -1,0 +1,144 @@
+{
+  "report": {
+    "ok": false,
+    "summary": "FAIL",
+    "project": "Support360",
+    "obj_name": "support360_my_tickets",
+    "passed": 2,
+    "failed": 2,
+    "steps": [
+      {
+        "name": "deploy schema",
+        "status": "PASS",
+        "issue": null,
+        "detail": "schema=twasta",
+        "check": "record"
+      },
+      {
+        "name": "list records",
+        "status": "PASS",
+        "issue": null,
+        "detail": "7 row(s)",
+        "check": "record"
+      },
+      {
+        "name": "add, edit and delete a record",
+        "status": "SKIP",
+        "issue": null,
+        "detail": "this screen's Add is refused by its own rule '1 == 2' — records are written elsewhere, so there is nothing to add here",
+        "check": "record"
+      },
+      {
+        "name": "action 'Confirm and Close': add a record it accepts",
+        "status": "FAIL",
+        "issue": {
+          "code": "VALIDATION_FAILED",
+          "message": "1 validation error(s): ticket_no: Ticket No cannot exceed 30 characters (you entered 32).",
+          "field_errors": [
+            {
+              "field": "ticket_no",
+              "message": "Ticket No cannot exceed 30 characters (you entered 32).",
+              "rule": "max_length",
+              "code": null,
+              "severity": "E"
+            }
+          ]
+        },
+        "detail": null,
+        "check": "action:Confirm and Close"
+      },
+      {
+        "name": "action 'Reopen Comment': add a record it accepts",
+        "status": "FAIL",
+        "issue": {
+          "code": "VALIDATION_FAILED",
+          "message": "1 validation error(s): ticket_no: Ticket No cannot exceed 30 characters (you entered 32).",
+          "field_errors": [
+            {
+              "field": "ticket_no",
+              "message": "Ticket No cannot exceed 30 characters (you entered 32).",
+              "rule": "max_length",
+              "code": null,
+              "severity": "E"
+            }
+          ]
+        },
+        "detail": null,
+        "check": "action:Reopen Comment"
+      }
+    ],
+    "checks": [
+      {
+        "id": "record",
+        "kind": "record",
+        "name": "",
+        "label": "Add, list, open, edit and delete a record",
+        "steps": 3,
+        "status": "passed",
+        "first_failure": null
+      },
+      {
+        "id": "action:Confirm and Close",
+        "kind": "action",
+        "name": "Confirm and Close",
+        "label": "Action 'Confirm and Close'",
+        "steps": 1,
+        "status": "failed",
+        "first_failure": {
+          "step": "action 'Confirm and Close': add a record it accepts",
+          "code": "VALIDATION_FAILED",
+          "message": "1 validation error(s): ticket_no: Ticket No cannot exceed 30 characters (you entered 32).",
+          "field_errors": [
+            {
+              "field": "ticket_no",
+              "message": "Ticket No cannot exceed 30 characters (you entered 32).",
+              "rule": "max_length",
+              "code": null,
+              "severity": "E"
+            }
+          ]
+        }
+      },
+      {
+        "id": "action:Reopen Comment",
+        "kind": "action",
+        "name": "Reopen Comment",
+        "label": "Action 'Reopen Comment'",
+        "steps": 1,
+        "status": "failed",
+        "first_failure": {
+          "step": "action 'Reopen Comment': add a record it accepts",
+          "code": "VALIDATION_FAILED",
+          "message": "1 validation error(s): ticket_no: Ticket No cannot exceed 30 characters (you entered 32).",
+          "field_errors": [
+            {
+              "field": "ticket_no",
+              "message": "Ticket No cannot exceed 30 characters (you entered 32).",
+              "rule": "max_length",
+              "code": null,
+              "severity": "E"
+            }
+          ]
+        }
+      }
+    ],
+    "first_failure": {
+      "step": "action 'Confirm and Close': add a record it accepts",
+      "code": "VALIDATION_FAILED",
+      "message": "1 validation error(s): ticket_no: Ticket No cannot exceed 30 characters (you entered 32).",
+      "field_errors": [
+        {
+          "field": "ticket_no",
+          "message": "Ticket No cannot exceed 30 characters (you entered 32).",
+          "rule": "max_length",
+          "code": null,
+          "severity": "E"
+        }
+      ]
+    },
+    "emitted_events": []
+  },
+  "at": "2026-11-17T09:14:49+00:00",
+  "by": "pratham.dukhande@proteustech.in",
+  "via": "Ask-AI"
+}

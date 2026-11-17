@@ -7,6 +7,12 @@
           "form_title": "My Tickets",
           "form_descr": "Employee views and tracks own raised tickets",
           "form_no": "1",
+          "list_view": {
+            "edit_lock": {
+              "expression": "{form.status} == \"Closed\"",
+              "reason": "Closed tickets cannot be edited."
+            }
+          },
           "main_table": "SUPPORT360_TICKET",
           "columns": [
             {
@@ -197,7 +203,7 @@
                     },
                     {
                       "when": "Assigned",
-                      "color": "amber",
+                      "color": "orange",
                       "icon": "\u25cf",
                       "label": "Assigned"
                     },
@@ -209,9 +215,15 @@
                     },
                     {
                       "when": "Resolved",
-                      "color": "teal",
+                      "color": "blue",
                       "icon": "\u2713",
                       "label": "Resolved"
+                    },
+                    {
+                      "when": "Not Resolved",
+                      "color": "red",
+                      "icon": "\u2715",
+                      "label": "Not Resolved"
                     },
                     {
                       "when": "Closed",
@@ -233,16 +245,6 @@
                     {
                       "form_col": "status",
                       "expr": "{form.status}"
-                    }
-                  ],
-                  "protect": [
-                    {
-                      "form_col": "attachment",
-                      "when": "{form.status} == \"Closed\""
-                    },
-                    {
-                      "form_col": "new_comment",
-                      "when": "{form.status} == \"Closed\""
                     }
                   ]
                 },

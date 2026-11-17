@@ -1,6 +1,15 @@
 {
   "transaction": {
     "obj_name": "support360_ticket_assignment",
+    "unit_test": {
+      "sample": {
+        "TICKET_NO": "UT-ASSIGN-1",
+        "RAISED_BY_NAME": "Unit Test",
+        "TITLE": "Unit test ticket",
+        "STATUS": "Pending"
+      },
+      "note": "Short ticket number (max 30 chars) and the mandatory Raised By so the synthetic test row passes validation."
+    },
     "sql_models": [
       {
         "sql_model": {
@@ -231,6 +240,36 @@
                 "heading": "Status",
                 "descr": "Ticket status",
                 "protect": "1",
+                "display": {
+                  "type": "status_tag",
+                  "map": [
+                    {
+                      "when": "Pending",
+                      "color": "yellow",
+                      "icon": "●",
+                      "label": "Pending"
+                    },
+                    {
+                      "when": "Assigned",
+                      "color": "orange",
+                      "icon": "●",
+                      "label": "Assigned"
+                    },
+                    {
+                      "when": "Resolved",
+                      "color": "blue",
+                      "icon": "✓",
+                      "label": "Resolved"
+                    },
+                    {
+                      "when": "Not Resolved",
+                      "color": "red",
+                      "icon": "✕",
+                      "label": "Not Resolved"
+                    }
+                  ],
+                  "defaultColor": "grey"
+                },
                 "x": "60",
                 "y": "60",
                 "col_id": "6",
@@ -786,6 +825,20 @@
                 }
               ],
               "order": 2
+            },
+            {
+              "name": "Assign Agent",
+              "handler": "message",
+              "scope": "row",
+              "allow_bulk": true,
+              "placement": "bar",
+              "business_logic": {
+                "method": "assign_agent",
+                "language": "python",
+                "description": "Auto-assign Pending, unassigned tickets to Active agents by category preference (round-robin)",
+                "spec": "List-level action. Receives the TICKET_NO of each ticket the Manager ticked in the list (called once per selected row, in list order); if no TICKET_NO is supplied, process ALL tickets. Only process tickets with STATUS='Pending' and ASSIGNED_AGENT empty; skip any other ticket untouched. For each ticket take SUPPORT360_TICKET.CATEGORY and find SUPPORT360_AGENT rows with AGENT_STATUS='Active' whose PREFERENCE (comma-separated multi-select list, trim each item) contains that category; no availability check. Order candidates by AGENT_ID ascending and pick round-robin per category: the agent after the one who most recently received a ticket in that category (latest CHG_DATE of an Assigned ticket of that category whose ASSIGNED_AGENT is in the candidate list), wrapping to the first; start with the first candidate when none. Update SUPPORT360_TICKET.ASSIGNED_AGENT=AGENT_ID, STATUS='Assigned', CHG_DATE/CHG_USER (ASSIGNED_AGENT_NAME is not a ticket column - it is the AGENT_NAME join display). No matching agent: ticket stays Pending. Return {message} such as '3 tickets assigned, 1 still pending'."
+              },
+              "order": 3
             }
           ],
           "validations": [

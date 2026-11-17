@@ -7,7 +7,7 @@
   "status": "error",
   "description": "Delete the business logic used in backfill_raised_by_email process",
   "created_at": 1792648069.80711,
-  "updated_at": 1794809263.8586972,
+  "updated_at": 1794913977.234956,
   "todos": [
     {
       "id": "change_1",
@@ -61,7 +61,7 @@
   "phases": [],
   "originating_prompt": "Delete the business logic used in backfill_raised_by_email process",
   "resume_ref": {
-    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
     "plan_id": "c0361d02-2842-4ee9-87e8-d8539e327de6",
     "scope": null
   },

@@ -2,8 +2,6 @@
 name: acceptance-test-designer
 description: "TEST THE APPLICATION (and its website) like a user would, in a real browser, against its requirement specification. Use when the user asks to test the app, generate test cases from the FRS/design/objects, run acceptance/UI tests, or produce a test result document. It seeds the baseline cases from the models, writes the FRS's business scenarios, journeys and role checks as case files, validates them, runs them in headless Chromium on the server (screenshot per step, trace, console, network, server log), registers failures as defects and builds Test_Result_Report.docx + .html. Also for SPECIFIC tests the user asks for: it first checks the behaviour is in the specification and built, and returns a FEATURE CHECK + OPEN QUESTION instead of a test when it is not; and for updating tests a change broke. It never changes the application to make a test pass."
 tools: Bash, Read, Grep, Glob, Edit, Write
-model: claude-haiku-5-5
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

@@ -1,0 +1,35 @@
+{
+  "id": "2133e6a2-871e-4bf3-8a8e-6335c811f9a0",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change",
+  "kind": "change",
+  "status": "completed",
+  "description": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\n\"Please show the ticket Status in colour on all screens (Create Ticket, Manage Ticket Queue and Ticket Management). Right now, Manage Ticket assignment shows the status as plain text.\n\nUse these colours:\n\nPending: Yellow\nAssigned: Orange\nResolved: Blue\nNot Resolved: Red\"",
+  "created_at": 1794906792.3529665,
+  "updated_at": 1794913977.2532873,
+  "todos": [
+    {
+      "id": "change_turn",
+      "step": "change",
+      "label": "\"Please show the ticket Status in colour on all screens (Create Ticket, Manage Ticket Queue and Ticket Management). Righ",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1794906792.2646568,
+      "completed_at": 1794906910.6162739
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "[The user currently has the \"Ticket Management\" screen open (object support360_ticket_assignment, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\n\"Please show the ticket Status in colour on all screens (Create Ticket, Manage Ticket Queue and Ticket Management). Right now, Manage Ticket assignment shows the status as plain text.\n\nUse these colours:\n\nPending: Yellow\nAssigned: Orange\nResolved: Blue\nNot Resolved: Red\"",
+  "resume_ref": {
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
+    "plan_id": "2133e6a2-871e-4bf3-8a8e-6335c811f9a0",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

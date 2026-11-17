@@ -1,0 +1,35 @@
+{
+  "id": "e68ceda4-93e6-47d7-965d-0cdcd6d457b2",
+  "project": "Support360",
+  "backend": "autoagent",
+  "title": "Change",
+  "kind": "change",
+  "status": "completed",
+  "description": "Please move the Ticket Queue screen from the Agent Ticket Desk folder to the Ticket Management folder.\n\nOnly the menu location should change. The screen itself, its data and its settings should stay exactly the same.",
+  "created_at": 1794907506.232804,
+  "updated_at": 1794913977.2538955,
+  "todos": [
+    {
+      "id": "change_turn",
+      "step": "change",
+      "label": "Please move the Ticket Queue screen from the Agent Ticket Desk folder to the Ticket Management folder.",
+      "status": "completed",
+      "error": null,
+      "obj_name": null,
+      "obj_type": null,
+      "phase_id": null,
+      "started_at": 1794907506.1527743,
+      "completed_at": 1794907533.290795
+    }
+  ],
+  "phases": [],
+  "originating_prompt": "Please move the Ticket Queue screen from the Agent Ticket Desk folder to the Ticket Management folder.\n\nOnly the menu location should change. The screen itself, its data and its settings should stay exactly the same.",
+  "resume_ref": {
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
+    "plan_id": "e68ceda4-93e6-47d7-965d-0cdcd6d457b2",
+    "scope": null
+  },
+  "depends_on": [],
+  "result_summary": "",
+  "awaiting_answer": false
+}

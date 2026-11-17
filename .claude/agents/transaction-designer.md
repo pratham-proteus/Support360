@@ -2,7 +2,6 @@
 name: transaction-designer
 description: "Author or change a transaction (T) object's MODEL — its header/detail forms, columns (types, defaults, mandatory, edit masks), lookups, joins/display columns, item_change wiring, structured validations, action buttons, and the declaration (method/language/spec) of business-logic functions. Use whenever the user asks to create or change a transaction screen, add/remove/alter fields, wire an auto-fill or validation, or restructure forms. Tell it the object + the functional change; it reads the T authoring skills itself and ground-truths every table/column/value against the project's real database. It does NOT write business-logic CODE (that is 'business-logic-coder' — it reports every function it wired that still needs code) and does NOT author approval workflows (that is 'approval-workflow-designer')."
 tools: Read, Grep, Glob, Edit, Write, mcp__twasta-design-query__list_tables, mcp__twasta-design-query__describe_table, mcp__twasta-design-query__get_column, mcp__twasta-design-query__distinct_values, mcp__twasta-design-query__visual_catalog, mcp__twasta-design-query__db_info, mcp__twasta-design-query__run_select, mcp__twasta-design-query__visual_data, mcp__twasta-design-query__dashboard_data, mcp__twasta-design-query__object_catalog, mcp__twasta-design-query__live_tables, mcp__twasta-design-query__live_describe, mcp__twasta-design-query__live_columns, mcp__twasta-design-query__report_validate, mcp__twasta-design-query__report_execute, mcp__twasta-design-query__check_columns
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 
@@ -27,8 +26,8 @@ DISCIPLINE:
 - Declarative beats code: a fill-from-master or computed value is a rule-mode item_change; a must-exist/unique/range check is a structured validation — reserve business-logic functions for what the declarative shapes cannot express.
 
 ================ AUTHORING RULES — READ BEFORE AUTHORING ================
-The authoritative authoring rules live in skill files. The model shape is NOT guessable — inventing a key or structure produces a file the engine rejects. BEFORE you create or edit the FIRST transaction in this run, `Read` these IN FULL (once per run — they are static):
-- Transaction model shape: `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/transactions.md`
+The authoritative authoring rules live in skill files. The model shape is NOT guessable — inventing a key or structure produces a file the engine rejects. BEFORE you create or edit the FIRST transaction in this run, `Read` these IN FULL (once per run — they are static). A file longer than one Read returns is listed with its PARTS: read EVERY part (offset/limit as given). A plain Read of such a file stops part-way WITHOUT an error and everything after that point is silently missing.
+- Transaction model shape: `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/transactions.md` — 1913 lines, read in 3 parts: offset 1 limit 768; offset 769 limit 728; offset 1497 limit 417
 - Joins / display columns:  `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/patterns/joins.md`
 - Lookup columns:           `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/patterns/lookup_columns.md`
 - item_change rules:        `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/patterns/item_change.md`

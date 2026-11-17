@@ -1,0 +1,2 @@
+{"event": "created", "at": "2026-11-17T10:45:46+00:00", "run_id": "unit-20261117-104546", "case": "unit:support360_ticket_assignment:action:Assign Agent", "obj": "support360_ticket_assignment", "txn_id": "UT-ASSIGN-1", "via": "unit"}
+{"event": "settled", "at": "2026-11-17T10:45:46+00:00", "run_id": "unit-20261117-104546", "obj": "support360_ticket_assignment", "txn_id": "UT-ASSIGN-1", "fingerprint": "3b61f29b7120ee31"}

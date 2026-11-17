@@ -2,7 +2,6 @@
 name: ioflow-flow-editor
 description: "CHANGE or DEBUG an IOFlow flow that already exists — edit a node's parameters, add a step or condition, re-point an edge, or find and fix why a run failed (it reads the execution logs). Runs IOFlow's own flow-editor agent (the same prompt and tools IOFlow's Assistant uses) with this project's bindings and verification on top. Use when the user wants an existing automation changed or a failed one fixed; a brand new flow goes to 'ioflow-flow-designer'. Tell it which flow (or the execution id) and what should change."
 tools: Bash, Read, Grep, Glob, mcp__ioflow__get_flow_by_id, mcp__ioflow__get_flow_by_name, mcp__ioflow__list_flows, mcp__ioflow__replace_node_in_flow, mcp__ioflow__add_node_to_flow, mcp__ioflow__remove_node_from_flow, mcp__ioflow__update_edge_in_flow, mcp__ioflow__get_execution_details, mcp__ioflow__get_execution_logs, mcp__ioflow__list_applications, mcp__ioflow__get_application_services_list, mcp__ioflow__get_service_information, mcp__ioflow__get_application_events_list, mcp__ioflow__get_event_information, mcp__ioflow__get_flow_design_guideline, mcp__ioflow__get_transform_node_guide, mcp__ioflow__get_condition_node_guide, mcp__ioflow__get_loop_node_guide, mcp__ioflow__get_hitl_node_guide, mcp__ioflow__get_pdf_generation_guide, mcp__ioflow__get_parameter_mapping_guide, mcp__ioflow__get_variable_reference_guide, mcp__ioflow__validate_flow_design
-effort: low
 ---
 <!-- generated-by: twasta-subagent-registry -->
 

@@ -6,95 +6,81 @@
 # form_no: 1
 # action_name: Assign Agent
 # language: python
-# description: Assign the selected agent to the current ticket
-# functional_specification: Read TICKET_NO from the form and fetch the current SUPPORT360_TICKET row to get its CATEGORY_CODE. Search SUPPORT360_AGENT for the Active agent whose PREFERENCE equals the ticket's CATEGORY_CODE, ordered by AGENT_ID ascending so the lowest-AGENT_ID match is picked. If such an agent is found, persist ASSIGNED_AGENT, ASSIGNED_AGENT_NAME and STATUS = 'Assigned' on the SUPPORT360_TICKET row for that TICKET_NO, then return updates for ASSIGNED_AGENT/ASSIGNED_AGENT_NAME/STATUS so the form refreshes with the new values immediately. If no matching agent is found, leave the ticket unchanged and return an empty updates object with a message that no available agent was found.
-# business_logic: Assign the Active agent with matching PREFERENCE and the lowest AGENT_ID to the current ticket based on its category code
+# description: Assign each ticked Pending ticket to the next Active agent (round-robin by AGENT_ID) whose PREFERENCE covers its CATEGORY
+# functional_specification: Runs once per ticked row with that row's TICKET_NO. Re-reads the ticket; acts only when STATUS = Pending and ASSIGNED_AGENT is empty (else returns an already-assigned message, no update). Candidates are SUPPORT360_AGENT rows with AGENT_STATUS = Active (availability ignored) whose comma-separated PREFERENCE (trimmed, case-insensitive) contains the ticket CATEGORY, ordered by AGENT_ID ascending. Round-robin: the agent after the one most recently assigned a ticket in that category (read from the DB each call so earlier rows of the same bulk run count), wrapping to the first; first-ever ticket gets the first agent. Writes ASSIGNED_AGENT, STATUS = Assigned, CHG_DATE, CHG_USER and a best-effort SUPPORT360_TICKET_ACTLOG row. No match: no update, message that the ticket is still pending.
+# business_logic: Round-robin assign a Pending ticket to an Active agent whose PREFERENCE matches its CATEGORY
+
+
+def _prefs(raw):
+    return [p.strip().upper() for p in str(raw or '').split(',') if p.strip()]
 
 
 def run(args):
     ticket_no = args.get('ticket_no')
-
     if is_empty(ticket_no):
         return 'Ticket number is required to assign an agent.'
+    ticket_no = str(ticket_no).strip()
 
     ticket = db.query_one(
-        'SELECT t.STATUS AS STATUS, t.CATEGORY_NAME AS CATEGORY_NAME '
-        'FROM SUPPORT360_TICKET t '
-        'WHERE t.TICKET_NO = :ticket_no',
-        {'ticket_no': ticket_no}
-    )
-
+        'SELECT STATUS, ASSIGNED_AGENT, CATEGORY FROM ' + db.t('SUPPORT360_TICKET') +
+        ' WHERE TICKET_NO = :t', {'t': ticket_no})
     if not ticket:
-        return 'Ticket ' + str(ticket_no) + ' could not be found.'
+        return 'Ticket ' + ticket_no + ' could not be found.'
 
-    status = ticket.get('STATUS')
-    category_name = ticket.get('CATEGORY_NAME')
+    if str(ticket.get('STATUS') or '').strip() != 'Pending' or str(ticket.get('ASSIGNED_AGENT') or '').strip() != '':
+        return {'message': 'Ticket ' + ticket_no + ' is already assigned, unchanged'}
 
-    if status != 'Pending':
-        return {
-            'errors': [{
-                'code': 'TICKET_ALREADY_ASSIGNED',
-                'field': 'status',
-                'type': 'E',
-                'message': 'Ticket already assigned',
-            }],
-            'error': 'Ticket already assigned',
-        }
+    category = str(ticket.get('CATEGORY') or '').strip()
+    cat_key = category.upper()
 
-    candidates = db.query(
-        'SELECT AGENT_ID, AGENT_NAME FROM SUPPORT360_AGENT '
-        "WHERE PREFERENCE = :category_name AND AGENT_STATUS = 'Active' "
-        'ORDER BY AGENT_ID ASC',
-        {'category_name': category_name}
-    )
+    agents = db.query(
+        'SELECT AGENT_ID, AGENT_NAME, PREFERENCE FROM ' + db.t('SUPPORT360_AGENT') +
+        ' WHERE AGENT_STATUS = :s ORDER BY AGENT_ID ASC', {'s': 'Active'})
+    cands = [a for a in agents if cat_key and cat_key in _prefs(a.get('PREFERENCE'))]
+    if not cands:
+        return {'message': 'Ticket ' + ticket_no + ' still pending: no active agent matches category ' + category}
 
-    agent = None
-    if candidates:
-        last_assigned = db.query_one(
-            'SELECT ASSIGNED_AGENT FROM SUPPORT360_TICKET '
-            'WHERE CATEGORY_NAME = :category_name AND ASSIGNED_AGENT IS NOT NULL '
-            'ORDER BY CHG_DATE DESC',
-            {'category_name': category_name}
-        )
+    ids = [str(a['AGENT_ID']).strip() for a in cands]
 
-        last_agent_id = last_assigned.get('ASSIGNED_AGENT') if last_assigned else None
+    # Re-read from the DB every call so tickets assigned earlier in the same bulk run count.
+    last_agent = None
+    recent = db.query(
+        'SELECT ASSIGNED_AGENT FROM ' + db.t('SUPPORT360_TICKET') +
+        ' WHERE CATEGORY = :c AND TICKET_NO <> :t AND ASSIGNED_AGENT IS NOT NULL'
+        " AND ASSIGNED_AGENT <> ''"
+        ' ORDER BY COALESCE(CHG_DATE, CREATED_DATE) DESC, TICKET_NO DESC',
+        {'c': category, 't': ticket_no})
+    for r in recent:
+        aid = str(r['ASSIGNED_AGENT']).strip()
+        if aid in ids:
+            last_agent = aid
+            break
 
-        if is_empty(last_agent_id):
-            agent = candidates[0]
-        else:
-            agent = candidates[0]
-            for idx, candidate in enumerate(candidates):
-                if candidate.get('AGENT_ID') == last_agent_id:
-                    agent = candidates[(idx + 1) % len(candidates)]
-                    break
+    if last_agent:
+        agent_id = next((i for i in ids if i > last_agent), ids[0])
+    else:
+        agent_id = ids[0]
+    agent = cands[ids.index(agent_id)]
+    agent_name = agent.get('AGENT_NAME') or agent_id
 
-    if not agent:
-        return {
-            'errors': [{
-                'code': 'NO_AGENT_AVAILABLE',
-                'field': 'assigned_agent',
-                'type': 'E',
-                'message': 'No active agent found with matching preference for category ' + str(category_name) + '.',
-            }],
-            'error': 'No active agent found with matching preference for category ' + str(category_name) + '.',
-        }
+    user = str(coalesce(args.get('CHG_USER'), args.get('chg_user'), 'System'))
+    db.update('SUPPORT360_TICKET',
+              {'ASSIGNED_AGENT': agent_id, 'STATUS': 'Assigned',
+               'CHG_DATE': now(), 'CHG_USER': user[:10]},
+              {'TICKET_NO': ticket_no})
 
-    db.update(
-        'SUPPORT360_TICKET',
-        {
-            'STATUS': 'Assigned',
-            'ASSIGNED_AGENT': agent.get('AGENT_ID'),
-            'ASSIGNED_AGENT_NAME': agent.get('AGENT_NAME'),
-        },
-        {'TICKET_NO': ticket_no}
-    )
-
-    return {
-        'updates': {
+    try:
+        db.insert('SUPPORT360_TICKET_ACTLOG', {
+            'ID': ('A' + now().strftime('%Y%m%d%H%M%S%f') + ticket_no)[:36],
             'TICKET_NO': ticket_no,
-            'ASSIGNED_AGENT': agent.get('AGENT_ID'),
-            'ASSIGNED_AGENT_NAME': agent.get('AGENT_NAME'),
-            'STATUS': 'Assigned',
-        },
-        'message': 'Ticket assigned to ' + str(agent.get('AGENT_NAME')),
-    }
+            'ACTION_TYPE': 'Assigned',
+            'FIELD_CHANGED': 'ASSIGNED_AGENT',
+            'OLD_VALUE': None,
+            'NEW_VALUE': agent_id,
+            'CHANGED_BY': user[:36],
+            'CHANGE_DATE': now(),
+        })
+    except Exception as exc:
+        log('assign_agent: activity log failed for ' + ticket_no + ': ' + str(exc))
+
+    return {'message': 'Ticket ' + ticket_no + ' assigned to ' + str(agent_name)}

@@ -230,7 +230,7 @@
                     },
                     {
                       "when": "Assigned",
-                      "color": "amber",
+                      "color": "orange",
                       "icon": "\u25cf",
                       "label": "Assigned"
                     },
@@ -242,9 +242,15 @@
                     },
                     {
                       "when": "Resolved",
-                      "color": "teal",
+                      "color": "blue",
                       "icon": "\u2713",
                       "label": "Resolved"
+                    },
+                    {
+                      "when": "Not Resolved",
+                      "color": "red",
+                      "icon": "\u2715",
+                      "label": "Not Resolved"
                     },
                     {
                       "when": "Closed",

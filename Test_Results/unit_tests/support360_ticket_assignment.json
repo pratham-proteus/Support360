@@ -1,0 +1,86 @@
+{
+  "report": {
+    "ok": true,
+    "summary": "PASS",
+    "project": "Support360",
+    "obj_name": "support360_ticket_assignment",
+    "passed": 5,
+    "failed": 0,
+    "steps": [
+      {
+        "name": "deploy schema",
+        "status": "PASS",
+        "issue": null,
+        "detail": "schema=twasta",
+        "check": "record"
+      },
+      {
+        "name": "list records",
+        "status": "PASS",
+        "issue": null,
+        "detail": "1 row(s)",
+        "check": "record"
+      },
+      {
+        "name": "add, edit and delete a record",
+        "status": "SKIP",
+        "issue": null,
+        "detail": "this screen's Add is refused by its own rule 'false' — records are written elsewhere, so there is nothing to add here",
+        "check": "record"
+      },
+      {
+        "name": "action 'Assign Agent': add a record it accepts",
+        "status": "PASS",
+        "issue": null,
+        "detail": "txn_id=UT-ASSIGN-1",
+        "check": "action:Assign Agent"
+      },
+      {
+        "name": "action 'Assign Agent': run",
+        "status": "PASS",
+        "issue": null,
+        "detail": "Ticket UT-ASSIGN-1 still pending: no active agent matches category ",
+        "check": "action:Assign Agent"
+      },
+      {
+        "name": "action 'Assign Agent': keep the test record",
+        "status": "PASS",
+        "issue": null,
+        "detail": "kept UT-ASSIGN-1 as test data — the button may have written records that point at it; clean it under Testing → Test data",
+        "check": "action:Assign Agent"
+      }
+    ],
+    "checks": [
+      {
+        "id": "record",
+        "kind": "record",
+        "name": "",
+        "label": "Add, list, open, edit and delete a record",
+        "steps": 3,
+        "status": "passed",
+        "first_failure": null
+      },
+      {
+        "id": "action:Assign Agent",
+        "kind": "action",
+        "name": "Assign Agent",
+        "label": "Action 'Assign Agent'",
+        "steps": 3,
+        "status": "passed",
+        "first_failure": null
+      }
+    ],
+    "first_failure": null,
+    "emitted_events": [],
+    "kept_records": [
+      {
+        "obj": "support360_ticket_assignment",
+        "txn_id": "UT-ASSIGN-1",
+        "check": "action:Assign Agent"
+      }
+    ]
+  },
+  "at": "2026-11-17T10:45:46+00:00",
+  "by": "pratham.dukhande@proteustech.in",
+  "via": "Ask-AI"
+}

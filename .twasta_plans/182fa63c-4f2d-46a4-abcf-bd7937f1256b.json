@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "[The user currently has the \"Manage Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"My Tickets\" transaction, the 'Raised By' column is showing name of the currently logged in user. The same name must be visible for the Agent in \"Manage Ticket Queue\". In \"Manage Ticket Queue\" the Raised By column shows some randomly generated code, instead of that show the name of the user who has raised the ticket.",
   "created_at": 1790058471.3963246,
-  "updated_at": 1794809263.836745,
+  "updated_at": 1794913977.2135615,
   "todos": [
     {
       "id": "change_1",
@@ -85,7 +85,7 @@
   "phases": [],
   "originating_prompt": "[The user currently has the \"Manage Ticket Queue\" screen open (object support360_manage_ticket_queue, type T). Resolve \"this\", \"this form/page/screen\", or \"here\" to this object unless they name a different one.]\n\nIn \"My Tickets\" transaction, the 'Raised By' column is showing name of the currently logged in user. The same name must be visible for the Agent in \"Manage Ticket Queue\". In \"Manage Ticket Queue\" the Raised By column shows some randomly generated code, instead of that show the name of the user who has raised the ticket.",
   "resume_ref": {
-    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
     "plan_id": "182fa63c-4f2d-46a4-abcf-bd7937f1256b",
     "scope": null
   },

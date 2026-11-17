@@ -4,10 +4,10 @@
   "backend": "autoagent",
   "title": "Remove agent-availability and 'Queued'-status logic from all ticket-assignment c",
   "kind": "change",
-  "status": "error",
+  "status": "paused",
   "description": "Remove the use of agent availability or a \u201cQueued\u201d status anywhere. Assignment depends only on Preference and round-robin order.\n\nRemove the unconditional Pending \u2192 Assigned change from the pre-commit hook. Status should become Assigned only in the post-commit hook, after an agent is actually selected.\nIf no active agent matches the ticket\u2019s Category, keep the status as Pending and leave Assigned To empty.",
   "created_at": 1793782435.3692744,
-  "updated_at": 1794809263.8737466,
+  "updated_at": 1794913977.250623,
   "todos": [
     {
       "id": "change_1",
@@ -182,7 +182,7 @@
   "phases": [],
   "originating_prompt": "Remove the use of agent availability or a \u201cQueued\u201d status anywhere. Assignment depends only on Preference and round-robin order.\n\nRemove the unconditional Pending \u2192 Assigned change from the pre-commit hook. Status should become Assigned only in the post-commit hook, after an agent is actually selected.\nIf no active agent matches the ticket\u2019s Category, keep the status as Pending and leave Assigned To empty.",
   "resume_ref": {
-    "session_id": "3bf0b310-a702-4d24-a615-e6a5e41a030c",
+    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
     "plan_id": "7703dc8a-ed4f-4a86-8c1b-6cbac3c560d2",
     "scope": null
   },

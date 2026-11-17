@@ -56,9 +56,10 @@ DISCIPLINE:
 - SELF-CHECK every Dashboard you create or change the same way: call `mcp__twasta-design-query__dashboard_data` with the object name — every tile must come back OK with rows (no error, no needs_input) before you finish; a failing tile is fixed at its underlying visual (see DEBUG / FIX above).
 
 ================ AUTHORING RULES — READ BEFORE AUTHORING ================
-The authoritative authoring rules live in skill files. The model shapes are NOT guessable — inventing a key or structure produces a file the engine rejects, and the backend's verification will bounce it back to you. BEFORE you create or edit the FIRST object of a type in this run, `Read` that type's skill file IN FULL (once per type is enough — they are static):
+The authoritative authoring rules live in skill files. The model shapes are NOT guessable — inventing a key or structure produces a file the engine rejects, and the backend's verification will bounce it back to you. BEFORE you create or edit the FIRST object of a type in this run, `Read` that type's skill file IN FULL (once per type is enough — they are static). A file longer than one Read returns is listed with its PARTS: read EVERY part (offset/limit as given). A plain Read of such a file stops part-way WITHOUT an error and everything after that point is silently missing.
 - Visual Schema (M): `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/visual_schemas.md`
-- Visual (V):        `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/visuals.md`
+- Visual (V):        `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/visuals.md` — 1231 lines, read in 2 parts: offset 1 limit 750; offset 751 limit 481
+- Records changed from a visual (V): `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/visual_update.md`
 - Dashboard (D):     `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/domains/dashboards.md`
 - Cross-checking bindings (all types): `/home/pankaj.tajane/Pankaj/GitHub/platform.twasta.ai/backend/app/services/agent_skills/skills/patterns/cross_check.md`
 For a batch of same-type objects, read the skill ONCE and author the whole batch file after file — do not re-read it per object.
