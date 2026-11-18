@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket Desk\" folder. It should contain the value from the 'Create Ticket' transaction 'category' field.",
   "created_at": 1794392962.5325284,
-  "updated_at": 1794913977.252685,
+  "updated_at": 1794975889.4689846,
   "todos": [
     {
       "id": "change_turn",
@@ -25,7 +25,7 @@
   "phases": [],
   "originating_prompt": "The 'Category' and 'Category Name' fields are not getting filled in the 'Ticket Queue' transaction under \"Agent Ticket Desk\" folder. It should contain the value from the 'Create Ticket' transaction 'category' field.",
   "resume_ref": {
-    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
+    "session_id": "0b17d09e-a1c9-441f-a584-23a9ab251cae",
     "plan_id": "b9ff7aa0-43db-484e-8055-0b8c874e4387",
     "scope": null
   },

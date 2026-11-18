@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Remove the status 'In Progress'",
   "created_at": 1792580072.2623498,
-  "updated_at": 1794913977.2319887,
+  "updated_at": 1794975889.4501433,
   "todos": [
     {
       "id": "change_1",
@@ -97,7 +97,7 @@
   "phases": [],
   "originating_prompt": "Remove the status 'In Progress'",
   "resume_ref": {
-    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
+    "session_id": "0b17d09e-a1c9-441f-a584-23a9ab251cae",
     "plan_id": "05ef0a4c-ed1f-4b15-8ae6-15a31687241c",
     "scope": null
   },

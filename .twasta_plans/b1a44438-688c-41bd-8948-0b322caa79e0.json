@@ -7,7 +7,7 @@
   "status": "completed",
   "description": "Keep the item change on selection on Category for Category Code. When user selects the Category from dropdown, the Category Code should be fetched automatically. The status should change from 'Pending' to 'Assigned' on click of Save or Save & Close. Rest keep the functionality unchanged.",
   "created_at": 1793257857.645665,
-  "updated_at": 1794913977.2443528,
+  "updated_at": 1794975889.4615817,
   "todos": [
     {
       "id": "change_1",
@@ -109,7 +109,7 @@
   "phases": [],
   "originating_prompt": "Keep the item change on selection on Category for Category Code. When user selects the Category from dropdown, the Category Code should be fetched automatically. The status should change from 'Pending' to 'Assigned' on click of Save or Save & Close. Rest keep the functionality unchanged.",
   "resume_ref": {
-    "session_id": "7eca9cc5-2766-402e-9241-43bdec39a8fb",
+    "session_id": "0b17d09e-a1c9-441f-a584-23a9ab251cae",
     "plan_id": "b1a44438-688c-41bd-8948-0b322caa79e0",
     "scope": null
   },
